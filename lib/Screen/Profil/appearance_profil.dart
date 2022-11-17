@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/widget_gridview_surat.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/widget_line.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/widget_text_surat.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/widget_dropdown.dart';
+import 'package:kepuharjo_app/Screen/Profil/widget_button_logout.dart';
+import 'package:kepuharjo_app/Screen/Profil/widget_myprofile.dart';
+import 'package:kepuharjo_app/Screen/Profil/widget_option_setting.dart';
+import 'package:kepuharjo_app/Screen/Profil/widget_text_profil.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
-class AppearancePengajuan extends StatefulWidget {
-  const AppearancePengajuan({key});
+class AppearanceProfil extends StatefulWidget {
+  const AppearanceProfil({Key key}) : super(key: key);
 
   @override
-  State<AppearancePengajuan> createState() => _AppearancePengajuanState();
+  State<AppearanceProfil> createState() => _AppearanceProfilState();
 }
 
-class _AppearancePengajuanState extends State<AppearancePengajuan> {
+class _AppearanceProfilState extends State<AppearanceProfil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
-        centerTitle: true,
         title: Text(
-          'Pengajuan Surat',
+          'Profil',
           style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
@@ -41,18 +41,18 @@ class _AppearancePengajuanState extends State<AppearancePengajuan> {
                   ],
                 ))),
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [
-            WidgetDropDownPerson(),
-            WidgetTextSurat(),
-            WidgetDivider(),
-            WidgetGridViewSurat(),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: const [
+              WidgetMyProfil(),
+              WidgetOptionsSetting(),
+              WidgetTextVersion(),
+              WidgetButtonLogOut(),
+            ],
+          ),
         ),
       ),
     );

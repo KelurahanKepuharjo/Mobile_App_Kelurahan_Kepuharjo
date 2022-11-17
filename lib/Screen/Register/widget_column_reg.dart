@@ -115,7 +115,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
             ),
           ),
           const SizedBox(
-            height: defaultPadding,
+            height: 15,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

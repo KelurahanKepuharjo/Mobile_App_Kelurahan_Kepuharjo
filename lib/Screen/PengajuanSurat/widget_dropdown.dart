@@ -103,7 +103,7 @@ class _WidgetDropDownPersonState extends State<WidgetDropDownPerson> {
                       ),
                       GestureDetector(
                           onTap: () {
-                            // showAddPerson(context);
+                            showAddPerson(context);
                           },
                           child: const Icon(Icons.person_add)),
                       const SizedBox(

@@ -48,7 +48,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
             inputFormatters: FilteringTextInputFormatter.digitsOnly,
           ),
           const SizedBox(
-            height: defaultPadding,
+            height: 15,
           ),
           getTextField(
             controller: passwordController,

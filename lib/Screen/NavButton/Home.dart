@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kepuharjo_app/Screen/Home/appearance_home.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
-import 'package:kepuharjo_app/Screen/Profile.dart';
+import 'package:kepuharjo_app/Screen/Profil/appearance_profil.dart';
 import 'package:kepuharjo_app/Screen/Status.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
     const AppearanceHome(),
     const AppearancePengajuan(),
     const Status(),
-    const Profile()
+    const AppearanceProfil()
   ];
   void onTap(int index) {
     setState(() {
