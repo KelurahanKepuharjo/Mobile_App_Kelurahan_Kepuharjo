@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Comm/getTextField.dart';
-import 'package:kepuharjo_app/Pages/fpass/fpass_tlp.dart';
+import 'package:kepuharjo_app/Screen/LupaPassword/appearance_forgot_password.dart.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home.dart';
 import 'package:kepuharjo_app/Screen/Register/appearance_register.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
@@ -98,8 +98,10 @@ class _WidgetLoginState extends State<WidgetLogin> {
                     style: GoogleFonts.poppins(color: blackColor, fontSize: 12),
                   ),
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => FPassword()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AppearanceForgotPassword()));
                   },
                 ),
               ],

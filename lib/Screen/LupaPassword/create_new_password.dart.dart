@@ -22,27 +22,17 @@ class _CreateNewPw extends State<CreateNewPw> {
       backgroundColor: whiteColor,
       appBar: AppBar(
         centerTitle: true,
-        // leading: Padding(
-        //   padding: EdgeInsets.all(8),
-        //   child: GestureDetector(
-        //     onTap: () {
-        //       Navigator.push(context,
-        //           MaterialPageRoute(builder: (context) => loginKids()));
-        //     },
-        //     child: Icon(Icons.keyboard_arrow_left),
-        //   ),
-        // ),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         title: Text(
           'Create New Password',
-          style: whiteTextStyle.copyWith(
-              fontSize: 20, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+              color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20)),
                 gradient: LinearGradient(
@@ -57,8 +47,6 @@ class _CreateNewPw extends State<CreateNewPw> {
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.fromLTRB(20, 50, 20, 20),
-          // height: MediaQuery.of(context).size.height,
-          // width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,7 +66,7 @@ class _CreateNewPw extends State<CreateNewPw> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                     fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w300,
                     color: blackColor,
                   ),
                 ),
@@ -91,7 +79,7 @@ class _CreateNewPw extends State<CreateNewPw> {
                   "Gunakanlah Password Yang Kuat",
                   style: GoogleFonts.poppins(
                     fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w300,
                     color: blackColor,
                   ),
                 ),
@@ -124,12 +112,12 @@ class _CreateNewPw extends State<CreateNewPw> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     height: 45,
                     width: 250,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF2BAE82),
+                            backgroundColor: const Color(0xFF2BAE82),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             )),
@@ -137,7 +125,7 @@ class _CreateNewPw extends State<CreateNewPw> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => AppeareaceLogin()),
+                                  builder: (_) => const AppeareaceLogin()),
                               (Route<dynamic> route) => false);
                         },
                         child: Text(

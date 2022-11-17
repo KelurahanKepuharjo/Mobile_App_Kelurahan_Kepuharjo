@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_berita.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_surat.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_text_berita.dart';
@@ -18,7 +19,7 @@ class _AppearanceHomeState extends State<AppearanceHome> {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(250),
+        preferredSize: const Size.fromHeight(200),
         child: Container(
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
@@ -32,64 +33,53 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                     midGreen,
                   ],
                 )),
-            child: ListView(physics: BouncingScrollPhysics(), children: [
-              Container(
-                // margin: EdgeInsets.only(right: 10, top: 20, left: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 100,
-                          ),
-                          Text(
-                            "Kepuharjo App",
-                            style: boldTextStyle.copyWith(
-                                fontSize: 26, color: whiteColor),
-                          ),
-                          const SizedBox(
-                            height: 3,
-                          ),
-                          Text(
-                            "Smart Aplikasi Pelayanan Pengajuan\nSurat Kelurahan Kepuharjo",
-                            style: whiteTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                                color: whiteColor),
-                          ),
-                          const SizedBox(
-                            height: 3,
-                          ),
-                          Text(
-                            "Jl.Langsep no.18, Kecamatan Lumajang, Kabupaten Lumajang",
-                            style: whiteTextStyle.copyWith(
-                                fontSize: 10,
-                                fontWeight: FontWeight.normal,
-                                color: whiteColor),
-                          ),
-                        ],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 100, 20, 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Kepuharjo App",
+                        style: boldTextStyle.copyWith(
+                            fontSize: 30, color: whiteColor),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: ClipRRect(
-                        child: Image.asset(
-                          "images/lambange.png",
-                          height: 80,
-                          width: 60,
-                          alignment: Alignment.topCenter,
-                        ),
+                      const SizedBox(
+                        height: 3,
                       ),
-                    ),
-                  ],
+                      Text(
+                        "Smart Aplikasi Pelayanan Pengajuan\nSurat Kelurahan Kepuharjo",
+                        style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                            color: whiteColor),
+                      ),
+                      Text(
+                        "Jl.Langsep no.18, Kec. Lumajang, Kab. Lumajang",
+                        style: GoogleFonts.poppins(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w300,
+                            color: whiteColor),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ])),
+                Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: ClipRRect(
+                    child: Image.asset(
+                      "images/lambange.png",
+                      height: 80,
+                      width: 60,
+                      alignment: Alignment.topCenter,
+                    ),
+                  ),
+                ),
+              ],
+            )),
       ),
       body: ListView(
         children: [

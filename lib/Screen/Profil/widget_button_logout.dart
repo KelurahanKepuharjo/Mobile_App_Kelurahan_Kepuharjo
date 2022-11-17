@@ -27,7 +27,7 @@ class _WidgetButtonLogOutState extends State<WidgetButtonLogOut> {
             ),
             borderRadius: BorderRadius.circular(10),
           ),
-          child: ElevatedButton(
+          child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
@@ -37,10 +37,11 @@ class _WidgetButtonLogOutState extends State<WidgetButtonLogOut> {
               onPressed: () {
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (_) => AppeareaceLogin()),
+                    MaterialPageRoute(builder: (_) => const AppeareaceLogin()),
                     (Route<dynamic> route) => false);
               },
-              child: Text(
+              icon: const Icon(Icons.logout),
+              label: Text(
                 'Log Out',
                 style:
                     boldTextStyle.copyWith(fontSize: 18, color: Colors.white),
