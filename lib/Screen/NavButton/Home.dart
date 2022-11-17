@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kepuharjo_app/Screen/Home/appearance_home.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Screen/Profil/appearance_profil.dart';
-import 'package:kepuharjo_app/Screen/Status.dart';
+import 'package:kepuharjo_app/Screen/Status/appearance_status.dart.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class Home extends StatefulWidget {
@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   static final List<Widget> screen = <Widget>[
     const AppearanceHome(),
     const AppearancePengajuan(),
-    const Status(),
+    const AppearanceStatus(),
     const AppearanceProfil()
   ];
   void onTap(int index) {

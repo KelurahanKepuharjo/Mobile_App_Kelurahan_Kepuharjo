@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Screen/NavButton/Home.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
-class Status extends StatefulWidget {
-  const Status();
+class AppearanceStatus extends StatefulWidget {
+  const AppearanceStatus();
 
   @override
-  State<Status> createState() => _StatusState();
+  State<AppearanceStatus> createState() => _AppearanceStatusStatus();
 }
 
-class _StatusState extends State<Status> {
+class _AppearanceStatusStatus extends State<AppearanceStatus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +25,7 @@ class _StatusState extends State<Status> {
         ),
         flexibleSpace: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20)),
                 gradient: LinearGradient(
