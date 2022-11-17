@@ -2,22 +2,23 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:kepuharjo_app/Comm/ExpandedListAnimationWidget.dart';
 import 'package:kepuharjo_app/Comm/Scrollbar.dart';
-import 'package:kepuharjo_app/Comm/getTextField.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
-import 'package:kepuharjo_app/Screen/NavButton/Home.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
-class Pengajuannich extends StatefulWidget {
-  const Pengajuannich({Key key}) : super(key: key);
+class WidgetDropDownPerson extends StatefulWidget {
+  const WidgetDropDownPerson({key});
 
   @override
-  _Pengajuannich createState() => _Pengajuannich();
+  State<WidgetDropDownPerson> createState() => _WidgetDropDownPersonState();
 }
 
+String title = 'Select Person';
+bool isStrechedDropDown = false;
+int groupValue;
 List<String> _list = [
   'Achmad Fawaid',
   "Edy Atthoillah",
@@ -26,7 +27,7 @@ List<String> _list = [
   'Kurrota Akyun'
 ];
 
-class _Pengajuannich extends State<Pengajuannich> {
+class _WidgetDropDownPersonState extends State<WidgetDropDownPerson> {
   DateFormat dateFormat;
   @override
   void initState() {
@@ -36,9 +37,6 @@ class _Pengajuannich extends State<Pengajuannich> {
     dateFormat = DateFormat.yMMMMd('id');
   }
 
-  bool isStrechedDropDown = false;
-  int groupValue;
-  String title = 'Select Person';
   final nik = TextEditingController();
   final nama = TextEditingController();
   final nokk = TextEditingController();
@@ -52,250 +50,94 @@ class _Pengajuannich extends State<Pengajuannich> {
   final alamat = TextEditingController();
   final rt = TextEditingController();
   final rw = TextEditingController();
-  GestureDetector getLetter(String title, int index) {
-    return GestureDetector(
-      onTap: () {
-        if (index == 0) {
-          //1.item
-        }
-        if (index == 1) {
-          //2.item
-        }
-        if (index == 2) {
-          //3.item
-        }
-        if (index == 3) {
-          //4.item
-        }
-        if (index == 4) {
-          //5.item
-        }
-        if (index == 5) {
-          //6.item
-        }
-        if (index == 6) {
-          //7.item
-        }
-        if (index == 7) {
-          //8.item
-        }
-        if (index == 8) {
-          //9.item
-        }
-        if (index == 9) {
-          //10.item
-        }
-        if (index == 10) {
-          //11.item
-        }
-      },
-      child: Container(
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.all(5),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.centerRight,
-            colors: [
-              Color(0xFF2BAE82),
-              Color.fromARGB(255, 81, 195, 159),
-            ],
-          ),
-        ),
-        child: Center(
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+            child: Container(
+          decoration: BoxDecoration(
+              border: Border.all(color: Color.fromARGB(255, 0, 0, 0)),
+              borderRadius: BorderRadius.all(Radius.circular(27))),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                "images/email3.png",
-                height: 50,
-                width: 50,
-                alignment: Alignment.topCenter,
-              ),
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    color: whiteColor,
-                    fontWeight: FontWeight.normal),
+              Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.only(right: 10),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(25))),
+                  constraints: const BoxConstraints(
+                    minHeight: 45,
+                    minWidth: double.infinity,
+                  ),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          child: Text(
+                            title,
+                            style: GoogleFonts.poppins(),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isStrechedDropDown = !isStrechedDropDown;
+                            });
+                          },
+                          child: Icon(isStrechedDropDown
+                              ? Icons.keyboard_arrow_up
+                              : Icons.keyboard_arrow_down)),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            // showAddPerson(context);
+                          },
+                          child: const Icon(Icons.person_add)),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                    ],
+                  )),
+              ExpandedSection(
+                expand: isStrechedDropDown,
+                height: 100,
+                child: MyScrollbar(
+                  builder: (context, scrollController2) => ListView.builder(
+                      padding: EdgeInsets.all(0),
+                      controller: scrollController2,
+                      shrinkWrap: true,
+                      itemCount: _list.length,
+                      itemBuilder: (context, index) {
+                        return RadioListTile(
+                            title: Text(_list.elementAt(index)),
+                            value: index,
+                            groupValue: groupValue,
+                            onChanged: (val) {
+                              setState(() {
+                                groupValue = val;
+                                title = _list.elementAt(index);
+                              });
+                            });
+                      }),
+                ),
               )
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: whiteColor,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
-        centerTitle: true,
-        title: Text(
-          'Pengajuan Surat',
-          style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        flexibleSpace: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    lightGreen,
-                    midGreen,
-                  ],
-                ))),
-      ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                    child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Color.fromARGB(255, 0, 0, 0)),
-                      borderRadius: BorderRadius.all(Radius.circular(27))),
-                  child: Column(
-                    children: [
-                      Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color.fromARGB(255, 0, 0, 0),
-                              ),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(25))),
-                          constraints: const BoxConstraints(
-                            minHeight: 45,
-                            minWidth: double.infinity,
-                          ),
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  child: Text(
-                                    title,
-                                    style: GoogleFonts.poppins(),
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      isStrechedDropDown = !isStrechedDropDown;
-                                    });
-                                  },
-                                  child: Icon(isStrechedDropDown
-                                      ? Icons.keyboard_arrow_up
-                                      : Icons.keyboard_arrow_down)),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              GestureDetector(
-                                  onTap: () {
-                                    showAddPerson(context);
-                                  },
-                                  child: const Icon(Icons.person_add)),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                            ],
-                          )),
-                      ExpandedSection(
-                        expand: isStrechedDropDown,
-                        height: 100,
-                        child: MyScrollbar(
-                          builder: (context, scrollController2) =>
-                              ListView.builder(
-                                  padding: EdgeInsets.all(0),
-                                  controller: scrollController2,
-                                  shrinkWrap: true,
-                                  itemCount: _list.length,
-                                  itemBuilder: (context, index) {
-                                    return RadioListTile(
-                                        title: Text(_list.elementAt(index)),
-                                        value: index,
-                                        groupValue: groupValue,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            groupValue = val;
-                                            title = _list.elementAt(index);
-                                          });
-                                        });
-                                  }),
-                        ),
-                      )
-                    ],
-                  ),
-                )),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Daftar Nama Surat : ",
-                        style: GoogleFonts.poppins(
-                            fontSize: 14, fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Divider(
-              color: blackColor,
-              height: 10,
-              thickness: 1,
-              indent: 10,
-              endIndent: 10,
-            ),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                children: [
-                  getLetter("Surat Keterangan Tidak Mampu", 0),
-                  getLetter("Surat Keterangan Belum Menikah", 1),
-                  getLetter("Surat Keterangan Bepergian", 2),
-                  getLetter("Surat Keterangan Berkelakuan Baik (SKCK)", 3),
-                  getLetter("Surat Keterangan Domisili", 4),
-                  getLetter("Surat Keterangan Identitas", 5),
-                  getLetter("Surat Keterangan Kematian", 6),
-                  getLetter("Surat Keterangan Kenal Lahir", 7),
-                  getLetter("Surat Keterangan Keramaian", 8),
-                  getLetter("Surat Keterangan Pindah", 9),
-                  getLetter("Surat Keterangan Usaha", 10),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+        )),
+      ],
     );
   }
 

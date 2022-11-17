@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kepuharjo_app/Screen/Home/appearance_home.dart';
-import 'package:kepuharjo_app/Screen/HomePage.dart';
-import 'package:kepuharjo_app/Screen/Pengajuan.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Screen/Profile.dart';
 import 'package:kepuharjo_app/Screen/Status.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
@@ -16,10 +15,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int currentTab = 0;
   static final List<Widget> screen = <Widget>[
-    AppearanceHome(),
-    Pengajuannich(),
-    Status(),
-    Profile()
+    const AppearanceHome(),
+    const AppearancePengajuan(),
+    const Status(),
+    const Profile()
   ];
   void onTap(int index) {
     setState(() {

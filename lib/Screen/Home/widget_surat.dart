@@ -33,29 +33,10 @@ GestureDetector getLetter(String title, int index, String img) {
       margin: EdgeInsets.all(5),
       height: 130,
       width: 130,
-      decoration: index == 0 || index == 2 || index == 4
-          ? BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Color.fromARGB(255, 239, 239, 239),
-              // boxShadow: const [
-              //   BoxShadow(
-              //     color: Colors.grey,
-              //     blurRadius: 1,
-              //     offset: Offset(1, 1),
-              //   )
-              // ],
-            )
-          : BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Color.fromARGB(255, 239, 239, 239),
-              // boxShadow: const [
-              //   BoxShadow(
-              //     color: Colors.grey,
-              //     blurRadius: 1,
-              //     offset: Offset(1, 1),
-              //   )
-              // ],
-            ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Color.fromARGB(255, 239, 239, 239),
+      ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

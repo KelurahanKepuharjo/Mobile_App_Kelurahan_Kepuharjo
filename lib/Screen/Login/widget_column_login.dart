@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Comm/getTextField.dart';
 import 'package:kepuharjo_app/Pages/fpass/fpass_tlp.dart';
-import 'package:kepuharjo_app/Screen/Home.dart';
+import 'package:kepuharjo_app/Screen/NavButton/Home.dart';
 import 'package:kepuharjo_app/Screen/Register/appearance_register.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Screen/Pengajuan.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetTextSurat extends StatefulWidget {
@@ -33,8 +33,10 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
               width: 70,
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Pengajuannich()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AppearancePengajuan()));
                 },
                 child: Text(
                   "See All",
@@ -46,7 +48,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
                 ),
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(Color(0xffCDF49A)),
+                        MaterialStateProperty.all(const Color(0xffCDF49A)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),

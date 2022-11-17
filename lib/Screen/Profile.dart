@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Screen/Home.dart';
+import 'package:kepuharjo_app/Screen/NavButton/Home.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen2/Profile_Screen/daftar_keluarga.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
@@ -100,23 +100,13 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
-        leading: Padding(
-          padding: EdgeInsets.all(8),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Home()));
-            },
-            child: Icon(Icons.keyboard_arrow_left),
-          ),
-        ),
+        centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         title: Text(
-          '  Profil',
-          style: whiteTextStyle.copyWith(
-              fontSize: 20, fontWeight: FontWeight.bold),
+          'Profil',
+          style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
             decoration: BoxDecoration(
