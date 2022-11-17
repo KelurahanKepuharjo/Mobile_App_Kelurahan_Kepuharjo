@@ -1,8 +1,5 @@
 part of 'shared.dart';
 
-double defaultMargin = 25;
-const double defaultPadding = 16.0;
-
 Color greenColor = Color(0xFF19CC2A);
 Color whiteColor = Colors.white;
 Color blackColor = Colors.black;
