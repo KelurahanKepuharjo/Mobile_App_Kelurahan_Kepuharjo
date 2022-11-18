@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/detail_profile.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetMyProfil extends StatefulWidget {
@@ -48,7 +49,10 @@ class _WidgetMyProfilState extends State<WidgetMyProfil> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const DetailProfil()));
+      },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
         height: 115,
