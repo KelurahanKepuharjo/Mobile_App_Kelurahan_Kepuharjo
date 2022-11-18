@@ -14,24 +14,16 @@ Padding daftarKeluarga(BuildContext context, String img, String nama) {
   return Padding(
     padding: EdgeInsets.all(10),
     child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        ClipRRect(
-          child: Image.asset(
-            img,
-            height: 80,
-            width: 80,
-          ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
         Column(
           children: [
-            Text(nama),
+            Text(
+              nama,
+              style: GoogleFonts.poppins(
+                  color: blackColor, fontSize: 14, fontWeight: FontWeight.w300),
+            ),
           ],
-        ),
-        const SizedBox(
-          width: 30,
         ),
         InkWell(
           onTap: () {
@@ -41,7 +33,7 @@ Padding daftarKeluarga(BuildContext context, String img, String nama) {
           child: Text(
             "Ubah",
             style: GoogleFonts.poppins(
-                color: whiteColor, fontSize: 10, fontWeight: FontWeight.w300),
+                color: greenColor, fontSize: 12, fontWeight: FontWeight.w300),
           ),
         )
       ],
@@ -52,9 +44,10 @@ Padding daftarKeluarga(BuildContext context, String img, String nama) {
 class _WidgetDaftarKeluargaState extends State<WidgetDaftarKeluarga> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Column(
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 15),
+        child: ListView(
           children: [
             daftarKeluarga(
               context,
@@ -71,9 +64,69 @@ class _WidgetDaftarKeluargaState extends State<WidgetDaftarKeluarga> {
               "images/email3.png",
               "Achmad Fawaid",
             ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
+            daftarKeluarga(
+              context,
+              "images/email3.png",
+              "Achmad Fawaid",
+            ),
           ],
-        )
-      ],
+        ),
+      ),
     );
   }
 }

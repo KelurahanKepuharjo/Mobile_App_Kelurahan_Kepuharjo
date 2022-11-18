@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Screen/Profil/Detail_Keluarga/widget_button_tambah_keluarga.dart';
 import 'package:kepuharjo_app/Screen/Profil/Detail_Keluarga/widget_daftar_keluarga.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -52,6 +53,7 @@ class _DaftarKeluargaState extends State<DaftarKeluarga> {
         child: Column(
           children: const [
             WidgetDaftarKeluarga(),
+            WidgetButtonTambah(),
           ],
         ),
       ),

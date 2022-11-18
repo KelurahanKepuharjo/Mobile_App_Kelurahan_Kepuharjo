@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Screen/Profil/Detail_Keluarga/widget_ubah_keluarga.dart';
+import 'package:kepuharjo_app/Screen/Profil/Detail_Keluarga/widget_tambah_keluarga.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
-class UbahKeluarga extends StatefulWidget {
-  const UbahKeluarga({Key key}) : super(key: key);
+class TambahKeluarga extends StatefulWidget {
+  const TambahKeluarga({Key key}) : super(key: key);
 
   @override
-  State<UbahKeluarga> createState() => _UbahKeluargaState();
+  State<TambahKeluarga> createState() => _TambahKeluargaState();
 }
 
-class _UbahKeluargaState extends State<UbahKeluarga> {
+class _TambahKeluargaState extends State<TambahKeluarga> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +30,7 @@ class _UbahKeluargaState extends State<UbahKeluarga> {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         title: Text(
-          'Ubah Keluarga',
+          'Tambah Keluarga',
           style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
@@ -52,7 +52,7 @@ class _UbahKeluargaState extends State<UbahKeluarga> {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: const [
-              WidgetDataUbahKeluarga(),
+              WidgetTambahKeluarga(),
             ],
           ),
         ),
