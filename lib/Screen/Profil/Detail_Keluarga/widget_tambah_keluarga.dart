@@ -43,7 +43,7 @@ class _WidgetTambahKeluargaState extends State<WidgetTambahKeluarga> {
       child: Column(
         children: [
           getTextForm(
-            controller: nik,
+            controller: nama,
             hintName: "Nama Lengkap",
             keyboardType: TextInputType.number,
             inputFormatters: FilteringTextInputFormatter.digitsOnly,
@@ -57,7 +57,7 @@ class _WidgetTambahKeluargaState extends State<WidgetTambahKeluarga> {
           ),
           const SizedBox(height: 5),
           getTextForm(
-            controller: nama,
+            controller: nik,
             hintName: "No.Nik",
             keyboardType: TextInputType.name,
             inputFormatters: FilteringTextInputFormatter.singleLineFormatter,

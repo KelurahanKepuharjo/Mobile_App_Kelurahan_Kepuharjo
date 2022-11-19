@@ -19,7 +19,7 @@ class _AppearanceHomeState extends State<AppearanceHome> {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(200),
+        preferredSize: const Size.fromHeight(250),
         child: Container(
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
@@ -33,52 +33,54 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                     midGreen,
                   ],
                 )),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 100, 20, 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Kepuharjo App",
-                        style: boldTextStyle.copyWith(
-                            fontSize: 30, color: whiteColor),
-                      ),
-                      const SizedBox(
-                        height: 3,
-                      ),
-                      Text(
-                        "Smart Aplikasi Pelayanan Pengajuan\nSurat Kelurahan Kepuharjo",
-                        style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w300,
-                            color: whiteColor),
-                      ),
-                      Text(
-                        "Jl.Langsep no.18, Kec. Lumajang, Kab. Lumajang",
-                        style: GoogleFonts.poppins(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w300,
-                            color: whiteColor),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: ClipRRect(
-                    child: Image.asset(
-                      "images/lambange.png",
-                      height: 80,
-                      width: 60,
-                      alignment: Alignment.topCenter,
+            child: SingleChildScrollView(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 100, 20, 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Kepuharjo App",
+                          style: boldTextStyle.copyWith(
+                              fontSize: 30, color: whiteColor),
+                        ),
+                        const SizedBox(
+                          height: 3,
+                        ),
+                        Text(
+                          "Smart Aplikasi Pelayanan Pengajuan\nSurat Kelurahan Kepuharjo",
+                          style: GoogleFonts.poppins(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w300,
+                              color: whiteColor),
+                        ),
+                        Text(
+                          "Jl.Langsep no.18, Kec. Lumajang, Kab. Lumajang",
+                          style: GoogleFonts.poppins(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w300,
+                              color: whiteColor),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: ClipRRect(
+                      child: Image.asset(
+                        "images/lambange.png",
+                        height: 80,
+                        width: 60,
+                        alignment: Alignment.topCenter,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             )),
       ),
       body: ListView(

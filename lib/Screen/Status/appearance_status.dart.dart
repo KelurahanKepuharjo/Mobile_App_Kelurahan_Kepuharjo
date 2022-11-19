@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Screen/Status/widget_banner.dart';
+import 'package:kepuharjo_app/Screen/Status/widget_timeline_wrapper.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearanceStatus extends StatefulWidget {
@@ -41,51 +43,12 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
                   ],
                 ))),
       ),
-      body: RefreshIndicator(
-        onRefresh: () {},
-        child: _list == null
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView.builder(
-                itemCount: _list.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    padding: EdgeInsets.all(5.0),
-                    margin: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: greyColor,
-                    ),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Row(
-                              children: [
-                                ClipRRect(
-                                  child: Image.asset("images/email3.png"),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Column(
-                                  children: [
-                                    Text("kontol"),
-                                    Text("nik"),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        const Divider()
-                      ],
-                    ),
-                  );
-                }),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: const [
+          WidgetBanner(),
+          WidgetTimelineWrapper(),
+        ],
       ),
     );
   }
