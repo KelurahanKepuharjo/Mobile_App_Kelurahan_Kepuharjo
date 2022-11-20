@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kepuharjo_app/Screen/Splash/pages.dart';
 
+import 'package:kepuharjo_app/Screen/Splash/pages.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 

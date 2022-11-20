@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:kepuharjo_app/Screen/Profil/Detail_Keluarga/daftar_keluarga.dart';
+import 'package:kepuharjo_app/Screen/Profil/Info_Aplikasi/appearance_app.dart';
 
 class WidgetOptionsSetting extends StatefulWidget {
   const WidgetOptionsSetting({Key key}) : super(key: key);
@@ -39,6 +41,7 @@ Padding buildSettingKewarganegaraan(
 
 GestureDetector buildSettingOptionRow(
     BuildContext context, String title, int index) {
+  // final ChangeThemes ctrl = Get.find();
   return GestureDetector(
     onTap: () {
       if (index == 0) {
@@ -46,7 +49,8 @@ GestureDetector buildSettingOptionRow(
             MaterialPageRoute(builder: (context) => const DaftarKeluarga()));
       }
       if (index == 1) {
-        //2.item
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const InfoAplikasi()));
       }
       if (index == 2) {
         //3.item
@@ -80,7 +84,7 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 30),
+      margin: const EdgeInsets.only(top: 30, bottom: 100),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15), color: Color(0xFFF8F8F8)),
@@ -98,7 +102,7 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
             height: 10,
             thickness: 1,
           ),
-          buildSettingOptionRow(context, "Pusat Bantuan", 1),
+          buildSettingOptionRow(context, "Info Aplikasi", 1),
           const Divider(
             color: Color(0xFFE8E8E8),
             height: 10,

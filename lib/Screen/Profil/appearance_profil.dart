@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Screen/Profil/widget_button_logout.dart';
 import 'package:kepuharjo_app/Screen/Profil/widget_myprofile.dart';
 import 'package:kepuharjo_app/Screen/Profil/widget_option_setting.dart';
-import 'package:kepuharjo_app/Screen/Profil/widget_text_profil.dart';
+import 'package:kepuharjo_app/Screen/Profil/Info_Aplikasi/widget_text_profil.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearanceProfil extends StatefulWidget {
@@ -49,7 +49,6 @@ class _AppearanceProfilState extends State<AppearanceProfil> {
             children: const [
               WidgetMyProfil(),
               WidgetOptionsSetting(),
-              WidgetTextVersion(),
               WidgetButtonLogOut(),
             ],
           ),
