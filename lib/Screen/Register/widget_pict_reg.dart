@@ -13,11 +13,14 @@ class _WidgetPictureRegState extends State<WidgetPictureReg> {
     return Padding(
       padding: EdgeInsets.all(20),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
             child: Image.asset(
-              'images/splashlogo.png',
+              'images/logo.png',
               height: 170,
+              alignment: Alignment.center,
             ),
           )
         ],

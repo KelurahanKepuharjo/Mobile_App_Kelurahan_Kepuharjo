@@ -42,6 +42,34 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
     return SingleChildScrollView(
       child: Column(
         children: [
+          Stack(
+            children: [
+              SizedBox(
+                width: 120,
+                height: 120,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image(image: AssetImage("images/profile.jpeg")),
+                ),
+              ),
+              Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: greenColor),
+                    child: Icon(
+                      Icons.photo_camera,
+                      color: whiteColor,
+                      size: 20,
+                    ),
+                  ))
+            ],
+          ),
+          const SizedBox(height: 20),
           getTextForm(
             controller: nik,
             hintName: "Nama Lengkap",

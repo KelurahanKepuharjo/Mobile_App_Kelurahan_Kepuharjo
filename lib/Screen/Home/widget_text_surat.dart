@@ -38,14 +38,6 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
                       MaterialPageRoute(
                           builder: (context) => const AppearancePengajuan()));
                 },
-                child: Text(
-                  "See All",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    color: Color(0xFF053D00),
-                  ),
-                ),
                 style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all(const Color(0xffCDF49A)),
@@ -53,6 +45,14 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ))),
+                child: Text(
+                  "See All",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    color: const Color(0xFF053D00),
+                  ),
+                ),
               ),
             ),
           ),

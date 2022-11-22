@@ -21,8 +21,8 @@ class _SplashState extends State<Splash> {
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
           colors: [lightGreen, midGreen, darkgreenColor],
         )),
         child: Center(
@@ -30,11 +30,13 @@ class _SplashState extends State<Splash> {
             margin: const EdgeInsets.symmetric(vertical: 100, horizontal: 30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  'images/splashlogo.png',
-                  width: 300,
+                  'images/logo.png',
+                  width: 200,
                   height: 200,
+                  alignment: Alignment.topCenter,
                 ),
                 const Spacer(),
                 const CircularProgressIndicator(),

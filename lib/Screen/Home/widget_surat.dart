@@ -29,8 +29,8 @@ GestureDetector getLetter(String title, int index, String img) {
       }
     },
     child: Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(5),
       height: 130,
       width: 130,
       decoration: BoxDecoration(
@@ -68,7 +68,7 @@ class _WidgetSuratState extends State<WidgetSurat> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Row(
           children: [
             getLetter("Surat Keterangan Tidak Mampu", 0, "images/email3.png"),

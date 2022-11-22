@@ -17,23 +17,17 @@ class _WidgetTextVersionState extends State<WidgetTextVersion> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            "Kepuharjo App",
-            style: GoogleFonts.poppins(
-                fontSize: 24, fontWeight: FontWeight.bold, color: whiteColor),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Image.asset(
+              "images/logo.png",
+              height: 200,
+            ),
           ),
           Text(
             "Versi Aplikasi : 1.0",
             style: GoogleFonts.poppins(
                 fontSize: 14, fontWeight: FontWeight.w300, color: whiteColor),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: Image.asset(
-              "images/lambange.png",
-              height: 150,
-              width: 110,
-            ),
           ),
           Text(
             "@ 2022 Kepuharjo app",

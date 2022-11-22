@@ -26,7 +26,7 @@ class _CreateNewPw extends State<CreateNewPw> {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         title: Text(
-          'Create New Password',
+          'Buat Password Baru',
           style: GoogleFonts.poppins(
               color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
         ),
@@ -89,7 +89,7 @@ class _CreateNewPw extends State<CreateNewPw> {
               ),
               getTextField(
                 controller: npController,
-                hintName: " New Password",
+                hintName: " Password Baru",
                 keyboardType: TextInputType.name,
                 isObscureText: true,
                 inputFormatters:
@@ -100,7 +100,7 @@ class _CreateNewPw extends State<CreateNewPw> {
               ),
               getTextField(
                 controller: npController,
-                hintName: " Confirm Password",
+                hintName: " Konfirmasi Password",
                 keyboardType: TextInputType.name,
                 isObscureText: true,
                 inputFormatters:

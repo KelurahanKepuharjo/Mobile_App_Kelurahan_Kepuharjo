@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Api_Connection/api_connection.dart';
 import 'package:kepuharjo_app/Comm/getTextField.dart';
+import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -18,6 +23,25 @@ final nikController = TextEditingController();
 final passwordController = TextEditingController();
 final namaController = TextEditingController();
 final tlpController = TextEditingController();
+
+registerUserRecord() async {
+  UserModel userModel = UserModel(
+    nikController.hashCode,
+    namaController.toString(),
+    tlpController.toString(),
+    passwordController.toString(),
+  );
+
+  try {
+    var res = await http.post(
+      Uri.parse(Api.register),
+      body: userModel.toJson(),
+    );
+    if (res.statusCode == 200) {
+      var resBodyOfSignUp = jsonDecode(res.body);
+    } else {}
+  } catch (e) {}
+}
 
 class _WidgetRegisterState extends State<WidgetRegister> {
   @override

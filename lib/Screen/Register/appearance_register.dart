@@ -16,8 +16,8 @@ class _AppearanceRegisterState extends State<AppearanceRegister> {
     return DecoratedBox(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
           colors: [lightGreen, midGreen, darkgreenColor],
         )),
         child: Scaffold(

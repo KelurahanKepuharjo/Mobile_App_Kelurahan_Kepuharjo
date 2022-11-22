@@ -180,7 +180,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 height: 45,
                 width: 120,
                 child: ElevatedButton(

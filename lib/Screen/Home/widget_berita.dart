@@ -29,18 +29,18 @@ GestureDetector getNews(
       }
     },
     child: Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(5),
       height: 150,
       width: MediaQuery.of(context).size.width,
       decoration: index == 0 || index == 2 || index == 4
           ? BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(255, 239, 239, 239),
+              color: const Color.fromARGB(255, 239, 239, 239),
             )
           : BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(255, 239, 239, 239),
+              color: const Color.fromARGB(255, 239, 239, 239),
             ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -73,7 +73,7 @@ class _WidgetBeritaState extends State<WidgetBerita> {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Padding(
-        padding: EdgeInsets.only(left: 10, top: 0, right: 10),
+        padding: const EdgeInsets.only(left: 10, top: 0, right: 10),
         child: Column(
           children: [
             getNews(context, "Berita", 0, "Yagatau gua"),

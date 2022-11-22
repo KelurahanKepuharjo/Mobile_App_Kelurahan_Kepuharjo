@@ -92,7 +92,7 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
             ),
             Center(
               child: Text(
-                "Please Enter The 4 Digit Code Sent To Your Number",
+                "Silahkan Masukkan Kode 4 Digit Yang Dikirim Ke Nomor Anda",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   fontSize: 14,

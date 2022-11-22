@@ -87,16 +87,14 @@ flutter:
     - images/lambange.png
     - images/splashlogo.png
     - images/close.png
-    - images/letter.png
     - images/arrow-right.png
     - images/imgletter.png
     - images/padlock.png
     - images/lock.png
-    - images/ltr.png
-    - images/icsurat.png
-    - images/email1.png
-    - images/email2.png
+    - images/bglogo.png
     - images/email3.png
+    - images/logo.png
+    - images/profile.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

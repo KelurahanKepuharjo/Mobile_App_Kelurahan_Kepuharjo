@@ -33,15 +33,18 @@ Container getPengajuan(
             Text(
               surat,
               style: GoogleFonts.poppins(
-                  fontSize: 14, color: blackColor, fontWeight: FontWeight.w300),
+                  fontSize: 12, color: blackColor, fontWeight: FontWeight.w300),
             ),
           ],
         ),
-        ClipRRect(
-          child: Image.asset(
-            img,
-            height: 50,
-            width: 50,
+        SizedBox(
+          height: 50,
+          width: 50,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: Image.asset(
+              img,
+            ),
           ),
         ),
       ],
@@ -56,7 +59,8 @@ class _WidgetBannerState extends State<WidgetBanner> {
       padding: const EdgeInsets.only(bottom: 20),
       child: Column(
         children: [
-          getPengajuan(context, "images/email3.png", "Fawaid", "Surat Cinta", 0)
+          getPengajuan(context, "images/profile.jpeg", "Achmad Fawa'id",
+              "Surat Keterangan Belum Menikah", 0)
         ],
       ),
     );

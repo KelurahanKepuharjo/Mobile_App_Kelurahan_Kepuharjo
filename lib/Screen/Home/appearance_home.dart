@@ -22,6 +22,12 @@ class _AppearanceHomeState extends State<AppearanceHome> {
         preferredSize: const Size.fromHeight(250),
         child: Container(
             decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('images/bglogo.png'),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                      blackColor.withOpacity(0.3), BlendMode.dstATop),
+                ),
                 borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20)),
@@ -66,17 +72,6 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                               color: whiteColor),
                         ),
                       ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15),
-                    child: ClipRRect(
-                      child: Image.asset(
-                        "images/lambange.png",
-                        height: 80,
-                        width: 60,
-                        alignment: Alignment.topCenter,
-                      ),
                     ),
                   ),
                 ],

@@ -4,6 +4,7 @@ import 'package:kepuharjo_app/Screen/Profil/widget_button_logout.dart';
 import 'package:kepuharjo_app/Screen/Profil/widget_myprofile.dart';
 import 'package:kepuharjo_app/Screen/Profil/widget_option_setting.dart';
 import 'package:kepuharjo_app/Screen/Profil/Info_Aplikasi/widget_text_profil.dart';
+import 'package:kepuharjo_app/Screen/Profil/widget_profil.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearanceProfil extends StatefulWidget {
@@ -32,6 +33,12 @@ class _AppearanceProfilState extends State<AppearanceProfil> {
                 borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20)),
+                image: DecorationImage(
+                  image: const AssetImage('images/bglogo.png'),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                      blackColor.withOpacity(0.3), BlendMode.dstATop),
+                ),
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -47,9 +54,9 @@ class _AppearanceProfilState extends State<AppearanceProfil> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: const [
-              WidgetMyProfil(),
+              WidgetShowProfile(),
               WidgetOptionsSetting(),
-              WidgetButtonLogOut(),
+              // WidgetButtonLogOut(),
             ],
           ),
         ),

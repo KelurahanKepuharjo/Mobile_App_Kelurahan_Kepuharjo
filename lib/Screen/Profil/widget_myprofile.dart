@@ -15,11 +15,14 @@ Padding getProfil(String img, String nama, String nik) {
     padding: const EdgeInsets.all(15),
     child: Row(
       children: [
-        ClipRRect(
-          child: Image.asset(
-            img,
-            height: 50,
-            width: 50,
+        SizedBox(
+          height: 50,
+          width: 50,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: Image.asset(
+              img,
+            ),
           ),
         ),
         const SizedBox(
@@ -54,7 +57,7 @@ class _WidgetMyProfilState extends State<WidgetMyProfil> {
             MaterialPageRoute(builder: (context) => const DetailProfil()));
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         height: 115,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
@@ -78,7 +81,8 @@ class _WidgetMyProfilState extends State<WidgetMyProfil> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            getProfil("images/email3.png", "Achmad Fawaid", "3509212504030001"),
+            getProfil(
+                "images/profile.jpeg", "Achmad Fawaid", "3509212504030001"),
             Divider(
               color: whiteColor,
               height: 0,

@@ -67,7 +67,7 @@ class _AppearanceForgotPasswordState extends State<AppearanceForgotPassword> {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         title: Text(
-          'Forgot Password',
+          'Lupa Password',
           style: GoogleFonts.poppins(
               color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
         ),

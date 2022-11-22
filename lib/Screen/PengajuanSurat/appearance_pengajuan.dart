@@ -32,6 +32,12 @@ class _AppearancePengajuanState extends State<AppearancePengajuan> {
                 borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20)),
+                image: DecorationImage(
+                  image: const AssetImage('images/bglogo.png'),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                      blackColor.withOpacity(0.3), BlendMode.dstATop),
+                ),
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,

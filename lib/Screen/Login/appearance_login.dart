@@ -16,8 +16,8 @@ class _AppeareaceLoginState extends State<AppeareaceLogin> {
     return DecoratedBox(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
           colors: [lightGreen, midGreen, darkgreenColor],
         )),
         child: Scaffold(
