@@ -142,7 +142,7 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
       padding: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          profileMenuWidget(context, "Daftar Keluarga", Icons.person, true, 0,
+          profileMenuWidget(context, "Lokasi Kelurahan", Icons.person, true, 0,
               const Color(0xFF454444)),
           profileMenuWidget(context, "Info Aplikasi", Icons.info, true, 1,
               const Color(0xFF454444)),

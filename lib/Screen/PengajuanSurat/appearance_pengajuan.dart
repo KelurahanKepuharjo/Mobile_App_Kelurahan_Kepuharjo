@@ -54,7 +54,6 @@ class _AppearancePengajuanState extends State<AppearancePengajuan> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: const [
-            WidgetDropDownPerson(),
             WidgetTextSurat(),
             WidgetDivider(),
             WidgetGridViewSurat(),

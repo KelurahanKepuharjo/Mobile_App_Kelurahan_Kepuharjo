@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'dart:async';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +8,7 @@ import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:image_picker/image_picker.dart';
 
 class WidgetDataDetailProfil extends StatefulWidget {
   const WidgetDataDetailProfil({Key key}) : super(key: key);
@@ -16,12 +19,218 @@ class WidgetDataDetailProfil extends StatefulWidget {
 
 class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
   DateFormat dateFormat;
+  File image;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     initializeDateFormatting();
     dateFormat = DateFormat.yMMMMd('id');
+  }
+
+  Future getImageGalerry() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile imagePicked =
+        await picker.pickImage(source: ImageSource.gallery);
+    image = File(imagePicked.path);
+    setState(() {});
+  }
+
+  Future getImageCamera() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile imagePicked =
+        await picker.pickImage(source: ImageSource.camera);
+    image = File(imagePicked.path);
+    setState(() {});
+  }
+
+  Future _modalBottomSheet() {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Container(
+              height: 200,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: whiteColor,
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(20),
+                ),
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    height: 5,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: greyColor,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ListTile(
+                    onTap: () async {
+                      await getImageGalerry();
+                    },
+                    leading: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: greenColor.withOpacity(0.1),
+                      ),
+                      child: Icon(Icons.camera_alt, color: greenColor),
+                    ),
+                    title: Text("Upload dari Galeri",
+                        style: GoogleFonts.poppins(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF454444),
+                        )),
+                    trailing: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.grey.shade200,
+                      ),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: blackColor,
+                        size: 15,
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () async {
+                      await getImageCamera();
+                    },
+                    leading: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: greenColor.withOpacity(0.1),
+                      ),
+                      child: Icon(Icons.image, color: greenColor),
+                    ),
+                    title: Text("Upload dari Kamera",
+                        style: GoogleFonts.poppins(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF454444),
+                        )),
+                    trailing: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.grey.shade200,
+                      ),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: blackColor,
+                        size: 15,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _showBottomSheet() {
+    return BottomSheet(
+      onClosing: () {},
+      builder: (context) {
+        return Container(
+          height: 300,
+          width: double.infinity,
+          color: whiteColor,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ListTile(
+                leading: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: greenColor.withOpacity(0.1),
+                  ),
+                  child: Icon(Icons.camera_alt, color: greenColor),
+                ),
+                title: Text("Upload dari Galeri",
+                    style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFF454444),
+                    )),
+                trailing: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: Colors.grey.shade200,
+                  ),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: blackColor,
+                    size: 15,
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: greenColor.withOpacity(0.1),
+                  ),
+                  child: Icon(Icons.image, color: greenColor),
+                ),
+                title: Text("Upload dari Kamera",
+                    style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFF454444),
+                    )),
+                trailing: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: Colors.grey.shade200,
+                  ),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: blackColor,
+                    size: 15,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   final nik = TextEditingController();
@@ -37,6 +246,7 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
   final alamat = TextEditingController();
   final rt = TextEditingController();
   final rw = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -44,14 +254,21 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
         children: [
           Stack(
             children: [
-              SizedBox(
-                width: 120,
-                height: 120,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image(image: AssetImage("images/profile.jpeg")),
-                ),
-              ),
+              image == null
+                  ? SizedBox(
+                      width: 120,
+                      height: 120,
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.asset("images/user.png")),
+                    )
+                  : SizedBox(
+                      width: 120,
+                      height: 120,
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.file(image)),
+                    ),
               Positioned(
                   bottom: 0,
                   right: 0,
@@ -61,12 +278,17 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                         color: greenColor),
-                    child: Icon(
-                      Icons.photo_camera,
-                      color: whiteColor,
-                      size: 20,
+                    child: InkWell(
+                      onTap: () {
+                        _modalBottomSheet();
+                      },
+                      child: Icon(
+                        Icons.photo_camera,
+                        color: whiteColor,
+                        size: 20,
+                      ),
                     ),
-                  ))
+                  )),
             ],
           ),
           const SizedBox(height: 20),
