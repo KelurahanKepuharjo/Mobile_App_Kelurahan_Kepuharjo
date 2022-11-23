@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/widget_gridview_surat.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/widget_line.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/widget_text_surat.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/widget_dropdown.dart';
+
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearancePengajuan extends StatefulWidget {
@@ -28,22 +28,17 @@ class _AppearancePengajuanState extends State<AppearancePengajuan> {
           style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
-            decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
+            decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: const AssetImage('images/bglogo.png'),
+                  image: AssetImage('images/bglogo.png'),
                   fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                      blackColor.withOpacity(0.3), BlendMode.dstATop),
                 ),
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    lightGreen,
-                    midGreen,
+                    Color(0xFF009FFD),
+                    Color(0xFF2A2A72),
                   ],
                 ))),
       ),

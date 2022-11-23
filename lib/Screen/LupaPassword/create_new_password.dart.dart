@@ -32,21 +32,18 @@ class _CreateNewPw extends State<CreateNewPw> {
         ),
         flexibleSpace: Container(
             decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
                 gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    lightGreen,
-                    midGreen,
-                  ],
-                ))),
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF009FFD),
+            Color(0xFF2A2A72),
+          ],
+        ))),
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.fromLTRB(20, 50, 20, 20),
+          padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -117,7 +114,7 @@ class _CreateNewPw extends State<CreateNewPw> {
                     width: 250,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF2BAE82),
+                            backgroundColor: const Color(0xFF009FFD),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             )),

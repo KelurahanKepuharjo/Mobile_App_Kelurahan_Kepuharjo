@@ -77,7 +77,7 @@ class _WidgetTimeLineState extends State<WidgetTimeLine> {
                     widget.time,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
-                      color: greenColor,
+                      color: darkgreenColor,
                       fontSize: 12,
                     ),
                   ),

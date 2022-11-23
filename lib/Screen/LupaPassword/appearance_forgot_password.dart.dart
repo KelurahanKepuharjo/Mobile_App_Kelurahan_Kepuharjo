@@ -73,17 +73,14 @@ class _AppearanceForgotPasswordState extends State<AppearanceForgotPassword> {
         ),
         flexibleSpace: Container(
             decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
                 gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    lightGreen,
-                    midGreen,
-                  ],
-                ))),
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF009FFD),
+            Color(0xFF2A2A72),
+          ],
+        ))),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -144,7 +141,7 @@ class _AppearanceForgotPasswordState extends State<AppearanceForgotPassword> {
                     width: 250,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF2BAE82),
+                            backgroundColor: Color(0xFF009FFD),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             )),

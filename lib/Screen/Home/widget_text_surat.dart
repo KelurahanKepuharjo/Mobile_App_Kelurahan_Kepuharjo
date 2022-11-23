@@ -23,7 +23,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
             child: Text(
               "Pelayanan Masyarakat",
               style: GoogleFonts.poppins(
-                  fontSize: 14, color: greenColor, fontWeight: FontWeight.w500),
+                  fontSize: 14, color: blackColor, fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
@@ -40,7 +40,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
                 },
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(const Color(0xffCDF49A)),
+                        MaterialStateProperty.all(Colors.blue.shade100),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -50,7 +50,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                     fontSize: 12,
-                    color: const Color(0xFF053D00),
+                    color: blackColor,
                   ),
                 ),
               ),

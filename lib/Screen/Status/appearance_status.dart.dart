@@ -30,22 +30,22 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
           style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: const AssetImage('images/bglogo.png'),
+                  image: AssetImage('images/bglogo.png'),
                   fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                      blackColor.withOpacity(0.3), BlendMode.dstATop),
+                  // colorFilter: ColorFilter.mode(
+                  //     blackColor.withOpacity(0.3), BlendMode.dstATop),
                 ),
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
+                // borderRadius: const BorderRadius.only(
+                //     bottomLeft: Radius.circular(20),
+                //     bottomRight: Radius.circular(20)),
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    lightGreen,
-                    midGreen,
+                    Color(0xFF009FFD),
+                    Color(0xFF2A2A72),
                   ],
                 ))),
       ),

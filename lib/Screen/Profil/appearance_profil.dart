@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Screen/Profil/widget_button_logout.dart';
-import 'package:kepuharjo_app/Screen/Profil/widget_myprofile.dart';
+
 import 'package:kepuharjo_app/Screen/Profil/widget_option_setting.dart';
-import 'package:kepuharjo_app/Screen/Profil/Info_Aplikasi/widget_text_profil.dart';
+
 import 'package:kepuharjo_app/Screen/Profil/widget_profil.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -29,22 +28,17 @@ class _AppearanceProfilState extends State<AppearanceProfil> {
           style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
-            decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
+            decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: const AssetImage('images/bglogo.png'),
+                  image: AssetImage('images/bglogo.png'),
                   fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                      blackColor.withOpacity(0.3), BlendMode.dstATop),
                 ),
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    lightGreen,
-                    midGreen,
+                    Color(0xFF009FFD),
+                    Color(0xFF2A2A72),
                   ],
                 ))),
       ),
@@ -56,7 +50,6 @@ class _AppearanceProfilState extends State<AppearanceProfil> {
             children: const [
               WidgetShowProfile(),
               WidgetOptionsSetting(),
-              // WidgetButtonLogOut(),
             ],
           ),
         ),

@@ -85,9 +85,9 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: greenColor.withOpacity(0.1),
+                        color: blueColor.withOpacity(0.1),
                       ),
-                      child: Icon(Icons.camera_alt, color: greenColor),
+                      child: Icon(Icons.camera_alt, color: blueColor),
                     ),
                     title: Text("Upload dari Galeri",
                         style: GoogleFonts.poppins(
@@ -118,9 +118,9 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: greenColor.withOpacity(0.1),
+                        color: blueColor.withOpacity(0.1),
                       ),
-                      child: Icon(Icons.image, color: greenColor),
+                      child: Icon(Icons.image, color: blueColor),
                     ),
                     title: Text("Upload dari Kamera",
                         style: GoogleFonts.poppins(
@@ -172,9 +172,9 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: greenColor.withOpacity(0.1),
+                    color: blueColor.withOpacity(0.1),
                   ),
-                  child: Icon(Icons.camera_alt, color: greenColor),
+                  child: Icon(Icons.camera_alt, color: blueColor),
                 ),
                 title: Text("Upload dari Galeri",
                     style: GoogleFonts.poppins(
@@ -202,9 +202,9 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: greenColor.withOpacity(0.1),
+                    color: blueColor.withOpacity(0.1),
                   ),
-                  child: Icon(Icons.image, color: greenColor),
+                  child: Icon(Icons.image, color: blueColor),
                 ),
                 title: Text("Upload dari Kamera",
                     style: GoogleFonts.poppins(
@@ -277,7 +277,7 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                     height: 30,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: greenColor),
+                        color: blueColor),
                     child: InkWell(
                       onTap: () {
                         _modalBottomSheet();
@@ -554,8 +554,10 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                 height: 45,
                 width: 250,
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                      colors: [Color(0xFF239496), Color(0xFF2BE8D1)]),
+                  gradient: const LinearGradient(colors: [
+                    Color(0xFF2A2A72),
+                    Color(0xFF007ADF),
+                  ]),
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: ElevatedButton(
@@ -588,7 +590,7 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
       dialogType: DialogType.success,
       title: 'Berhasil!',
       titleTextStyle: GoogleFonts.poppins(
-          fontSize: 25, fontWeight: FontWeight.bold, color: Colors.green),
+          fontSize: 25, fontWeight: FontWeight.bold, color: Colors.blue),
       desc: 'Data berhasil disimpan',
       descTextStyle: GoogleFonts.nunito(fontSize: 14, color: Colors.grey),
       btnOkOnPress: () {

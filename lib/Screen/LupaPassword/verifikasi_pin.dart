@@ -23,16 +23,16 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
     super.dispose();
   }
 
-  static const focusedBorderColor = Color.fromRGBO(23, 171, 144, 1);
+  static const focusedBorderColor = Color(0xFF009FFD);
   static const fillColor = Color.fromRGBO(243, 246, 249, 0);
-  static const borderColor = Color.fromRGBO(23, 171, 144, 0.4);
+  static const borderColor = Color(0xFF009FFD);
 
   final defaultPinTheme = PinTheme(
     width: 56,
     height: 56,
     textStyle: const TextStyle(
       fontSize: 22,
-      color: Color.fromRGBO(30, 60, 87, 1),
+      color: Color(0xFF2A2A72),
     ),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(19),
@@ -46,12 +46,12 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
       backgroundColor: whiteColor,
       appBar: AppBar(
         leading: Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: GestureDetector(
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(Icons.keyboard_arrow_left),
+            child: const Icon(Icons.keyboard_arrow_left),
           ),
         ),
         automaticallyImplyLeading: false,
@@ -63,18 +63,15 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
               color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
-            decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
+            decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    lightGreen,
-                    midGreen,
-                  ],
-                ))),
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF009FFD),
+            Color(0xFF2A2A72),
+          ],
+        ))),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -178,7 +175,7 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
                   width: 250,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF2BAE82),
+                          backgroundColor: const Color(0xFF009FFD),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           )),

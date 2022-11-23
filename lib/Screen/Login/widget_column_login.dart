@@ -103,7 +103,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
           Text(
             'Login',
             style: GoogleFonts.poppins(
-                fontSize: 20, fontWeight: FontWeight.w500, color: whiteColor),
+                fontSize: 20, fontWeight: FontWeight.w500, color: blackColor),
           ),
           const SizedBox(
             height: 20,
@@ -185,7 +185,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
                 width: 120,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF2BAE82),
+                        backgroundColor: Color(0xFF0FA8EA),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         )),

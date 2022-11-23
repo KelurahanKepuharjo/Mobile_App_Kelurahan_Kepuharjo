@@ -1,9 +1,9 @@
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
-
-import 'package:kepuharjo_app/Screen/Profil/Detail_Keluarga/daftar_keluarga.dart';
 import 'package:kepuharjo_app/Screen/Profil/Info_Aplikasi/appearance_app.dart';
+import 'package:kepuharjo_app/Screen/Profil/Tentang/appearance_tentang.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetOptionsSetting extends StatefulWidget {
@@ -13,47 +13,19 @@ class WidgetOptionsSetting extends StatefulWidget {
   State<WidgetOptionsSetting> createState() => _WidgetOptionsSettingState();
 }
 
-Padding buildSettingKewarganegaraan(
-    BuildContext context, String title, String kwn) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 8.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: GoogleFonts.poppins(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            color: Color(0xFF454444),
-          ),
-        ),
-        Text(
-          kwn,
-          style: GoogleFonts.poppins(
-            fontSize: 10,
-            fontWeight: FontWeight.w500,
-            color: Color(0xFF454444),
-          ),
-        )
-      ],
-    ),
-  );
-}
-
 ListTile profileMenuWidget(BuildContext context, String title, IconData icon,
     bool endIcon, int index, Color textColor) {
   return ListTile(
     onTap: () {
-      if (index == 0) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const DaftarKeluarga()));
-      }
+      if (index == 0) {}
       if (index == 1) {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const InfoAplikasi()));
       }
-      if (index == 2) {}
+      if (index == 2) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const AppearanceTentang()));
+      }
       if (index == 3) {
         Navigator.pushAndRemoveUntil(
             context,
@@ -66,9 +38,9 @@ ListTile profileMenuWidget(BuildContext context, String title, IconData icon,
       height: 40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
-        color: greenColor.withOpacity(0.1),
+        color: blueColor.withOpacity(0.1),
       ),
-      child: Icon(icon, color: greenColor),
+      child: Icon(icon, color: blueColor),
     ),
     title: Text(title,
         style: GoogleFonts.poppins(
@@ -94,47 +66,6 @@ ListTile profileMenuWidget(BuildContext context, String title, IconData icon,
   );
 }
 
-GestureDetector buildSettingOptionRow(
-    BuildContext context, String title, int index) {
-  // final ChangeThemes ctrl = Get.find();
-  return GestureDetector(
-    onTap: () {
-      if (index == 0) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const DaftarKeluarga()));
-      }
-      if (index == 1) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const InfoAplikasi()));
-      }
-      if (index == 2) {
-        //3.item
-      }
-    },
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: GoogleFonts.poppins(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: Color(0xFF454444),
-            ),
-          ),
-          const Icon(
-            Icons.arrow_forward_ios,
-            color: Color(0xFFCCCCCC),
-            size: 15,
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
 class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
   @override
   Widget build(BuildContext context) {
@@ -142,8 +73,7 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
       padding: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          profileMenuWidget(context, "Lokasi Kelurahan", Icons.person, true, 0,
-              const Color(0xFF454444)),
+          const Lokasi(),
           profileMenuWidget(context, "Info Aplikasi", Icons.info, true, 1,
               const Color(0xFF454444)),
           profileMenuWidget(
@@ -153,34 +83,56 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
         ],
       ),
     );
-    // return Container(
-    //   margin: const EdgeInsets.fromLTRB(15, 0, 15, 50),
-    //   padding: const EdgeInsets.all(10),
-    //   decoration: BoxDecoration(
-    //       borderRadius: BorderRadius.circular(15), color: Color(0xFFF8F8F8)),
-    //   child: Column(
-    //     children: [
-    //       buildSettingOptionRow(context, "Daftar Keluarga", 0),
-    //       const Divider(
-    //         color: Color(0xFFE8E8E8),
-    //         height: 10,
-    //         thickness: 1,
-    //       ),
-    //       buildSettingKewarganegaraan(context, "Kewarganegaraan", "Indonesia"),
-    //       const Divider(
-    //         color: Color(0xFFE8E8E8),
-    //         height: 10,
-    //         thickness: 1,
-    //       ),
-    //       buildSettingOptionRow(context, "Info Aplikasi", 1),
-    //       const Divider(
-    //         color: Color(0xFFE8E8E8),
-    //         height: 10,
-    //         thickness: 1,
-    //       ),
-    //       buildSettingOptionRow(context, "Log Out", 2),
-    //     ],
-    //   ),
-    // );
+  }
+}
+
+class Lokasi extends StatefulWidget {
+  const Lokasi({Key key}) : super(key: key);
+
+  @override
+  State<Lokasi> createState() => _LokasiState();
+}
+
+class _LokasiState extends State<Lokasi> {
+  String lokasi = "Kelurahan Kepuharjo";
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onTap: () async {
+        final intent = AndroidIntent(
+            action: 'action_view',
+            data: Uri.encodeFull('google.navigation:q=${lokasi.trim()}'),
+            package: 'com.google.android.apps.maps');
+        await intent.launch();
+      },
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: blueColor.withOpacity(0.1),
+        ),
+        child: Icon(Icons.location_on, color: blueColor),
+      ),
+      title: Text("Lokasi Kelurahan",
+          style: GoogleFonts.poppins(
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+            color: Color(0xFF454444),
+          )),
+      trailing: Container(
+        width: 30,
+        height: 30,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: Colors.grey.shade200,
+        ),
+        child: Icon(
+          Icons.arrow_forward_ios,
+          color: blackColor,
+          size: 15,
+        ),
+      ),
+    );
   }
 }

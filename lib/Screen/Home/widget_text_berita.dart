@@ -24,7 +24,7 @@ class _WidgetTextBeritaState extends State<WidgetTextBerita> {
             child: Text(
               "Berita Terkini",
               style: GoogleFonts.poppins(
-                  fontSize: 14, color: greenColor, fontWeight: FontWeight.w500),
+                  fontSize: 14, color: blackColor, fontWeight: FontWeight.bold),
             ),
           ),
         ],

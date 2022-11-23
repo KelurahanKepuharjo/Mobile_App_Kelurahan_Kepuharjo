@@ -62,7 +62,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
           Text(
             'Registrasi',
             style: GoogleFonts.poppins(
-                fontSize: 20, fontWeight: FontWeight.w500, color: whiteColor),
+                fontSize: 20, fontWeight: FontWeight.w500, color: blackColor),
           ),
           const SizedBox(
             height: 20,
@@ -105,18 +105,18 @@ class _WidgetRegisterState extends State<WidgetRegister> {
             height: 15,
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(30, 0, 25, 0),
+            padding: const EdgeInsets.fromLTRB(30, 0, 25, 0),
             child: Row(
               children: [
-                Container(
+                SizedBox(
                   width: 10,
                   height: 10,
                   child: Checkbox(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
-                    side: MaterialStateBorderSide.resolveWith((states) =>
-                        BorderSide(width: 1.5, color: darkgreenColor)),
+                    side: MaterialStateBorderSide.resolveWith(
+                        (states) => BorderSide(width: 1.5, color: blackColor)),
                     tristate: false,
                     activeColor: Colors.transparent,
                     value: _isChecked,
@@ -144,12 +144,12 @@ class _WidgetRegisterState extends State<WidgetRegister> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 height: 45,
                 width: 120,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF2BAE82),
+                        backgroundColor: Color(0xFF0FA8EA),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         )),

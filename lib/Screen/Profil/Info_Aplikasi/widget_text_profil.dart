@@ -27,12 +27,12 @@ class _WidgetTextVersionState extends State<WidgetTextVersion> {
           Text(
             "Versi Aplikasi : 1.0",
             style: GoogleFonts.poppins(
-                fontSize: 14, fontWeight: FontWeight.w300, color: whiteColor),
+                fontSize: 14, fontWeight: FontWeight.w300, color: blackColor),
           ),
           Text(
-            "@ 2022 Kepuharjo app",
+            "@ 2022 S-Kepuharjo",
             style: GoogleFonts.poppins(
-                fontSize: 12, fontWeight: FontWeight.w300, color: whiteColor),
+                fontSize: 12, fontWeight: FontWeight.w300, color: blackColor),
           ),
         ],
       ),

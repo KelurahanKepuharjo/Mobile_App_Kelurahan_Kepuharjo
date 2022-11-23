@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           bottomSheetTheme:
               const BottomSheetThemeData(backgroundColor: Colors.transparent),
-          primaryColor: greenColor,
-          primarySwatch: Colors.green,
+          primaryColor: blueColor,
+          primarySwatch: Colors.blue,
           canvasColor: const Color(0xFF000000)),
       debugShowCheckedModeBanner: false,
       home: Splash(),

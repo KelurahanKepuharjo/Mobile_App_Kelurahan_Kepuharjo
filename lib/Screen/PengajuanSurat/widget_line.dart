@@ -11,8 +11,8 @@ class WidgetDivider extends StatefulWidget {
 class _WidgetDividerState extends State<WidgetDivider> {
   @override
   Widget build(BuildContext context) {
-    return const Divider(
-      color: Color(0xFFE9E9E9),
+    return Divider(
+      color: blackColor,
       height: 0,
       thickness: 1,
       indent: 10,

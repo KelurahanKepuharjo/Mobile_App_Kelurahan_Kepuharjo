@@ -51,12 +51,14 @@ GestureDetector getLetter(String title, int index) {
       margin: EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.centerRight,
           colors: [
-            Color(0xFF2BAE82),
-            Color.fromARGB(255, 81, 195, 159),
+            Colors.indigo.shade800,
+            midGreen,
+            // Color(0xFF2BAE82),
+            // Color.fromARGB(255, 81, 195, 159),
           ],
         ),
       ),
@@ -74,7 +76,7 @@ GestureDetector getLetter(String title, int index) {
               title,
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
-                  fontSize: 12,
+                  fontSize: 14,
                   color: whiteColor,
                   fontWeight: FontWeight.normal),
             )

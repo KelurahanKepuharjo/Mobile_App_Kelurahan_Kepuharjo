@@ -25,8 +25,8 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                 image: DecorationImage(
                   image: AssetImage('images/bglogo.png'),
                   fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                      blackColor.withOpacity(0.3), BlendMode.dstATop),
+                  // colorFilter: ColorFilter.mode(
+                  //     blackColor.withOpacity(0.3), BlendMode.dstATop),
                 ),
                 borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20),
@@ -35,8 +35,8 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    lightGreen,
-                    midGreen,
+                    Color(0xFF009FFD),
+                    Color(0xFF2A2A72),
                   ],
                 )),
             child: SingleChildScrollView(
@@ -50,7 +50,7 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Kepuharjo App",
+                          "S-Kepuharjo",
                           style: boldTextStyle.copyWith(
                               fontSize: 30, color: whiteColor),
                         ),

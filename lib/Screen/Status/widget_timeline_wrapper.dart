@@ -17,7 +17,7 @@ class _WidgetTimelineWrapperState extends State<WidgetTimelineWrapper> {
       child: Column(
         children: [
           WidgetTimeLine(
-            bgColor: greenColor,
+            bgColor: darkgreenColor,
             title: "Sedang dalam Antrian",
             subtitle: "Surat telah diajukan",
             time: "27 april 2022",

@@ -38,7 +38,7 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
                     height: 30,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: greenColor),
+                        color: blueColor),
                     child: Icon(
                       Icons.mode_edit,
                       color: whiteColor,
@@ -70,14 +70,9 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
             height: 15,
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [
-                  Color(0xFF2BAE82),
-                  Color.fromARGB(255, 81, 195, 159),
-                ],
-              ),
+              color: const Color(0xFF009FFD),
               borderRadius: BorderRadius.circular(30),
             ),
             child: ElevatedButton(

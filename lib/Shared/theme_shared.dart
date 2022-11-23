@@ -1,12 +1,12 @@
 part of 'shared.dart';
 
-Color greenColor = Color(0xFF19CC2A);
+Color blueColor = Color(0xFF0FA8EA);
 Color whiteColor = Colors.white;
 Color blackColor = Colors.black;
-Color darkgreenColor = Color(0xff044944);
-Color greyColor = Colors.grey.shade300;
-Color midGreen = Color(0xFF118A5D);
-Color lightGreen = Color(0xFF2EFF42);
+Color darkgreenColor = Colors.indigo.shade800;
+Color greyColor = Color.fromRGBO(224, 224, 224, 1);
+Color midGreen = Color(0xFF007ADF);
+Color lightGreen = Color(0xFF0acffe);
 
 TextStyle appTextStyle = GoogleFonts.inter(
     fontSize: 36, color: darkgreenColor, fontWeight: FontWeight.w700);

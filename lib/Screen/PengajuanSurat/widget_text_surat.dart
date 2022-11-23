@@ -22,7 +22,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
               Text(
                 "Daftar Nama Surat : ",
                 style: GoogleFonts.poppins(
-                    fontSize: 14, fontWeight: FontWeight.w500),
+                    fontSize: 15, fontWeight: FontWeight.bold),
               ),
             ],
           ),
