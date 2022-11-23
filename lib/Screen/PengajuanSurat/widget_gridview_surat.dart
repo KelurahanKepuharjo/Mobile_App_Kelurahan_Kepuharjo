@@ -31,19 +31,7 @@ GestureDetector getLetter(String title, int index) {
         //6.item
       }
       if (index == 6) {
-        //7.item
-      }
-      if (index == 7) {
-        //8.item
-      }
-      if (index == 8) {
-        //9.item
-      }
-      if (index == 9) {
-        //10.item
-      }
-      if (index == 10) {
-        //11.item
+        //6.item
       }
     },
     child: Container(
@@ -53,9 +41,9 @@ GestureDetector getLetter(String title, int index) {
         borderRadius: BorderRadius.circular(20),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
-          end: Alignment.centerRight,
+          end: Alignment.bottomRight,
           colors: [
-            Colors.indigo.shade800,
+            Color(0xFF2A2A72),
             midGreen,
             // Color(0xFF2BAE82),
             // Color.fromARGB(255, 81, 195, 159),
@@ -96,15 +84,11 @@ class _WidgetGridViewSuratState extends State<WidgetGridViewSurat> {
         children: [
           getLetter("Surat Keterangan Tidak Mampu", 0),
           getLetter("Surat Keterangan Belum Menikah", 1),
-          getLetter("Surat Keterangan Bepergian", 2),
-          getLetter("Surat Keterangan Berkelakuan Baik (SKCK)", 3),
-          getLetter("Surat Keterangan Domisili", 4),
-          getLetter("Surat Keterangan Identitas", 5),
-          getLetter("Surat Keterangan Kematian", 6),
-          getLetter("Surat Keterangan Kenal Lahir", 7),
-          getLetter("Surat Keterangan Keramaian", 8),
-          getLetter("Surat Keterangan Pindah", 9),
-          getLetter("Surat Keterangan Usaha", 10),
+          getLetter("Surat Keterangan Domisili", 2),
+          getLetter("Surat Keterangan Kematian", 3),
+          getLetter("Surat Keterangan Akta Kelahiran", 4),
+          getLetter("Surat Keterangan Pindah", 5),
+          getLetter("Surat Keterangan Usaha", 6),
         ],
       ),
     );

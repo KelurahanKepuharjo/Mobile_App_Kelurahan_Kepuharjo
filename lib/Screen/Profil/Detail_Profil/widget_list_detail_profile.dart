@@ -85,9 +85,12 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: blueColor.withOpacity(0.1),
+                        color: Color(0xFF2A2A72).withOpacity(0.1),
                       ),
-                      child: Icon(Icons.camera_alt, color: blueColor),
+                      child: Icon(
+                        Icons.camera_alt,
+                        color: Color(0xFF2A2A72),
+                      ),
                     ),
                     title: Text("Upload dari Galeri",
                         style: GoogleFonts.poppins(
@@ -118,9 +121,12 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: blueColor.withOpacity(0.1),
+                        color: Color(0xFF2A2A72).withOpacity(0.1),
                       ),
-                      child: Icon(Icons.image, color: blueColor),
+                      child: Icon(
+                        Icons.image,
+                        color: Color(0xFF2A2A72),
+                      ),
                     ),
                     title: Text("Upload dari Kamera",
                         style: GoogleFonts.poppins(
@@ -145,88 +151,6 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                 ],
               ),
             ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _showBottomSheet() {
-    return BottomSheet(
-      onClosing: () {},
-      builder: (context) {
-        return Container(
-          height: 300,
-          width: double.infinity,
-          color: whiteColor,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ListTile(
-                leading: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: blueColor.withOpacity(0.1),
-                  ),
-                  child: Icon(Icons.camera_alt, color: blueColor),
-                ),
-                title: Text("Upload dari Galeri",
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF454444),
-                    )),
-                trailing: Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.grey.shade200,
-                  ),
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: blackColor,
-                    size: 15,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: blueColor.withOpacity(0.1),
-                  ),
-                  child: Icon(Icons.image, color: blueColor),
-                ),
-                title: Text("Upload dari Kamera",
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF454444),
-                    )),
-                trailing: Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.grey.shade200,
-                  ),
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: blackColor,
-                    size: 15,
-                  ),
-                ),
-              ),
-            ],
           ),
         );
       },
@@ -276,8 +200,9 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                     width: 30,
                     height: 30,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: blueColor),
+                      borderRadius: BorderRadius.circular(100),
+                      color: Color(0xFF2A2A72),
+                    ),
                     child: InkWell(
                       onTap: () {
                         _modalBottomSheet();
@@ -554,10 +479,7 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                 height: 45,
                 width: 250,
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(colors: [
-                    Color(0xFF2A2A72),
-                    Color(0xFF007ADF),
-                  ]),
+                  color: Color(0xFF2A2A72),
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: ElevatedButton(
@@ -570,9 +492,9 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                     onPressed: showSuccessDialog,
                     child: Text(
                       'Simpan',
-                      style: whiteTextStyle.copyWith(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                      style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
                           color: Colors.white),
                     )),
               ),
@@ -590,7 +512,7 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
       dialogType: DialogType.success,
       title: 'Berhasil!',
       titleTextStyle: GoogleFonts.poppins(
-          fontSize: 25, fontWeight: FontWeight.bold, color: Colors.blue),
+          fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xFF2A2A72)),
       desc: 'Data berhasil disimpan',
       descTextStyle: GoogleFonts.nunito(fontSize: 14, color: Colors.grey),
       btnOkOnPress: () {

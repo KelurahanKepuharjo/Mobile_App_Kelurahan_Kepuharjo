@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kepuharjo_app/Screen/Home/appearance_dashboard.dart';
 import 'package:kepuharjo_app/Screen/Home/appearance_home.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Screen/Profil/appearance_profil.dart';
@@ -15,7 +16,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int currentTab = 0;
   static final List<Widget> screen = <Widget>[
-    const AppearanceHome(),
+    const MyDashboard(),
     const AppearancePengajuan(),
     const AppearanceStatus(),
     const AppearanceProfil()
@@ -41,8 +42,8 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.white,
           onTap: onTap,
           currentIndex: currentTab,
-          selectedItemColor: blackColor,
-          unselectedItemColor: Colors.black,
+          selectedItemColor: Color(0xFF2A2A72),
+          unselectedItemColor: Color(0xFF2A2A72),
           showSelectedLabels: true,
           showUnselectedLabels: false,
           elevation: 0,

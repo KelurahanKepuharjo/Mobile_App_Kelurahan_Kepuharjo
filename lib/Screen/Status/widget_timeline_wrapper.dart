@@ -13,22 +13,22 @@ class _WidgetTimelineWrapperState extends State<WidgetTimelineWrapper> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
-        children: [
+        children: const [
           WidgetTimeLine(
-            bgColor: darkgreenColor,
+            bgColor: Color(0xFF2A2A72),
             title: "Sedang dalam Antrian",
             subtitle: "Surat telah diajukan",
             time: "27 april 2022",
           ),
-          const WidgetTimeLine(
+          WidgetTimeLine(
             bgColor: Color(0xFF7D7D7D),
             title: "Sedang dalam Proses",
             subtitle: "Surat sedang dalam proses pembuatan ",
             time: "28 april 2022",
           ),
-          const WidgetTimeLine(
+          WidgetTimeLine(
             bgColor: Color(0xFF7D7D7D),
             title: "Selesai",
             subtitle: "Surat dapat diambil",

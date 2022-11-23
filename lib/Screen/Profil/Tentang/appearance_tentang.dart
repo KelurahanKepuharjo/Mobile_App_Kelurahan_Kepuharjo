@@ -17,7 +17,7 @@ class _AppearanceTentangState extends State<AppearanceTentang> {
       backgroundColor: whiteColor,
       appBar: AppBar(
         leading: Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: GestureDetector(
             onTap: () {
               Navigator.pop(context);
@@ -35,14 +35,11 @@ class _AppearanceTentangState extends State<AppearanceTentang> {
         ),
         flexibleSpace: Container(
             decoration: const BoxDecoration(
-                gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFF009FFD),
-            Color(0xFF2A2A72),
-          ],
-        ))),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20)),
+          color: Color(0xFF2A2A72),
+        )),
       ),
       body: ListView(
         children: [

@@ -35,14 +35,11 @@ class _DetailProfilState extends State<DetailProfil> {
         ),
         flexibleSpace: Container(
             decoration: const BoxDecoration(
-                gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFF007ADF),
-            Color(0xFF2A2A72),
-          ],
-        ))),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20)),
+          color: Color(0xFF2A2A72),
+        )),
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -38,9 +38,12 @@ ListTile profileMenuWidget(BuildContext context, String title, IconData icon,
       height: 40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
-        color: blueColor.withOpacity(0.1),
+        color: Color(0xFF2A2A72).withOpacity(0.1),
       ),
-      child: Icon(icon, color: blueColor),
+      child: Icon(
+        icon,
+        color: Color(0xFF2A2A72),
+      ),
     ),
     title: Text(title,
         style: GoogleFonts.poppins(
@@ -110,9 +113,12 @@ class _LokasiState extends State<Lokasi> {
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: blueColor.withOpacity(0.1),
+          color: Color(0xFF2A2A72).withOpacity(0.1),
         ),
-        child: Icon(Icons.location_on, color: blueColor),
+        child: Icon(
+          Icons.location_on,
+          color: Color(0xFF2A2A72),
+        ),
       ),
       title: Text("Lokasi Kelurahan",
           style: GoogleFonts.poppins(

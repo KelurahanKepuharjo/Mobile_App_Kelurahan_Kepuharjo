@@ -37,8 +37,9 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
                     width: 30,
                     height: 30,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: blueColor),
+                      borderRadius: BorderRadius.circular(100),
+                      color: Color(0xFF2A2A72),
+                    ),
                     child: Icon(
                       Icons.mode_edit,
                       color: whiteColor,
@@ -72,7 +73,7 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
-              color: const Color(0xFF009FFD),
+              color: const Color(0xFF2A2A72),
               borderRadius: BorderRadius.circular(30),
             ),
             child: ElevatedButton(

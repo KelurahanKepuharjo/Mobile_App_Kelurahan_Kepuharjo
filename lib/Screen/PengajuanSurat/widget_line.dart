@@ -13,7 +13,7 @@ class _WidgetDividerState extends State<WidgetDivider> {
   Widget build(BuildContext context) {
     return Divider(
       color: blackColor,
-      height: 0,
+      height: 10,
       thickness: 1,
       indent: 10,
       endIndent: 10,

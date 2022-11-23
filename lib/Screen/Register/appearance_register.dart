@@ -15,15 +15,16 @@ class _AppearanceRegisterState extends State<AppearanceRegister> {
   Widget build(BuildContext context) {
     return DecoratedBox(
         decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0XFF00ECBC),
-            Color(0xFF007ADF),
-            Color(0xFF2A2A72),
-          ],
-        )),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0XFF00ECBC),
+              Color(0xFF007ADF),
+              Color(0xFF2A2A72),
+            ],
+          ),
+        ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: SingleChildScrollView(

@@ -23,9 +23,9 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
     super.dispose();
   }
 
-  static const focusedBorderColor = Color(0xFF009FFD);
+  static const focusedBorderColor = Color(0xFF2A2A72);
   static const fillColor = Color.fromRGBO(243, 246, 249, 0);
-  static const borderColor = Color(0xFF009FFD);
+  static const borderColor = Color(0xFF2A2A72);
 
   final defaultPinTheme = PinTheme(
     width: 56,
@@ -64,14 +64,11 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
         ),
         flexibleSpace: Container(
             decoration: const BoxDecoration(
-                gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFF009FFD),
-            Color(0xFF2A2A72),
-          ],
-        ))),
+                color: Color(0xFF2A2A72),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ))),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -93,7 +90,7 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   fontSize: 14,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.w500,
                   color: blackColor,
                 ),
               ),
@@ -175,7 +172,8 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
                   width: 250,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF009FFD),
+                          backgroundColor: const Color(0xFF2A2A72),
+                          shadowColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           )),

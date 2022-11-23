@@ -31,23 +31,15 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
         ),
         flexibleSpace: Container(
             decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('images/bglogo.png'),
-                  fit: BoxFit.cover,
-                  // colorFilter: ColorFilter.mode(
-                  //     blackColor.withOpacity(0.3), BlendMode.dstATop),
-                ),
-                // borderRadius: const BorderRadius.only(
-                //     bottomLeft: Radius.circular(20),
-                //     bottomRight: Radius.circular(20)),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFF009FFD),
-                    Color(0xFF2A2A72),
-                  ],
-                ))),
+          image: DecorationImage(
+            image: AssetImage('images/newbgsa.png'),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20)),
+          color: Color(0xFF2A2A72),
+        )),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),

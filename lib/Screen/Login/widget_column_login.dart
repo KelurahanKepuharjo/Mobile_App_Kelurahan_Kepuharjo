@@ -185,7 +185,8 @@ class _WidgetLoginState extends State<WidgetLogin> {
                 width: 120,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF0FA8EA),
+                        backgroundColor: Color(0xFF2A2A72),
+                        shadowColor: Colors.transparent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         )),
@@ -220,7 +221,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
                   child: Text(
                     " Register",
                     style: GoogleFonts.poppins(
-                        color: darkgreenColor, fontSize: 13),
+                        color: Color(0xFF2A2A72), fontSize: 13),
                   ),
                   onTap: () {
                     Navigator.push(

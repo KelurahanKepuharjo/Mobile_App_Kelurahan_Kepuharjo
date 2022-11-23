@@ -31,15 +31,12 @@ class _CreateNewPw extends State<CreateNewPw> {
               color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFF009FFD),
-            Color(0xFF2A2A72),
-          ],
-        ))),
+            decoration: const BoxDecoration(
+                color: Color(0xFF2A2A72),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ))),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -63,7 +60,7 @@ class _CreateNewPw extends State<CreateNewPw> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                     fontSize: 14,
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w500,
                     color: blackColor,
                   ),
                 ),
@@ -76,7 +73,7 @@ class _CreateNewPw extends State<CreateNewPw> {
                   "Gunakanlah Password Yang Kuat",
                   style: GoogleFonts.poppins(
                     fontSize: 14,
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w500,
                     color: blackColor,
                   ),
                 ),
@@ -114,7 +111,8 @@ class _CreateNewPw extends State<CreateNewPw> {
                     width: 250,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF009FFD),
+                            backgroundColor: const Color(0xFF2A2A72),
+                            shadowColor: Colors.transparent,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             )),

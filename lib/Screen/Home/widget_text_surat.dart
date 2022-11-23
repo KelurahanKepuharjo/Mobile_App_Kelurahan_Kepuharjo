@@ -50,7 +50,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                     fontSize: 12,
-                    color: blackColor,
+                    color: Color(0xFF2A2A72),
                   ),
                 ),
               ),

@@ -29,22 +29,19 @@ class _AppearanceProfilState extends State<AppearanceProfil> {
         ),
         flexibleSpace: Container(
             decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('images/bglogo.png'),
-                  fit: BoxFit.cover,
-                ),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFF009FFD),
-                    Color(0xFF2A2A72),
-                  ],
-                ))),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20)),
+          image: DecorationImage(
+            image: AssetImage('images/newbgsa.png'),
+            fit: BoxFit.cover,
+          ),
+          color: Color(0xFF2A2A72),
+        )),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: const [
