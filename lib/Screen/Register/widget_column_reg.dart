@@ -26,93 +26,54 @@ class _WidgetRegisterState extends State<WidgetRegister> {
   final namaController = TextEditingController();
   final tlpController = TextEditingController();
 
-  // Future register() async {
-  //   var url = Uri.http("192.168.0.117",
-  //       'Web_Kelurahan_Kepuharjo/koneksi/Api/signup.php', {'q': '{http}'});
-  //   var response = await http.post(url, body: {
-  //     "nik": nikController.text.toString(),
-  //     "nama": namaController.text.toString(),
-  //     "telepon": tlpController.text.toString(),
-  //     "password": passwordController.text.toString(),
-  //   });
-  //   var data = json.decode(response.body);
-  //   if (data == 'Error') {
-  //     Fluttertoast.showToast(
-  //       backgroundColor: Colors.red,
-  //       textColor: Colors.white,
-  //       msg: 'User already exit!',
-  //       toastLength: Toast.LENGTH_SHORT,
-  //     );
-  //   } else {
-  //     Fluttertoast.showToast(
-  //       backgroundColor: Colors.green,
-  //       textColor: Colors.white,
-  //       msg: 'Registration Successful',
-  //       toastLength: Toast.LENGTH_SHORT,
-  //     );
-  //     setState(() {
-  //       nikController.clear();
-  //       namaController.clear();
-  //       tlpController.clear();
-  //       passwordController.clear();
-  //     });
-  //     Navigator.push(
-  //       context,
-  //       MaterialPageRoute(
-  //         builder: (context) => AppeareaceLogin(),
-  //       ),
-  //     );
-  //   }
-  // }
+  registerUserRecord() async {
+    UserModel userModel = UserModel(
+      nikController.toString(),
+      namaController.toString(),
+      tlpController.toString(),
+      passwordController.toString(),
+    );
 
-  // registerUserRecord() async {
-  //   UserModel userModel = UserModel(
-  //     nikController.toString(),
-  //     namaController.toString(),
-  //     tlpController.toString(),
-  //     passwordController.toString(),
-  //   );
-
-  //   try {
-  //     var res = await http.post(
-  //       Uri.parse(Api.register),
-  //       body: userModel.toJson(),
-  //     );
-  //     if (res.statusCode == 200) {
-  //       var resBodyOfSignUp = jsonDecode(res.body);
-  //       if (resBodyOfSignUp['succes'] == true) {
-  //         Fluttertoast.showToast(
-  //           backgroundColor: const Color(0xFF2A2A72),
-  //           textColor: Colors.white,
-  //           msg: 'Registrasi akun berhasil',
-  //           toastLength: Toast.LENGTH_SHORT,
-  //         );
-  //         setState(() {
-  //           nikController.clear();
-  //           namaController.clear();
-  //           tlpController.clear();
-  //           passwordController.clear();
-  //         });
-  //         Navigator.push(
-  //           context,
-  //           MaterialPageRoute(
-  //             builder: (context) => const AppeareaceLogin(),
-  //           ),
-  //         );
-  //       }
-  //     } else {
-  //       Fluttertoast.showToast(
-  //         backgroundColor: Colors.red,
-  //         textColor: Colors.white,
-  //         msg: 'Gagal Registrasi Akun',
-  //         toastLength: Toast.LENGTH_SHORT,
-  //       );
-  //     }
-  //   } catch (e) {
-  //     print(e.toString());
-  //     Fluttertoast.showToast(msg: e.toString());
-  //   }
-  // }
+    try {
+      var res = await http.post(
+        Uri.parse(Api.register),
+        body: userModel.toJson(),
+      );
+      if (res.statusCode == 200) {
+        var resBodyOfSignUp = jsonDecode(res.body);
+        if (resBodyOfSignUp['succes'] == true) {
+          Fluttertoast.showToast(
+            backgroundColor: const Color(0xFF2A2A72),
+            textColor: Colors.white,
+            msg: 'Registrasi akun berhasil',
+            toastLength: Toast.LENGTH_SHORT,
+          );
+          setState(() {
+            nikController.clear();
+            namaController.clear();
+            tlpController.clear();
+            passwordController.clear();
+          });
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AppeareaceLogin(),
+            ),
+          );
+        }
+      } else {
+        Fluttertoast.showToast(
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          msg: 'Gagal Registrasi Akun',
+          toastLength: Toast.LENGTH_SHORT,
+        );
+      }
+    } catch (e) {
+      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -224,9 +185,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         )),
-                    onPressed: () {
-                      // registerUserRecord();
-                    },
+                    onPressed: () {},
                     child: Text(
                       'Daftar',
                       style: GoogleFonts.poppins(

@@ -14,7 +14,7 @@ class _AppeareaceLoginState extends State<AppeareaceLogin> {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
