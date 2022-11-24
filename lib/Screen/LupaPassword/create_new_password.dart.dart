@@ -47,7 +47,7 @@ class _CreateNewPw extends State<CreateNewPw> {
             children: [
               Center(
                 child: Image.asset(
-                  "images/lock.png",
+                  "images/padlock.png",
                   height: 100,
                 ),
               ),

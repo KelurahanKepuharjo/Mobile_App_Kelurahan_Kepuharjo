@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Screen/Profil/Info_Aplikasi/appearance_app.dart';
+import 'package:kepuharjo_app/Screen/Profil/widget_option_setting.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearanceTentang extends StatefulWidget {
@@ -118,7 +119,7 @@ class _AppearanceTentangState extends State<AppearanceTentang> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const InfoAplikasi()));
+                                builder: (context) => const Lokasi()));
                       },
                       title: Text(
                         "Lokasi Kelurahan",

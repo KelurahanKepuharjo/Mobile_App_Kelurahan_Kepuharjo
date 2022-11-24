@@ -26,7 +26,7 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: const Image(
-                    image: AssetImage("images/profile.jpeg"),
+                    image: AssetImage("images/user.png"),
                   ),
                 ),
               ),
@@ -70,33 +70,39 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
           const SizedBox(
             height: 15,
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: const Color(0xFF2A2A72),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                height: 45,
+                decoration: BoxDecoration(
+                  color: Color(0xFF2A2A72),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        )),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const DetailProfil()));
+                    },
+                    child: Text(
+                      'Lihat Profil',
+                      style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white),
                     )),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const DetailProfil()));
-                },
-                child: Text(
-                  'Lihat Profil Saya',
-                  style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 14,
-                      color: Colors.white),
-                )),
-          ),
+              ),
+            ],
+          )
         ],
       ),
     );

@@ -42,7 +42,7 @@ class _AppearancePengajuanState extends State<AppearancePengajuan> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: const [

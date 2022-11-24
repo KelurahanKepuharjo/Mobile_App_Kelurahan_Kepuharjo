@@ -37,13 +37,16 @@ Container getPengajuan(
             ),
           ],
         ),
-        SizedBox(
+        Container(
           height: 50,
           width: 50,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100), color: greyColor),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: Image.asset(
               img,
+              alignment: Alignment.center,
             ),
           ),
         ),

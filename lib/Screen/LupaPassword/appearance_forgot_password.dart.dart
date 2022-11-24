@@ -88,7 +88,7 @@ class _AppearanceForgotPasswordState extends State<AppearanceForgotPassword> {
             children: [
               Center(
                 child: Image.asset(
-                  "images/lock.png",
+                  "images/padlock.png",
                   height: 100,
                 ),
               ),

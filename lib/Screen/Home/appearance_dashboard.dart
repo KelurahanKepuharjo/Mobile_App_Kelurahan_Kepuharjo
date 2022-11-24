@@ -42,7 +42,7 @@ class _MyDashboardState extends State<MyDashboard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(15, 100, 20, 20),
+                    padding: const EdgeInsets.fromLTRB(20, 100, 0, 0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,

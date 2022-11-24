@@ -40,7 +40,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
                 },
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(Colors.blue.shade100),
+                        MaterialStateProperty.all(Colors.indigo.shade100),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
