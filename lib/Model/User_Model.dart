@@ -1,20 +1,29 @@
 class UserModel {
-  String id_pengaju;
+  String id_akun;
   String nama_lengkap;
-  String telepon;
   String password;
+  String no_hp;
 
   UserModel(
-    this.id_pengaju,
+    this.id_akun,
     this.nama_lengkap,
-    this.telepon,
     this.password,
+    this.no_hp,
   );
 
   Map<String, dynamic> toJson() => {
-        'id_pengaju': id_pengaju,
+        'id_akun': id_akun,
         'nama_lengkap': nama_lengkap,
-        'telepon': telepon,
         'password': password,
+        'no_hp': no_hp,
       };
+
+  // factory UserModel.fromJson(Map<String, dynamic> json) {
+  //   return UserModel(
+  //     json['id_akun'],
+  //     json['nama_lengkap'],
+  //     json['password'],
+  //     json['no_hp'],
+  //   );
+  // }
 }

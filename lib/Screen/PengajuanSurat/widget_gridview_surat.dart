@@ -9,7 +9,7 @@ class WidgetGridViewSurat extends StatefulWidget {
   State<WidgetGridViewSurat> createState() => _WidgetGridViewSuratState();
 }
 
-GestureDetector getLetter(String title, int index) {
+GestureDetector getLetter(String title, int index, IconData icon) {
   return GestureDetector(
     onTap: () {
       if (index == 0) {
@@ -35,8 +35,8 @@ GestureDetector getLetter(String title, int index) {
       }
     },
     child: Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         gradient: LinearGradient(
@@ -54,11 +54,10 @@ GestureDetector getLetter(String title, int index) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              "images/email3.png",
-              height: 50,
-              width: 50,
-              alignment: Alignment.topCenter,
+            Icon(
+              icon,
+              color: whiteColor,
+              size: 40,
             ),
             Text(
               title,
@@ -82,13 +81,14 @@ class _WidgetGridViewSuratState extends State<WidgetGridViewSurat> {
       child: GridView.count(
         crossAxisCount: 2,
         children: [
-          getLetter("Surat Keterangan Tidak Mampu", 0),
-          getLetter("Surat Keterangan Belum Menikah", 1),
-          getLetter("Surat Keterangan Domisili", 2),
-          getLetter("Surat Keterangan Kematian", 3),
-          getLetter("Surat Keterangan Akta Kelahiran", 4),
-          getLetter("Surat Keterangan Pindah", 5),
-          getLetter("Surat Keterangan Usaha", 6),
+          getLetter(
+              "Surat Keterangan Tidak Mampu", 0, Icons.assignment_outlined),
+          getLetter("Surat Keterangan Belum Menikah", 1, Icons.diamond),
+          getLetter("Surat Keterangan Domisili", 2, Icons.location_on),
+          getLetter("Surat Keterangan Kematian", 3, Icons.add_box_outlined),
+          getLetter("Surat Keterangan Akta Kelahiran", 4, Icons.child_friendly),
+          getLetter("Surat Keterangan Pindah", 5, Icons.house_rounded),
+          getLetter("Surat Keterangan Usaha", 6, Icons.home_work),
         ],
       ),
     );

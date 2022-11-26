@@ -5,9 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Api_Connection/api_connection.dart';
 import 'package:kepuharjo_app/Comm/getTextField.dart';
-import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -20,60 +18,10 @@ class WidgetRegister extends StatefulWidget {
 
 class _WidgetRegisterState extends State<WidgetRegister> {
   bool _isChecked = false;
-
   final nikController = TextEditingController();
-  final passwordController = TextEditingController();
   final namaController = TextEditingController();
+  final passwordController = TextEditingController();
   final tlpController = TextEditingController();
-
-  registerUserRecord() async {
-    UserModel userModel = UserModel(
-      nikController.toString(),
-      namaController.toString(),
-      tlpController.toString(),
-      passwordController.toString(),
-    );
-
-    try {
-      var res = await http.post(
-        Uri.parse(Api.register),
-        body: userModel.toJson(),
-      );
-      if (res.statusCode == 200) {
-        var resBodyOfSignUp = jsonDecode(res.body);
-        if (resBodyOfSignUp['succes'] == true) {
-          Fluttertoast.showToast(
-            backgroundColor: const Color(0xFF2A2A72),
-            textColor: Colors.white,
-            msg: 'Registrasi akun berhasil',
-            toastLength: Toast.LENGTH_SHORT,
-          );
-          setState(() {
-            nikController.clear();
-            namaController.clear();
-            tlpController.clear();
-            passwordController.clear();
-          });
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AppeareaceLogin(),
-            ),
-          );
-        }
-      } else {
-        Fluttertoast.showToast(
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          msg: 'Gagal Registrasi Akun',
-          toastLength: Toast.LENGTH_SHORT,
-        );
-      }
-    } catch (e) {
-      print(e.toString());
-      Fluttertoast.showToast(msg: e.toString());
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,20 +65,20 @@ class _WidgetRegisterState extends State<WidgetRegister> {
             height: 8,
           ),
           getTextField(
-            controller: tlpController,
-            hintName: "No.Telepon",
-            keyboardType: TextInputType.number,
-            inputFormatters: FilteringTextInputFormatter.digitsOnly,
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          getTextField(
             controller: passwordController,
             hintName: "Password",
             isObscureText: true,
             keyboardType: TextInputType.name,
             inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          getTextField(
+            controller: tlpController,
+            hintName: "No.Telepon",
+            keyboardType: TextInputType.number,
+            inputFormatters: FilteringTextInputFormatter.digitsOnly,
           ),
           const SizedBox(
             height: 15,
@@ -179,20 +127,23 @@ class _WidgetRegisterState extends State<WidgetRegister> {
                 height: 45,
                 width: 120,
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF2A2A72),
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        )),
-                    onPressed: () {},
-                    child: Text(
-                      'Daftar',
-                      style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
-                    )),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF2A2A72),
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      )),
+                  onPressed: () {
+                    register();
+                  },
+                  child: Text(
+                    'Daftar',
+                    style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white),
+                  ),
+                ),
               ),
             ],
           ),
@@ -227,5 +178,34 @@ class _WidgetRegisterState extends State<WidgetRegister> {
         ],
       ),
     );
+  }
+
+  Future register() async {
+    var url = Uri.http("192.168.0.117",
+        '/Web_Kelurahan_Kepuharjo/Api/signup.php', {'q': '{http}'});
+    var response = await http.post(url, body: {
+      "id_akun": nikController.text,
+      "nama_lengkap": namaController.text,
+      "password": passwordController.text,
+      "no_hp": tlpController.text,
+    });
+    var data = jsonDecode(response.body);
+    try {
+      if (response.statusCode == 200) {
+        if (data == "Error") {
+          Fluttertoast.showToast(msg: "wes ono cok");
+        } else {
+          Fluttertoast.showToast(msg: "Ndang Login su");
+          setState(() {
+            nikController.clear();
+            namaController.clear();
+            passwordController.clear();
+            tlpController.clear();
+          });
+        }
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
   }
 }

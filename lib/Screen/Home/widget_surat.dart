@@ -9,10 +9,7 @@ class WidgetSurat extends StatefulWidget {
   State<WidgetSurat> createState() => _WidgetSuratState();
 }
 
-GestureDetector getLetter(
-  String title,
-  int index,
-) {
+GestureDetector getLetter(String title, int index, IconData icon) {
   return GestureDetector(
     onTap: () {
       if (index == 0) {
@@ -44,11 +41,13 @@ GestureDetector getLetter(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              "images/email3.png",
-              height: 50,
-              width: 50,
-              alignment: Alignment.topCenter,
+            Icon(
+              icon,
+              size: 30,
+              color: Color(0xFF2A2A72),
+            ),
+            const SizedBox(
+              height: 5,
             ),
             Text(
               title,
@@ -74,11 +73,12 @@ class _WidgetSuratState extends State<WidgetSurat> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Row(
           children: [
-            getLetter("Surat Keterangan Tidak Mampu", 0),
-            getLetter("Surat Keterangan Kematian", 1),
-            getLetter("Surat Keterangan Pindah", 2),
-            getLetter("Surat Keterangan Domisili", 3),
-            getLetter("Surat Keterangan Usaha", 4),
+            getLetter(
+                "Surat Keterangan Tidak Mampu", 0, Icons.assignment_outlined),
+            getLetter("Surat Keterangan Kematian", 1, Icons.add_box_outlined),
+            getLetter("Surat Keterangan Pindah", 2, Icons.house_rounded),
+            getLetter("Surat Keterangan Domisili", 3, Icons.location_on),
+            getLetter("Surat Keterangan Usaha", 4, Icons.home_work),
           ],
         ),
       ),

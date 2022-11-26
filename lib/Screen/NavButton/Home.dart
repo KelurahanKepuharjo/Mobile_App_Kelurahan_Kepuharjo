@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Screen/Home/appearance_dashboard.dart';
-import 'package:kepuharjo_app/Screen/Home/appearance_home.dart';
+
 import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Screen/Profil/appearance_profil.dart';
 import 'package:kepuharjo_app/Screen/Status/appearance_status.dart.dart';
@@ -58,8 +58,8 @@ class _HomeState extends State<Home> {
             items: const [
               BottomNavigationBarItem(
                   label: "Home",
-                  icon: Icon(Icons.home_outlined),
-                  activeIcon: Icon(Icons.home)),
+                  icon: Icon(Icons.house_outlined),
+                  activeIcon: Icon(Icons.house_rounded)),
               BottomNavigationBarItem(
                   label: "Pengajuan",
                   icon: Icon(Icons.mail_outline),

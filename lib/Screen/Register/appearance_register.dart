@@ -12,6 +12,7 @@ class AppearanceRegister extends StatefulWidget {
 class _AppearanceRegisterState extends State<AppearanceRegister> {
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
     return DecoratedBox(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -27,14 +28,17 @@ class _AppearanceRegisterState extends State<AppearanceRegister> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: const [
-                  WidgetPictureReg(),
-                  WidgetRegister(),
-                ],
+            child: Form(
+              key: _formkey,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: const [
+                    WidgetPictureReg(),
+                    WidgetRegister(),
+                  ],
+                ),
               ),
             ),
           ),

@@ -99,7 +99,9 @@ class Lokasi extends StatefulWidget {
 class _LokasiState extends State<Lokasi> {
   String lokasi = "Kelurahan Kepuharjo";
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return ListTile(
       onTap: () async {
         final intent = AndroidIntent(

@@ -85,15 +85,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-    - images/lambange.png
-    - images/splashlogo.png
-    - images/close.png
-    - images/arrow-right.png
-    - images/imgletter.png
     - images/padlock.png
-    - images/lock.png
-    - images/bglogo.png
-    - images/email3.png
     - images/logo.png
     - images/profile.jpeg
     - images/user.png
