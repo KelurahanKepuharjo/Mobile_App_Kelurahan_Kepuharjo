@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class SemuaSurat extends StatefulWidget {
-  const SemuaSurat({Key key}) : super(key: key);
+  const SemuaSurat({Key? key}) : super(key: key);
 
   @override
   State<SemuaSurat> createState() => _SemuaSuratState();

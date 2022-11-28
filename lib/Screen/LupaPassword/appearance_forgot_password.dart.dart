@@ -147,8 +147,7 @@ class _AppearanceForgotPasswordState extends State<AppearanceForgotPassword> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const VerifikasiKode()));
+                                  builder: (context) => VerifikasiKode()));
                         },
                         child: Text(
                           'Kirim',

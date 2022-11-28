@@ -7,7 +7,7 @@ import 'package:kepuharjo_app/Screen/Profil/widget_profil.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearanceProfil extends StatefulWidget {
-  const AppearanceProfil({Key key}) : super(key: key);
+  const AppearanceProfil({Key? key}) : super(key: key);
 
   @override
   State<AppearanceProfil> createState() => _AppearanceProfilState();

@@ -1,13 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Screen/Home/widget_berita.dart';
+import 'package:http/http.dart' as http;
 import 'package:kepuharjo_app/Screen/Home/widget_surat.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_text_berita.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_text_surat.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class MyDashboard extends StatefulWidget {
-  const MyDashboard({Key key}) : super(key: key);
+  const MyDashboard({Key? key}) : super(key: key);
 
   @override
   State<MyDashboard> createState() => _MyDashboardState();
@@ -86,11 +88,40 @@ class _MyDashboardState extends State<MyDashboard> {
             child: Container(
               color: whiteColor,
               child: Column(
-                children: const [
+                children: [
                   WidgetTextSurat(),
                   WidgetSurat(),
                   WidgetTextBerita(),
-                  WidgetBerita()
+                  Container(
+                    padding: EdgeInsets.all(15),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: FutureBuilder(
+                        future: getRequest(),
+                        builder: (BuildContext ctx, AsyncSnapshot snapshot) {
+                          if (snapshot.data == null) {
+                            return Container(
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            );
+                          } else {
+                            return Expanded(
+                              child: ListView.builder(
+                                itemCount: snapshot.data.length,
+                                itemBuilder: (ctx, index) => ListTile(
+                                  title: Text(snapshot.data[index].judul),
+                                  subtitle:
+                                      Text(snapshot.data[index].sub_title),
+                                  contentPadding: EdgeInsets.only(bottom: 20.0),
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -99,4 +130,47 @@ class _MyDashboardState extends State<MyDashboard> {
       ),
     );
   }
+
+  Future<List<Berita>> getRequest() async {
+    //replace your restFull API here.
+    String url =
+        "http://192.168.1.20/Web_Kelurahan_Kepuharjo/Api/read_berita.php";
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        var responseData = json.decode(response.body);
+        List<Berita> news = [];
+        for (var i in responseData) {
+          Berita brt = Berita(
+              id_berita: i["id_berita"],
+              judul: i["judul"],
+              sub_title: i["sub_title"],
+              dekripsi: i["dekripsi"]);
+
+          //Adding user to the list.
+          news.add(brt);
+        }
+        return news;
+      } else {
+        throw Exception("failed");
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+}
+
+class Berita {
+  final String id_berita;
+  final String judul;
+  final String sub_title;
+  final String dekripsi;
+
+  Berita({
+    required this.id_berita,
+    required this.judul,
+    required this.sub_title,
+    required this.dekripsi,
+  });
 }

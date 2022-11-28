@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'package:kepuharjo_app/Api_connect/Api_connect.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetBerita extends StatefulWidget {
@@ -8,82 +13,96 @@ class WidgetBerita extends StatefulWidget {
   State<WidgetBerita> createState() => _WidgetBeritaState();
 }
 
-GestureDetector getNews(
-    BuildContext context, String title, int index, String subtitle) {
-  return GestureDetector(
-    onTap: () {
-      if (index == 0) {
-        //1.item
-      }
-      if (index == 1) {
-        //2.item
-      }
-      if (index == 2) {
-        //3.item
-      }
-      if (index == 3) {
-        //4.item
-      }
-      if (index == 4) {
-        //5.item
-      }
-    },
-    child: Container(
-      padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.all(5),
-      height: 150,
-      width: MediaQuery.of(context).size.width,
-      decoration: index == 0 || index == 2 || index == 4
-          ? BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: const Color.fromARGB(255, 239, 239, 239),
-            )
-          : BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: const Color.fromARGB(255, 239, 239, 239),
-            ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            textAlign: TextAlign.start,
-            style: boldTextStyle.copyWith(
-                fontSize: 20, color: blackColor, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 2,
-          ),
-          Text(
-            subtitle,
-            textAlign: TextAlign.start,
-            style: whiteTextStyle.copyWith(
-                fontSize: 13, color: blackColor, fontWeight: FontWeight.normal),
-          )
-        ],
-      ),
-    ),
-  );
+class Berita {
+  final String id_berita;
+  final String judul;
+  final String sub_title;
+  final String dekripsi;
+
+  Berita({
+    required this.id_berita,
+    required this.judul,
+    required this.sub_title,
+    required this.dekripsi,
+  });
 }
 
 class _WidgetBeritaState extends State<WidgetBerita> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
+    return Expanded(
       child: Padding(
-        padding: const EdgeInsets.only(left: 10, top: 0, right: 10),
-        child: Column(
-          children: [
-            getNews(context, "Berita", 0, "Yagatau gua"),
-            getNews(context, "Berita", 1, "Kamu Nanyeak"),
-            getNews(context, "Berita", 2, "Apaan tuh"),
-            getNews(context, "Berita", 3, "Affah iyyah"),
-            getNews(context, "Berita", 4, "Begini kids?"),
-          ],
+        padding: const EdgeInsets.all(8.0),
+        child: FutureBuilder(
+          future: getRequest(),
+          builder: (BuildContext ctx, AsyncSnapshot snapshot) {
+            if (snapshot.data == null) {
+              return Container(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            } else {
+              return Padding(
+                padding: EdgeInsets.zero,
+                child: ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (ctx, index) => Card(
+                    color: Color.fromARGB(255, 239, 239, 239),
+                    elevation: 1,
+                    shadowColor: blackColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    child: ListTile(
+                      onTap: () {},
+                      title: Text(
+                        snapshot.data[index].judul,
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      subtitle: Text(
+                        snapshot.data[index].sub_title,
+                        style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w300,
+                            fontSize: 14),
+                      ),
+                      contentPadding: EdgeInsets.all(20),
+                    ),
+                  ),
+                ),
+              );
+            }
+          },
         ),
       ),
     );
+  }
+
+  Future<List<Berita>> getRequest() async {
+    //replace your restFull API here.
+    try {
+      final response = await http.get(Uri.parse(ApiConnect.berita));
+      if (response.statusCode == 200) {
+        var responseData = json.decode(response.body);
+        List<Berita> news = [];
+        for (var i in responseData) {
+          Berita brt = Berita(
+              id_berita: i["id_berita"],
+              judul: i["judul"],
+              sub_title: i["sub_title"],
+              dekripsi: i["dekripsi"]);
+
+          //Adding user to the list.
+          news.add(brt);
+        }
+        return news;
+      } else {
+        throw Exception("failed");
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 }

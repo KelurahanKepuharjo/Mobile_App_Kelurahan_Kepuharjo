@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetSurat extends StatefulWidget {
-  const WidgetSurat({Key key}) : super(key: key);
+  const WidgetSurat({Key? key}) : super(key: key);
 
   @override
   State<WidgetSurat> createState() => _WidgetSuratState();
@@ -31,8 +31,8 @@ GestureDetector getLetter(String title, int index, IconData icon) {
     child: Container(
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(5),
-      height: 130,
-      width: 130,
+      height: 120,
+      width: 120,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Color.fromARGB(255, 239, 239, 239),

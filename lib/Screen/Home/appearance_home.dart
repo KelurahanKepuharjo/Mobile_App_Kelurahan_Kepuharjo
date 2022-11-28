@@ -19,74 +19,67 @@ class _AppearanceHomeState extends State<AppearanceHome> {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(250),
+        preferredSize: const Size.fromHeight(200),
         child: Container(
             decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('images/bglogo.png'),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFF009FFD),
-                    Color(0xFF2A2A72),
-                  ],
-                )),
-            child: SingleChildScrollView(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 100, 20, 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "S-Kepuharjo",
-                          style: boldTextStyle.copyWith(
-                              fontSize: 30, color: whiteColor),
-                        ),
-                        const SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          "Smart Aplikasi Pelayanan Pengajuan\nSurat Kelurahan Kepuharjo",
-                          style: GoogleFonts.poppins(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                              color: whiteColor),
-                        ),
-                        Text(
-                          "Jl.Langsep no.18, Kec. Lumajang, Kab. Lumajang",
-                          style: GoogleFonts.poppins(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w300,
-                              color: whiteColor),
-                        ),
-                      ],
-                    ),
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20)),
+              color: Color(0xFF2A2A72),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 80, 0, 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "S-Kepuharjo",
+                        style: boldTextStyle.copyWith(
+                            fontSize: 30, color: whiteColor),
+                      ),
+                      const SizedBox(
+                        height: 3,
+                      ),
+                      Text(
+                        "Smart Aplikasi Pelayanan Pengajuan\nSurat Kelurahan Kepuharjo",
+                        style: GoogleFonts.poppins(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w300,
+                            color: whiteColor),
+                      ),
+                      Text(
+                        "Jl.Langsep no.18, Kec. Lumajang, Kab. Lumajang",
+                        style: GoogleFonts.poppins(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w300,
+                            color: whiteColor),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(right: 20),
+                  child: Image.asset(
+                    "images/mylogo.png",
+                    width: 100,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.centerRight,
+                  ),
+                ),
+              ],
             )),
       ),
-      body: ListView(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: const [
-              WidgetTextSurat(),
-              WidgetSurat(),
-              WidgetTextBerita(),
-              WidgetBerita()
-            ],
-          ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: const [
+          WidgetTextSurat(),
+          WidgetSurat(),
+          WidgetTextBerita(),
+          WidgetBerita()
         ],
       ),
     );

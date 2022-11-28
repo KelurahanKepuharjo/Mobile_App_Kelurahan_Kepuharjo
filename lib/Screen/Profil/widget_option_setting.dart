@@ -7,7 +7,7 @@ import 'package:kepuharjo_app/Screen/Profil/Tentang/appearance_tentang.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetOptionsSetting extends StatefulWidget {
-  const WidgetOptionsSetting({Key key}) : super(key: key);
+  const WidgetOptionsSetting({Key? key}) : super(key: key);
 
   @override
   State<WidgetOptionsSetting> createState() => _WidgetOptionsSettingState();
@@ -24,7 +24,7 @@ ListTile profileMenuWidget(BuildContext context, String title, IconData icon,
       }
       if (index == 2) {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const AppearanceTentang()));
+            MaterialPageRoute(builder: (context) => AppearanceTentang()));
       }
       if (index == 3) {
         Navigator.pushAndRemoveUntil(
@@ -90,7 +90,7 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
 }
 
 class Lokasi extends StatefulWidget {
-  const Lokasi({Key key}) : super(key: key);
+  const Lokasi({Key? key}) : super(key: key);
 
   @override
   State<Lokasi> createState() => _LokasiState();

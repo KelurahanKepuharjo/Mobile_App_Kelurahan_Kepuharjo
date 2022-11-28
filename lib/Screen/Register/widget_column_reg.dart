@@ -5,12 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Api_connect/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextField.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetRegister extends StatefulWidget {
-  const WidgetRegister({Key key}) : super(key: key);
+  const WidgetRegister({Key? key}) : super(key: key);
 
   @override
   State<WidgetRegister> createState() => _WidgetRegisterState();
@@ -102,7 +103,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
                     checkColor: Colors.black,
                     onChanged: (value) {
                       setState(() {
-                        _isChecked = value;
+                        _isChecked = value!;
                       });
                     },
                   ),
@@ -181,9 +182,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
   }
 
   Future register() async {
-    var url = Uri.http("192.168.0.117",
-        '/Web_Kelurahan_Kepuharjo/Api/signup.php', {'q': '{http}'});
-    var response = await http.post(url, body: {
+    var response = await http.post(Uri.parse(ApiConnect.signup), body: {
       "id_akun": nikController.text,
       "nama_lengkap": namaController.text,
       "password": passwordController.text,

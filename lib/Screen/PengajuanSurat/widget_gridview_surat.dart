@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetGridViewSurat extends StatefulWidget {
-  const WidgetGridViewSurat({Key key}) : super(key: key);
+  const WidgetGridViewSurat({Key? key}) : super(key: key);
 
   @override
   State<WidgetGridViewSurat> createState() => _WidgetGridViewSuratState();

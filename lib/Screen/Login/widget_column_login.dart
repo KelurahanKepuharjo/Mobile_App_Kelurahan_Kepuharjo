@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:kepuharjo_app/Api_connect/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextField.dart';
 import 'package:kepuharjo_app/Screen/LupaPassword/appearance_forgot_password.dart.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home.dart';
@@ -85,7 +86,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
                     checkColor: Colors.black,
                     onChanged: (value) {
                       setState(() {
-                        _isChecked = value;
+                        _isChecked = value!;
                       });
                     },
                   ),
@@ -176,9 +177,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
   }
 
   Future login() async {
-    var url = Uri.http("192.168.0.117",
-        '/Web_Kelurahan_Kepuharjo/Api/signin.php', {'q': '{http}'});
-    var response = await http.post(url, body: {
+    var response = await http.post(Uri.parse(ApiConnect.signin), body: {
       "id_akun": nikController.text,
       "password": passwordController.text
     });
@@ -191,7 +190,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const Home(),
+              builder: (context) => Home(),
             ),
           );
         } else {

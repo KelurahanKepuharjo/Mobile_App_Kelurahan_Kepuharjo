@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class SuratDisetujui extends StatefulWidget {
-  const SuratDisetujui({Key key}) : super(key: key);
+  const SuratDisetujui({Key? key}) : super(key: key);
 
   @override
   State<SuratDisetujui> createState() => _SuratDisetujuiState();
@@ -39,24 +39,14 @@ class _SuratDisetujuiState extends State<SuratDisetujui> {
             ),
             child: Padding(
               padding: const EdgeInsets.all(5),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.arrow_circle_down_rounded,
-                    color: Color(0xFF2A2A72),
-                    size: 20,
-                  ),
-                  const SizedBox(
-                    width: 2,
-                  ),
-                  Text(
-                    "Download",
-                    style: GoogleFonts.poppins(
-                        fontSize: 12,
-                        color: blackColor,
-                        fontWeight: FontWeight.w500),
-                  )
-                ],
+              child: Center(
+                child: Text(
+                  "Download",
+                  style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: blackColor,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
             ),
           ),

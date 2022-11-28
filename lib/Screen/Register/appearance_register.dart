@@ -3,7 +3,7 @@ import 'package:kepuharjo_app/Screen/Register/widget_column_reg.dart';
 import 'package:kepuharjo_app/Screen/Register/widget_pict_reg.dart';
 
 class AppearanceRegister extends StatefulWidget {
-  const AppearanceRegister({Key key}) : super(key: key);
+  const AppearanceRegister({Key? key}) : super(key: key);
 
   @override
   State<AppearanceRegister> createState() => _AppearanceRegisterState();

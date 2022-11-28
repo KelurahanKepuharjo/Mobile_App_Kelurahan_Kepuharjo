@@ -12,11 +12,11 @@ class getTextForm extends StatelessWidget {
   TextInputAction textInputAction;
 
   getTextForm(
-      {this.controller,
-      this.hintName,
+      {required this.controller,
+      required this.hintName,
       this.isObscureText = false,
-      this.keyboardType,
-      this.inputFormatters,
+      required this.keyboardType,
+      required this.inputFormatters,
       this.isEnable = true,
       this.textInputAction = TextInputAction.done});
 

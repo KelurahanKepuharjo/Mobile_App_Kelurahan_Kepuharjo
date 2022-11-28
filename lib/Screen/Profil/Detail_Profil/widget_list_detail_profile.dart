@@ -11,15 +11,15 @@ import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 
 class WidgetDataDetailProfil extends StatefulWidget {
-  const WidgetDataDetailProfil({Key key}) : super(key: key);
+  const WidgetDataDetailProfil({Key? key}) : super(key: key);
 
   @override
   State<WidgetDataDetailProfil> createState() => _WidgetDataDetailProfilState();
 }
 
 class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
-  DateFormat dateFormat;
-  File image;
+  DateFormat? dateFormat;
+  File? image;
   @override
   void initState() {
     // TODO: implement initState
@@ -30,17 +30,17 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
 
   Future getImageGalerry() async {
     final ImagePicker picker = ImagePicker();
-    final XFile imagePicked =
+    final XFile? imagePicked =
         await picker.pickImage(source: ImageSource.gallery);
-    image = File(imagePicked.path);
+    image = File(imagePicked!.path);
     setState(() {});
   }
 
   Future getImageCamera() async {
     final ImagePicker picker = ImagePicker();
-    final XFile imagePicked =
+    final XFile? imagePicked =
         await picker.pickImage(source: ImageSource.camera);
-    image = File(imagePicked.path);
+    image = File(imagePicked!.path);
     setState(() {});
   }
 
@@ -191,7 +191,7 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                       height: 120,
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
-                          child: Image.file(image)),
+                          child: Image.file(image!)),
                     ),
               Positioned(
                   bottom: 0,
@@ -260,13 +260,13 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                     return null;
                   },
                   onTap: () async {
-                    DateTime pickedDate = await showDatePicker(
+                    DateTime? pickedDate = await showDatePicker(
                         context: context,
                         initialDate: DateTime.now(),
                         firstDate: DateTime(1800),
                         lastDate: DateTime(2100));
                     if (pickedDate != null) {
-                      String formattedDate = dateFormat.format(pickedDate);
+                      String formattedDate = dateFormat!.format(pickedDate);
 
                       setState(() {
                         ttl.text = formattedDate.toString();

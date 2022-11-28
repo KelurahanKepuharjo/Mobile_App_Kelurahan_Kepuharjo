@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetTextVersion extends StatefulWidget {
-  const WidgetTextVersion({Key key}) : super(key: key);
+  const WidgetTextVersion({Key? key}) : super(key: key);
 
   @override
   State<WidgetTextVersion> createState() => _WidgetTextVersionState();

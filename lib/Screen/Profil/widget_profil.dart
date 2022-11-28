@@ -4,7 +4,7 @@ import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/detail_profile.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetShowProfile extends StatefulWidget {
-  const WidgetShowProfile({Key key}) : super(key: key);
+  const WidgetShowProfile({Key? key}) : super(key: key);
 
   @override
   State<WidgetShowProfile> createState() => _WidgetShowProfileState();

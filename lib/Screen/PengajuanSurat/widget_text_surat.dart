@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WidgetTextSurat extends StatefulWidget {
-  const WidgetTextSurat({Key key}) : super(key: key);
+  const WidgetTextSurat({Key? key}) : super(key: key);
 
   @override
   State<WidgetTextSurat> createState() => _WidgetTextSuratState();
