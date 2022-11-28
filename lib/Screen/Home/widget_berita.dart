@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:kepuharjo_app/Api_connect/Api_connect.dart';
+import 'package:kepuharjo_app/Screen/Home/get_detail_berita.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetBerita extends StatefulWidget {
@@ -25,6 +26,13 @@ class Berita {
     required this.sub_title,
     required this.dekripsi,
   });
+  factory Berita.fromJson(Map<String, dynamic> json) {
+    return Berita(
+        id_berita: json['id_berita'],
+        judul: json['judul'],
+        sub_title: json['sub_title'],
+        dekripsi: json['dekripsi']);
+  }
 }
 
 class _WidgetBeritaState extends State<WidgetBerita> {
@@ -43,32 +51,46 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                 ),
               );
             } else {
-              return Padding(
-                padding: EdgeInsets.zero,
-                child: ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (ctx, index) => Card(
-                    color: Color.fromARGB(255, 239, 239, 239),
-                    elevation: 1,
-                    shadowColor: blackColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    child: ListTile(
-                      onTap: () {},
-                      title: Text(
-                        snapshot.data[index].judul,
-                        style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      subtitle: Text(
-                        snapshot.data[index].sub_title,
-                        style: GoogleFonts.poppins(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14),
-                      ),
-                      contentPadding: EdgeInsets.all(20),
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (ctx, index) => Container(
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 15),
+                          blurRadius: 22,
+                          color: Colors.black.withOpacity(0.10),
+                        ),
+                        BoxShadow(
+                            offset: Offset(-15, -15),
+                            blurRadius: 20,
+                            color: Colors.white.withOpacity(0.10))
+                      ]),
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => GetDetailBerita(
+                                    value: snapshot.data[index].id_berita,
+                                  )));
+                    },
+                    title: Text(
+                      snapshot.data[index].judul,
+                      style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.bold, fontSize: 16),
                     ),
+                    subtitle: Text(
+                      snapshot.data[index].sub_title,
+                      style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 14),
+                    ),
+                    contentPadding: EdgeInsets.all(20),
                   ),
                 ),
               );

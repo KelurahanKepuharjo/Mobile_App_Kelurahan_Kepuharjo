@@ -31,12 +31,23 @@ GestureDetector getLetter(String title, int index, IconData icon) {
     child: Container(
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(5),
-      height: 120,
-      width: 120,
+      height: 130,
+      width: 130,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Color.fromARGB(255, 239, 239, 239),
-      ),
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
+          // border: Border.all(),
+          boxShadow: [
+            BoxShadow(
+              offset: const Offset(0, 15),
+              blurRadius: 22,
+              color: Colors.black.withOpacity(0.10),
+            ),
+            BoxShadow(
+                offset: Offset(-15, -15),
+                blurRadius: 20,
+                color: Colors.white.withOpacity(0.10))
+          ]),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

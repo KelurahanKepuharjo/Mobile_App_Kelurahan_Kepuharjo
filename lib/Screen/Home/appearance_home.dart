@@ -17,7 +17,7 @@ class _AppearanceHomeState extends State<AppearanceHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: whiteColor,
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(200),
         child: Container(

@@ -13,7 +13,7 @@ class _WidgetTextBeritaState extends State<WidgetTextBerita> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
