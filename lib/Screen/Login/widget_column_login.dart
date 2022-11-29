@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:kepuharjo_app/Api_connect/Api_connect.dart';
+import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextField.dart';
 import 'package:kepuharjo_app/Screen/LupaPassword/appearance_forgot_password.dart.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home.dart';
@@ -71,33 +71,6 @@ class _WidgetLoginState extends State<WidgetLogin> {
             padding: const EdgeInsets.fromLTRB(30, 0, 25, 0),
             child: Row(
               children: [
-                SizedBox(
-                  width: 10,
-                  height: 10,
-                  child: Checkbox(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    side: MaterialStateBorderSide.resolveWith((states) =>
-                        const BorderSide(width: 1.5, color: Colors.black)),
-                    tristate: false,
-                    activeColor: Colors.transparent,
-                    value: _isChecked,
-                    checkColor: Colors.black,
-                    onChanged: (value) {
-                      setState(() {
-                        _isChecked = value!;
-                      });
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                Text(
-                  "Ingatkan saya",
-                  style: GoogleFonts.poppins(color: blackColor, fontSize: 12),
-                ),
                 const Spacer(),
                 InkWell(
                   child: Text(

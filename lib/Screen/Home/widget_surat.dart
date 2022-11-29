@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetSurat extends StatefulWidget {
@@ -9,11 +10,13 @@ class WidgetSurat extends StatefulWidget {
   State<WidgetSurat> createState() => _WidgetSuratState();
 }
 
-GestureDetector getLetter(String title, int index, IconData icon) {
+GestureDetector getLetter(
+    BuildContext context, String title, int index, IconData icon) {
   return GestureDetector(
     onTap: () {
       if (index == 0) {
-        //1.item
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SKTM()));
       }
       if (index == 1) {
         //2.item
@@ -85,11 +88,35 @@ class _WidgetSuratState extends State<WidgetSurat> {
         child: Row(
           children: [
             getLetter(
-                "Surat Keterangan Tidak Mampu", 0, Icons.assignment_outlined),
-            getLetter("Surat Keterangan Kematian", 1, Icons.add_box_outlined),
-            getLetter("Surat Keterangan Pindah", 2, Icons.house_rounded),
-            getLetter("Surat Keterangan Domisili", 3, Icons.location_on),
-            getLetter("Surat Keterangan Usaha", 4, Icons.home_work),
+              context,
+              "Surat Keterangan Tidak Mampu",
+              0,
+              Icons.assignment_outlined,
+            ),
+            getLetter(
+              context,
+              "Surat Keterangan Kematian",
+              1,
+              Icons.add_box_outlined,
+            ),
+            getLetter(
+              context,
+              "Surat Keterangan Pindah",
+              2,
+              Icons.house_rounded,
+            ),
+            getLetter(
+              context,
+              "Surat Keterangan Domisili",
+              3,
+              Icons.location_on,
+            ),
+            getLetter(
+              context,
+              "Surat Keterangan Usaha",
+              4,
+              Icons.home_work,
+            ),
           ],
         ),
       ),

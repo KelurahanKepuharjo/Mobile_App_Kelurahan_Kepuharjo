@@ -42,7 +42,6 @@ dependencies:
   fluttertoast: ^8.1.1
   intl: ^0.17.0
   path_provider: ^2.0.11
-  sqflite: ^2.2.0+3
   toast: ^0.3.0
   awesome_dialog: ^3.0.2
   pinput: ^2.2.16
@@ -50,7 +49,7 @@ dependencies:
   provider: ^6.0.4
   image_picker: ^0.8.6
   android_intent_plus: ^3.1.5
-  dio: ^4.0.6
+  readmore: ^2.2.0
   
 
 

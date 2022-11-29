@@ -1,11 +1,12 @@
-import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-import 'package:kepuharjo_app/Api_connect/Api_connect.dart';
-import 'package:kepuharjo_app/Screen/Home/get_detail_berita.dart';
+import 'package:kepuharjo_app/Api/Api_service.dart';
+import 'package:kepuharjo_app/Model/News_Model.dart';
+
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:readmore/readmore.dart';
 
 class WidgetBerita extends StatefulWidget {
   const WidgetBerita({key});
@@ -14,117 +15,123 @@ class WidgetBerita extends StatefulWidget {
   State<WidgetBerita> createState() => _WidgetBeritaState();
 }
 
-class Berita {
-  final String id_berita;
-  final String judul;
-  final String sub_title;
-  final String dekripsi;
-
-  Berita({
-    required this.id_berita,
-    required this.judul,
-    required this.sub_title,
-    required this.dekripsi,
-  });
-  factory Berita.fromJson(Map<String, dynamic> json) {
-    return Berita(
-        id_berita: json['id_berita'],
-        judul: json['judul'],
-        sub_title: json['sub_title'],
-        dekripsi: json['dekripsi']);
-  }
-}
-
 class _WidgetBeritaState extends State<WidgetBerita> {
+  ServiceApi serviceApi = ServiceApi();
+  late Future<List<cNews>> listdata;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    listdata = serviceApi.getNews();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FutureBuilder(
-          future: getRequest(),
-          builder: (BuildContext ctx, AsyncSnapshot snapshot) {
-            if (snapshot.data == null) {
-              return Container(
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            } else {
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (ctx, index) => Container(
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          offset: const Offset(0, 15),
-                          blurRadius: 22,
-                          color: Colors.black.withOpacity(0.10),
+      child: FutureBuilder<List<cNews>>(
+        future: listdata,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<cNews> isiData = snapshot.data!;
+            return ListView.builder(
+              itemCount: isiData.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            // image: const DecorationImage(
+                            //   image: AssetImage('images/mylogo.png'),
+                            //   fit: BoxFit.scaleDown,
+                            //   opacity: 0.3,
+                            //   alignment: Alignment.centerRight,
+                            // ),
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                offset: const Offset(0, 15),
+                                blurRadius: 22,
+                                color: Colors.black.withOpacity(0.10),
+                              ),
+                              BoxShadow(
+                                  offset: Offset(-15, -15),
+                                  blurRadius: 20,
+                                  color: Colors.white.withOpacity(0.10))
+                            ]),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    isiData[index].judul,
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 24),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      isiData[index].subTitle,
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12),
+                                    ),
+                                    ReadMoreText(
+                                      isiData[index].dekripsi,
+                                      trimLines: 2,
+                                      trimMode: TrimMode.Line,
+                                      trimCollapsedText: "Baca Selengkapnya",
+                                      trimExpandedText: "  Lebih Sedikit",
+                                      lessStyle: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle: FontStyle.italic,
+                                          color: Color(0xFF2A2A72),
+                                          fontSize: 14),
+                                      moreStyle: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle: FontStyle.italic,
+                                          color: Color(0xFF2A2A72),
+                                          fontSize: 14),
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500,
+                                          color: blackColor,
+                                          fontSize: 14),
+                                    ),
+                                  ])
+                            ],
+                          ),
                         ),
-                        BoxShadow(
-                            offset: Offset(-15, -15),
-                            blurRadius: 20,
-                            color: Colors.white.withOpacity(0.10))
-                      ]),
-                  child: ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => GetDetailBerita(
-                                    value: snapshot.data[index].id_berita,
-                                  )));
-                    },
-                    title: Text(
-                      snapshot.data[index].judul,
-                      style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    subtitle: Text(
-                      snapshot.data[index].sub_title,
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w300,
-                          fontSize: 14),
-                    ),
-                    contentPadding: EdgeInsets.all(20),
+                      ),
+                    ],
                   ),
-                ),
-              );
-            }
-          },
-        ),
+                );
+              },
+            );
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.data}");
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
 
-  Future<List<Berita>> getRequest() async {
-    //replace your restFull API here.
-    try {
-      final response = await http.get(Uri.parse(ApiConnect.berita));
-      if (response.statusCode == 200) {
-        var responseData = json.decode(response.body);
-        List<Berita> news = [];
-        for (var i in responseData) {
-          Berita brt = Berita(
-              id_berita: i["id_berita"],
-              judul: i["judul"],
-              sub_title: i["sub_title"],
-              dekripsi: i["dekripsi"]);
+  void showData(String id_berita) async {
+    cNews response = await serviceApi.getDetail(id_berita);
 
-          //Adding user to the list.
-          news.add(brt);
-        }
-        return news;
-      } else {
-        throw Exception("failed");
-      }
-    } catch (e) {
-      print(e);
-      throw e;
-    }
+    log("data = ${response.judul} - ${response.dekripsi}");
   }
 }
