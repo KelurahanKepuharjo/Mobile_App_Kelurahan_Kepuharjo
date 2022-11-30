@@ -22,8 +22,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
             padding: EdgeInsets.zero,
             child: Text(
               "Pelayanan Masyarakat",
-              style: GoogleFonts.poppins(
-                  fontSize: 14, color: blackColor, fontWeight: FontWeight.bold),
+              style: poppinsMediumBlack.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
@@ -48,8 +47,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
                 child: Text(
                   "See All",
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                    fontSize: 12,
+                  style: poppinsSmallBlack.copyWith(
                     color: Color(0xFF2A2A72),
                   ),
                 ),

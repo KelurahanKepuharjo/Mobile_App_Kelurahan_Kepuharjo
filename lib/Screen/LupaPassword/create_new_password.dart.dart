@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Comm/getTextField.dart';
+import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -27,7 +26,7 @@ class _CreateNewPw extends State<CreateNewPw> {
         shadowColor: Colors.transparent,
         title: Text(
           'Buat Password Baru',
-          style: GoogleFonts.poppins(
+          style: poppinsLargeBlack.copyWith(
               color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
@@ -58,11 +57,7 @@ class _CreateNewPw extends State<CreateNewPw> {
                 child: Text(
                   "Silahkan Masukan Password Anda Yang Baru",
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: blackColor,
-                  ),
+                  style: poppinsMediumBlack,
                 ),
               ),
               const SizedBox(
@@ -71,17 +66,13 @@ class _CreateNewPw extends State<CreateNewPw> {
               Center(
                 child: Text(
                   "Gunakanlah Password Yang Kuat",
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: blackColor,
-                  ),
+                  style: poppinsMediumBlack,
                 ),
               ),
               const SizedBox(
                 height: 70,
               ),
-              getTextField(
+              getTextForm(
                 controller: npController,
                 hintName: " Password Baru",
                 keyboardType: TextInputType.name,
@@ -92,7 +83,7 @@ class _CreateNewPw extends State<CreateNewPw> {
               const SizedBox(
                 height: 10,
               ),
-              getTextField(
+              getTextForm(
                 controller: npController,
                 hintName: " Konfirmasi Password",
                 keyboardType: TextInputType.name,
@@ -125,10 +116,8 @@ class _CreateNewPw extends State<CreateNewPw> {
                         },
                         child: Text(
                           'Simpan',
-                          style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
+                          style:
+                              poppinsLargeBlack.copyWith(color: Colors.white),
                         )),
                   ),
                 ],

@@ -38,22 +38,24 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                     children: [
                       Text(
                         "S-Kepuharjo",
-                        style: boldTextStyle.copyWith(
-                            fontSize: 30, color: whiteColor),
+                        style: poppinsLargeBlack.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                            color: whiteColor),
                       ),
                       const SizedBox(
                         height: 3,
                       ),
                       Text(
                         "Smart Aplikasi Pelayanan Pengajuan\nSurat Kelurahan Kepuharjo",
-                        style: GoogleFonts.poppins(
+                        style: poppinsSmallBlack.copyWith(
                             fontSize: 13,
                             fontWeight: FontWeight.w300,
                             color: whiteColor),
                       ),
                       Text(
                         "Jl.Langsep no.18, Kec. Lumajang, Kab. Lumajang",
-                        style: GoogleFonts.poppins(
+                        style: poppinsSmallBlack.copyWith(
                             fontSize: 10,
                             fontWeight: FontWeight.w300,
                             color: whiteColor),

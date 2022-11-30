@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetTextBerita extends StatefulWidget {
@@ -23,8 +22,7 @@ class _WidgetTextBeritaState extends State<WidgetTextBerita> {
             ),
             child: Text(
               "Berita Terkini",
-              style: GoogleFonts.poppins(
-                  fontSize: 14, color: blackColor, fontWeight: FontWeight.bold),
+              style: poppinsMediumBlack.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
         ],

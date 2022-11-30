@@ -26,7 +26,7 @@ class _getDateTimeState extends State<getDateTime> {
     // TODO: implement initState
     super.initState();
     initializeDateFormatting();
-    dateFormat = DateFormat.yMMMMd('id');
+    dateFormat = DateFormat.yMd('en_US');
   }
 
   @override
@@ -49,7 +49,7 @@ class _getDateTimeState extends State<getDateTime> {
               DateTime? pickedDate = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),
-                  firstDate: DateTime(1800),
+                  firstDate: DateTime(1700),
                   lastDate: DateTime(2100));
               if (pickedDate != null) {
                 String formattedDate = dateFormat!.format(pickedDate);

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Screen/LupaPassword/appearance_forgot_password.dart.dart';
 import 'package:kepuharjo_app/Screen/LupaPassword/create_new_password.dart.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:pinput/pinput.dart';
@@ -59,7 +57,7 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
         shadowColor: Colors.transparent,
         title: Text(
           'Verifikasi Kode',
-          style: GoogleFonts.poppins(
+          style: poppinsLargeBlack.copyWith(
               color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
@@ -88,11 +86,7 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
               child: Text(
                 "Silahkan Masukkan Kode 4 Digit Yang Dikirim Ke Nomor Anda",
                 textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: blackColor,
-                ),
+                style: poppinsMediumBlack,
               ),
             ),
             const SizedBox(
@@ -185,7 +179,7 @@ class _VerifikasiKodeState extends State<VerifikasiKode> {
                       },
                       child: Text(
                         'Verifikasi',
-                        style: GoogleFonts.poppins(
+                        style: poppinsLargeBlack.copyWith(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: Colors.white),

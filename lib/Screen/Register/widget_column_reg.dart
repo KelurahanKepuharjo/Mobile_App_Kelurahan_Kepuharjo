@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
-import 'package:kepuharjo_app/Comm/getTextField.dart';
+import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -18,7 +18,6 @@ class WidgetRegister extends StatefulWidget {
 }
 
 class _WidgetRegisterState extends State<WidgetRegister> {
-  bool _isChecked = false;
   final nikController = TextEditingController();
   final namaController = TextEditingController();
   final passwordController = TextEditingController();
@@ -27,7 +26,8 @@ class _WidgetRegisterState extends State<WidgetRegister> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 480,
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      height: 450,
       width: 300,
       decoration: BoxDecoration(
           color: Color.fromARGB(143, 255, 255, 255),
@@ -47,7 +47,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
           const SizedBox(
             height: 20,
           ),
-          getTextField(
+          getTextForm(
             controller: nikController,
             hintName: "No.NIK",
             keyboardType: TextInputType.number,
@@ -56,7 +56,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
           const SizedBox(
             height: 8,
           ),
-          getTextField(
+          getTextForm(
             controller: namaController,
             hintName: "Nama Lengkap",
             keyboardType: TextInputType.name,
@@ -65,7 +65,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
           const SizedBox(
             height: 8,
           ),
-          getTextField(
+          getTextForm(
             controller: passwordController,
             hintName: "Password",
             isObscureText: true,
@@ -75,48 +75,11 @@ class _WidgetRegisterState extends State<WidgetRegister> {
           const SizedBox(
             height: 8,
           ),
-          getTextField(
+          getTextForm(
             controller: tlpController,
             hintName: "No.Telepon",
             keyboardType: TextInputType.number,
             inputFormatters: FilteringTextInputFormatter.digitsOnly,
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(30, 0, 25, 0),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 10,
-                  height: 10,
-                  child: Checkbox(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    side: MaterialStateBorderSide.resolveWith(
-                        (states) => BorderSide(width: 1.5, color: blackColor)),
-                    tristate: false,
-                    activeColor: Colors.transparent,
-                    value: _isChecked,
-                    checkColor: Colors.black,
-                    onChanged: (value) {
-                      setState(() {
-                        _isChecked = value!;
-                      });
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                Text(
-                  "Saya setuju syarat dan ketentuan",
-                  style: GoogleFonts.poppins(color: blackColor, fontSize: 12),
-                ),
-              ],
-            ),
           ),
           const SizedBox(
             height: 15,

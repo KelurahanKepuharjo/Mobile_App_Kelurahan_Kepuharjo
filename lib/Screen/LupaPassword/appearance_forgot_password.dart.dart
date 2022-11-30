@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Comm/getTextField.dart';
-
+import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
-import 'package:kepuharjo_app/Screen/LupaPassword/create_new_password.dart.dart';
 import 'package:kepuharjo_app/Screen/LupaPassword/verifikasi_pin.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:pinput/pinput.dart';
@@ -68,7 +65,7 @@ class _AppearanceForgotPasswordState extends State<AppearanceForgotPassword> {
         shadowColor: Colors.transparent,
         title: Text(
           'Lupa Password',
-          style: GoogleFonts.poppins(
+          style: poppinsLargeBlack.copyWith(
               color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
@@ -98,11 +95,8 @@ class _AppearanceForgotPasswordState extends State<AppearanceForgotPassword> {
               Center(
                 child: Text(
                   "Silahkan Masukan No.Handphone Anda",
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: blackColor,
-                  ),
+                  style:
+                      poppinsMediumBlack.copyWith(fontWeight: FontWeight.w500),
                 ),
               ),
               const SizedBox(
@@ -111,17 +105,14 @@ class _AppearanceForgotPasswordState extends State<AppearanceForgotPassword> {
               Center(
                 child: Text(
                   "Untuk Mendapatkan Kode Verifikasi",
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: blackColor,
-                  ),
+                  style:
+                      poppinsMediumBlack.copyWith(fontWeight: FontWeight.w500),
                 ),
               ),
               const SizedBox(
                 height: 70,
               ),
-              getTextField(
+              getTextForm(
                 controller: rphpController,
                 hintName: " No.Telepon",
                 keyboardType: TextInputType.number,
@@ -151,7 +142,7 @@ class _AppearanceForgotPasswordState extends State<AppearanceForgotPassword> {
                         },
                         child: Text(
                           'Kirim',
-                          style: GoogleFonts.poppins(
+                          style: poppinsLargeBlack.copyWith(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                               color: Colors.white),

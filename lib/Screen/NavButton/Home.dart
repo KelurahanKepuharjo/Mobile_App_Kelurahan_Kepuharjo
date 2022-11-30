@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Screen/Home/appearance_home.dart';
-
 import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Screen/Profil/appearance_profil.dart';
 import 'package:kepuharjo_app/Screen/Status/appearance_status.dart.dart';
@@ -44,7 +42,7 @@ class _HomeState extends State<Home> {
         child: BottomNavigationBar(
             iconSize: 30,
             selectedLabelStyle:
-                GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w300),
+                poppinsSmallBlack.copyWith(fontWeight: FontWeight.w300),
             selectedFontSize: 12,
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,

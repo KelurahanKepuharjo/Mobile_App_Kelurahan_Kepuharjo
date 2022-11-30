@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kepuharjo_app/Screen/Login/widget_column_login.dart';
 import 'package:kepuharjo_app/Screen/Login/widget_pict_logo.dart';
-import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppeareaceLogin extends StatefulWidget {
   const AppeareaceLogin({key});

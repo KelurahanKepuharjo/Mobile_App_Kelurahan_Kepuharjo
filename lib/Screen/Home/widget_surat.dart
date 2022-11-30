@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -66,10 +65,7 @@ GestureDetector getLetter(
             Text(
               title,
               textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
-                  fontSize: 12,
-                  color: blackColor,
-                  fontWeight: FontWeight.normal),
+              style: poppinsSmallBlack.copyWith(fontWeight: FontWeight.normal),
             )
           ],
         ),

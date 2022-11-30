@@ -3,10 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:kepuharjo_app/Api/Api_connect.dart';
-import 'package:kepuharjo_app/Comm/getTextField.dart';
+import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Screen/LupaPassword/appearance_forgot_password.dart.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home.dart';
 import 'package:kepuharjo_app/Screen/Register/appearance_register.dart';
@@ -19,7 +18,6 @@ class WidgetLogin extends StatefulWidget {
   State<WidgetLogin> createState() => _WidgetLoginState();
 }
 
-bool _isChecked = false;
 final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
 class _WidgetLoginState extends State<WidgetLogin> {
@@ -31,6 +29,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
     return Container(
       height: 360,
       width: 300,
+      padding: EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
           color: const Color.fromARGB(143, 255, 255, 255),
           borderRadius: BorderRadius.circular(20)),
@@ -42,13 +41,13 @@ class _WidgetLoginState extends State<WidgetLogin> {
           ),
           Text(
             'Login',
-            style: GoogleFonts.poppins(
-                fontSize: 20, fontWeight: FontWeight.w500, color: blackColor),
+            style: poppinsLargeBlack.copyWith(
+                fontSize: 20, fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             height: 20,
           ),
-          getTextField(
+          getTextForm(
             controller: nikController,
             hintName: "No.NIK",
             keyboardType: TextInputType.number,
@@ -57,7 +56,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
           const SizedBox(
             height: 15,
           ),
-          getTextField(
+          getTextForm(
             controller: passwordController,
             hintName: "Password",
             isObscureText: true,
@@ -68,14 +67,14 @@ class _WidgetLoginState extends State<WidgetLogin> {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(30, 0, 25, 0),
+            padding: const EdgeInsets.only(right: 10),
             child: Row(
               children: [
                 const Spacer(),
                 InkWell(
                   child: Text(
                     "Lupa password ?",
-                    style: GoogleFonts.poppins(color: blackColor, fontSize: 12),
+                    style: poppinsSmallBlack,
                   ),
                   onTap: () {
                     Navigator.push(
@@ -108,10 +107,8 @@ class _WidgetLoginState extends State<WidgetLogin> {
                     },
                     child: Text(
                       'Masuk',
-                      style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
+                      style: poppinsLargeBlack.copyWith(
+                          fontWeight: FontWeight.w400, color: Colors.white),
                     )),
               ),
             ],
@@ -126,12 +123,12 @@ class _WidgetLoginState extends State<WidgetLogin> {
               children: [
                 Text(
                   "Belum memiliki akun ?",
-                  style: GoogleFonts.poppins(color: blackColor, fontSize: 12),
+                  style: poppinsSmallBlack,
                 ),
                 InkWell(
                   child: Text(
                     " Register",
-                    style: GoogleFonts.poppins(
+                    style: poppinsSmallBlack.copyWith(
                         color: Color(0xFF2A2A72), fontSize: 13),
                   ),
                   onTap: () {

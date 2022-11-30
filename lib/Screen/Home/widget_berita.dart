@@ -1,10 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/News_Model.dart';
-
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:readmore/readmore.dart';
 
@@ -42,14 +38,8 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
-                            // image: const DecorationImage(
-                            //   image: AssetImage('images/mylogo.png'),
-                            //   fit: BoxFit.scaleDown,
-                            //   opacity: 0.3,
-                            //   alignment: Alignment.centerRight,
-                            // ),
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                             boxShadow: [
@@ -71,8 +61,8 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                                 children: [
                                   Text(
                                     isiData[index].judul,
-                                    style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.bold,
+                                    style: poppinsLargeBlack.copyWith(
+                                        fontWeight: FontWeight.w800,
                                         fontSize: 24),
                                   ),
                                 ],
@@ -83,9 +73,9 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                                   children: [
                                     Text(
                                       isiData[index].subTitle,
-                                      style: GoogleFonts.poppins(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 12),
+                                      style: poppinsSmallBlack.copyWith(
+                                        fontWeight: FontWeight.w300,
+                                      ),
                                     ),
                                     ReadMoreText(
                                       isiData[index].dekripsi,
@@ -93,20 +83,19 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                                       trimMode: TrimMode.Line,
                                       trimCollapsedText: "Baca Selengkapnya",
                                       trimExpandedText: "  Lebih Sedikit",
-                                      lessStyle: GoogleFonts.poppins(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FontStyle.italic,
-                                          color: Color(0xFF2A2A72),
-                                          fontSize: 14),
-                                      moreStyle: GoogleFonts.poppins(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FontStyle.italic,
-                                          color: Color(0xFF2A2A72),
-                                          fontSize: 14),
-                                      style: GoogleFonts.poppins(
-                                          fontWeight: FontWeight.w500,
-                                          color: blackColor,
-                                          fontSize: 14),
+                                      lessStyle: poppinsMediumBlack.copyWith(
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FontStyle.italic,
+                                        color: Color(0xFF2A2A72),
+                                      ),
+                                      moreStyle: poppinsMediumBlack.copyWith(
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FontStyle.italic,
+                                        color: Color(0xFF2A2A72),
+                                      ),
+                                      style: poppinsMediumBlack.copyWith(
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                   ])
                             ],
@@ -127,11 +116,5 @@ class _WidgetBeritaState extends State<WidgetBerita> {
         },
       ),
     );
-  }
-
-  void showData(String id_berita) async {
-    cNews response = await serviceApi.getDetail(id_berita);
-
-    log("data = ${response.judul} - ${response.dekripsi}");
   }
 }

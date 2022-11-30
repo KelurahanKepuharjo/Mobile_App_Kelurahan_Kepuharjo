@@ -16,3 +16,15 @@ TextStyle blackTextStyle = GoogleFonts.nunito(
     fontSize: 14, color: blackColor, fontWeight: FontWeight.w500);
 TextStyle boldTextStyle = GoogleFonts.poppins(
     fontSize: 30, color: blackColor, fontWeight: FontWeight.bold);
+TextStyle poppinsSmallBlack =
+    GoogleFonts.poppins(fontSize: 12, color: blackColor);
+TextStyle poppinsMediumBlack =
+    GoogleFonts.poppins(fontSize: 14, color: blackColor);
+TextStyle poppinsLargeBlack =
+    GoogleFonts.poppins(fontSize: 16, color: blackColor);
+TextStyle nunitoSmallBlack =
+    GoogleFonts.nunito(fontSize: 12, color: blackColor);
+TextStyle nunitoMediumBlack =
+    GoogleFonts.nunito(fontSize: 14, color: blackColor);
+TextStyle nunitoLargeBlack =
+    GoogleFonts.nunito(fontSize: 16, color: blackColor);
