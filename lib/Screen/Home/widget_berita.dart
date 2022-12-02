@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/News_Model.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
@@ -61,8 +62,8 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                                 children: [
                                   Text(
                                     isiData[index].judul,
-                                    style: poppinsLargeBlack.copyWith(
-                                        fontWeight: FontWeight.w800,
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold,
                                         fontSize: 24),
                                   ),
                                 ],

@@ -5,6 +5,7 @@ import 'package:kepuharjo_app/Screen/Home/widget_surat.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_text_berita.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_text_surat.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppearanceHome extends StatefulWidget {
   const AppearanceHome({key});
@@ -14,6 +15,21 @@ class AppearanceHome extends StatefulWidget {
 }
 
 class _AppearanceHomeState extends State<AppearanceHome> {
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+//      email = preferences.getString("email");
+//      nama = preferences.getString("nama");
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getPref();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +54,7 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                     children: [
                       Text(
                         "S-Kepuharjo",
-                        style: poppinsLargeBlack.copyWith(
+                        style: GoogleFonts.poppins(
                             fontWeight: FontWeight.bold,
                             fontSize: 30,
                             color: whiteColor),

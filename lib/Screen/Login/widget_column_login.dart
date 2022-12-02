@@ -6,13 +6,18 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
+import 'package:kepuharjo_app/Model/RememberUser.dart';
+import 'package:kepuharjo_app/Model/User_Model.dart';
+import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen/LupaPassword/appearance_forgot_password.dart.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home.dart';
 import 'package:kepuharjo_app/Screen/Register/appearance_register.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WidgetLogin extends StatefulWidget {
-  const WidgetLogin({key});
+  const WidgetLogin({Key? key}) : super(key: key);
 
   @override
   State<WidgetLogin> createState() => _WidgetLoginState();
@@ -21,9 +26,25 @@ class WidgetLogin extends StatefulWidget {
 final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
 class _WidgetLoginState extends State<WidgetLogin> {
-  final nikController = TextEditingController();
-  final passwordController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    nikController = TextEditingController();
+    passwordController = TextEditingController();
+    checkUser();
+  }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    nikController.dispose();
+    passwordController.dispose();
+  }
+
+  TextEditingController nikController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -103,7 +124,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
                           borderRadius: BorderRadius.circular(25),
                         )),
                     onPressed: () {
-                      login();
+                      verifyLogin();
                     },
                     child: Text(
                       'Masuk',
@@ -135,7 +156,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AppearanceRegister()));
+                            builder: (context) => const AppearanceRegister()));
                   },
                 ),
               ],
@@ -146,16 +167,30 @@ class _WidgetLoginState extends State<WidgetLogin> {
     );
   }
 
+  void verifyLogin() {
+    if (nikController.text.isEmpty) {
+      Fluttertoast.showToast(
+          msg: "Nik Harus Diisi", backgroundColor: Colors.red);
+    } else if (passwordController.text.isEmpty) {
+      Fluttertoast.showToast(
+          msg: "Password Harus Diisi", backgroundColor: Colors.red);
+    } else {
+      login();
+    }
+  }
+
   Future login() async {
-    var response = await http.post(Uri.parse(ApiConnect.signin), body: {
-      "id_akun": nikController.text,
-      "password": passwordController.text
-    });
-    var data = jsonDecode(response.body);
     try {
+      var response = await http.post(Uri.parse(ApiConnect.signin), body: {
+        "id_akun": nikController.text,
+        "password": passwordController.text
+      });
       if (response.statusCode == 200) {
-        if (data.toString() == 'Berhasil Login') {
-          Fluttertoast.showToast(msg: "Berhasil kids");
+        final data = jsonDecode(response.body);
+        if (data['success']) {
+          snackBarSucces();
+          User user = User.fromJson(data['user']);
+          await RememberUser().storeUser(json.encode(user));
           // ignore: use_build_context_synchronously
           Navigator.push(
             context,
@@ -164,11 +199,88 @@ class _WidgetLoginState extends State<WidgetLogin> {
             ),
           );
         } else {
-          Fluttertoast.showToast(msg: "YAhh gagal");
+          snackBarFailed();
         }
       }
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString());
+      print(e.toString());
     }
+  }
+
+  checkUser() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    var user = RememberUser().getUser();
+    print(user);
+    runApp(MaterialApp(
+      home: user == null ? AppeareaceLogin() : Home(),
+    ));
+
+    // if (user != null) {
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => Home(),
+    //     ),
+    //   );
+    // }
+  }
+
+  Future getlogin(String idakun, password) async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+
+      var jsonResponse = null;
+      var response = await http.post(
+          Uri.parse(
+            ApiConnect.signin,
+          ),
+          body: {'id_akun': idakun, 'password': password});
+
+      if (response.statusCode == 200) {
+        String jsonDataString = response.body;
+        final jsonResponse = jsonDecode(jsonDecode(jsonDataString));
+        if (jsonResponse != null) {
+          sharedPreferences.setString("id_akun", jsonResponse['id_akun']);
+          snackBarSucces();
+          // ignore: use_build_context_synchronously
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Home(),
+            ),
+          );
+        } else {
+          snackBarFailed();
+          print(response.body);
+        }
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+      print(e.toString());
+    }
+  }
+
+  snackBarFailed() {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        behavior: SnackBarBehavior.floating,
+        content: AwesomeSnackbarContent(
+            title: "Gagal",
+            message: "Nik dan Password Salah",
+            contentType: ContentType.failure)));
+  }
+
+  snackBarSucces() {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        behavior: SnackBarBehavior.floating,
+        content: AwesomeSnackbarContent(
+            title: "Berhasil",
+            message: "Selamat, Anda Berhasil Login",
+            contentType: ContentType.success)));
   }
 }

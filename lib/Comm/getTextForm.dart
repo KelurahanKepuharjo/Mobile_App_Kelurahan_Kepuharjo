@@ -7,6 +7,7 @@ class getTextForm extends StatelessWidget {
   String hintName;
   bool isObscureText;
   bool isEnable;
+  bool isReadOnly;
   TextInputType keyboardType;
   TextInputFormatter inputFormatters;
   TextInputAction textInputAction;
@@ -17,6 +18,7 @@ class getTextForm extends StatelessWidget {
       this.isObscureText = false,
       required this.keyboardType,
       required this.inputFormatters,
+      this.isReadOnly = false,
       this.isEnable = true,
       this.textInputAction = TextInputAction.done});
 
@@ -32,8 +34,11 @@ class getTextForm extends StatelessWidget {
             controller: controller,
             keyboardType: keyboardType,
             enabled: isEnable,
-            onSaved: (val) => controller = val as TextEditingController,
-            validator: (value) {
+            onSaved: (String? val) {
+              controller.text = val!;
+            },
+            // onSaved: (val) => controller = val as TextEditingController,
+            validator: (String? value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter $hintName';
               }

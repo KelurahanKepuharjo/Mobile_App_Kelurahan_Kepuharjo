@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:async';
+import 'dart:math';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,16 +31,16 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
 
   Future getImageGalerry() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? imagePicked =
-        await picker.pickImage(source: ImageSource.gallery);
+    final File? imagePicked =
+        await ImagePicker.pickImage(source: ImageSource.gallery);
     image = File(imagePicked!.path);
     setState(() {});
   }
 
   Future getImageCamera() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? imagePicked =
-        await picker.pickImage(source: ImageSource.camera);
+    final File? imagePicked =
+        await ImagePicker.pickImage(source: ImageSource.camera);
     image = File(imagePicked!.path);
     setState(() {});
   }
@@ -508,8 +509,8 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
   showSuccessDialog() {
     AwesomeDialog(
       context: context,
-      animType: AnimType.scale,
-      dialogType: DialogType.success,
+      animType: AnimType.SCALE,
+      dialogType: DialogType.SUCCES,
       title: 'Berhasil!',
       titleTextStyle: GoogleFonts.poppins(
           fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xFF2A2A72)),

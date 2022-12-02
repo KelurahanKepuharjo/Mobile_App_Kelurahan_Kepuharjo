@@ -1,5 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
@@ -28,6 +31,34 @@ final alamat = TextEditingController();
 final keperluan = TextEditingController();
 
 class _SKTMState extends State<SKTM> {
+  void verifySKTM() {
+    if (nama.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Nama Lengkap harus diisi");
+    } else if (tempatlahir.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
+    } else if (tgllhir.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
+    } else if (jk.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
+    } else if (kebangsaan.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
+    } else if (agama.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Agama harus diisi");
+    } else if (status.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Status harus diisi");
+    } else if (pekerjaan.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Pekerjaan harus diisi");
+    } else if (nik.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Nik harus diisi");
+    } else if (alamat.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Alamat harus diisi");
+    } else if (keperluan.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Keperluan harus diisi");
+    } else {
+      addData();
+    }
+  }
+
   void addData() {
     http.post(Uri.parse(ApiConnect.sktm), body: {
       "id_akun": id_akun.text,
@@ -43,6 +74,7 @@ class _SKTMState extends State<SKTM> {
       "alamat": alamat.text,
       "keperluan": keperluan.text,
     });
+    showSuccessDialog();
   }
 
   @override
@@ -64,7 +96,7 @@ class _SKTMState extends State<SKTM> {
         shadowColor: Colors.transparent,
         title: Text(
           'Detail Surat',
-          style: poppinsLargeBlack.copyWith(
+          style: GoogleFonts.poppins(
               color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
@@ -93,6 +125,7 @@ class _SKTMState extends State<SKTM> {
                 color: Colors.black,
               ),
               getTextForm(
+                isReadOnly: false,
                 controller: id_akun,
                 hintName: "Nik anda",
                 keyboardType: TextInputType.number,
@@ -203,8 +236,8 @@ class _SKTMState extends State<SKTM> {
                             )),
                         onPressed: () {
                           setState(() {
-                            addData();
-                            showSuccessDialog();
+                            verifySKTM();
+                            // showSuccessDialog();
                           });
                         },
                         child: Text(
@@ -225,12 +258,12 @@ class _SKTMState extends State<SKTM> {
   showSuccessDialog() {
     AwesomeDialog(
       context: context,
-      animType: AnimType.scale,
-      dialogType: DialogType.success,
-      title: 'Berhasil!',
+      animType: AnimType.SCALE,
+      dialogType: DialogType.WARNING,
+      title: 'Warning!',
       titleTextStyle: poppinsLargeBlack.copyWith(
           fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xFF2A2A72)),
-      desc: 'Data berhasil diajukan',
+      desc: 'Apakah Anda Yakin',
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
         setState(() {
@@ -247,9 +280,26 @@ class _SKTMState extends State<SKTM> {
           keperluan.clear();
           jk.clear();
         });
-        Navigator.pop(context);
+        snackBarSucces();
+        Navigator.of(context);
       },
+      btnCancelOnPress: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const SKTM()));
+      },
+      btnCancelIcon: Icons.close,
       btnOkIcon: Icons.done,
     ).show();
+  }
+
+  snackBarSucces() {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        behavior: SnackBarBehavior.floating,
+        content: AwesomeSnackbarContent(
+            title: "Berhasil",
+            message: "Surat berhasil diajukan",
+            contentType: ContentType.success)));
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 class getDateTime extends StatefulWidget {
@@ -18,17 +17,7 @@ class getDateTime extends StatefulWidget {
   State<getDateTime> createState() => _getDateTimeState();
 }
 
-DateFormat? dateFormat;
-
 class _getDateTimeState extends State<getDateTime> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    initializeDateFormatting();
-    dateFormat = DateFormat.yMd('en_US');
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -52,8 +41,8 @@ class _getDateTimeState extends State<getDateTime> {
                   firstDate: DateTime(1700),
                   lastDate: DateTime(2100));
               if (pickedDate != null) {
-                String formattedDate = dateFormat!.format(pickedDate);
-
+                String formattedDate =
+                    DateFormat('yyyy-M-dd').format(pickedDate);
                 setState(() {
                   widget.controller.text = formattedDate.toString();
                 });
