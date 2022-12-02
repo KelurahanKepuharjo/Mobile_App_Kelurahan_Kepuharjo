@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
-import 'package:kepuharjo_app/Controller/register_controller.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -26,8 +25,6 @@ class _WidgetRegisterState extends State<WidgetRegister> {
   final passwordController = TextEditingController();
   final tlpController = TextEditingController();
 
-  final registerController = Get.put(RegisterController());
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,117 +34,115 @@ class _WidgetRegisterState extends State<WidgetRegister> {
       decoration: BoxDecoration(
           color: Color.fromARGB(143, 255, 255, 255),
           borderRadius: BorderRadius.circular(20)),
-      child: GetBuilder<RegisterController>(builder: (controller) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Registrasi',
-              style: GoogleFonts.poppins(
-                  fontSize: 20, fontWeight: FontWeight.w500, color: blackColor),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            getTextForm(
-              controller: controller.nikController,
-              hintName: "No.NIK",
-              keyboardType: TextInputType.number,
-              inputFormatters: FilteringTextInputFormatter.digitsOnly,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            getTextForm(
-              controller: controller.namaController,
-              hintName: "Nama Lengkap",
-              keyboardType: TextInputType.name,
-              inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            getTextForm(
-              controller: controller.passController,
-              hintName: "Password",
-              isObscureText: true,
-              keyboardType: TextInputType.name,
-              inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            getTextForm(
-              controller: controller.tlpController,
-              hintName: "No.Telepon",
-              keyboardType: TextInputType.number,
-              inputFormatters: FilteringTextInputFormatter.digitsOnly,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Registrasi',
+            style: GoogleFonts.poppins(
+                fontSize: 20, fontWeight: FontWeight.w500, color: blackColor),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          getTextForm(
+            controller: nikController,
+            hintName: "No.NIK",
+            keyboardType: TextInputType.number,
+            inputFormatters: FilteringTextInputFormatter.digitsOnly,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          getTextForm(
+            controller: namaController,
+            hintName: "Nama Lengkap",
+            keyboardType: TextInputType.name,
+            inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          getTextForm(
+            controller: passwordController,
+            hintName: "Password",
+            isObscureText: true,
+            keyboardType: TextInputType.name,
+            inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          getTextForm(
+            controller: tlpController,
+            hintName: "No.Telepon",
+            keyboardType: TextInputType.number,
+            inputFormatters: FilteringTextInputFormatter.digitsOnly,
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 45,
+                width: 120,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF2A2A72),
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      )),
+                  onPressed: () {
+                    verifyRegister();
+                  },
+                  child: Text(
+                    'Daftar',
+                    style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: 45,
-                  width: 120,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF2A2A72),
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        )),
-                    onPressed: () {
-                      controller.checkSignup();
-                    },
-                    child: Text(
-                      'Daftar',
-                      style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
-                    ),
+                Text(
+                  "Sudah memiliki akun ?",
+                  style: GoogleFonts.poppins(color: blackColor, fontSize: 12),
+                ),
+                InkWell(
+                  child: Text(
+                    " Login",
+                    style: GoogleFonts.poppins(
+                        color: Color(0xFF2A2A72), fontSize: 13),
                   ),
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (_) => AppeareaceLogin()),
+                        (Route<dynamic> route) => false);
+                  },
                 ),
               ],
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Sudah memiliki akun ?",
-                    style: GoogleFonts.poppins(color: blackColor, fontSize: 12),
-                  ),
-                  InkWell(
-                    child: Text(
-                      " Login",
-                      style: GoogleFonts.poppins(
-                          color: Color(0xFF2A2A72), fontSize: 13),
-                    ),
-                    onTap: () {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (_) => AppeareaceLogin()),
-                          (Route<dynamic> route) => false);
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      }),
+          ),
+        ],
+      ),
     );
   }
 
