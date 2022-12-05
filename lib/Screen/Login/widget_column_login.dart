@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
+import 'package:kepuharjo_app/Controller/login_services.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
@@ -17,7 +18,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WidgetLogin extends StatefulWidget {
-  const WidgetLogin({Key? key}) : super(key: key);
+  const WidgetLogin({Key key}) : super(key: key);
 
   @override
   State<WidgetLogin> createState() => _WidgetLoginState();
@@ -167,6 +168,8 @@ class _WidgetLoginState extends State<WidgetLogin> {
     );
   }
 
+  bool _isLoading = false;
+
   void verifyLogin() {
     if (nikController.text.isEmpty) {
       Fluttertoast.showToast(
@@ -187,17 +190,19 @@ class _WidgetLoginState extends State<WidgetLogin> {
       });
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        if (data['success']) {
+        if (data != null) {
+          setState(() {
+            _isLoading = false;
+          });
           snackBarSucces();
           User user = User.fromJson(data['user']);
+          // await RememberUserPrefs.storeUserInfo(userInfo);
           await RememberUser().storeUser(json.encode(user));
           // ignore: use_build_context_synchronously
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Home(),
-            ),
-          );
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const Home()),
+              (Route<dynamic> route) => false);
         } else {
           snackBarFailed();
         }
@@ -217,12 +222,10 @@ class _WidgetLoginState extends State<WidgetLogin> {
     ));
 
     // if (user != null) {
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => Home(),
-    //     ),
-    //   );
+    //   Navigator.pushAndRemoveUntil(
+    //       context,
+    //       MaterialPageRoute(builder: (_) => const Home()),
+    //       (Route<dynamic> route) => false);
     // }
   }
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +10,12 @@ import 'package:flutter/services.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
+import 'package:kepuharjo_app/Model/RememberUser.dart';
+import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class SKTM extends StatefulWidget {
-  const SKTM({Key? key}) : super(key: key);
+  const SKTM({Key key}) : super(key: key);
 
   @override
   State<SKTM> createState() => _SKTMState();
@@ -31,6 +35,30 @@ final alamat = TextEditingController();
 final keperluan = TextEditingController();
 
 class _SKTMState extends State<SKTM> {
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   verifySKTM();
+  // }
+
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   super.dispose();
+  //   nama.dispose();
+  //   tempatlahir.dispose();
+  //   tgllhir.dispose();
+  //   jk.dispose();
+  //   kebangsaan.dispose();
+  //   agama.dispose();
+  //   status.dispose();
+  //   pekerjaan.dispose();
+  //   nik.dispose();
+  //   alamat.dispose();
+  //   keperluan.dispose();
+  // }
+
   void verifySKTM() {
     if (nama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Lengkap harus diisi");
@@ -59,8 +87,10 @@ class _SKTMState extends State<SKTM> {
     }
   }
 
-  void addData() {
-    http.post(Uri.parse(ApiConnect.sktm), body: {
+  void addData() async {
+    // var usr = await RememberUser().getUser();
+    // User user = User.fromJson(json.decode(usr));
+    await http.post(Uri.parse(ApiConnect.sktm), body: {
       "id_akun": id_akun.text,
       "nama": nama.text,
       "tempat_lahir": tempatlahir.text,
@@ -71,9 +101,15 @@ class _SKTMState extends State<SKTM> {
       "status": status.text,
       "profesi": pekerjaan.text,
       "nik": nik.text,
-      "alamat": alamat.text,
+      "alamat_asli": alamat.text,
       "keperluan": keperluan.text,
     });
+    // var res = await json.decode(response.body);
+    // if (res == "Success") {
+    //   showSuccessDialog();
+    // } else {
+    //   Fluttertoast.showToast(msg: "gagal");
+    // }
     showSuccessDialog();
   }
 
@@ -112,6 +148,16 @@ class _SKTMState extends State<SKTM> {
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: getTextForm(
+                  isReadOnly: true,
+                  controller: id_akun,
+                  hintName: "Nik anda",
+                  keyboardType: TextInputType.number,
+                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                ),
+              ),
               Row(
                 children: [
                   Text(
@@ -124,13 +170,13 @@ class _SKTMState extends State<SKTM> {
                 height: 20,
                 color: Colors.black,
               ),
-              getTextForm(
-                isReadOnly: false,
-                controller: id_akun,
-                hintName: "Nik anda",
-                keyboardType: TextInputType.number,
-                inputFormatters: FilteringTextInputFormatter.digitsOnly,
-              ),
+              // getTextForm(
+              //   isReadOnly: true,
+              //   controller: id_akun,
+              //   hintName: "Nik anda",
+              //   keyboardType: TextInputType.number,
+              //   inputFormatters: FilteringTextInputFormatter.digitsOnly,
+              // ),
               const SizedBox(height: 5),
               getTextForm(
                 controller: nama,
@@ -235,10 +281,7 @@ class _SKTMState extends State<SKTM> {
                               borderRadius: BorderRadius.circular(25),
                             )),
                         onPressed: () {
-                          setState(() {
-                            verifySKTM();
-                            // showSuccessDialog();
-                          });
+                          verifySKTM();
                         },
                         child: Text(
                           'Kirim',
@@ -263,7 +306,7 @@ class _SKTMState extends State<SKTM> {
       title: 'Warning!',
       titleTextStyle: poppinsLargeBlack.copyWith(
           fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xFF2A2A72)),
-      desc: 'Apakah Anda Yakin',
+      desc: 'Apakah anda yakin, Jika data yang anda masukan telah benar',
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
         setState(() {
@@ -281,7 +324,7 @@ class _SKTMState extends State<SKTM> {
           jk.clear();
         });
         snackBarSucces();
-        Navigator.of(context);
+        Navigator.pop(context);
       },
       btnCancelOnPress: () {
         Navigator.push(

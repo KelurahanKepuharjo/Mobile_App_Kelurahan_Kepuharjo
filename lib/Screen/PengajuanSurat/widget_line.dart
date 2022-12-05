@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetDivider extends StatefulWidget {
-  const WidgetDivider({Key? key}) : super(key: key);
+  const WidgetDivider({Key key}) : super(key: key);
 
   @override
   State<WidgetDivider> createState() => _WidgetDividerState();

@@ -9,7 +9,7 @@ class getDateTime extends StatefulWidget {
   bool isreadOnly;
 
   getDateTime({
-    required this.controller,
+    this.controller,
     this.isEnable = true,
     this.isreadOnly = true,
   });
@@ -35,7 +35,7 @@ class _getDateTimeState extends State<getDateTime> {
               return null;
             },
             onTap: () async {
-              DateTime? pickedDate = await showDatePicker(
+              DateTime pickedDate = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),
                   firstDate: DateTime(1700),

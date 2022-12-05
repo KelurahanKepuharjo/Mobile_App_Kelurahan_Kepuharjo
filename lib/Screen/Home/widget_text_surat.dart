@@ -4,7 +4,7 @@ import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetTextSurat extends StatefulWidget {
-  const WidgetTextSurat({Key? key}) : super(key: key);
+  const WidgetTextSurat({Key key}) : super(key: key);
 
   @override
   State<WidgetTextSurat> createState() => _WidgetTextSuratState();

@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class SuratDisetujui extends StatefulWidget {
-  const SuratDisetujui({Key? key}) : super(key: key);
+  const SuratDisetujui({Key key}) : super(key: key);
 
   @override
   State<SuratDisetujui> createState() => _SuratDisetujuiState();

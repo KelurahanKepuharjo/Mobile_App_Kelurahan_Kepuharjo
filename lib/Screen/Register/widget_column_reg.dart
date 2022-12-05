@@ -13,7 +13,7 @@ import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetRegister extends StatefulWidget {
-  const WidgetRegister({Key? key}) : super(key: key);
+  const WidgetRegister({Key key}) : super(key: key);
 
   @override
   State<WidgetRegister> createState() => _WidgetRegisterState();
@@ -162,10 +162,10 @@ class _WidgetRegisterState extends State<WidgetRegister> {
 
   Future register() async {
     var response = await http.post(Uri.parse(ApiConnect.signup), body: {
-      "id_akun": nikController.toString(),
-      "nama_lengkap": namaController.toString(),
-      "password": passwordController.toString(),
-      "no_hp": tlpController.toString(),
+      "id_akun": nikController.text,
+      "nama_lengkap": namaController.text,
+      "password": passwordController.text,
+      "no_hp": tlpController.text,
     });
     var data = jsonDecode(response.body);
     try {

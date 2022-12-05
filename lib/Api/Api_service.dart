@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Model/News_Model.dart';
 import 'package:http/http.dart' as http;
+import 'package:kepuharjo_app/Model/RememberUser.dart';
+import 'package:kepuharjo_app/Model/User_Model.dart';
 
 class ServiceApi {
   //get data berita

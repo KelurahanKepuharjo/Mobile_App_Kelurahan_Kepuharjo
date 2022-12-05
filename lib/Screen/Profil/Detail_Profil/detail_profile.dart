@@ -1,16 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Api/Api_connect.dart';
+import 'package:kepuharjo_app/Model/User_Model.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart';
 import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/widget_list_detail_profile.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:http/http.dart' as http;
 
 class DetailProfil extends StatefulWidget {
-  const DetailProfil({Key? key}) : super(key: key);
+  const DetailProfil({Key key}) : super(key: key);
 
   @override
   State<DetailProfil> createState() => _DetailProfilState();
 }
 
 class _DetailProfilState extends State<DetailProfil> {
+  // User user = User();
+  // User get userDetails => userDetails;
+
+  bool circular = true;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchData();
+  }
+
+  void fetchData() async {
+    try {
+      var response = await http.post(Uri.parse(ApiConnect.signin + "$id_akun"));
+    } catch (e) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +66,7 @@ class _DetailProfilState extends State<DetailProfil> {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               WidgetDataDetailProfil(),
             ],

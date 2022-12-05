@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_berita.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_surat.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_text_berita.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_text_surat.dart';
+import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,19 +17,21 @@ class AppearanceHome extends StatefulWidget {
 }
 
 class _AppearanceHomeState extends State<AppearanceHome> {
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-//      email = preferences.getString("email");
-//      nama = preferences.getString("nama");
-    });
+  checkLogin() async {
+    var user = RememberUser().getUser();
+    if (user == null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (BuildContext context) => AppeareaceLogin()),
+          (Route<dynamic> route) => false);
+    }
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getPref();
+    checkLogin();
   }
 
   @override

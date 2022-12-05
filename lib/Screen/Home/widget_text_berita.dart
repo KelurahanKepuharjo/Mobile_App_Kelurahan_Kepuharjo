@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetTextBerita extends StatefulWidget {
-  const WidgetTextBerita({Key? key}) : super(key: key);
+  const WidgetTextBerita({Key key}) : super(key: key);
 
   @override
   State<WidgetTextBerita> createState() => _WidgetTextBeritaState();

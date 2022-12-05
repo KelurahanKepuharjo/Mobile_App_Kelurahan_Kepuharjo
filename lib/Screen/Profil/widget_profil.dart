@@ -1,14 +1,30 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Api/Api_connect.dart';
+import 'package:kepuharjo_app/Model/RememberUser.dart';
+import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/detail_profile.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:http/http.dart' as http;
 
 class WidgetShowProfile extends StatefulWidget {
-  const WidgetShowProfile({Key? key}) : super(key: key);
+  WidgetShowProfile({Key key});
 
   @override
   State<WidgetShowProfile> createState() => _WidgetShowProfileState();
 }
+
+// getUser() async {
+//   await
+//   var response = await http.post(Uri.parse(ApiConnect.signin), body: {
+
+//   });
+//   final data = jsonDecode(response.body);
+
+// }
+getUser() {}
 
 class _WidgetShowProfileState extends State<WidgetShowProfile> {
   @override
@@ -18,6 +34,12 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          FutureBuilder(
+            future: RememberUser().getUser(),
+            builder: (context, snapshot) {
+              return Text(snapshot.hasData ? snapshot.data : 'Loading');
+            },
+          ),
           Stack(
             children: [
               SizedBox(
@@ -53,7 +75,8 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
+              // Text(widget.idAkun),
               Text(
                 "Achmad Fawaid",
                 style: boldTextStyle.copyWith(fontSize: 18, color: blackColor),
@@ -70,38 +93,33 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
           const SizedBox(
             height: 15,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                height: 45,
-                decoration: BoxDecoration(
-                  color: Color(0xFF2A2A72),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        )),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DetailProfil()));
-                    },
-                    child: Text(
-                      'Lihat Profil',
-                      style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            height: 45,
+            decoration: BoxDecoration(
+              color: Color(0xFF2A2A72),
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
                     )),
-              ),
-            ],
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DetailProfil()));
+                },
+                child: Text(
+                  'Edit Profil',
+                  style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                )),
           )
         ],
       ),

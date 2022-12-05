@@ -5,7 +5,7 @@ import 'package:kepuharjo_app/Screen/Profil/widget_option_setting.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearanceTentang extends StatefulWidget {
-  const AppearanceTentang({Key? key}) : super(key: key);
+  const AppearanceTentang({Key key}) : super(key: key);
 
   @override
   State<AppearanceTentang> createState() => _AppearanceTentangState();

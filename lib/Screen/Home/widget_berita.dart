@@ -14,7 +14,7 @@ class WidgetBerita extends StatefulWidget {
 
 class _WidgetBeritaState extends State<WidgetBerita> {
   ServiceApi serviceApi = ServiceApi();
-  late Future<List<cNews>> listdata;
+  Future<List<cNews>> listdata;
   @override
   void initState() {
     // TODO: implement initState
@@ -29,7 +29,7 @@ class _WidgetBeritaState extends State<WidgetBerita> {
         future: listdata,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            List<cNews> isiData = snapshot.data!;
+            List<cNews> isiData = snapshot.data;
             return ListView.builder(
               itemCount: isiData.length,
               itemBuilder: (context, index) {

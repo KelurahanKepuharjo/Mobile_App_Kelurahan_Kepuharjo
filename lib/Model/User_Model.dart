@@ -1,16 +1,26 @@
+import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
+// part 'userModel.g.dart';
+
 class User {
-  String? idAkun;
-  String? namaLengkap;
-  String? password;
-  String? noHp;
+  String idAkun;
+  String namaLengkap;
+  String password;
+  String noHp;
 
-  User({this.idAkun, this.namaLengkap, this.password, this.noHp});
+  User(
+      {@required this.idAkun,
+      @required this.namaLengkap,
+      @required this.password,
+      @required this.noHp});
 
-  User.fromJson(Map<String, dynamic> json) {
-    idAkun = json['id_akun'];
-    namaLengkap = json['nama_lengkap'];
-    password = json['password'];
-    noHp = json['no_hp'];
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      idAkun: json['id_akun'],
+      namaLengkap: json['nama_lengkap'],
+      password: json['password'],
+      noHp: json['no_hp'],
+    );
   }
 
   Map<String, dynamic> toJson() {

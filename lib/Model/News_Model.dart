@@ -5,10 +5,10 @@ class cNews {
   String dekripsi;
 
   cNews({
-    required this.idBerita,
-    required this.judul,
-    required this.subTitle,
-    required this.dekripsi,
+    this.idBerita,
+    this.judul,
+    this.subTitle,
+    this.dekripsi,
   });
 
   factory cNews.fromJson(Map<String, dynamic> json) {

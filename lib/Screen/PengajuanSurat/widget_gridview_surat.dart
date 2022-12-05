@@ -4,7 +4,7 @@ import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart'
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetGridViewSurat extends StatefulWidget {
-  const WidgetGridViewSurat({Key? key}) : super(key: key);
+  const WidgetGridViewSurat({Key key}) : super(key: key);
 
   @override
   State<WidgetGridViewSurat> createState() => _WidgetGridViewSuratState();

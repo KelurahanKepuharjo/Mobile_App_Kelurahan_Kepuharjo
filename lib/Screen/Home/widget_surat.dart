@@ -3,7 +3,7 @@ import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart'
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetSurat extends StatefulWidget {
-  const WidgetSurat({Key? key}) : super(key: key);
+  const WidgetSurat({Key key}) : super(key: key);
 
   @override
   State<WidgetSurat> createState() => _WidgetSuratState();

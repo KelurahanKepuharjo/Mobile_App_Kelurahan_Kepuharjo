@@ -13,11 +13,11 @@ class getTextForm extends StatelessWidget {
   TextInputAction textInputAction;
 
   getTextForm(
-      {required this.controller,
-      required this.hintName,
+      {this.controller,
+      this.hintName,
       this.isObscureText = false,
-      required this.keyboardType,
-      required this.inputFormatters,
+      this.keyboardType,
+      this.inputFormatters,
       this.isReadOnly = false,
       this.isEnable = true,
       this.textInputAction = TextInputAction.done});
@@ -34,11 +34,11 @@ class getTextForm extends StatelessWidget {
             controller: controller,
             keyboardType: keyboardType,
             enabled: isEnable,
-            onSaved: (String? val) {
-              controller.text = val!;
+            onSaved: (String val) {
+              controller.text = val;
             },
             // onSaved: (val) => controller = val as TextEditingController,
-            validator: (String? value) {
+            validator: (String value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter $hintName';
               }

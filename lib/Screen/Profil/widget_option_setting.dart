@@ -1,13 +1,15 @@
 import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Model/RememberUser.dart';
+import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen/Profil/Info_Aplikasi/appearance_app.dart';
 import 'package:kepuharjo_app/Screen/Profil/Tentang/appearance_tentang.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetOptionsSetting extends StatefulWidget {
-  const WidgetOptionsSetting({Key? key}) : super(key: key);
+  const WidgetOptionsSetting({Key key}) : super(key: key);
 
   @override
   State<WidgetOptionsSetting> createState() => _WidgetOptionsSettingState();
@@ -16,7 +18,7 @@ class WidgetOptionsSetting extends StatefulWidget {
 ListTile profileMenuWidget(BuildContext context, String title, IconData icon,
     bool endIcon, int index, Color textColor) {
   return ListTile(
-    onTap: () {
+    onTap: () async {
       if (index == 0) {}
       if (index == 1) {
         Navigator.push(context,
@@ -27,10 +29,9 @@ ListTile profileMenuWidget(BuildContext context, String title, IconData icon,
             MaterialPageRoute(builder: (context) => AppearanceTentang()));
       }
       if (index == 3) {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (_) => const AppeareaceLogin()),
-            (Route<dynamic> route) => false);
+        await RememberUser().removeUser();
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => AppeareaceLogin()));
       }
     },
     leading: Container(
@@ -71,6 +72,13 @@ ListTile profileMenuWidget(BuildContext context, String title, IconData icon,
 
 class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    RememberUser().removeUser();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 20),
@@ -90,7 +98,7 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
 }
 
 class Lokasi extends StatefulWidget {
-  const Lokasi({Key? key}) : super(key: key);
+  const Lokasi({Key key}) : super(key: key);
 
   @override
   State<Lokasi> createState() => _LokasiState();
@@ -117,7 +125,7 @@ class _LokasiState extends State<Lokasi> {
           borderRadius: BorderRadius.circular(100),
           color: Color(0xFF2A2A72).withOpacity(0.1),
         ),
-        child: Icon(
+        child: const Icon(
           Icons.location_on,
           color: Color(0xFF2A2A72),
         ),

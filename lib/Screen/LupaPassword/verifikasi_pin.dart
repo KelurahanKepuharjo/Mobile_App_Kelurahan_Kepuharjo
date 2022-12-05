@@ -4,7 +4,7 @@ import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:pinput/pinput.dart';
 
 class VerifikasiKode extends StatefulWidget {
-  const VerifikasiKode({Key? key}) : super(key: key);
+  const VerifikasiKode({Key key}) : super(key: key);
 
   @override
   State<VerifikasiKode> createState() => _VerifikasiKodeState();
