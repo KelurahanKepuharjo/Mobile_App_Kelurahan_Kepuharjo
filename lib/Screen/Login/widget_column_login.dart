@@ -12,6 +12,7 @@ import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen/LupaPassword/appearance_forgot_password.dart.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home.dart';
+import 'package:kepuharjo_app/Screen/NavButton/Home_Screen.dart';
 import 'package:kepuharjo_app/Screen/Register/appearance_register.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
@@ -33,7 +34,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
     super.initState();
     nikController = TextEditingController();
     passwordController = TextEditingController();
-    checkUser();
+    // checkUser();
   }
 
   @override
@@ -168,8 +169,6 @@ class _WidgetLoginState extends State<WidgetLogin> {
     );
   }
 
-  bool _isLoading = false;
-
   void verifyLogin() {
     if (nikController.text.isEmpty) {
       Fluttertoast.showToast(
@@ -178,31 +177,34 @@ class _WidgetLoginState extends State<WidgetLogin> {
       Fluttertoast.showToast(
           msg: "Password Harus Diisi", backgroundColor: Colors.red);
     } else {
-      login();
+      getlogin();
     }
   }
 
   Future login() async {
     try {
       var response = await http.post(Uri.parse(ApiConnect.signin), body: {
-        "id_akun": nikController.text,
-        "password": passwordController.text
+        "id_akun": nikController.text.trim(),
+        "password": passwordController.text.trim()
       });
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         if (data != null) {
-          setState(() {
-            _isLoading = false;
-          });
           snackBarSucces();
           User user = User.fromJson(data['user']);
-          // await RememberUserPrefs.storeUserInfo(userInfo);
+          // await RememberUser.storeInfoUser(user);
           await RememberUser().storeUser(json.encode(user));
           // ignore: use_build_context_synchronously
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (_) => const Home()),
-              (Route<dynamic> route) => false);
+          // Navigator.pushAndRemoveUntil(
+          //     context,
+          //     MaterialPageRoute(builder: (_) => const Home()),
+          //     (Route<dynamic> route) => false);
+          Future.delayed(Duration(milliseconds: 2000), () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => const Home()),
+                (Route<dynamic> route) => false);
+          });
         } else {
           snackBarFailed();
         }
@@ -213,11 +215,47 @@ class _WidgetLoginState extends State<WidgetLogin> {
     }
   }
 
+  Future getlogin() async {
+    try {
+      var res = await http.post(Uri.parse(ApiConnect.signin), body: {
+        "id_akun": nikController.text.trim(),
+        "password": passwordController.text.trim()
+      });
+      if (res.statusCode == 200) {
+        var data = jsonDecode(res.body);
+        if (data['success'] == true) {
+          Fluttertoast.showToast(msg: "OKLogin");
+          User userInfo = User.fromJson(data["user"]);
+          //save data user login
+          await RememberUser.storeInfoUser(userInfo);
+
+          // ignore: use_build_context_synchronously
+          // Navigator.pushAndRemoveUntil(
+          //     context,
+          //     MaterialPageRoute(builder: (_) => const Home()),
+          //     (Route<dynamic> route) => false);
+          Future.delayed(Duration(milliseconds: 2000), () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => const HomeScreen()),
+                (Route<dynamic> route) => false);
+          });
+        } else {
+          snackBarFailed();
+        }
+      }
+    } catch (error) {
+      Fluttertoast.showToast(msg: error.toString());
+      print(error.toString());
+    }
+  }
+
   checkUser() async {
     WidgetsFlutterBinding.ensureInitialized();
     var user = RememberUser().getUser();
     print(user);
     runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: user == null ? AppeareaceLogin() : Home(),
     ));
 
@@ -227,42 +265,6 @@ class _WidgetLoginState extends State<WidgetLogin> {
     //       MaterialPageRoute(builder: (_) => const Home()),
     //       (Route<dynamic> route) => false);
     // }
-  }
-
-  Future getlogin(String idakun, password) async {
-    try {
-      SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
-
-      var jsonResponse = null;
-      var response = await http.post(
-          Uri.parse(
-            ApiConnect.signin,
-          ),
-          body: {'id_akun': idakun, 'password': password});
-
-      if (response.statusCode == 200) {
-        String jsonDataString = response.body;
-        final jsonResponse = jsonDecode(jsonDecode(jsonDataString));
-        if (jsonResponse != null) {
-          sharedPreferences.setString("id_akun", jsonResponse['id_akun']);
-          snackBarSucces();
-          // ignore: use_build_context_synchronously
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Home(),
-            ),
-          );
-        } else {
-          snackBarFailed();
-          print(response.body);
-        }
-      }
-    } catch (e) {
-      Fluttertoast.showToast(msg: e.toString());
-      print(e.toString());
-    }
   }
 
   snackBarFailed() {

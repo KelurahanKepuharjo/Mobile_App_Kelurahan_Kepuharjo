@@ -1,30 +1,3 @@
-// import 'package:kepuharjo_app/Api/Api_connect.dart';
-// import 'package:kepuharjo_app/Controller/login_controller.dart';
-// import 'package:http/http.dart' as http;
-// import 'package:kepuharjo_app/Model/RememberUser.dart';
-// import '../Model/User_Model.dart';
-
-// class LoginServices extends ILogin {
-//   @override
-//   Future<User?> getUser() async {
-//     var user = RememberUser().getUser();
-//     if (user != null) {
-//       return User();
-//     } else {
-//       return null;
-//     }
-//   }
-
-//   @override
-//   Future<bool> logout() async {
-//     var user = RememberUser().removeUser();
-//     if (user != null) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-//   }
-// }
 import 'dart:convert';
 
 import 'package:kepuharjo_app/Model/User_Model.dart';

@@ -16,14 +16,6 @@ class WidgetShowProfile extends StatefulWidget {
   State<WidgetShowProfile> createState() => _WidgetShowProfileState();
 }
 
-// getUser() async {
-//   await
-//   var response = await http.post(Uri.parse(ApiConnect.signin), body: {
-
-//   });
-//   final data = jsonDecode(response.body);
-
-// }
 getUser() {}
 
 class _WidgetShowProfileState extends State<WidgetShowProfile> {
@@ -34,12 +26,6 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          FutureBuilder(
-            future: RememberUser().getUser(),
-            builder: (context, snapshot) {
-              return Text(snapshot.hasData ? snapshot.data : 'Loading');
-            },
-          ),
           Stack(
             children: [
               SizedBox(

@@ -20,4 +20,21 @@ class RememberUser {
     prefs.commit();
     prefs.remove('user');
   }
+
+  static Future<void> storeInfoUser(User userInfo) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String userJsonData = jsonEncode(userInfo.toJson());
+    await preferences.setString("user", userJsonData);
+  }
+
+  static Future<User> readUser() async {
+    User currentUserInfo;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String user = preferences.getString("user");
+    if (user != null) {
+      Map<String, dynamic> userDataMap = jsonDecode(user);
+      currentUserInfo = User.fromJson(userDataMap);
+    }
+    return currentUserInfo;
+  }
 }
