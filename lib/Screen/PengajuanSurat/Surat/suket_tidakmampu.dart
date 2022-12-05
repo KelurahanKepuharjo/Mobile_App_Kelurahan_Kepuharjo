@@ -4,12 +4,14 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
+import 'package:kepuharjo_app/Controller/login_controller.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
@@ -87,11 +89,10 @@ class _SKTMState extends State<SKTM> {
     }
   }
 
+  final CurrentUser _currentUser = Get.put(CurrentUser());
   void addData() async {
-    // var usr = await RememberUser().getUser();
-    // User user = User.fromJson(json.decode(usr));
     await http.post(Uri.parse(ApiConnect.sktm), body: {
-      "id_akun": id_akun.text,
+      "id_akun": _currentUser.user.idAkun,
       "nama": nama.text,
       "tempat_lahir": tempatlahir.text,
       "tanggal_lahir": tgllhir.text,
@@ -104,12 +105,6 @@ class _SKTMState extends State<SKTM> {
       "alamat_asli": alamat.text,
       "keperluan": keperluan.text,
     });
-    // var res = await json.decode(response.body);
-    // if (res == "Success") {
-    //   showSuccessDialog();
-    // } else {
-    //   Fluttertoast.showToast(msg: "gagal");
-    // }
     showSuccessDialog();
   }
 
@@ -148,16 +143,6 @@ class _SKTMState extends State<SKTM> {
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: getTextForm(
-                  isReadOnly: true,
-                  controller: id_akun,
-                  hintName: "Nik anda",
-                  keyboardType: TextInputType.number,
-                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
-                ),
-              ),
               Row(
                 children: [
                   Text(
@@ -172,8 +157,8 @@ class _SKTMState extends State<SKTM> {
               ),
               // getTextForm(
               //   isReadOnly: true,
-              //   controller: id_akun,
-              //   hintName: "Nik anda",
+              //   // controller: _currentUser.user.idAkun,
+              //   hintName: _currentUser.user.idAkun,
               //   keyboardType: TextInputType.number,
               //   inputFormatters: FilteringTextInputFormatter.digitsOnly,
               // ),

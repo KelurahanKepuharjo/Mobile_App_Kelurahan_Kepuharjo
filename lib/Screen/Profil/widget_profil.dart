@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
+import 'package:kepuharjo_app/Controller/login_controller.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/detail_profile.dart';
@@ -16,7 +18,7 @@ class WidgetShowProfile extends StatefulWidget {
   State<WidgetShowProfile> createState() => _WidgetShowProfileState();
 }
 
-getUser() {}
+final CurrentUser _currentUser = Get.put(CurrentUser());
 
 class _WidgetShowProfileState extends State<WidgetShowProfile> {
   @override
@@ -64,11 +66,18 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
             children: <Widget>[
               // Text(widget.idAkun),
               Text(
-                "Achmad Fawaid",
+                _currentUser.user.namaLengkap,
                 style: boldTextStyle.copyWith(fontSize: 18, color: blackColor),
               ),
               Text(
-                "3509212504030002",
+                "Nik : " + _currentUser.user.idAkun,
+                style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: blackColor,
+                    fontWeight: FontWeight.w300),
+              ),
+              Text(
+                "No.Telepon : " + _currentUser.user.noHp,
                 style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: blackColor,

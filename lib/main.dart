@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:kepuharjo_app/Screen/Splash/pages.dart';
+import 'package:kepuharjo_app/Model/RememberUser.dart';
+import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
+import 'package:kepuharjo_app/Screen/NavButton/Home_Screen.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 void main() {
@@ -24,7 +25,15 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           canvasColor: const Color(0xFF000000)),
       debugShowCheckedModeBanner: false,
-      home: Splash(),
+      home: FutureBuilder(
+          future: RememberUser.readUser(),
+          builder: (context, snapshot) {
+            if (snapshot.data == null) {
+              return const AppeareaceLogin();
+            } else {
+              return const HomeScreen();
+            }
+          }),
     );
   }
 }

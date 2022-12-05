@@ -34,7 +34,6 @@ class _WidgetLoginState extends State<WidgetLogin> {
     super.initState();
     nikController = TextEditingController();
     passwordController = TextEditingController();
-    // checkUser();
   }
 
   @override
@@ -127,6 +126,9 @@ class _WidgetLoginState extends State<WidgetLogin> {
                         )),
                     onPressed: () {
                       verifyLogin();
+                      // if (_formkey.currentState.validate()) {
+                      //   verifyLogin();
+                      // }
                     },
                     child: Text(
                       'Masuk',
@@ -177,7 +179,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
       Fluttertoast.showToast(
           msg: "Password Harus Diisi", backgroundColor: Colors.red);
     } else {
-      getlogin();
+      login();
     }
   }
 
@@ -189,22 +191,16 @@ class _WidgetLoginState extends State<WidgetLogin> {
       });
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        if (data != null) {
+        if (data['success'] == true) {
           snackBarSucces();
-          User user = User.fromJson(data['user']);
+          User userInfo = User.fromJson(data['user']);
           // await RememberUser.storeInfoUser(user);
-          await RememberUser().storeUser(json.encode(user));
+          await RememberUser().storeUser(json.encode(userInfo));
           // ignore: use_build_context_synchronously
-          // Navigator.pushAndRemoveUntil(
-          //     context,
-          //     MaterialPageRoute(builder: (_) => const Home()),
-          //     (Route<dynamic> route) => false);
-          Future.delayed(Duration(milliseconds: 2000), () {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (_) => const Home()),
-                (Route<dynamic> route) => false);
-          });
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const HomeScreen()),
+              (Route<dynamic> route) => false);
         } else {
           snackBarFailed();
         }
@@ -225,15 +221,9 @@ class _WidgetLoginState extends State<WidgetLogin> {
         var data = jsonDecode(res.body);
         if (data['success'] == true) {
           Fluttertoast.showToast(msg: "OKLogin");
-          User userInfo = User.fromJson(data["user"]);
+          User userInfo = User.fromJson(data['user']);
           //save data user login
           await RememberUser.storeInfoUser(userInfo);
-
-          // ignore: use_build_context_synchronously
-          // Navigator.pushAndRemoveUntil(
-          //     context,
-          //     MaterialPageRoute(builder: (_) => const Home()),
-          //     (Route<dynamic> route) => false);
           Future.delayed(Duration(milliseconds: 2000), () {
             Navigator.pushAndRemoveUntil(
                 context,
@@ -256,15 +246,8 @@ class _WidgetLoginState extends State<WidgetLogin> {
     print(user);
     runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: user == null ? AppeareaceLogin() : Home(),
+      home: user == null ? AppeareaceLogin() : HomeScreen(),
     ));
-
-    // if (user != null) {
-    //   Navigator.pushAndRemoveUntil(
-    //       context,
-    //       MaterialPageRoute(builder: (_) => const Home()),
-    //       (Route<dynamic> route) => false);
-    // }
   }
 
   snackBarFailed() {

@@ -5,6 +5,7 @@ import 'package:kepuharjo_app/Screen/Home/appearance_home.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Screen/Profil/appearance_profil.dart';
 import 'package:kepuharjo_app/Screen/Status/appearance_status.dart.dart';
+import 'package:kepuharjo_app/Shared/shared.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -48,6 +49,15 @@ List _navbutton = [
 ];
 
 class _HomeScreenState extends State<HomeScreen> {
+  void onTap(value) {
+    setState(() {
+      _index.value = value;
+      currentScreen = AppearanceHome();
+    });
+  }
+
+  Widget currentScreen = AppearanceHome();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -57,16 +67,18 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       builder: (controller) {
         return Scaffold(
-          body: SafeArea(
-              child: Obx(
+          body: Obx(
             () => screen[_index.value],
-          )),
+          ),
           bottomNavigationBar: Obx(() => BottomNavigationBar(
               currentIndex: _index.value,
-              onTap: (value) {
-                _index.value = value;
-              },
+              onTap: onTap,
+              backgroundColor: Colors.white,
               showSelectedLabels: true,
+              selectedLabelStyle:
+                  poppinsSmallBlack.copyWith(fontWeight: FontWeight.w300),
+              selectedFontSize: 12,
+              type: BottomNavigationBarType.fixed,
               showUnselectedLabels: false,
               selectedItemColor: Color(0xFF2A2A72),
               unselectedItemColor: Color(0xFF2A2A72),

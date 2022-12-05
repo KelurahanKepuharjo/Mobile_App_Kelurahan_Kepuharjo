@@ -5,9 +5,11 @@ import 'dart:async';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
+import 'package:kepuharjo_app/Controller/login_controller.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart';
@@ -66,6 +68,8 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
       return Exception(e);
     }
   }
+
+  final CurrentUser _currentUser = Get.put(CurrentUser());
 
   Future _modalBottomSheet() {
     return showModalBottomSheet(
@@ -182,17 +186,7 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
 
   final nik = TextEditingController();
   final nama = TextEditingController();
-  final nokk = TextEditingController();
   final tlp = TextEditingController();
-  final ttl = TextEditingController();
-  final kwn = TextEditingController();
-  final agm = TextEditingController();
-  final jk = TextEditingController();
-  final profesi = TextEditingController();
-  final statuskawin = TextEditingController();
-  final alamat = TextEditingController();
-  final rt = TextEditingController();
-  final rw = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -243,21 +237,21 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
           const SizedBox(height: 20),
           getTextForm(
             controller: nik,
-            hintName: "Nik",
+            hintName: _currentUser.user.idAkun,
             keyboardType: TextInputType.number,
             inputFormatters: FilteringTextInputFormatter.digitsOnly,
           ),
           const SizedBox(height: 5),
           getTextForm(
             controller: nama,
-            hintName: "Nama Lengkap",
+            hintName: _currentUser.user.namaLengkap,
             keyboardType: TextInputType.number,
             inputFormatters: FilteringTextInputFormatter.digitsOnly,
           ),
           const SizedBox(height: 5),
           getTextForm(
             controller: tlp,
-            hintName: "No.Tlp",
+            hintName: _currentUser.user.noHp,
             keyboardType: TextInputType.name,
             inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
           ),

@@ -9,6 +9,17 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
+    loading();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    loading();
+  }
+
+  loading() {
     Timer(
         const Duration(seconds: 2),
         (() => Navigator.pushReplacement(context,
