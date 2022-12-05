@@ -1,12 +1,16 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Screen/Home/appearance_home.dart';
+import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Screen/Profil/appearance_profil.dart';
 import 'package:kepuharjo_app/Screen/Status/appearance_status.dart.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({Key key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -18,7 +22,7 @@ class _HomeState extends State<Home> {
     const AppearanceHome(),
     const AppearancePengajuan(),
     const AppearanceStatus(),
-    const AppearanceProfil()
+    const AppearanceProfil(),
   ];
   void onTap(int index) {
     setState(() {
