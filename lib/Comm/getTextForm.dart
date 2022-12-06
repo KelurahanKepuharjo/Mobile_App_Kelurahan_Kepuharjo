@@ -9,7 +9,8 @@ class getTextForm extends StatelessWidget {
   bool isEnable;
   bool isReadOnly;
   TextInputType keyboardType;
-  TextInputFormatter inputFormatters, length;
+  TextInputFormatter inputFormatters;
+  int length;
   TextInputAction textInputAction;
 
   getTextForm(
@@ -35,17 +36,17 @@ class getTextForm extends StatelessWidget {
             controller: controller,
             keyboardType: keyboardType,
             enabled: isEnable,
-            onSaved: (String val) {
-              controller.text = val;
-            },
-            // onSaved: (val) => controller = val as TextEditingController,
+            onSaved: (val) => controller = val as TextEditingController,
             validator: (String value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter $hintName';
               }
               return null;
             },
-            inputFormatters: [inputFormatters, length],
+            inputFormatters: [
+              inputFormatters,
+              LengthLimitingTextInputFormatter(length)
+            ],
             decoration: InputDecoration(
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),

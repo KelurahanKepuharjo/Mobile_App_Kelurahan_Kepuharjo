@@ -119,26 +119,6 @@ class _AppearanceTentangState extends State<AppearanceTentang> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Lokasi()));
-                      },
-                      title: Text(
-                        "Lokasi Kelurahan",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                      trailing: Icon(
-                        Icons.keyboard_arrow_right,
-                        color: blackColor,
-                        size: 15,
-                      ),
-                    ),
-                    ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
                                 builder: (context) => const InfoAplikasi()));
                       },
                       title: Text(

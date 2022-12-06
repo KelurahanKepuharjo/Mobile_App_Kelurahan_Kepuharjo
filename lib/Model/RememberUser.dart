@@ -9,12 +9,6 @@ class RememberUser {
     await prefs.setString('user', userInfo);
   }
 
-  static Future<void> storeInfoUser(User userInfo) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    String userJsonData = jsonEncode(userInfo.toJson());
-    await preferences.setString('currentUser', userJsonData);
-  }
-
   static Future<User> readUser() async {
     User currentUserInfo;
     SharedPreferences preferences = await SharedPreferences.getInstance();

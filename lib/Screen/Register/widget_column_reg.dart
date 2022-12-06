@@ -77,7 +77,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
               hintName: "No.NIK",
               keyboardType: TextInputType.number,
               inputFormatters: FilteringTextInputFormatter.digitsOnly,
-              length: LengthLimitingTextInputFormatter(16),
+              length: 16,
             ),
             const SizedBox(
               height: 8,
@@ -87,7 +87,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
               hintName: "Nama Lengkap",
               keyboardType: TextInputType.name,
               inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
-              length: LengthLimitingTextInputFormatter(50),
+              length: 50,
             ),
             const SizedBox(
               height: 8,
@@ -98,6 +98,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
               isObscureText: true,
               keyboardType: TextInputType.name,
               inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
+              length: 20,
             ),
             const SizedBox(
               height: 8,
@@ -107,7 +108,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
               hintName: "No.Telepon",
               keyboardType: TextInputType.number,
               inputFormatters: FilteringTextInputFormatter.digitsOnly,
-              length: LengthLimitingTextInputFormatter(13),
+              length: 12,
             ),
             const SizedBox(
               height: 15,
