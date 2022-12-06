@@ -23,28 +23,28 @@ class Akta extends StatefulWidget {
 
 final id_surat = TextEditingController();
 final nomor_surat = TextEditingController();
-final nama_anak= TextEditingController();
+final nama_anak = TextEditingController();
 final tempat_lahir = TextEditingController();
 final tanggal_lahir = TextEditingController();
 final jenis_kelamin = TextEditingController();
 final agama = TextEditingController();
 final status = TextEditingController();
-final pekerjaan= TextEditingController();
+final pekerjaan = TextEditingController();
 final nik = TextEditingController();
-final alamat= TextEditingController();
-final nama_ayah= TextEditingController();
-final umur_ayah= TextEditingController();
-final kebangsaan_ayah= TextEditingController();
-final agama_ayah= TextEditingController();
-final pekerjaan_ayah= TextEditingController();
-final alamat_ayah= TextEditingController();
-final nama_ibu= TextEditingController();
-final umur_ibu= TextEditingController();
-final kebangsaan_ibu= TextEditingController();
-final agama_ibu= TextEditingController();
-final pekerjaan_ibu= TextEditingController();
-final alamat_ibu= TextEditingController();
-final id_akun= TextEditingController();
+final alamat = TextEditingController();
+final nama_ayah = TextEditingController();
+final umur_ayah = TextEditingController();
+final kebangsaan_ayah = TextEditingController();
+final agama_ayah = TextEditingController();
+final pekerjaan_ayah = TextEditingController();
+final alamat_ayah = TextEditingController();
+final nama_ibu = TextEditingController();
+final umur_ibu = TextEditingController();
+final kebangsaan_ibu = TextEditingController();
+final agama_ibu = TextEditingController();
+final pekerjaan_ibu = TextEditingController();
+final alamat_ibu = TextEditingController();
+final id_akun = TextEditingController();
 
 class _AktaState extends State<Akta> {
   // @override
@@ -122,7 +122,7 @@ class _AktaState extends State<Akta> {
   void addData() async {
     // var usr = await RememberUser().getUser();
     // User user = User.fromJson(json.decode(usr));
-    await http.post(Uri.parse(ApiConnect.Akta), body: {
+    await http.post(Uri.parse(ApiConnect.akta), body: {
       "id_surat": id_surat.text,
       "nomor_surat": nomor_surat.text,
       "nama_anak": nama_anak.text,
@@ -146,7 +146,6 @@ class _AktaState extends State<Akta> {
       "agama_ibu": agama_ibu.text,
       "pekerjaan_ibu": pekerjaan_ibu.text,
       "alamat_ibu": alamat_ibu.text,
-      
     });
     // var res = await json.decode(response.body);
     // if (res == "Success") {
@@ -458,7 +457,6 @@ class _AktaState extends State<Akta> {
           agama_ibu.clear();
           pekerjaan_ibu.clear();
           alamat_ibu.clear();
-
         });
         snackBarSucces();
         Navigator.pop(context);

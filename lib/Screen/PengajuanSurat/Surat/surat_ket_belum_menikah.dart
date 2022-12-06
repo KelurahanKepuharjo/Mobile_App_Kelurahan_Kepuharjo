@@ -23,16 +23,16 @@ class BelumNikah extends StatefulWidget {
 
 final id_surat = TextEditingController();
 final no_surat = TextEditingController();
-final nama= TextEditingController();
+final nama = TextEditingController();
 final tempat_lahir = TextEditingController();
 final tanggal_lahir = TextEditingController();
 final jenis_kelamin = TextEditingController();
 final kebangsaan = TextEditingController();
 final agama = TextEditingController();
 final status = TextEditingController();
-final pekerjaan= TextEditingController();
+final pekerjaan = TextEditingController();
 final nik = TextEditingController();
-final alamat= TextEditingController();
+final alamat = TextEditingController();
 final id_akun = TextEditingController();
 
 class _BelumNikahState extends State<BelumNikah> {
@@ -88,7 +88,7 @@ class _BelumNikahState extends State<BelumNikah> {
   void addData() async {
     // var usr = await RememberUser().getUser();
     // User user = User.fromJson(json.decode(usr));
-    await http.post(Uri.parse(ApiConnect.BelumNikah), body: {
+    await http.post(Uri.parse(ApiConnect.belumNikah), body: {
       "id_surat": id_surat.text,
       "no_surat": no_surat.text,
       "nama": nama.text,
@@ -314,8 +314,8 @@ class _BelumNikahState extends State<BelumNikah> {
         Navigator.pop(context);
       },
       btnCancelOnPress: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const BelumNikah()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const BelumNikah()));
       },
       btnCancelIcon: Icons.close,
       btnOkIcon: Icons.done,

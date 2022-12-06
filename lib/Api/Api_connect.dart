@@ -1,9 +1,3 @@
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_akta_kelahiran.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/surat_ket_belum_menikah.dart';
-
 class ApiConnect {
   static const hostConnect = "http://192.168.112.87/Web_Kelurahan_kepuharjo";
   static const connectApi = "$hostConnect/Api";
@@ -16,14 +10,14 @@ class ApiConnect {
   static const berita = "$connectApi/read_berita.php";
   //postsurat keterangan tidak mampu
   static const sktm = "$connectApi/suket_tidakmampu.php";
-   //postsurat keterangan Domisili
-  static const Domisili = "$connectApi/Domisili.php";
+  //postsurat keterangan Domisili
+  static const domisili = "$connectApi/domisili.php";
   //postsurat keterangan akta
-  static const Akta = "$connectApi/suket_akta_kelahiran.php";
+  static const akta = "$connectApi/suket_akta_kelahiran.php";
   //postsurat keterangan kematian
-  static const Kematian = "$connectApi/suket_kematian.php";
+  static const kematian = "$connectApi/suket_kematian.php";
   //postsurat keterangan kematian
-  static const Pindah = "$connectApi/suket_pindah.php";
+  static const pindah = "$connectApi/suket_pindah.php";
   //postsurat keterangan kematian
-  static const BelumNikah = "$connectApi/surat_ket_belum_menikah.php";
+  static const belumNikah = "$connectApi/surat_ket_belum_menikah.php";
 }

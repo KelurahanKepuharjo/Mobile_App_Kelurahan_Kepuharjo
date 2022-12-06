@@ -24,17 +24,17 @@ class Kematian extends StatefulWidget {
 
 final id_surat = TextEditingController();
 final no_surat = TextEditingController();
-final nama_almarhum= TextEditingController();
-final saksi_kematian= TextEditingController();
-final hubungan= TextEditingController();
-final hari= TextEditingController();
-final tanggal= TextEditingController();
-final alamat= TextEditingController();
-final nik_almarhum= TextEditingController();
-final penyebab_kematian= TextEditingController();
-final surat_digunakan= TextEditingController();
-final tanggal_dibuat= TextEditingController();
-final id_akun= TextEditingController();
+final nama_almarhum = TextEditingController();
+final saksi_kematian = TextEditingController();
+final hubungan = TextEditingController();
+final hari = TextEditingController();
+final tanggal = TextEditingController();
+final alamat = TextEditingController();
+final nik_almarhum = TextEditingController();
+final penyebab_kematian = TextEditingController();
+final surat_digunakan = TextEditingController();
+final tanggal_dibuat = TextEditingController();
+final id_akun = TextEditingController();
 
 class _KematianState extends State<Kematian> {
   // @override
@@ -87,7 +87,7 @@ class _KematianState extends State<Kematian> {
   void addData() async {
     // var usr = await RememberUser().getUser();
     // User user = User.fromJson(json.decode(usr));
-    await http.post(Uri.parse(ApiConnect.Kematian), body: {
+    await http.post(Uri.parse(ApiConnect.kematian), body: {
       "id_surat": id_surat.text,
       "no_surat": no_surat.text,
       "nama_almarhum": nama_almarhum.text,

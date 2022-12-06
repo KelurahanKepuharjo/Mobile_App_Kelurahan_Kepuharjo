@@ -1,23 +1,14 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Controller/login_controller.dart';
-import 'package:kepuharjo_app/Model/User_Model.dart';
-
+import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Screen/Profil/widget_option_setting.dart';
-
 import 'package:kepuharjo_app/Screen/Profil/widget_profil.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
-import '../../Model/RememberUser.dart';
-
 class AppearanceProfil extends StatefulWidget {
   // final User user;
-  const AppearanceProfil({
-    Key key,
-  }) : super(key: key);
+  const AppearanceProfil({Key key}) : super(key: key);
 
   @override
   State<AppearanceProfil> createState() => _AppearanceProfilState();
@@ -57,10 +48,8 @@ class _AppearanceProfilState extends State<AppearanceProfil> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              // Text(widget.user.idAkun),
-              // Text(widget.user.namaLengkap),
               WidgetShowProfile(),
-              WidgetOptionsSetting(),
+              const WidgetOptionsSetting(),
             ],
           ),
         ),
