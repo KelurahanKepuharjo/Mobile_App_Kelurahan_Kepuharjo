@@ -9,7 +9,7 @@ class getTextForm extends StatelessWidget {
   bool isEnable;
   bool isReadOnly;
   TextInputType keyboardType;
-  TextInputFormatter inputFormatters;
+  TextInputFormatter inputFormatters, length;
   TextInputAction textInputAction;
 
   getTextForm(
@@ -18,6 +18,7 @@ class getTextForm extends StatelessWidget {
       this.isObscureText = false,
       this.keyboardType,
       this.inputFormatters,
+      this.length,
       this.isReadOnly = false,
       this.isEnable = true,
       this.textInputAction = TextInputAction.done});
@@ -44,7 +45,7 @@ class getTextForm extends StatelessWidget {
               }
               return null;
             },
-            inputFormatters: [inputFormatters],
+            inputFormatters: [inputFormatters, length],
             decoration: InputDecoration(
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),

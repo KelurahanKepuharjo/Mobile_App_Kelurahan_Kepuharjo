@@ -9,18 +9,6 @@ class RememberUser {
     await prefs.setString('user', userInfo);
   }
 
-  getUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.getString('user');
-  }
-
-  removeUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.clear();
-    prefs.commit();
-    prefs.remove('user');
-  }
-
   static Future<void> storeInfoUser(User userInfo) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String userJsonData = jsonEncode(userInfo.toJson());

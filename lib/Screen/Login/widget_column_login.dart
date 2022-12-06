@@ -6,17 +6,14 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
-import 'package:kepuharjo_app/Controller/login_services.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen/LupaPassword/appearance_forgot_password.dart.dart';
-import 'package:kepuharjo_app/Screen/NavButton/Home.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home_Screen.dart';
 import 'package:kepuharjo_app/Screen/Register/appearance_register.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class WidgetLogin extends StatefulWidget {
   const WidgetLogin({Key key}) : super(key: key);
@@ -74,6 +71,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
             hintName: "No.NIK",
             keyboardType: TextInputType.number,
             inputFormatters: FilteringTextInputFormatter.digitsOnly,
+            length: LengthLimitingTextInputFormatter(16),
           ),
           const SizedBox(
             height: 15,
@@ -240,15 +238,15 @@ class _WidgetLoginState extends State<WidgetLogin> {
     }
   }
 
-  checkUser() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    var user = RememberUser().getUser();
-    print(user);
-    runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: user == null ? AppeareaceLogin() : HomeScreen(),
-    ));
-  }
+  // checkUser() async {
+  //   WidgetsFlutterBinding.ensureInitialized();
+  //   var user = RememberUser().getUser();
+  //   print(user);
+  //   runApp(MaterialApp(
+  //     debugShowCheckedModeBanner: false,
+  //     home: user == null ? AppeareaceLogin() : HomeScreen(),
+  //   ));
+  // }
 
   snackBarFailed() {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(

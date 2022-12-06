@@ -17,23 +17,6 @@ class AppearanceHome extends StatefulWidget {
 }
 
 class _AppearanceHomeState extends State<AppearanceHome> {
-  checkLogin() async {
-    var user = RememberUser().getUser();
-    if (user == null) {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-              builder: (BuildContext context) => AppeareaceLogin()),
-          (Route<dynamic> route) => false);
-    }
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    checkLogin();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

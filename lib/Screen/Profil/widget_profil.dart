@@ -76,13 +76,6 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
                     color: blackColor,
                     fontWeight: FontWeight.w300),
               ),
-              Text(
-                "No.Telepon : " + _currentUser.user.noHp,
-                style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    color: blackColor,
-                    fontWeight: FontWeight.w300),
-              ),
             ],
           ),
           const SizedBox(
