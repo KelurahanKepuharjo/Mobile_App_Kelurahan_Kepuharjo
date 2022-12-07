@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
-import 'package:kepuharjo_app/Controller/login_controller.dart';
+import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart';
@@ -51,22 +51,6 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
         await picker.pickImage(source: ImageSource.camera);
     image = File(imagePicked.path);
     setState(() {});
-  }
-
-  Future<Object> fetchData(String userId) async {
-    try {
-      //  var usr = await RememberUser().getUser();
-      //  User user = User.fromJson(json.decode(usr));
-      var response = await http.post(
-        Uri.parse(ApiConnect.signin + userId),
-      );
-      if (response.statusCode == 200) {
-        User.fromJson(json.decode(response.body));
-      }
-      return response;
-    } catch (e) {
-      return Exception(e);
-    }
   }
 
   final CurrentUser _currentUser = Get.put(CurrentUser());
@@ -184,10 +168,6 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
     );
   }
 
-  final nik = TextEditingController();
-  final nama = TextEditingController();
-  final tlp = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -235,25 +215,85 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
             ],
           ),
           const SizedBox(height: 20),
-          getTextForm(
-            controller: nik,
-            hintName: _currentUser.user.idAkun,
-            keyboardType: TextInputType.number,
-            inputFormatters: FilteringTextInputFormatter.digitsOnly,
+          Card(
+            elevation: 3,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Color(0xFF2A2A72).withOpacity(0.1),
+                ),
+                child: const Icon(
+                  Icons.person_pin,
+                  color: Color(0xFF2A2A72),
+                ),
+              ),
+              title: Text("NIK",
+                  style: poppinsMediumBlack.copyWith(
+                      fontWeight: FontWeight.bold, fontSize: 15)),
+              subtitle: Text(
+                _currentUser.user.idAkun,
+                style: poppinsMediumBlack,
+              ),
+            ),
           ),
           const SizedBox(height: 5),
-          getTextForm(
-            controller: nama,
-            hintName: _currentUser.user.namaLengkap,
-            keyboardType: TextInputType.number,
-            inputFormatters: FilteringTextInputFormatter.digitsOnly,
+          Card(
+            elevation: 3,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Color(0xFF2A2A72).withOpacity(0.1),
+                ),
+                child: const Icon(
+                  Icons.person,
+                  color: Color(0xFF2A2A72),
+                ),
+              ),
+              title: Text("Nama Lengkap",
+                  style: poppinsMediumBlack.copyWith(
+                      fontWeight: FontWeight.bold, fontSize: 15)),
+              subtitle: Text(
+                _currentUser.user.namaLengkap,
+                style: poppinsMediumBlack,
+              ),
+            ),
           ),
           const SizedBox(height: 5),
-          getTextForm(
-            controller: tlp,
-            hintName: _currentUser.user.noHp,
-            keyboardType: TextInputType.name,
-            inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
+          Card(
+            elevation: 3,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Color(0xFF2A2A72).withOpacity(0.1),
+                ),
+                child: const Icon(
+                  Icons.call,
+                  color: Color(0xFF2A2A72),
+                ),
+              ),
+              title: Text("Nomer Telepon",
+                  style: poppinsMediumBlack.copyWith(
+                      fontWeight: FontWeight.bold, fontSize: 15)),
+              subtitle: Text(
+                _currentUser.user.noHp,
+                style: poppinsMediumBlack,
+              ),
+            ),
           ),
           const SizedBox(
             height: 30,
@@ -277,7 +317,7 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                         )),
                     onPressed: showSuccessDialog,
                     child: Text(
-                      'Update',
+                      'Simpan',
                       style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,

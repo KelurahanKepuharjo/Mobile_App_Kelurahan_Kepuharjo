@@ -24,24 +24,24 @@ class Domisili extends StatefulWidget {
 
 final id_surat = TextEditingController();
 final no_surat = TextEditingController();
-final nama= TextEditingController();
+final nama = TextEditingController();
 final tempat_lahir = TextEditingController();
 final tanggal_lahir = TextEditingController();
 final jenis_kelamin = TextEditingController();
 final kebangsaan = TextEditingController();
 final agama = TextEditingController();
 final status_perkawinan = TextEditingController();
-final pekerjaan= TextEditingController();
+final pekerjaan = TextEditingController();
 final nik = TextEditingController();
-final alamat= TextEditingController();
-final RT= TextEditingController();
-final RW= TextEditingController();
-final no_pengantar_surat= TextEditingController();
-final tgl_surat_pengantar= TextEditingController();
-final alamat_domisili_kel_kepu= TextEditingController();
-final surat_digunakan_untuk= TextEditingController();
-final tgl_surat_dibuat= TextEditingController();
-final id_akun= TextEditingController();
+final alamat = TextEditingController();
+final RT = TextEditingController();
+final RW = TextEditingController();
+final no_pengantar_surat = TextEditingController();
+final tgl_surat_pengantar = TextEditingController();
+final alamat_domisili_kel_kepu = TextEditingController();
+final surat_digunakan_untuk = TextEditingController();
+final tgl_surat_dibuat = TextEditingController();
+final id_akun = TextEditingController();
 
 class _DomisiliState extends State<Domisili> {
   // @override
@@ -111,7 +111,7 @@ class _DomisiliState extends State<Domisili> {
   void addData() async {
     // var usr = await RememberUser().getUser();
     // User user = User.fromJson(json.decode(usr));
-    await http.post(Uri.parse(ApiConnect.Domisili), body: {
+    await http.post(Uri.parse(ApiConnect.domisili), body: {
       "id_surat": id_surat.text,
       "no_surat": no_surat.text,
       "nama": nama.text,

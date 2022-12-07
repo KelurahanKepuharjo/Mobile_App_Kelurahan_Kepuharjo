@@ -1,15 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Api/Api_connect.dart';
-import 'package:kepuharjo_app/Controller/login_controller.dart';
-import 'package:kepuharjo_app/Model/RememberUser.dart';
-import 'package:kepuharjo_app/Model/User_Model.dart';
+import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/detail_profile.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
-import 'package:http/http.dart' as http;
 
 class WidgetShowProfile extends StatefulWidget {
   WidgetShowProfile({Key key});
@@ -64,7 +58,6 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Text(widget.idAkun),
               Text(
                 _currentUser.user.namaLengkap,
                 style: boldTextStyle.copyWith(fontSize: 18, color: blackColor),
@@ -102,7 +95,7 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
                           builder: (context) => const DetailProfil()));
                 },
                 child: Text(
-                  'Edit Profil',
+                  'Lihat Profil',
                   style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,

@@ -11,7 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
-import 'package:kepuharjo_app/Controller/login_controller.dart';
+import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
@@ -37,30 +37,6 @@ final alamat = TextEditingController();
 final keperluan = TextEditingController();
 
 class _SKTMState extends State<SKTM> {
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   verifySKTM();
-  // }
-
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   super.dispose();
-  //   nama.dispose();
-  //   tempatlahir.dispose();
-  //   tgllhir.dispose();
-  //   jk.dispose();
-  //   kebangsaan.dispose();
-  //   agama.dispose();
-  //   status.dispose();
-  //   pekerjaan.dispose();
-  //   nik.dispose();
-  //   alamat.dispose();
-  //   keperluan.dispose();
-  // }
-
   void verifySKTM() {
     if (nama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Lengkap harus diisi");
@@ -155,13 +131,6 @@ class _SKTMState extends State<SKTM> {
                 height: 20,
                 color: Colors.black,
               ),
-              // getTextForm(
-              //   isReadOnly: true,
-              //   // controller: _currentUser.user.idAkun,
-              //   hintName: _currentUser.user.idAkun,
-              //   keyboardType: TextInputType.number,
-              //   inputFormatters: FilteringTextInputFormatter.digitsOnly,
-              // ),
               const SizedBox(height: 5),
               getTextForm(
                 controller: nama,
@@ -169,6 +138,7 @@ class _SKTMState extends State<SKTM> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -177,6 +147,7 @@ class _SKTMState extends State<SKTM> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                length: 30,
               ),
               const SizedBox(height: 5),
               getDateTime(
@@ -189,6 +160,7 @@ class _SKTMState extends State<SKTM> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -197,6 +169,7 @@ class _SKTMState extends State<SKTM> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                length: 9,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -205,6 +178,7 @@ class _SKTMState extends State<SKTM> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -213,6 +187,7 @@ class _SKTMState extends State<SKTM> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                length: 12,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -221,6 +196,7 @@ class _SKTMState extends State<SKTM> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                length: 20,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -228,6 +204,7 @@ class _SKTMState extends State<SKTM> {
                 hintName: "Nik",
                 keyboardType: TextInputType.number,
                 inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 16,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -236,6 +213,7 @@ class _SKTMState extends State<SKTM> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                length: 50,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -244,6 +222,7 @@ class _SKTMState extends State<SKTM> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                length: 150,
               ),
               const SizedBox(
                 height: 20,

@@ -27,26 +27,24 @@ class Pindah extends StatefulWidget {
 final id_surat = TextEditingController();
 final tgl_dibuat = TextEditingController();
 final no_surat = TextEditingController();
-final sifat= TextEditingController();
-final lampiran= TextEditingController();
-final perihal= TextEditingController();
-final nama= TextEditingController();
-final tempat_lahir= TextEditingController();
-final tanggal_lahir= TextEditingController();
-final jenis_kelamin= TextEditingController();
-final status= TextEditingController();
-final agama= TextEditingController();
-final alamat_asal= TextEditingController();
-final alamat_tujuan= TextEditingController();
-final kelurahan= TextEditingController();
-final kecamatan= TextEditingController();
-final kabupaten= TextEditingController();
-final provinsi= TextEditingController();
-final alamat_pindah= TextEditingController();
-final pengikut= TextEditingController();
-final id_akun= TextEditingController();
-
-
+final sifat = TextEditingController();
+final lampiran = TextEditingController();
+final perihal = TextEditingController();
+final nama = TextEditingController();
+final tempat_lahir = TextEditingController();
+final tanggal_lahir = TextEditingController();
+final jenis_kelamin = TextEditingController();
+final status = TextEditingController();
+final agama = TextEditingController();
+final alamat_asal = TextEditingController();
+final alamat_tujuan = TextEditingController();
+final kelurahan = TextEditingController();
+final kecamatan = TextEditingController();
+final kabupaten = TextEditingController();
+final provinsi = TextEditingController();
+final alamat_pindah = TextEditingController();
+final pengikut = TextEditingController();
+final id_akun = TextEditingController();
 
 class _PindahState extends State<Pindah> {
   // @override
@@ -92,15 +90,15 @@ class _PindahState extends State<Pindah> {
       Fluttertoast.showToast(msg: "Alamat Tujuan harus diisi");
     } else if (kelurahan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Kelurahan harus diisi");
-     } else if (kecamatan.text.isEmpty) {
+    } else if (kecamatan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Kecamatan harus diisi");
-     } else if (kabupaten.text.isEmpty) {
+    } else if (kabupaten.text.isEmpty) {
       Fluttertoast.showToast(msg: "Kabupaten harus diisi");
-     } else if (provinsi.text.isEmpty) {
+    } else if (provinsi.text.isEmpty) {
       Fluttertoast.showToast(msg: "Profinsi harus diisi");
-     } else if (alamat_pindah.text.isEmpty) {
+    } else if (alamat_pindah.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat Pindah harus diisi");
-     } else if (pengikut.text.isEmpty) {
+    } else if (pengikut.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pengikut harus diisi");
       addData();
     }
@@ -109,7 +107,7 @@ class _PindahState extends State<Pindah> {
   void addData() async {
     // var usr = await RememberUser().getUser();
     // User user = User.fromJson(json.decode(usr));
-    await http.post(Uri.parse(ApiConnect.Pindah), body: {
+    await http.post(Uri.parse(ApiConnect.pindah), body: {
       "id_surat": id_surat.text,
       "tgl_dibuat": tgl_dibuat.text,
       "no_surat": no_surat.text,

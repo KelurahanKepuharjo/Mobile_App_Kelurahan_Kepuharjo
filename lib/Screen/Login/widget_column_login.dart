@@ -71,7 +71,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
             hintName: "No.NIK",
             keyboardType: TextInputType.number,
             inputFormatters: FilteringTextInputFormatter.digitsOnly,
-            length: LengthLimitingTextInputFormatter(16),
+            length: 16,
           ),
           const SizedBox(
             height: 15,
@@ -82,6 +82,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
             isObscureText: true,
             keyboardType: TextInputType.name,
             inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
+            length: 255,
           ),
           const SizedBox(
             height: 10,
@@ -124,9 +125,6 @@ class _WidgetLoginState extends State<WidgetLogin> {
                         )),
                     onPressed: () {
                       verifyLogin();
-                      // if (_formkey.currentState.validate()) {
-                      //   verifyLogin();
-                      // }
                     },
                     child: Text(
                       'Masuk',
@@ -208,45 +206,6 @@ class _WidgetLoginState extends State<WidgetLogin> {
       print(e.toString());
     }
   }
-
-  Future getlogin() async {
-    try {
-      var res = await http.post(Uri.parse(ApiConnect.signin), body: {
-        "id_akun": nikController.text.trim(),
-        "password": passwordController.text.trim()
-      });
-      if (res.statusCode == 200) {
-        var data = jsonDecode(res.body);
-        if (data['success'] == true) {
-          Fluttertoast.showToast(msg: "OKLogin");
-          User userInfo = User.fromJson(data['user']);
-          //save data user login
-          await RememberUser.storeInfoUser(userInfo);
-          Future.delayed(Duration(milliseconds: 2000), () {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (_) => const HomeScreen()),
-                (Route<dynamic> route) => false);
-          });
-        } else {
-          snackBarFailed();
-        }
-      }
-    } catch (error) {
-      Fluttertoast.showToast(msg: error.toString());
-      print(error.toString());
-    }
-  }
-
-  // checkUser() async {
-  //   WidgetsFlutterBinding.ensureInitialized();
-  //   var user = RememberUser().getUser();
-  //   print(user);
-  //   runApp(MaterialApp(
-  //     debugShowCheckedModeBanner: false,
-  //     home: user == null ? AppeareaceLogin() : HomeScreen(),
-  //   ));
-  // }
 
   snackBarFailed() {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
