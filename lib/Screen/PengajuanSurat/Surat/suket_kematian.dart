@@ -4,6 +4,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
@@ -11,8 +12,10 @@ import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
+import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class Kematian extends StatefulWidget {
@@ -29,6 +32,8 @@ final saksi_kematian = TextEditingController();
 final hubungan = TextEditingController();
 final hari = TextEditingController();
 final tanggal = TextEditingController();
+final bulan= TextEditingController();
+final tahun= TextEditingController();
 final alamat = TextEditingController();
 final nik_almarhum = TextEditingController();
 final penyebab_kematian = TextEditingController();
@@ -72,6 +77,10 @@ class _KematianState extends State<Kematian> {
       Fluttertoast.showToast(msg: "Hari harus diisi");
     } else if (tanggal.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal harus diisi");
+     } else if (bulan.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Bulan harus diisi");
+    } else if (tahun.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Tahun harus diisi");
     } else if (alamat.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat harus diisi");
     } else if (nik_almarhum.text.isEmpty) {
@@ -83,29 +92,23 @@ class _KematianState extends State<Kematian> {
       addData();
     }
   }
-
+  
+final CurrentUser _currentUser = Get.put(CurrentUser());
   void addData() async {
-    // var usr = await RememberUser().getUser();
-    // User user = User.fromJson(json.decode(usr));
     await http.post(Uri.parse(ApiConnect.kematian), body: {
-      "id_surat": id_surat.text,
-      "no_surat": no_surat.text,
+      "id_akun": _currentUser.user.idAkun,
       "nama_almarhum": nama_almarhum.text,
       "saksi_kematian": saksi_kematian.text,
       "hubungan": hubungan.text,
       "hari": hari.text,
       "tanggal": tanggal.text,
+      "bulan": bulan.text,
+      "tahun": tahun.text,
       "alamat": alamat.text,
       "nik_almarhum": nik_almarhum.text,
       "penyebab_kematian": penyebab_kematian.text,
-      "surat_digunakan": surat_digunakan.text,
+      "surat_digunakan_untuk": surat_digunakan.text,
     });
-    // var res = await json.decode(response.body);
-    // if (res == "Success") {
-    //   showSuccessDialog();
-    // } else {
-    //   Fluttertoast.showToast(msg: "gagal");
-    // }
     showSuccessDialog();
   }
 
@@ -180,6 +183,7 @@ class _KematianState extends State<Kematian> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 50,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -188,6 +192,7 @@ class _KematianState extends State<Kematian> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 50,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -196,6 +201,7 @@ class _KematianState extends State<Kematian> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 20,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -204,6 +210,7 @@ class _KematianState extends State<Kematian> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 7,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -216,6 +223,7 @@ class _KematianState extends State<Kematian> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -224,6 +232,7 @@ class _KematianState extends State<Kematian> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length :16
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -232,14 +241,17 @@ class _KematianState extends State<Kematian> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 50,
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: surat_digunakan,
-                hintName: "Surat Digunakan",
+                controller: surat_digunakan_untuk,
+                hintName: "Surat Digunakan untuk",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 50,
+
               ),
               const SizedBox(height: 5),
               Row(
@@ -293,8 +305,8 @@ class _KematianState extends State<Kematian> {
           nama_almarhum.clear();
           saksi_kematian.clear();
           hubungan.clear();
-          hari.clear();
           tanggal.clear();
+          hari.clear();
           alamat.clear();
           nik_almarhum.clear();
           penyebab_kematian.clear();
