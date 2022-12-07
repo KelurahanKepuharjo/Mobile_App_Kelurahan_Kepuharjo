@@ -4,12 +4,14 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
+import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
@@ -44,30 +46,6 @@ final tgl_surat_dibuat = TextEditingController();
 final id_akun = TextEditingController();
 
 class _DomisiliState extends State<Domisili> {
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   verifySKTM();
-  // }
-
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   super.dispose();
-  //   nama.dispose();
-  //   tempatlahir.dispose();
-  //   tgllhir.dispose();
-  //   jk.dispose();
-  //   kebangsaan.dispose();
-  //   agama.dispose();
-  //   status.dispose();
-  //   pekerjaan.dispose();
-  //   nik.dispose();
-  //   alamat.dispose();
-  //   keperluan.dispose();
-  // }
-
   void verifyDomisili() {
     if (nama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Lengkap harus diisi");
@@ -107,13 +85,10 @@ class _DomisiliState extends State<Domisili> {
       addData();
     }
   }
-
+final CurrentUser _currentUser = Get.put(CurrentUser());
   void addData() async {
-    // var usr = await RememberUser().getUser();
-    // User user = User.fromJson(json.decode(usr));
     await http.post(Uri.parse(ApiConnect.domisili), body: {
-      "id_surat": id_surat.text,
-      "no_surat": no_surat.text,
+      "id_akun": _currentUser.user.idAkun,
       "nama": nama.text,
       "tempat_lahir": tempat_lahir.text,
       "tanggal_lahir": tanggal_lahir.text,
@@ -124,20 +99,8 @@ class _DomisiliState extends State<Domisili> {
       "pekerjaan": pekerjaan.text,
       "nik": nik.text,
       "alamat": alamat.text,
-      "RT": RT.text,
-      "Rw": RW.text,
-      "no_pengantar_surat": no_pengantar_surat.text,
-      "tgl_surat_pengantar": tgl_surat_pengantar.text,
-      "alamat_domisili_kel_kepu": alamat_domisili_kel_kepu.text,
-      "Surat_digunakan_untuk": surat_digunakan_untuk.text,
-      "tgl_surat_dibuat": tgl_surat_dibuat.text,
+      "surat_digunakan_untuk": surat_digunakan_untuk.text,
     });
-    // var res = await json.decode(response.body);
-    // if (res == "Success") {
-    //   showSuccessDialog();
-    // } else {
-    //   Fluttertoast.showToast(msg: "gagal");
-    // }
     showSuccessDialog();
   }
 
@@ -198,13 +161,7 @@ class _DomisiliState extends State<Domisili> {
                 height: 20,
                 color: Colors.black,
               ),
-              // getTextForm(
-              //   isReadOnly: true,
-              //   controller: id_akun,
-              //   hintName: "Nik anda",
-              //   keyboardType: TextInputType.number,
-              //   inputFormatters: FilteringTextInputFormatter.digitsOnly,
-              // ),
+
               const SizedBox(height: 5),
               getTextForm(
                 controller: nama,
@@ -212,6 +169,7 @@ class _DomisiliState extends State<Domisili> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -220,6 +178,7 @@ class _DomisiliState extends State<Domisili> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
               ),
               const SizedBox(height: 5),
               getDateTime(
@@ -232,6 +191,7 @@ class _DomisiliState extends State<Domisili> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -240,6 +200,7 @@ class _DomisiliState extends State<Domisili> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 9,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -248,6 +209,7 @@ class _DomisiliState extends State<Domisili> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -256,6 +218,7 @@ class _DomisiliState extends State<Domisili> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 15,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -264,6 +227,7 @@ class _DomisiliState extends State<Domisili> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 20,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -271,6 +235,7 @@ class _DomisiliState extends State<Domisili> {
                 hintName: "Nik",
                 keyboardType: TextInputType.number,
                 inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 16,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -279,22 +244,7 @@ class _DomisiliState extends State<Domisili> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-              ),
-              const SizedBox(height: 5),
-              getTextForm(
-                controller: RT,
-                hintName: "RT",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-              ),
-              const SizedBox(height: 5),
-              getTextForm(
-                controller: RW,
-                hintName: "RW",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
+                    length: 50,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -303,6 +253,7 @@ class _DomisiliState extends State<Domisili> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 255,
               ),
               const SizedBox(
                 height: 20,
