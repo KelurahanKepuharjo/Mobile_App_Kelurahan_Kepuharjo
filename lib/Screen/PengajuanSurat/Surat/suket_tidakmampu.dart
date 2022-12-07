@@ -23,7 +23,6 @@ class SKTM extends StatefulWidget {
   State<SKTM> createState() => _SKTMState();
 }
 
-final id_akun = TextEditingController();
 final nama = TextEditingController();
 final tempatlahir = TextEditingController();
 final tgllhir = TextEditingController();
@@ -274,7 +273,6 @@ class _SKTMState extends State<SKTM> {
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
         setState(() {
-          id_akun.clear();
           nama.clear();
           tempatlahir.clear();
           tgllhir.clear();

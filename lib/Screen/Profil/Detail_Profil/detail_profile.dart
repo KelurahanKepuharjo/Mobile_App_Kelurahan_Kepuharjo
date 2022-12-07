@@ -15,23 +15,6 @@ class DetailProfil extends StatefulWidget {
 }
 
 class _DetailProfilState extends State<DetailProfil> {
-  // User user = User();
-  // User get userDetails => userDetails;
-
-  bool circular = true;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    fetchData();
-  }
-
-  void fetchData() async {
-    try {
-      var response = await http.post(Uri.parse(ApiConnect.signin + "$id_akun"));
-    } catch (e) {}
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
