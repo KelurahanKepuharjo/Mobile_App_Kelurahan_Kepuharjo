@@ -84,7 +84,6 @@ flutter:
   assets:
     - images/padlock.png
     - images/logo.png
-    - images/profile.jpeg
     - images/user.png
     - images/mylogo.png
     - images/newbgsa.png

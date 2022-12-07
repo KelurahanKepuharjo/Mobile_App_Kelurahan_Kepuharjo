@@ -78,6 +78,7 @@ class _SKTMState extends State<SKTM> {
       "profesi": pekerjaan.text,
       "nik": nik.text,
       "alamat_asli": alamat.text,
+      "tgl_pengajuan": DateTime.now().toString(),
       "keperluan": keperluan.text,
     });
     showSuccessDialog();

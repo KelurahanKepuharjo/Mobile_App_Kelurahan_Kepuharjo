@@ -190,7 +190,6 @@ class _WidgetLoginState extends State<WidgetLogin> {
         if (data['success'] == true) {
           snackBarSucces();
           User userInfo = User.fromJson(data['user']);
-          // await RememberUser.storeInfoUser(user);
           await RememberUser().storeUser(json.encode(userInfo));
           // ignore: use_build_context_synchronously
           Navigator.pushAndRemoveUntil(
