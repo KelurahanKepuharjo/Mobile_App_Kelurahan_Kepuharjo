@@ -73,7 +73,7 @@ class _PindahState extends State<Pindah> {
   //   keperluan.dispose();
   // }
 
-  void verifyDomisili() {
+  void verifyPindah() {
     if (nama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama harus diisi");
     } else if (tempat_lahir.text.isEmpty) {
@@ -331,7 +331,7 @@ class _PindahState extends State<Pindah> {
                               borderRadius: BorderRadius.circular(25),
                             )),
                         onPressed: () {
-                          verifyDomisili();
+                          verifyPindah();
                         },
                         child: Text(
                           'Kirim',

@@ -60,7 +60,7 @@ class _BelumNikahState extends State<BelumNikah> {
   //   keperluan.dispose();
   // }
 
-  void verifyDomisili() {
+  void verifyBelumNikah() {
     if (nama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama harus diisi");
     } else if (tempat_lahir.text.isEmpty) {
@@ -269,7 +269,7 @@ class _BelumNikahState extends State<BelumNikah> {
                               borderRadius: BorderRadius.circular(25),
                             )),
                         onPressed: () {
-                          verifyDomisili();
+                          verifyBelumNikah();
                         },
                         child: Text(
                           'Kirim',

@@ -71,7 +71,7 @@ class _AktaState extends State<Akta> {
   //   keperluan.dispose();
   // }
 
-  void verifyDomisili() {
+  void verifyAkta() {
     if (nama_anak.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Anak harus diisi");
     } else if (tempat_lahir.text.isEmpty) {
@@ -407,7 +407,7 @@ class _AktaState extends State<Akta> {
                               borderRadius: BorderRadius.circular(25),
                             )),
                         onPressed: () {
-                          verifyDomisili();
+                          verifyAkta();
                         },
                         child: Text(
                           'Kirim',

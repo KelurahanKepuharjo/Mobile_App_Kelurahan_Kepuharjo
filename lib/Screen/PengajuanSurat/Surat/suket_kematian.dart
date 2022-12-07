@@ -61,7 +61,7 @@ class _KematianState extends State<Kematian> {
   //   keperluan.dispose();
   // }
 
-  void verifyDomisili() {
+  void verifyKematian() {
     if (nama_almarhum.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Almarhum harus diisi");
     } else if (saksi_kematian.text.isEmpty) {
@@ -260,7 +260,7 @@ class _KematianState extends State<Kematian> {
                               borderRadius: BorderRadius.circular(25),
                             )),
                         onPressed: () {
-                          verifyDomisili();
+                          verifyKematian();
                         },
                         child: Text(
                           'Kirim',
