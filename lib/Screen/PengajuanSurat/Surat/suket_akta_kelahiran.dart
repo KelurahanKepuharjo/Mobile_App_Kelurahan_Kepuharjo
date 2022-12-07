@@ -4,14 +4,17 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
+import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class Akta extends StatefulWidget {
@@ -27,6 +30,7 @@ final nama_anak = TextEditingController();
 final tempat_lahir = TextEditingController();
 final tanggal_lahir = TextEditingController();
 final jenis_kelamin = TextEditingController();
+final kebangsaan = TextEditingController();
 final agama = TextEditingController();
 final status = TextEditingController();
 final pekerjaan = TextEditingController();
@@ -80,6 +84,8 @@ class _AktaState extends State<Akta> {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
     } else if (jenis_kelamin.text.isEmpty) {
       Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
+    } else if (kebangsaan.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
     } else if (status.text.isEmpty) {
@@ -114,21 +120,21 @@ class _AktaState extends State<Akta> {
       Fluttertoast.showToast(msg: "Pekerjaan Ibu harus diisi");
     } else if (alamat_ibu.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat Ibu harus diisi");
+    } else if (surat_digunakan_untuk.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
     } else {
       addData();
     }
   }
-
+final CurrentUser _currentUser = Get.put(CurrentUser());
   void addData() async {
-    // var usr = await RememberUser().getUser();
-    // User user = User.fromJson(json.decode(usr));
     await http.post(Uri.parse(ApiConnect.akta), body: {
-      "id_surat": id_surat.text,
-      "nomor_surat": nomor_surat.text,
-      "nama_anak": nama_anak.text,
+      "id_akun": _currentUser.user.idAkun,
+      "nama_lengkap": nama_anak.text,
       "tempat_lahir": tempat_lahir.text,
       "tanggal_lahir": tanggal_lahir.text,
       "jenis_kelamin": jenis_kelamin.text,
+      "kebangsaan": kebangsaan.text,
       "agama": agama.text,
       "status": status.text,
       "pekerjaan": pekerjaan.text,
@@ -146,13 +152,8 @@ class _AktaState extends State<Akta> {
       "agama_ibu": agama_ibu.text,
       "pekerjaan_ibu": pekerjaan_ibu.text,
       "alamat_ibu": alamat_ibu.text,
+      "surat_digunakan_untuk": surat_digunakan_untuk.text,
     });
-    // var res = await json.decode(response.body);
-    // if (res == "Success") {
-    //   showSuccessDialog();
-    // } else {
-    //   Fluttertoast.showToast(msg: "gagal");
-    // }
     showSuccessDialog();
   }
 
@@ -213,20 +214,14 @@ class _AktaState extends State<Akta> {
                 height: 20,
                 color: Colors.black,
               ),
-              // getTextForm(
-              //   isReadOnly: true,
-              //   controller: id_akun,
-              //   hintName: "Nik anda",
-              //   keyboardType: TextInputType.number,
-              //   inputFormatters: FilteringTextInputFormatter.digitsOnly,
-              // ),
               const SizedBox(height: 5),
               getTextForm(
                 controller: nama_anak,
-                hintName: "Nama Anak",
+                hintName: "nama lengkap",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -235,6 +230,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 40,
               ),
               const SizedBox(height: 5),
               getDateTime(
@@ -243,26 +239,38 @@ class _AktaState extends State<Akta> {
               const SizedBox(height: 5),
               getTextForm(
                 controller: jenis_kelamin,
-                hintName: "Jenis Kelamin",
+                hintName: "jenis Kelamin",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 12,
+              ),
+              const SizedBox(height: 5),
+              getTextForm(
+                controller: kebangsaan,
+                hintName: "kebangsaan",
+                keyboardType: TextInputType.name,
+                inputFormatters:
+                    FilteringTextInputFormatter.singleLineFormatter,
+                    length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
                 controller: agama,
-                hintName: "Agama",
+                hintName: "agama",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 12,
               ),
               const SizedBox(height: 5),
               getTextForm(
                 controller: status,
-                hintName: "Status",
+                hintName: "status",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 12,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -271,6 +279,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -278,6 +287,7 @@ class _AktaState extends State<Akta> {
                 hintName: "Nik",
                 keyboardType: TextInputType.number,
                 inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 16,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -286,6 +296,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -294,6 +305,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 50,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -302,6 +314,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 3,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -310,6 +323,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 10,
               ),
               const SizedBox(
                 height: 5,
@@ -320,6 +334,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 12,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -328,6 +343,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -336,6 +352,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -344,6 +361,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 50,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -352,6 +370,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 3,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -360,6 +379,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 20,
               ),
               const SizedBox(
                 height: 5,
@@ -370,6 +390,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 12,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -378,6 +399,7 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -386,6 +408,16 @@ class _AktaState extends State<Akta> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
+              ),
+              const SizedBox(height: 5),
+              getTextForm(
+                controller: surat_digunakan_untuk,
+                hintName: "surat digunakan untuk",
+                keyboardType: TextInputType.name,
+                inputFormatters:
+                    FilteringTextInputFormatter.singleLineFormatter,
+                    length: 225,
               ),
               const SizedBox(height: 5),
               Row(
@@ -440,6 +472,7 @@ class _AktaState extends State<Akta> {
           tempat_lahir.clear();
           tanggal_lahir.clear();
           jenis_kelamin.clear();
+          kebangsaan.clear();
           agama.clear();
           status.clear();
           pekerjaan.clear();
@@ -457,6 +490,7 @@ class _AktaState extends State<Akta> {
           agama_ibu.clear();
           pekerjaan_ibu.clear();
           alamat_ibu.clear();
+          surat_digunakan_untuk.clear();
         });
         snackBarSucces();
         Navigator.pop(context);
