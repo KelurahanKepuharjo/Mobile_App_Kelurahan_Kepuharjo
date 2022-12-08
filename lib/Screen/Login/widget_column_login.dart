@@ -182,8 +182,8 @@ class _WidgetLoginState extends State<WidgetLogin> {
   Future login() async {
     try {
       var response = await http.post(Uri.parse(ApiConnect.signin), body: {
-        "id_akun": nikController.text.trim(),
-        "password": passwordController.text.trim()
+        "id_akun": nikController.text,
+        "password": passwordController.text
       });
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
