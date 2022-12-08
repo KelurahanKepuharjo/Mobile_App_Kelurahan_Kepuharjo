@@ -191,10 +191,10 @@ class _WidgetRegisterState extends State<WidgetRegister> {
   Future register() async {
     try {
       var response = await http.post(Uri.parse(ApiConnect.signup), body: {
-        "id_akun": nikController.text.trim(),
-        "nama_lengkap": namaController.text.trim(),
-        "password": passwordController.text.trim(),
-        "no_hp": tlpController.text.trim(),
+        "id_akun": nikController.text,
+        "nama_lengkap": namaController.text,
+        "password": passwordController.text,
+        "no_hp": tlpController.text
       });
 
       if (response.statusCode == 200) {

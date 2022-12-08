@@ -34,17 +34,17 @@ List _navbutton = [
   {
     "active_icon": Icons.mail,
     "non_active_icon": Icons.mail_outlined,
-    "label": "Home"
+    "label": "Pengajuan"
   },
   {
     "active_icon": Icons.assignment,
     "non_active_icon": Icons.assignment_outlined,
-    "label": "Home"
+    "label": "Status"
   },
   {
     "active_icon": Icons.person,
     "non_active_icon": Icons.person_outlined,
-    "label": "Home"
+    "label": "Profil"
   }
 ];
 
