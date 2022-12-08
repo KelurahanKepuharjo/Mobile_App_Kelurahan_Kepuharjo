@@ -107,7 +107,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
       "alamat": alamat.text,
       "nik_almarhum": nik_almarhum.text,
       "penyebab_kematian": penyebab_kematian.text,
-      "surat_digunakan_untuk": surat_digunakan.text,
+      "surat_digunakan_untuk": surat_digunakan_untuk.text,
     });
     showSuccessDialog();
   }
