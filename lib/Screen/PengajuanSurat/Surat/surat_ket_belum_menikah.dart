@@ -4,14 +4,17 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
+import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class BelumNikah extends StatefulWidget {
@@ -36,30 +39,6 @@ final alamat = TextEditingController();
 final id_akun = TextEditingController();
 
 class _BelumNikahState extends State<BelumNikah> {
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   verifySKTM();
-  // }
-
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   super.dispose();
-  //   nama.dispose();
-  //   tempatlahir.dispose();
-  //   tgllhir.dispose();
-  //   jk.dispose();
-  //   kebangsaan.dispose();
-  //   agama.dispose();
-  //   status.dispose();
-  //   pekerjaan.dispose();
-  //   nik.dispose();
-  //   alamat.dispose();
-  //   keperluan.dispose();
-  // }
-
   void verifyBelumNikah() {
     if (nama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama harus diisi");
@@ -81,16 +60,15 @@ class _BelumNikahState extends State<BelumNikah> {
       Fluttertoast.showToast(msg: "Nik harus diisi");
     } else if (alamat.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat harus diisi");
+    } else if (surat_digunakan_untuk.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
       addData();
     }
   }
-
+final CurrentUser _currentUser = Get.put(CurrentUser());
   void addData() async {
-    // var usr = await RememberUser().getUser();
-    // User user = User.fromJson(json.decode(usr));
     await http.post(Uri.parse(ApiConnect.belumNikah), body: {
-      "id_surat": id_surat.text,
-      "no_surat": no_surat.text,
+      "id_akun": _currentUser.user.idAkun,
       "nama": nama.text,
       "tempat_lahir": tempat_lahir.text,
       "tanggal_lahir": tanggal_lahir.text,
@@ -101,13 +79,9 @@ class _BelumNikahState extends State<BelumNikah> {
       "pekerjaan": pekerjaan.text,
       "nik": nik.text,
       "alamat": alamat.text,
+      "tgl_pengajuan": tgl_pengajuan.text,
+      "surat_digunakan_untuk": surat_digunakan_untuk.text,
     });
-    // var res = await json.decode(response.body);
-    // if (res == "Success") {
-    //   showSuccessDialog();
-    // } else {
-    //   Fluttertoast.showToast(msg: "gagal");
-    // }
     showSuccessDialog();
   }
 
@@ -168,13 +142,6 @@ class _BelumNikahState extends State<BelumNikah> {
                 height: 20,
                 color: Colors.black,
               ),
-              // getTextForm(
-              //   isReadOnly: true,
-              //   controller: id_akun,
-              //   hintName: "Nik anda",
-              //   keyboardType: TextInputType.number,
-              //   inputFormatters: FilteringTextInputFormatter.digitsOnly,
-              // ),
               const SizedBox(height: 5),
               getTextForm(
                 controller: nama,
@@ -182,6 +149,7 @@ class _BelumNikahState extends State<BelumNikah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -190,6 +158,7 @@ class _BelumNikahState extends State<BelumNikah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
               ),
               const SizedBox(height: 5),
               getDateTime(
@@ -202,6 +171,7 @@ class _BelumNikahState extends State<BelumNikah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -210,6 +180,7 @@ class _BelumNikahState extends State<BelumNikah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 9,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -218,6 +189,7 @@ class _BelumNikahState extends State<BelumNikah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -226,6 +198,7 @@ class _BelumNikahState extends State<BelumNikah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 12,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -234,6 +207,7 @@ class _BelumNikahState extends State<BelumNikah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 20,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -241,6 +215,7 @@ class _BelumNikahState extends State<BelumNikah> {
                 hintName: "Nik",
                 keyboardType: TextInputType.number,
                 inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 16,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -249,6 +224,16 @@ class _BelumNikahState extends State<BelumNikah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 60,
+              ),
+              const SizedBox(height: 5),
+              getTextForm(
+                controller: surat_digunakan_untuk,
+                hintName: "Surat digunakan untuk",
+                keyboardType: TextInputType.name,
+                inputFormatters:
+                    FilteringTextInputFormatter.singleLineFormatter,
+                    length: 225,
               ),
               const SizedBox(height: 5),
               Row(
@@ -309,6 +294,7 @@ class _BelumNikahState extends State<BelumNikah> {
           pekerjaan.clear();
           nik.clear();
           alamat.clear();
+          surat_digunakan_untuk.clear();
         });
         snackBarSucces();
         Navigator.pop(context);
