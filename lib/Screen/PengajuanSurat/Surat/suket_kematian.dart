@@ -310,7 +310,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
           alamat.clear();
           nik_almarhum.clear();
           penyebab_kematian.clear();
-          surat_digunakan.clear();
+          surat_digunakan_untuk.clear();
         });
         snackBarSucces();
         Navigator.pop(context);
