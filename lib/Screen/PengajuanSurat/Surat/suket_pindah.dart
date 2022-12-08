@@ -4,6 +4,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
@@ -11,6 +12,7 @@ import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
+import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
@@ -44,6 +46,8 @@ final kabupaten = TextEditingController();
 final provinsi = TextEditingController();
 final alamat_pindah = TextEditingController();
 final pengikut = TextEditingController();
+final tgl_pengajuan= TextEditingController();
+final surat_digunakan_untuk = TextEditingController();
 final id_akun = TextEditingController();
 
 class _PindahState extends State<Pindah> {
@@ -100,20 +104,15 @@ class _PindahState extends State<Pindah> {
       Fluttertoast.showToast(msg: "Alamat Pindah harus diisi");
     } else if (pengikut.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pengikut harus diisi");
+    } else if (surat_digunakan_untuk.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
       addData();
     }
   }
-
+final CurrentUser _currentUser = Get.put(CurrentUser());
   void addData() async {
-    // var usr = await RememberUser().getUser();
-    // User user = User.fromJson(json.decode(usr));
     await http.post(Uri.parse(ApiConnect.pindah), body: {
-      "id_surat": id_surat.text,
-      "tgl_dibuat": tgl_dibuat.text,
-      "no_surat": no_surat.text,
-      "sifat": sifat.text,
-      "lampiran": lampiran.text,
-      "perihal": perihal.text,
+      "id_akun": _currentUser.user.idAkun,
       "nama": nama.text,
       "tempat_lahir": tempat_lahir.text,
       "tanggal_lahir": tanggal_lahir.text,
@@ -128,6 +127,8 @@ class _PindahState extends State<Pindah> {
       "provinsi": provinsi.text,
       "alamat_pindah": alamat_pindah.text,
       "pengikut": pengikut.text,
+      "tgl_pengajuan": tgl_pengajuan.text,
+      "surat_digunakan_untuk": surat_digunakan_untuk.text,
     });
     // var res = await json.decode(response.body);
     // if (res == "Success") {
@@ -209,6 +210,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -217,6 +219,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
               ),
               const SizedBox(height: 5),
               getDateTime(
@@ -229,6 +232,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -237,6 +241,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 12,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -245,6 +250,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -253,6 +259,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -261,6 +268,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -269,6 +277,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -277,6 +286,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -285,6 +295,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -293,6 +304,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 30,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -301,6 +313,7 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -309,6 +322,16 @@ class _PindahState extends State<Pindah> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
+                    length: 15,
+              ),
+              const SizedBox(height: 5),
+              getTextForm(
+                controller: surat_digunakan_untuk,
+                hintName: "Surat digunakan untuk",
+                keyboardType: TextInputType.name,
+                inputFormatters:
+                    FilteringTextInputFormatter.singleLineFormatter,
+                    length: 225,
               ),
               const SizedBox(height: 5),
               Row(
@@ -373,6 +396,7 @@ class _PindahState extends State<Pindah> {
           provinsi.clear();
           alamat_pindah.clear();
           pengikut.clear();
+          surat_digunakan_untuk.clear();
         });
         snackBarSucces();
         Navigator.pop(context);
