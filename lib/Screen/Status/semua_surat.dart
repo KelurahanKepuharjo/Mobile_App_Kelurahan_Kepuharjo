@@ -14,7 +14,7 @@ class _SemuaSuratState extends State<SemuaSurat> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListTile(
-        leading: CircleAvatar(),
+        leading: const CircleAvatar(),
         title: Text(
           "Nama Orang",
           style: GoogleFonts.poppins(

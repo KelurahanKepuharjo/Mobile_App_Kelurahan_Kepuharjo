@@ -52,11 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void onTap(value) {
     setState(() {
       _index.value = value;
-      currentScreen = AppearanceHome();
+      currentScreen = const AppearanceHome();
     });
   }
 
-  Widget currentScreen = AppearanceHome();
+  Widget currentScreen = const AppearanceHome();
 
   @override
   Widget build(BuildContext context) {
