@@ -6,7 +6,7 @@ import 'package:kepuharjo_app/Screen/Status/surat_ditolak.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearanceStatus extends StatefulWidget {
-  const AppearanceStatus();
+  const AppearanceStatus({Key key}) : super(key: key);
 
   @override
   State<AppearanceStatus> createState() => _AppearanceStatusStatus();

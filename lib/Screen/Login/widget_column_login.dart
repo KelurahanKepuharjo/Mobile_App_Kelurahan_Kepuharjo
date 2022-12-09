@@ -8,7 +8,6 @@ import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
-import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen/LupaPassword/appearance_forgot_password.dart.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home_Screen.dart';
 import 'package:kepuharjo_app/Screen/Register/appearance_register.dart';
@@ -48,7 +47,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
     return Container(
       height: 360,
       width: 300,
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
           color: const Color.fromARGB(143, 255, 255, 255),
           borderRadius: BorderRadius.circular(20)),
@@ -124,6 +123,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
                           borderRadius: BorderRadius.circular(25),
                         )),
                     onPressed: () {
+                      showLoader();
                       verifyLogin();
                     },
                     child: Text(
@@ -226,5 +226,29 @@ class _WidgetLoginState extends State<WidgetLogin> {
             title: "Berhasil",
             message: "Selamat, Anda Berhasil Login",
             contentType: ContentType.success)));
+  }
+
+  showLoader() {
+    AlertDialog alertDialog = AlertDialog(
+      content: Row(
+        children: [
+          CircularProgressIndicator(),
+          Container(
+            margin: EdgeInsets.only(left: 7),
+            child: Text(
+              "Loading...",
+              style: blackTextStyle.copyWith(fontSize: 12, color: whiteColor),
+            ),
+          )
+        ],
+      ),
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return alertDialog;
+      },
+    );
   }
 }
