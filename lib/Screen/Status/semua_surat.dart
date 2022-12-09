@@ -29,7 +29,7 @@ class _SemuaSuratState extends State<SemuaSurat> {
           height: 20,
           width: 70,
           decoration: BoxDecoration(
-            color: Color(0xFF2A2A72).withOpacity(0.1),
+            color: const Color(0xFF2A2A72).withOpacity(0.1),
             borderRadius: BorderRadius.circular(5),
           ),
           child: Center(
@@ -37,7 +37,7 @@ class _SemuaSuratState extends State<SemuaSurat> {
               "Disetujui",
               style: GoogleFonts.poppins(
                 fontSize: 12,
-                color: Color(0xFF2A2A72),
+                color: const Color(0xFF2A2A72),
               ),
             ),
           ),
