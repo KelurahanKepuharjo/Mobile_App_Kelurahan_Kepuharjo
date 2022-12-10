@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +7,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
+import 'package:kepuharjo_app/Comm/getDropdown.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
-import 'package:kepuharjo_app/Model/RememberUser.dart';
-import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class SKTM extends StatefulWidget {
@@ -34,6 +31,7 @@ final pekerjaan = TextEditingController();
 final nik = TextEditingController();
 final alamat = TextEditingController();
 final keperluan = TextEditingController();
+final _value = String;
 
 class _SKTMState extends State<SKTM> {
   void verifySKTM() {
@@ -43,10 +41,6 @@ class _SKTMState extends State<SKTM> {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
     } else if (tgllhir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
-    } else if (jk.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
-    } else if (kebangsaan.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
     } else if (status.text.isEmpty) {
@@ -71,19 +65,23 @@ class _SKTMState extends State<SKTM> {
       "nama": nama.text,
       "tempat_lahir": tempatlahir.text,
       "tanggal_lahir": tgllhir.text,
-      "jenis_kelamin": jk.text,
-      "kebangsaan": kebangsaan.text,
+      "jenis_kelamin": _value,
+      "kebangsaan": val,
       "agama": agama.text,
       "status": status.text,
-      "profesi": pekerjaan.text,
+      "pekerjaan": pekerjaan.text,
       "nik": nik.text,
-      "alamat_asli": alamat.text,
+      "alamat": alamat.text,
       "tgl_pengajuan": DateTime.now().toString(),
       "keperluan": keperluan.text,
     });
     showSuccessDialog();
   }
 
+  String _value;
+  String val;
+  List jkl = ["Laki Laki", "Perempuan"];
+  List kb = ["WNI", "WNA"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +114,7 @@ class _SKTMState extends State<SKTM> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             children: [
               Row(
@@ -154,22 +152,66 @@ class _SKTMState extends State<SKTM> {
                 controller: tgllhir,
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: jk,
-                hintName: "Jenis Kelamin",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 10,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromARGB(179, 234, 234, 234),
+                ),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      _value = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: _value,
+                  style: poppinsMediumBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(20),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Jenis Kelamin",
+                      style: poppinsSmallBlack.copyWith(
+                          color: Color.fromARGB(155, 0, 0, 0))),
+                  dropdownColor: Colors.white,
+                  items: jkl.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: kebangsaan,
-                hintName: "Kebangsaan",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 9,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromARGB(179, 234, 234, 234),
+                ),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val,
+                  style: poppinsMediumBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(20),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Kebangsaan",
+                      style: poppinsSmallBlack.copyWith(
+                          color: Color.fromARGB(155, 0, 0, 0))),
+                  dropdownColor: Colors.white,
+                  items: kb.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -209,7 +251,7 @@ class _SKTMState extends State<SKTM> {
               const SizedBox(height: 5),
               getTextForm(
                 controller: alamat,
-                hintName: "Alamat",
+                hintName: "Alamat Sesuai Ktp",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,

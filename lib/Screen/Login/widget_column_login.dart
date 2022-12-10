@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:kepuharjo_app/Api/Api_connect.dart';
+import 'package:kepuharjo_app/Comm/getDropdown.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
@@ -138,7 +139,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
             height: 15,
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+            padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -230,17 +231,30 @@ class _WidgetLoginState extends State<WidgetLogin> {
 
   showLoader() {
     AlertDialog alertDialog = AlertDialog(
-      content: Row(
-        children: [
-          CircularProgressIndicator(),
-          Container(
-            margin: EdgeInsets.only(left: 7),
-            child: Text(
-              "Loading...",
-              style: blackTextStyle.copyWith(fontSize: 12, color: whiteColor),
+      backgroundColor: Colors.transparent,
+      content: Container(
+        // width: 100,
+        height: 100,
+        margin: const EdgeInsets.all(7),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.grey.shade300,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const CircularProgressIndicator(
+              color: Color(0xFF2A2A72),
             ),
-          )
-        ],
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              "Loading...",
+              style: blackTextStyle.copyWith(fontSize: 12),
+            ),
+          ],
+        ),
       ),
     );
     showDialog(

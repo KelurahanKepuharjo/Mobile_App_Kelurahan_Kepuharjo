@@ -12,8 +12,6 @@ import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
-import 'package:kepuharjo_app/Model/RememberUser.dart';
-import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -67,25 +65,14 @@ class _DomisiliState extends State<Domisili> {
       Fluttertoast.showToast(msg: "Nik harus diisi");
     } else if (alamat.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat harus diisi");
-    } else if (RT.text.isEmpty) {
-      Fluttertoast.showToast(msg: "RT harus diisi");
-    } else if (RW.text.isEmpty) {
-      Fluttertoast.showToast(msg: "RW harus diisi");
-    } else if (no_pengantar_surat.text.isEmpty) {
-      Fluttertoast.showToast(msg: "No Pengantar Surat harus diisi");
-    } else if (tgl_surat_pengantar.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Tanggal Surat Pengantar harus diisi");
-    } else if (alamat_domisili_kel_kepu.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Alamat Domisili Kelurahan harus diisi");
     } else if (surat_digunakan_untuk.text.isEmpty) {
       Fluttertoast.showToast(msg: "Surat Digunakan Untuk harus diisi");
-    } else if (tgl_surat_dibuat.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Tanggal Surat Dibuat harus diisi");
     } else {
       addData();
     }
   }
-final CurrentUser _currentUser = Get.put(CurrentUser());
+
+  final CurrentUser _currentUser = Get.put(CurrentUser());
   void addData() async {
     await http.post(Uri.parse(ApiConnect.domisili), body: {
       "id_akun": _currentUser.user.idAkun,
@@ -95,7 +82,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
       "jenis_kelamin": jenis_kelamin.text,
       "kebangsaan": kebangsaan.text,
       "agama": agama.text,
-      "status perkawinan": status_perkawinan.text,
+      "status_perkawinan": status_perkawinan.text,
       "pekerjaan": pekerjaan.text,
       "nik": nik.text,
       "alamat": alamat.text,
@@ -136,7 +123,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             children: [
               Padding(
@@ -161,7 +148,6 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 height: 20,
                 color: Colors.black,
               ),
-
               const SizedBox(height: 5),
               getTextForm(
                 controller: nama,
@@ -169,7 +155,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 60,
+                length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -178,7 +164,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 30,
+                length: 30,
               ),
               const SizedBox(height: 5),
               getDateTime(
@@ -191,7 +177,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 10,
+                length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -200,7 +186,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 9,
+                length: 9,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -209,7 +195,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 10,
+                length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -218,7 +204,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 15,
+                length: 15,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -227,7 +213,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 20,
+                length: 20,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -244,7 +230,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 50,
+                length: 50,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -253,7 +239,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 255,
+                length: 255,
               ),
               const SizedBox(
                 height: 20,

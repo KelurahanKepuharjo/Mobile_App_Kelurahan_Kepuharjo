@@ -45,6 +45,8 @@ dependencies:
   android_intent_plus: 
   readmore: 
   awesome_snackbar_content: 
+  dropdownfield: ^1.0.3
+  snippet_coder_utils: ^1.0.12
   
   
 

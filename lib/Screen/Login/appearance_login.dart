@@ -3,7 +3,7 @@ import 'package:kepuharjo_app/Screen/Login/widget_column_login.dart';
 import 'package:kepuharjo_app/Screen/Login/widget_pict_logo.dart';
 
 class AppeareaceLogin extends StatefulWidget {
-  const AppeareaceLogin({key});
+  const AppeareaceLogin({Key key}) : super(key: key);
 
   @override
   State<AppeareaceLogin> createState() => _AppeareaceLoginState();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Shared/shared.dart';
 
 class getTextForm extends StatelessWidget {
   TextEditingController controller;
@@ -14,7 +15,8 @@ class getTextForm extends StatelessWidget {
   TextInputAction textInputAction;
 
   getTextForm(
-      {this.controller,
+      {Key key,
+      this.controller,
       this.hintName,
       this.isObscureText = false,
       this.keyboardType,
@@ -22,11 +24,12 @@ class getTextForm extends StatelessWidget {
       this.length,
       this.isReadOnly = false,
       this.isEnable = true,
-      this.textInputAction = TextInputAction.done});
+      this.textInputAction = TextInputAction.done})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height: 60,
         width: MediaQuery.of(context).size.width,
         child: Column(children: [
@@ -34,6 +37,7 @@ class getTextForm extends StatelessWidget {
             textInputAction: textInputAction,
             obscureText: isObscureText,
             controller: controller,
+            style: poppinsMediumBlack,
             keyboardType: keyboardType,
             enabled: isEnable,
             onSaved: (val) => controller = val as TextEditingController,

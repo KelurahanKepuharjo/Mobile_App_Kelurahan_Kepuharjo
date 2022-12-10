@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:kepuharjo_app/Shared/shared.dart';
 
 class getDateTime extends StatefulWidget {
   TextEditingController controller;
@@ -27,6 +28,7 @@ class _getDateTimeState extends State<getDateTime> {
           TextFormField(
             controller: widget.controller,
             readOnly: widget.isreadOnly,
+            style: poppinsMediumBlack,
             onSaved: (val) => TextEditingController,
             validator: (value) {
               if (value == null || value.isEmpty) {

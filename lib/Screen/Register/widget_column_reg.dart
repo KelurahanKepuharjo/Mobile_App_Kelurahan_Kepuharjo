@@ -55,121 +55,120 @@ class _WidgetRegisterState extends State<WidgetRegister> {
       decoration: BoxDecoration(
           color: Color.fromARGB(143, 255, 255, 255),
           borderRadius: BorderRadius.circular(20)),
-      child: Form(
-        key: _formkey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Registrasi',
-              style: GoogleFonts.poppins(
-                  fontSize: 20, fontWeight: FontWeight.w500, color: blackColor),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            getTextForm(
-              controller: nikController,
-              hintName: "No.NIK",
-              keyboardType: TextInputType.number,
-              inputFormatters: FilteringTextInputFormatter.digitsOnly,
-              length: 16,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            getTextForm(
-              controller: namaController,
-              hintName: "Nama Lengkap",
-              keyboardType: TextInputType.name,
-              inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
-              length: 50,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            getTextForm(
-              controller: passwordController,
-              hintName: "Password",
-              isObscureText: true,
-              keyboardType: TextInputType.name,
-              inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
-              length: 20,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            getTextForm(
-              controller: tlpController,
-              hintName: "No.Telepon",
-              keyboardType: TextInputType.number,
-              inputFormatters: FilteringTextInputFormatter.digitsOnly,
-              length: 12,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Registrasi',
+            style: GoogleFonts.poppins(
+                fontSize: 20, fontWeight: FontWeight.w500, color: blackColor),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          getTextForm(
+            controller: nikController,
+            hintName: "No.NIK",
+            keyboardType: TextInputType.number,
+            inputFormatters: FilteringTextInputFormatter.digitsOnly,
+            length: 16,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          getTextForm(
+            controller: namaController,
+            hintName: "Nama Lengkap",
+            keyboardType: TextInputType.name,
+            inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
+            length: 50,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          getTextForm(
+            controller: passwordController,
+            hintName: "Password",
+            isObscureText: true,
+            keyboardType: TextInputType.name,
+            inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
+            length: 20,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          getTextForm(
+            controller: tlpController,
+            hintName: "No.Telepon",
+            keyboardType: TextInputType.number,
+            inputFormatters: FilteringTextInputFormatter.digitsOnly,
+            length: 12,
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 45,
+                width: 120,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF2A2A72),
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      )),
+                  onPressed: () {
+                    setState(() {
+                      verifyRegister();
+                    });
+                  },
+                  child: Text(
+                    'Daftar',
+                    style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: 45,
-                  width: 120,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF2A2A72),
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        )),
-                    onPressed: () {
-                      verifyRegister();
-                    },
-                    child: Text(
-                      'Daftar',
-                      style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
-                    ),
+                Text(
+                  "Sudah memiliki akun ?",
+                  style: GoogleFonts.poppins(color: blackColor, fontSize: 12),
+                ),
+                InkWell(
+                  child: Text(
+                    " Login",
+                    style: GoogleFonts.poppins(
+                        color: Color(0xFF2A2A72), fontSize: 13),
                   ),
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (_) => AppeareaceLogin()),
+                        (Route<dynamic> route) => false);
+                  },
                 ),
               ],
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Sudah memiliki akun ?",
-                    style: GoogleFonts.poppins(color: blackColor, fontSize: 12),
-                  ),
-                  InkWell(
-                    child: Text(
-                      " Login",
-                      style: GoogleFonts.poppins(
-                          color: Color(0xFF2A2A72), fontSize: 13),
-                    ),
-                    onTap: () {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (_) => AppeareaceLogin()),
-                          (Route<dynamic> route) => false);
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
