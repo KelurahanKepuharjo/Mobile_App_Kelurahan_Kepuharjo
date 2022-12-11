@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
@@ -8,13 +9,17 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart';
+import 'package:path/path.dart';
+import 'package:async/async.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class Akta extends StatefulWidget {
@@ -48,34 +53,10 @@ final kebangsaan_ibu = TextEditingController();
 final agama_ibu = TextEditingController();
 final pekerjaan_ibu = TextEditingController();
 final alamat_ibu = TextEditingController();
-final id_akun = TextEditingController();
+final id_akun = TextEditingController();  
 
 class _AktaState extends State<Akta> {
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   verifySKTM();
-  // }
-
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   super.dispose();
-  //   nama.dispose();
-  //   tempatlahir.dispose();
-  //   tgllhir.dispose();
-  //   jk.dispose();
-  //   kebangsaan.dispose();
-  //   agama.dispose();
-  //   status.dispose();
-  //   pekerjaan.dispose();
-  //   nik.dispose();
-  //   alamat.dispose();
-  //   keperluan.dispose();
-  // }
-
-  void verifyAkta() {
+  void verifyAkta(BuildContext context) {
     if (nama_anak.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Anak harus diisi");
     } else if (tempat_lahir.text.isEmpty) {
@@ -123,18 +104,18 @@ class _AktaState extends State<Akta> {
     } else if (surat_digunakan_untuk.text.isEmpty) {
       Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
     } else {
-      addData();
+      addDataSurat(context, image);
     }
   }
 final CurrentUser _currentUser = Get.put(CurrentUser());
-  void addData() async {
+  void addData(BuildContext context) async {
     await http.post(Uri.parse(ApiConnect.akta), body: {
       "id_akun": _currentUser.user.idAkun,
       "nama_lengkap": nama_anak.text,
       "tempat_lahir": tempat_lahir.text,
       "tanggal_lahir": tanggal_lahir.text,
-      "jenis_kelamin": jenis_kelamin.text,
-      "kebangsaan": kebangsaan.text,
+      "jenis_kelamin": val_jenis_kelamin,
+      "kebangsaan": val_kebangsaan,
       "agama": agama.text,
       "status": status.text,
       "pekerjaan": pekerjaan.text,
@@ -153,9 +134,65 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
       "pekerjaan_ibu": pekerjaan_ibu.text,
       "alamat_ibu": alamat_ibu.text,
       "surat_digunakan_untuk": surat_digunakan_untuk.text,
+    
     });
-    showSuccessDialog();
+    showSuccessDialog(context);
   }
+
+  Future addDataSurat(BuildContext context, File imageFile) async {
+    var uri = Uri.parse(ApiConnect.akta);
+    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var length = await imageFile.length();
+    var req = http.MultipartRequest('POST', uri);
+    req.fields['id_akun'] = _currentUser.user.idAkun;
+    req.fields['nama_lengkap'] = nama_anak.text;
+    req.fields['tempat_lahir'] = tempatlahir.text;
+    req.fields['tanggal_lahir'] = tanggal_lahir.text;
+    req.fields['jenis_kelamin'] = val_jenis_kelamin;
+    req.fields['kebangsaan'] = val_kebangsaan;
+    req.fields['agama'] = agama.text;
+    req.fields['status'] = status.text;
+    req.fields['pekerjaan'] = pekerjaan.text;
+    req.fields['nik'] = nik.text;
+    req.fields['alamat'] = alamat.text;
+    req.fields['nama_ayah'] = nama_ayah.text;
+    req.fields['umur_ayah'] = umur_ayah.text;
+    req.fields['kebangsaan_ayah'] = kebangsaan_ayah.text;
+    req.fields['agama_ayah'] = agama_ayah.text;
+    req.fields['pekerjaan_ayah'] = pekerjaan_ayah.text;
+    req.fields['alamat_ayah'] = alamat_ayah.text;
+    req.fields['nama_ibu'] = nama_ibu.text;
+    req.fields['umur_ibu'] = umur_ibu.text;
+    req.fields['kebangsaan_ibu'] = kebangsaan_ibu.text;
+    req.fields['agama_ibu'] = agama_ibu.text;
+    req.fields['pekerjaan_ibu'] = pekerjaan_ibu.text;
+    req.fields['alamat_ibu'] = alamat_ibu.text;
+    req.fields['tgl_pengajuan'] = DateTime.now().toString();
+    req.fields['surat_digunakan_untuk'] = surat_digunakan_untuk.text;
+    var pic = http.MultipartFile("image", stream, length,
+        filename: basename(imageFile.path));
+    req.files.add(pic);
+    var response = await req.send();
+    if (response.statusCode == 200) {
+      print("ok");
+      showSuccessDialog(context);
+    } else {
+      print("Ga");
+    }
+  }
+    
+  Future getImageGalerry() async {
+    final picker = ImagePicker();
+    final imageFile = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      image = File(imageFile.path);
+    });
+  }
+  File image;
+  String val_jenis_kelamin;
+  String val_kebangsaan;
+  List jkl = ["Laki Laki", "Perempuan"];
+  List kb = ["WNI", "WNA"];
 
   @override
   Widget build(BuildContext context) {
@@ -237,22 +274,64 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 controller: tanggal_lahir,
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: jenis_kelamin,
-                hintName: "jenis Kelamin",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                    length: 12,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color.fromARGB(179, 234, 234, 234),
+                ),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_jenis_kelamin = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_jenis_kelamin,
+                  style: poppinsMediumBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(20),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Jenis Kelamin",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.grey.shade300,
+                  items: jkl.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: kebangsaan,
-                hintName: "kebangsaan",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                    length: 10,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromARGB(179, 234, 234, 234),
+                ),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_kebangsaan = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_kebangsaan,
+                  style: poppinsMediumBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(20),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Kebangsaan",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.grey.shade300,
+                  items: kb.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -348,7 +427,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
               const SizedBox(height: 5),
               getTextForm(
                 controller: alamat_ayah,
-                hintName: "Alamat Ayah",
+                hintName: "Alamat Ayah Sesuai Ktp",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
@@ -419,7 +498,32 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                     FilteringTextInputFormatter.singleLineFormatter,
                     length: 225,
               ),
-              const SizedBox(height: 5),
+              InkWell(
+                onTap: () {
+                  getImageGalerry();
+                },
+                child: Container(
+                  height: 150,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color.fromARGB(179, 234, 234, 234),
+                  ),
+                  child: image == null
+                      ? Center(
+                          child: Text(
+                          'Upload Foto KK',
+                          style: GoogleFonts.poppins(fontSize: 12),
+                        ))
+                      : Image.file(
+                          image,
+                          fit: BoxFit.contain,
+                        ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -438,7 +542,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                               borderRadius: BorderRadius.circular(25),
                             )),
                         onPressed: () {
-                          verifyAkta();
+                          verifyAkta(context);
                         },
                         child: Text(
                           'Kirim',
@@ -455,7 +559,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
     );
   }
 
-  showSuccessDialog() {
+  showSuccessDialog(BuildContext context) {
     AwesomeDialog(
       context: context,
       animType: AnimType.SCALE,
@@ -492,7 +596,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
           alamat_ibu.clear();
           surat_digunakan_untuk.clear();
         });
-        snackBarSucces();
+        snackBarSucces(context);
         Navigator.pop(context);
       },
       btnCancelOnPress: () {
@@ -504,7 +608,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
     ).show();
   }
 
-  snackBarSucces() {
+  snackBarSucces(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
