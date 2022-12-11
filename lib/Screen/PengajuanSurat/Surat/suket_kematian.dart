@@ -1,13 +1,17 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
+import 'package:async/async.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
@@ -16,6 +20,7 @@ import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class Kematian extends StatefulWidget {
@@ -37,12 +42,12 @@ final tahun= TextEditingController();
 final alamat = TextEditingController();
 final nik_almarhum = TextEditingController();
 final penyebab_kematian = TextEditingController();
-final surat_digunakan = TextEditingController();
-final tanggal_dibuat = TextEditingController();
+final surat_digunakan_untuk = TextEditingController();
+final tgl_dibuat = TextEditingController();
 final id_akun = TextEditingController();
 
 class _KematianState extends State<Kematian> {
-  void verifyKematian() {
+  void verifyKematian(BuildContext context){
     if (nama_almarhum.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Almarhum harus diisi");
     } else if (saksi_kematian.text.isEmpty) {
@@ -63,14 +68,14 @@ class _KematianState extends State<Kematian> {
       Fluttertoast.showToast(msg: "Nik Almarhum harus diisi");
     } else if (penyebab_kematian.text.isEmpty) {
       Fluttertoast.showToast(msg: "Penyebab Kematian harus diisi");
-    } else if (surat_digunakan.text.isEmpty) {
+    } else if (surat_digunakan_untuk.text.isEmpty) {
       Fluttertoast.showToast(msg: "Surat Digunakan harus diisi");
-      addData();
+      addDataSurat(context, image);
     }
   }
   
 final CurrentUser _currentUser = Get.put(CurrentUser());
-  void addData() async {
+  void addData(BuildContext context)async {
     await http.post(Uri.parse(ApiConnect.kematian), body: {
       "id_akun": _currentUser.user.idAkun,
       "nama_almarhum": nama_almarhum.text,
@@ -82,12 +87,55 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
       "tahun": tahun.text,
       "alamat": alamat.text,
       "nik_almarhum": nik_almarhum.text,
+      "tgl_dibuat": tgl_dibuat.text,
       "penyebab_kematian": penyebab_kematian.text,
       "surat_digunakan_untuk": surat_digunakan_untuk.text,
     });
-    showSuccessDialog();
+    showSuccessDialog(context);
   }
 
+Future addDataSurat(BuildContext context, File imageFile) async {
+    var uri = Uri.parse(ApiConnect.akta);
+    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var length = await imageFile.length();
+    var req = http.MultipartRequest('POST', uri);
+    req.fields['id_akun'] = _currentUser.user.idAkun;
+    req.fields['nama_almarhum'] = nama_almarhum.text;
+    req.fields['saksi_kematian'] = saksi_kematian.text;
+    req.fields['hubungan'] = hubungan.text;
+    req.fields['hari'] = hari.text;
+    req.fields['tanggal'] = tanggal.text;
+    req.fields['bulan'] = bulan.text;
+    req.fields['tahun'] = tahun.text;
+    req.fields['alamat'] = alamat.text;
+    req.fields['nik_almarhum'] = nik_almarhum.text;
+    req.fields['penyebab_kematian'] = penyebab_kematian.text;
+    req.fields['tgl_dibuat'] = DateTime.now().toString();
+    req.fields['surat_digunakan_untuk'] = surat_digunakan_untuk.text;
+    var pic = http.MultipartFile("image", stream, length,
+        filename: basename(imageFile.path));
+    req.files.add(pic);
+    var response = await req.send();
+    if (response.statusCode == 200) {
+      print("ok");
+      showSuccessDialog(context);
+    } else {
+      print("Ga");
+    }
+  }
+    
+  Future getImageGalerry() async {
+    final picker = ImagePicker();
+    final imageFile = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      image = File(imageFile.path);
+    });
+  }
+  File image;
+  // String val_jenis_kelamin;
+  // String val_kebangsaan;
+  // List jkl = ["Laki Laki", "Perempuan"];
+  // List kb = ["WNI", "WNA"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -195,7 +243,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
               const SizedBox(height: 5),
               getTextForm(
                 controller: alamat,
-                hintName: "Alamat",
+                hintName: "Alamat Sesuai Ktp",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
@@ -229,6 +277,32 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                     length: 50,
 
               ),
+              InkWell(
+                onTap: () {
+                  getImageGalerry();
+                },
+                child: Container(
+                  height: 150,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color.fromARGB(179, 234, 234, 234),
+                  ),
+                  child: image == null
+                      ? Center(
+                          child: Text(
+                          'Upload Foto KK',
+                          style: GoogleFonts.poppins(fontSize: 12),
+                        ))
+                      : Image.file(
+                          image,
+                          fit: BoxFit.contain,
+                        ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -248,7 +322,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                               borderRadius: BorderRadius.circular(25),
                             )),
                         onPressed: () {
-                          verifyKematian();
+                          verifyKematian(context);
                         },
                         child: Text(
                           'Kirim',
@@ -265,7 +339,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
     );
   }
 
-  showSuccessDialog() {
+  showSuccessDialog(BuildContext context) {
     AwesomeDialog(
       context: context,
       animType: AnimType.SCALE,
@@ -288,7 +362,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
           penyebab_kematian.clear();
           surat_digunakan_untuk.clear();
         });
-        snackBarSucces();
+        snackBarSucces(context);
         Navigator.pop(context);
       },
       btnCancelOnPress: () {
@@ -300,7 +374,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
     ).show();
   }
 
-  snackBarSucces() {
+  snackBarSucces(BuildContext context){
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         elevation: 0,
         backgroundColor: Colors.transparent,

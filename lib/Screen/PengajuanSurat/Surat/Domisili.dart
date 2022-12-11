@@ -98,7 +98,7 @@ class _DomisiliState extends State<Domisili> {
       "tgl_surat_rt_rw": tgl_surat_rt_rw.text,
       "no_surat": no_surat.text,
       "alamat_domisili_di_kel_kepu": alamat_domisili_di_kel_kepu.text,
-      "tgl_surat_dibuat": tgl_dibuat.text,
+      "tgl_surat_dibuat": tgl_surat_dibuat.text,
       "surat_digunakan_untuk": surat_digunakan_untuk.text,
     });
     showSuccessDialog(context);

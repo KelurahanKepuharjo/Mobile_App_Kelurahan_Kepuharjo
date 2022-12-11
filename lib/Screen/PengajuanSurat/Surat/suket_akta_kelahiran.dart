@@ -400,13 +400,34 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                     length: 3,
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: kebangsaan_ayah,
-                hintName: "Kebangsaan Ayah",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                    length: 10,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromARGB(179, 234, 234, 234),
+                ),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_kebangsaan = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_kebangsaan,
+                  style: poppinsMediumBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(20),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Kebangsaan Ayah",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.grey.shade300,
+                  items: kb.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(
                 height: 5,
@@ -456,13 +477,34 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                     length: 3,
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: kebangsaan_ibu,
-                hintName: "Kebangsaan Ibu",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                    length: 20,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromARGB(179, 234, 234, 234),
+                ),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_kebangsaan = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_kebangsaan,
+                  style: poppinsMediumBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(20),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Kebangsaan Ibu",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.grey.shade300,
+                  items: kb.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(
                 height: 5,
