@@ -9,8 +9,7 @@ class ApiConnect {
   //read data berita
   static const berita = "$connectApi/read_berita.php";
   //postsurat keterangan tidak mampu
-  static const sktm = "$connectApi/suket_tidakmampu.php";
-  static const sktmwi = "$connectApi/surat_tidak_mampu.php";
+  static const sktm = "$connectApi/surat_tidak_mampu.php";
   //postsurat keterangan Domisili
   static const domisili = "$connectApi/domisili.php";
   //postsurat keterangan akta
