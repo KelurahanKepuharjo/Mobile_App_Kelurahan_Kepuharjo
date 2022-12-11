@@ -1,6 +1,6 @@
 part of 'shared.dart';
 
-Color blueColor = Color(0xFF0FA8EA);
+Color blueColor = const Color(0xFF0FA8EA);
 Color whiteColor = Colors.white;
 Color blackColor = Colors.black;
 Color darkgreenColor = Colors.indigo.shade800;
