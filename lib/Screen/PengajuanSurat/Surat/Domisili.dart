@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
@@ -38,12 +39,14 @@ final agama = TextEditingController();
 final status_perkawinan = TextEditingController();
 final pekerjaan = TextEditingController();
 final nik = TextEditingController();
-final alamat = TextEditingController();
 final RT = TextEditingController();
 final RW = TextEditingController();
+final alamat = TextEditingController();
+final tgl_surat_rt_rw = TextEditingController();
+final pengantar_rt_rw = TextEditingController();
 final no_pengantar_surat = TextEditingController();
 final tgl_surat_pengantar = TextEditingController();
-final alamat_domisili_kel_kepu = TextEditingController();
+final alamat_domisili_di_kel_kepu = TextEditingController();
 final surat_digunakan_untuk = TextEditingController();
 final tgl_surat_dibuat = TextEditingController();
 final id_akun = TextEditingController();
@@ -91,6 +94,11 @@ class _DomisiliState extends State<Domisili> {
       "pekerjaan": pekerjaan.text,
       "nik": nik.text,
       "alamat": alamat.text,
+      "pengantar_rt_rw": pengantar_rt_rw.text,
+      "tgl_surat_rt_rw": tgl_surat_rt_rw.text,
+      "no_surat": no_surat.text,
+      "alamat_domisili_di_kel_kepu": alamat_domisili_di_kel_kepu.text,
+      "tgl_surat_dibuat": tgl_dibuat.text,
       "surat_digunakan_untuk": surat_digunakan_untuk.text,
     });
     showSuccessDialog(context);
@@ -112,6 +120,11 @@ class _DomisiliState extends State<Domisili> {
     req.fields['pekerjaan'] = pekerjaan.text;
     req.fields['nik'] = nik.text;
     req.fields['alamat'] = alamat.text;
+    req.fields['pengantar_rt_rw'] = pengantar_rt_rw.text;
+    req.fields['tgl_surat_rt_rw'] = tgl_surat_rt_rw.text;
+    req.fields['no_surat'] = no_surat.text;
+    req.fields['alamat_domisili_kel_kepu'] = alamat_domisili_di_kel_kepu.text;
+    req.fields['tgl_surat_dibuat'] = tgl_surat_dibuat.text;
     req.fields['surat_digunakan_untuk'] = surat_digunakan_untuk.text;
     var pic = http.MultipartFile("image", stream, length,
         filename: basename(imageFile.path));
