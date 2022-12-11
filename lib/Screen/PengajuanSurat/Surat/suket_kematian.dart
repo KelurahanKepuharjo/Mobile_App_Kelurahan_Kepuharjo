@@ -42,30 +42,6 @@ final tanggal_dibuat = TextEditingController();
 final id_akun = TextEditingController();
 
 class _KematianState extends State<Kematian> {
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   verifySKTM();
-  // }
-
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   super.dispose();
-  //   nama.dispose();
-  //   tempatlahir.dispose();
-  //   tgllhir.dispose();
-  //   jk.dispose();
-  //   kebangsaan.dispose();
-  //   agama.dispose();
-  //   status.dispose();
-  //   pekerjaan.dispose();
-  //   nik.dispose();
-  //   alamat.dispose();
-  //   keperluan.dispose();
-  // }
-
   void verifyKematian() {
     if (nama_almarhum.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Almarhum harus diisi");
