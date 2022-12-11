@@ -5,7 +5,7 @@ Color whiteColor = Colors.white;
 Color blackColor = Colors.black;
 Color darkgreenColor = Colors.indigo.shade800;
 Color greyColor = Color.fromRGBO(224, 224, 224, 1);
-Color midGreen = Color(0xFF007ADF);
+Color midGreen = const Color(0xFF007ADF);
 Color lightGreen = const Color(0xFF0acffe);
 
 TextStyle appTextStyle = GoogleFonts.inter(
