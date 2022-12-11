@@ -84,8 +84,7 @@ class _SKTMState extends State<SKTM> {
 
   Future addDataSurat(BuildContext context, File imageFile) async {
     var uri = Uri.parse(ApiConnect.sktmwi);
-    var stream =
-        new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
     var req = http.MultipartRequest('POST', uri);
     req.fields['id_akun'] = _currentUser.user.idAkun;
