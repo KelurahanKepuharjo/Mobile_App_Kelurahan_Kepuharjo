@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -45,6 +46,8 @@ class _WidgetRegisterState extends State<WidgetRegister> {
   final namaController = TextEditingController();
   final passwordController = TextEditingController();
   final tlpController = TextEditingController();
+  bool _loading = false;
+  bool showpass = false;
 
   @override
   Widget build(BuildContext context) {
@@ -90,13 +93,49 @@ class _WidgetRegisterState extends State<WidgetRegister> {
           const SizedBox(
             height: 8,
           ),
-          getTextForm(
-            controller: passwordController,
-            hintName: "Password",
-            isObscureText: true,
-            keyboardType: TextInputType.name,
-            inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
-            length: 20,
+          SizedBox(
+            height: 60,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              children: [
+                TextFormField(
+                  textInputAction: TextInputAction.done,
+                  obscureText: showpass,
+                  controller: passwordController,
+                  style: poppinsMediumBlack,
+                  keyboardType: TextInputType.name,
+                  enabled: true,
+                  onSaved: (val) => passwordController,
+                  validator: (String value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Your Password';
+                    }
+                    return null;
+                  },
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.singleLineFormatter,
+                    LengthLimitingTextInputFormatter(20)
+                  ],
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide.none),
+                      filled: true,
+                      suffixIcon: InkWell(
+                        child: Icon(
+                            showpass ? Icons.visibility : Icons.visibility_off),
+                        onTap: () {
+                          setState(() {
+                            showpass = !showpass;
+                          });
+                        },
+                      ),
+                      fillColor: Color.fromARGB(179, 234, 234, 234),
+                      hintText: "Password",
+                      hintStyle: GoogleFonts.poppins(fontSize: 12)),
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 8,
@@ -111,35 +150,36 @@ class _WidgetRegisterState extends State<WidgetRegister> {
           const SizedBox(
             height: 15,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 45,
-                width: 120,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF2A2A72),
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                      )),
-                  onPressed: () {
-                    setState(() {
-                      verifyRegister();
-                    });
-                  },
-                  child: Text(
-                    'Daftar',
-                    style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white),
+          (_loading)
+              ? SizedBox(
+                  child: SpinKitCircle(
+                  color: whiteColor,
+                  size: 30,
+                ))
+              : SizedBox(
+                  height: 45,
+                  width: 120,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF2A2A72),
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        )),
+                    onPressed: () {
+                      setState(() {
+                        verifyRegister();
+                      });
+                    },
+                    child: Text(
+                      'Daftar',
+                      style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
           const SizedBox(
             height: 15,
           ),
@@ -199,15 +239,24 @@ class _WidgetRegisterState extends State<WidgetRegister> {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         if (data == "Error") {
+          setState(() {
+            _loading = false;
+          });
           snackBarFailed();
         } else {
-          snackBarSucces();
           setState(() {
+            _loading = true;
             nikController.clear();
             namaController.clear();
             passwordController.clear();
             tlpController.clear();
           });
+          snackBarSucces();
+          // ignore: use_build_context_synchronously
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const AppeareaceLogin()),
+              (Route<dynamic> route) => false);
         }
       }
     } catch (e) {

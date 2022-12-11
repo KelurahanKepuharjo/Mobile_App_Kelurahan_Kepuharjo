@@ -1,13 +1,18 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
+import 'package:async/async.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
-import 'package:kepuharjo_app/Comm/getDropdown.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
@@ -31,10 +36,9 @@ final pekerjaan = TextEditingController();
 final nik = TextEditingController();
 final alamat = TextEditingController();
 final keperluan = TextEditingController();
-final _value = String;
 
 class _SKTMState extends State<SKTM> {
-  void verifySKTM() {
+  void verifySKTM(BuildContext context) {
     if (nama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Lengkap harus diisi");
     } else if (tempatlahir.text.isEmpty) {
@@ -54,19 +58,19 @@ class _SKTMState extends State<SKTM> {
     } else if (keperluan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Keperluan harus diisi");
     } else {
-      addData();
+      addDataSurat(context, image);
     }
   }
 
   final CurrentUser _currentUser = Get.put(CurrentUser());
-  void addData() async {
+  void addData(context) async {
     await http.post(Uri.parse(ApiConnect.sktm), body: {
       "id_akun": _currentUser.user.idAkun,
       "nama": nama.text,
       "tempat_lahir": tempatlahir.text,
       "tanggal_lahir": tgllhir.text,
-      "jenis_kelamin": _value,
-      "kebangsaan": val,
+      "jenis_kelamin": val_jk,
+      "kebangsaan": val_kebangsaan,
       "agama": agama.text,
       "status": status.text,
       "pekerjaan": pekerjaan.text,
@@ -75,13 +79,54 @@ class _SKTMState extends State<SKTM> {
       "tgl_pengajuan": DateTime.now().toString(),
       "keperluan": keperluan.text,
     });
-    showSuccessDialog();
+    showSuccessDialog(context);
   }
 
-  String _value;
-  String val;
+  Future addDataSurat(BuildContext context, File imageFile) async {
+    var uri = Uri.parse(ApiConnect.sktmwi);
+    var stream =
+        new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var length = await imageFile.length();
+    var req = http.MultipartRequest('POST', uri);
+    req.fields['id_akun'] = _currentUser.user.idAkun;
+    req.fields['nama'] = nama.text;
+    req.fields['tempat_lahir'] = tempatlahir.text;
+    req.fields['tanggal_lahir'] = tgllhir.text;
+    req.fields['jenis_kelamin'] = val_jk;
+    req.fields['kebangsaan'] = val_kebangsaan;
+    req.fields['agama'] = agama.text;
+    req.fields['status'] = status.text;
+    req.fields['pekerjaan'] = pekerjaan.text;
+    req.fields['nik'] = nik.text;
+    req.fields['alamat'] = alamat.text;
+    req.fields['tgl_pengajuan'] = DateTime.now().toString();
+    req.fields['keperluan'] = keperluan.text;
+    var pic = http.MultipartFile("image", stream, length,
+        filename: basename(imageFile.path));
+    req.files.add(pic);
+    var response = await req.send();
+    if (response.statusCode == 200) {
+      print("ok");
+      showSuccessDialog(context);
+    } else {
+      print("Ga");
+    }
+  }
+
+  Future getImageGalerry() async {
+    final picker = ImagePicker();
+    final imageFile = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      image = File(imageFile.path);
+    });
+  }
+
+  File image;
+  String val_jk;
+  String val_kebangsaan;
   List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
+  // final picker = ImagePicker()
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -162,11 +207,11 @@ class _SKTMState extends State<SKTM> {
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
-                      _value = value;
+                      val_jk = value;
                     });
                   },
                   underline: SizedBox(),
-                  value: _value,
+                  value: val_jk,
                   style: poppinsMediumBlack,
                   iconSize: 25,
                   isExpanded: true,
@@ -174,9 +219,8 @@ class _SKTMState extends State<SKTM> {
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Jenis Kelamin",
-                      style: poppinsSmallBlack.copyWith(
-                          color: Color.fromARGB(155, 0, 0, 0))),
-                  dropdownColor: Colors.white,
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.grey.shade300,
                   items: jkl.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -193,11 +237,11 @@ class _SKTMState extends State<SKTM> {
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
-                      val = value;
+                      val_kebangsaan = value;
                     });
                   },
                   underline: SizedBox(),
-                  value: val,
+                  value: val_kebangsaan,
                   style: poppinsMediumBlack,
                   iconSize: 25,
                   isExpanded: true,
@@ -205,9 +249,8 @@ class _SKTMState extends State<SKTM> {
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Kebangsaan",
-                      style: poppinsSmallBlack.copyWith(
-                          color: Color.fromARGB(155, 0, 0, 0))),
-                  dropdownColor: Colors.white,
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.grey.shade300,
                   items: kb.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -266,6 +309,30 @@ class _SKTMState extends State<SKTM> {
                     FilteringTextInputFormatter.singleLineFormatter,
                 length: 150,
               ),
+              const SizedBox(height: 5),
+              InkWell(
+                onTap: () {
+                  getImageGalerry();
+                },
+                child: Container(
+                  height: 150,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color.fromARGB(179, 234, 234, 234),
+                  ),
+                  child: image == null
+                      ? Center(
+                          child: Text(
+                          'Upload Foto KK',
+                          style: GoogleFonts.poppins(fontSize: 12),
+                        ))
+                      : Image.file(
+                          image,
+                          fit: BoxFit.contain,
+                        ),
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -287,7 +354,7 @@ class _SKTMState extends State<SKTM> {
                               borderRadius: BorderRadius.circular(25),
                             )),
                         onPressed: () {
-                          verifySKTM();
+                          verifySKTM(context);
                         },
                         child: Text(
                           'Kirim',
@@ -304,7 +371,7 @@ class _SKTMState extends State<SKTM> {
     );
   }
 
-  showSuccessDialog() {
+  showSuccessDialog(BuildContext context) {
     AwesomeDialog(
       context: context,
       animType: AnimType.SCALE,
@@ -328,7 +395,7 @@ class _SKTMState extends State<SKTM> {
           keperluan.clear();
           jk.clear();
         });
-        snackBarSucces();
+        snackBarSucces(context);
         Navigator.pop(context);
       },
       btnCancelOnPress: () {
@@ -340,7 +407,7 @@ class _SKTMState extends State<SKTM> {
     ).show();
   }
 
-  snackBarSucces() {
+  snackBarSucces(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         elevation: 0,
         backgroundColor: Colors.transparent,

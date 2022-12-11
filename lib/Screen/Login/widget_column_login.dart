@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:kepuharjo_app/Api/Api_connect.dart';
-import 'package:kepuharjo_app/Comm/getDropdown.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
@@ -40,6 +41,9 @@ class _WidgetLoginState extends State<WidgetLogin> {
     nikController.dispose();
     passwordController.dispose();
   }
+
+  bool _loading = false;
+  bool showpass = false;
 
   TextEditingController nikController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -76,13 +80,49 @@ class _WidgetLoginState extends State<WidgetLogin> {
           const SizedBox(
             height: 15,
           ),
-          getTextForm(
-            controller: passwordController,
-            hintName: "Password",
-            isObscureText: true,
-            keyboardType: TextInputType.name,
-            inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
-            length: 255,
+          SizedBox(
+            height: 60,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              children: [
+                TextFormField(
+                  textInputAction: TextInputAction.done,
+                  obscureText: showpass,
+                  controller: passwordController,
+                  style: poppinsMediumBlack,
+                  keyboardType: TextInputType.name,
+                  enabled: true,
+                  onSaved: (val) => passwordController,
+                  validator: (String value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Your Password';
+                    }
+                    return null;
+                  },
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.singleLineFormatter,
+                    LengthLimitingTextInputFormatter(20)
+                  ],
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide.none),
+                      filled: true,
+                      suffixIcon: InkWell(
+                        child: Icon(
+                            showpass ? Icons.visibility : Icons.visibility_off),
+                        onTap: () {
+                          setState(() {
+                            showpass = !showpass;
+                          });
+                        },
+                      ),
+                      fillColor: Color.fromARGB(179, 234, 234, 234),
+                      hintText: "Password",
+                      hintStyle: GoogleFonts.poppins(fontSize: 12)),
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -110,31 +150,31 @@ class _WidgetLoginState extends State<WidgetLogin> {
           const SizedBox(
             height: 20,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 45,
-                width: 120,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF2A2A72),
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        )),
-                    onPressed: () {
-                      showLoader();
-                      verifyLogin();
-                    },
-                    child: Text(
-                      'Masuk',
-                      style: poppinsLargeBlack.copyWith(
-                          fontWeight: FontWeight.w400, color: Colors.white),
-                    )),
-              ),
-            ],
-          ),
+          (_loading)
+              ? SizedBox(
+                  child: SpinKitCircle(
+                  color: whiteColor,
+                  size: 30,
+                ))
+              : SizedBox(
+                  height: 45,
+                  width: 120,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF2A2A72),
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          )),
+                      onPressed: () {
+                        verifyLogin();
+                      },
+                      child: Text(
+                        'Masuk',
+                        style: poppinsLargeBlack.copyWith(
+                            fontWeight: FontWeight.w400, color: Colors.white),
+                      )),
+                ),
           const SizedBox(
             height: 15,
           ),
@@ -189,6 +229,9 @@ class _WidgetLoginState extends State<WidgetLogin> {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         if (data['success'] == true) {
+          setState(() {
+            _loading = true;
+          });
           snackBarSucces();
           User userInfo = User.fromJson(data['user']);
           await RememberUser().storeUser(json.encode(userInfo));
@@ -198,6 +241,9 @@ class _WidgetLoginState extends State<WidgetLogin> {
               MaterialPageRoute(builder: (_) => const HomeScreen()),
               (Route<dynamic> route) => false);
         } else {
+          setState(() {
+            _loading = false;
+          });
           snackBarFailed();
         }
       }
@@ -227,42 +273,5 @@ class _WidgetLoginState extends State<WidgetLogin> {
             title: "Berhasil",
             message: "Selamat, Anda Berhasil Login",
             contentType: ContentType.success)));
-  }
-
-  showLoader() {
-    AlertDialog alertDialog = AlertDialog(
-      backgroundColor: Colors.transparent,
-      content: Container(
-        // width: 100,
-        height: 100,
-        margin: const EdgeInsets.all(7),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.grey.shade300,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const CircularProgressIndicator(
-              color: Color(0xFF2A2A72),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Text(
-              "Loading...",
-              style: blackTextStyle.copyWith(fontSize: 12),
-            ),
-          ],
-        ),
-      ),
-    );
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        return alertDialog;
-      },
-    );
   }
 }

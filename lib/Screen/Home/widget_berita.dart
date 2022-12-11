@@ -59,6 +59,8 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                           child: Column(
                             children: [
                               Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     isiData[index].judul,

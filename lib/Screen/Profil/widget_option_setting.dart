@@ -98,11 +98,6 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
                   contentType: ContentType.success)));
         });
       },
-      btnCancelOnPress: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const AppearanceProfil()));
-      },
-      btnCancelIcon: Icons.close,
       btnOkIcon: Icons.done,
     ).show();
   }

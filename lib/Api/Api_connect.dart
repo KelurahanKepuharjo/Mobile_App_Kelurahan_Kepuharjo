@@ -1,5 +1,5 @@
 class ApiConnect {
-  static const hostConnect = "http://192.168.0.117/Web_Kelurahan_Kepuharjo";
+  static const hostConnect = "http://192.168.200.87/Web_Kelurahan_Kepuharjo";
   static const connectApi = "$hostConnect/Api";
 
   //login
@@ -10,6 +10,7 @@ class ApiConnect {
   static const berita = "$connectApi/read_berita.php";
   //postsurat keterangan tidak mampu
   static const sktm = "$connectApi/suket_tidakmampu.php";
+  static const sktmwi = "$connectApi/surat_tidak_mampu.php";
   //postsurat keterangan Domisili
   static const domisili = "$connectApi/domisili.php";
   //postsurat keterangan akta
