@@ -1,13 +1,17 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
+import 'package:async/async.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
@@ -39,7 +43,7 @@ final alamat = TextEditingController();
 final id_akun = TextEditingController();
 
 class _BelumNikahState extends State<BelumNikah> {
-  void verifyBelumNikah() {
+  void verifyBelumNikah(BuildContext context) {
     if (nama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama harus diisi");
     } else if (tempat_lahir.text.isEmpty) {
@@ -62,11 +66,11 @@ class _BelumNikahState extends State<BelumNikah> {
       Fluttertoast.showToast(msg: "Alamat harus diisi");
     } else if (surat_digunakan_untuk.text.isEmpty) {
       Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
-      addData();
+      addDataSurat(context, image);
     }
   }
 final CurrentUser _currentUser = Get.put(CurrentUser());
-  void addData() async {
+  void addData(BuildContext context) async {
     await http.post(Uri.parse(ApiConnect.belumNikah), body: {
       "id_akun": _currentUser.user.idAkun,
       "nama": nama.text,
@@ -82,8 +86,51 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
       "tgl_pengajuan": tgl_pengajuan.text,
       "surat_digunakan_untuk": surat_digunakan_untuk.text,
     });
-    showSuccessDialog();
+    showSuccessDialog(context);
   }
+
+Future addDataSurat(BuildContext context, File imageFile) async {
+    var uri = Uri.parse(ApiConnect.belumNikah);
+    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var length = await imageFile.length();
+    var req = http.MultipartRequest('POST', uri);
+    req.fields['id_akun'] = _currentUser.user.idAkun;
+    req.fields['nama'] = nama.text;
+    req.fields['tempat_lahir'] = tempat_lahir.text;
+   req.fields['tanggal_lahir'] = tanggal_lahir.text;
+   req.fields['jenis_kelamin'] = jenis_kelamin.text;
+   req.fields['kebangsaan'] = kebangsaan.text;
+   req.fields['agama'] = agama.text;
+   req.fields['status'] = status.text;
+   req.fields['pekerjaan'] = pekerjaan.text;
+   req.fields['nik'] = nik.text;
+   req.fields['alamat'] = alamat.text;
+    req.fields['tgl_pengajuan'] = tgl_pengajuan.text;
+    req.fields['surat_digunakan_untuk'] = surat_digunakan_untuk.text;
+    var pic = http.MultipartFile("image", stream, length,
+        filename: basename(imageFile.path));
+    req.files.add(pic);
+    var response = await req.send();
+    if (response.statusCode == 200) {
+      print("ok");
+      showSuccessDialog(context);
+    } else {
+      print("Ga");
+    }
+  }
+
+   Future getImageGalerry() async {
+    final picker = ImagePicker();
+    final imageFile = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      image = File(imageFile.path);
+    });
+  }
+  File image;
+  String val_jenis_kelamin;
+  String val_kebangsaan;
+  List jkl = ["Laki Laki", "Perempuan"];
+  List kb = ["WNI", "WNA"];
 
   @override
   Widget build(BuildContext context) {
@@ -165,22 +212,64 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 controller: tanggal_lahir,
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: jenis_kelamin,
-                hintName: "Jenis Kelamin",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                    length: 10,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color.fromARGB(179, 234, 234, 234),
+                ),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_jenis_kelamin = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_jenis_kelamin,
+                  style: poppinsMediumBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(20),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Jenis Kelamin",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.grey.shade300,
+                  items: jkl.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: kebangsaan,
-                hintName: "Kebangsaan",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                    length: 9,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromARGB(179, 234, 234, 234),
+                ),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_kebangsaan = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_kebangsaan,
+                  style: poppinsMediumBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(20),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Kebangsaan",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.grey.shade300,
+                  items: kb.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -220,7 +309,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
               const SizedBox(height: 5),
               getTextForm(
                 controller: alamat,
-                hintName: "Alamat",
+                hintName: "Alamat Sesuai Ktp",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
@@ -254,7 +343,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                               borderRadius: BorderRadius.circular(25),
                             )),
                         onPressed: () {
-                          verifyBelumNikah();
+                          verifyBelumNikah(context);
                         },
                         child: Text(
                           'Kirim',
@@ -271,7 +360,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
     );
   }
 
-  showSuccessDialog() {
+  showSuccessDialog(BuildContext context) {
     AwesomeDialog(
       context: context,
       animType: AnimType.SCALE,
@@ -296,7 +385,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
           alamat.clear();
           surat_digunakan_untuk.clear();
         });
-        snackBarSucces();
+        snackBarSucces(context);
         Navigator.pop(context);
       },
       btnCancelOnPress: () {
@@ -308,7 +397,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
     ).show();
   }
 
-  snackBarSucces() {
+  snackBarSucces(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         elevation: 0,
         backgroundColor: Colors.transparent,

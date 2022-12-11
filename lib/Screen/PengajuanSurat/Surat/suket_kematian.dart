@@ -95,7 +95,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
   }
 
 Future addDataSurat(BuildContext context, File imageFile) async {
-    var uri = Uri.parse(ApiConnect.akta);
+    var uri = Uri.parse(ApiConnect.kematian);
     var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
     var req = http.MultipartRequest('POST', uri);
