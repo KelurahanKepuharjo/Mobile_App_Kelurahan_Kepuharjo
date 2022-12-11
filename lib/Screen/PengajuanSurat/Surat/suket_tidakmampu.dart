@@ -201,7 +201,7 @@ class _SKTMState extends State<SKTM> {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Color.fromARGB(179, 234, 234, 234),
+                  color: const Color.fromARGB(179, 234, 234, 234),
                 ),
                 child: DropdownButton(
                   onChanged: (value) {
