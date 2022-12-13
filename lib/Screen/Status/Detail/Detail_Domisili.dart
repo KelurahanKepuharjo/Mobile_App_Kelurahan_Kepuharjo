@@ -94,8 +94,6 @@ class _DetailDomisiliState extends State<DetailDomisili> {
                 "RT : ${widget.list[widget.index].rT}"),
             getDetailSurat("RW : ${widget.list[widget.index].rW}"),
             getDetailSurat("surat digunakan untuk : ${widget.list[widget.index].suratDigunakanUntuk}"),
-            getDetailSurat(
-                "Tanggal Pengajuan : ${widget.list[widget.index].tglSuratDibuat}"),
           ],
         ),
       ),

@@ -15,6 +15,7 @@ class SuratDomisili extends StatefulWidget {
 class _SuratDomisiliState extends State<SuratDomisili> {
   ServiceApi serviceApi = ServiceApi();
   Future<List<cDomisili>> listdata;
+  
   @override
   void initState() {
     // TODO: implement initState
