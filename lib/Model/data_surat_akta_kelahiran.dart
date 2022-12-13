@@ -5,6 +5,7 @@ class cAkta {
   String tempatLahir;
   String tanggalLahir;
   String jenisKelamin;
+  String kebangsaan;
   String agama;
   String status;
   String pekerjaan;
@@ -26,10 +27,9 @@ class cAkta {
   String rW;
   String statusSurat;
   String tglPengajuan;
+  String keperluan;
   String image;
   String idAkun;
-
-  var Keperluan;
 
   cAkta(
       {this.idSurat,
@@ -38,6 +38,7 @@ class cAkta {
       this.tempatLahir,
       this.tanggalLahir,
       this.jenisKelamin,
+      this.kebangsaan,
       this.agama,
       this.status,
       this.pekerjaan,
@@ -59,6 +60,7 @@ class cAkta {
       this.rW,
       this.statusSurat,
       this.tglPengajuan,
+      this.keperluan,
       this.image,
       this.idAkun});
 
@@ -69,6 +71,7 @@ class cAkta {
     tempatLahir = json['tempat_lahir'];
     tanggalLahir = json['tanggal_lahir'];
     jenisKelamin = json['jenis_kelamin'];
+    kebangsaan = json['kebangsaan'];
     agama = json['agama'];
     status = json['status'];
     pekerjaan = json['pekerjaan'];
@@ -90,6 +93,7 @@ class cAkta {
     rW = json['RW'];
     statusSurat = json['status_surat'];
     tglPengajuan = json['tgl_pengajuan'];
+    keperluan = json['keperluan'];
     image = json['image'];
     idAkun = json['id_akun'];
   }
@@ -102,6 +106,7 @@ class cAkta {
     data['tempat_lahir'] = this.tempatLahir;
     data['tanggal_lahir'] = this.tanggalLahir;
     data['jenis_kelamin'] = this.jenisKelamin;
+    data['kebangsaan'] = this.kebangsaan;
     data['agama'] = this.agama;
     data['status'] = this.status;
     data['pekerjaan'] = this.pekerjaan;
@@ -123,6 +128,7 @@ class cAkta {
     data['RW'] = this.rW;
     data['status_surat'] = this.statusSurat;
     data['tgl_pengajuan'] = this.tglPengajuan;
+    data['keperluan'] = this.keperluan;
     data['image'] = this.image;
     data['id_akun'] = this.idAkun;
     return data;

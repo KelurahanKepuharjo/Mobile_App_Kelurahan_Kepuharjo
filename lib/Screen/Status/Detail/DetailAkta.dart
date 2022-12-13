@@ -106,7 +106,7 @@ class _DetailAktaState extends State<DetailAkta> {
             getDetailSurat(
               "RT : ${widget.list[widget.index].rT}"),
             getDetailSurat("RW : ${widget.list[widget.index].rW}"),
-            getDetailSurat("Keperluan : ${widget.list[widget.index].Keperluan}"),
+            getDetailSurat("Keperluan : ${widget.list[widget.index].keperluan}"),
           ],
         ),
       ),
