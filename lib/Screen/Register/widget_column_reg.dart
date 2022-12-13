@@ -145,7 +145,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
             hintName: "No.Telepon",
             keyboardType: TextInputType.number,
             inputFormatters: FilteringTextInputFormatter.digitsOnly,
-            length: 12,
+            length: 13,
           ),
           const SizedBox(
             height: 15,

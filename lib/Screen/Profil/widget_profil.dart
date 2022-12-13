@@ -6,7 +6,7 @@ import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/detail_profile.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetShowProfile extends StatefulWidget {
-  WidgetShowProfile({Key key});
+  const WidgetShowProfile({Key key}) : super(key: key);
 
   @override
   State<WidgetShowProfile> createState() => _WidgetShowProfileState();
@@ -34,22 +34,6 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
                   ),
                 ),
               ),
-              Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Container(
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Color(0xFF2A2A72),
-                    ),
-                    child: Icon(
-                      Icons.mode_edit,
-                      color: whiteColor,
-                      size: 20,
-                    ),
-                  ))
             ],
           ),
           const SizedBox(
@@ -63,7 +47,7 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
                 style: boldTextStyle.copyWith(fontSize: 18, color: blackColor),
               ),
               Text(
-                "Nik : " + _currentUser.user.idAkun,
+                "Nik : ${_currentUser.user.idAkun}",
                 style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: blackColor,
