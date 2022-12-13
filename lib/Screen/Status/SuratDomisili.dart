@@ -12,7 +12,7 @@ class SuratDomisili extends StatefulWidget {
 }
 
 class _SuratDomisiliState extends State<SuratDomisili> {
-  ServiceApiNews serviceApi = ServiceApiNews();
+  ServiceApi serviceApi = ServiceApi();
   Future<List<cDomisili>> listdataDomisili;
   @override
   void initState() {

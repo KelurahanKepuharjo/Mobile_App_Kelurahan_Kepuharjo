@@ -13,7 +13,7 @@ class WidgetBerita extends StatefulWidget {
 }
 
 class _WidgetBeritaState extends State<WidgetBerita> {
-  ServiceApiNews serviceApi = ServiceApiNews();
+  ServiceApi serviceApi = ServiceApi();
   Future<List<cNews>> listdata;
   @override
   void initState() {

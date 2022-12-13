@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
-import 'package:kepuharjo_app/Model/data_surat_kematian.dart';
 import 'package:kepuharjo_app/Model/data_surat_pindah.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -13,7 +12,7 @@ class SuratPindah extends StatefulWidget {
 }
 
 class _SuratPindahState extends State<SuratPindah> {
-  ServiceApiNews serviceApi = ServiceApiNews();
+  ServiceApi serviceApi = ServiceApi();
   Future<List<cPindah>> listdata;
 
   @override
@@ -22,8 +21,8 @@ class _SuratPindahState extends State<SuratPindah> {
     super.initState();
     listdata = serviceApi.getpindah();
   }
-  
-   @override
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: FutureBuilder<List<cPindah>>(
@@ -103,4 +102,3 @@ class _SuratPindahState extends State<SuratPindah> {
     );
   }
 }
-

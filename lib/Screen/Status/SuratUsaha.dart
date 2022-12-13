@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
-import 'package:kepuharjo_app/Model/data_surat_belum_nikah.dart';
-import 'package:kepuharjo_app/Model/data_surat_kematian.dart';
 import 'package:kepuharjo_app/Model/data_surat_usaha.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -14,7 +12,7 @@ class SuratUsaha extends StatefulWidget {
 }
 
 class _SuratUsahaState extends State<SuratUsaha> {
-  ServiceApiNews serviceApi = ServiceApiNews();
+  ServiceApi serviceApi = ServiceApi();
   Future<List<cUsaha>> listdata;
 
   @override

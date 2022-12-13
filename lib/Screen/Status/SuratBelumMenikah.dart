@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/data_surat_belum_nikah.dart';
-import 'package:kepuharjo_app/Model/data_surat_kematian.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class SuratBelumNikah extends StatefulWidget {
@@ -13,7 +12,7 @@ class SuratBelumNikah extends StatefulWidget {
 }
 
 class _SuratBelumNikahState extends State<SuratBelumNikah> {
-  ServiceApiNews serviceApi = ServiceApiNews();
+  ServiceApi serviceApi = ServiceApi();
   Future<List<cBelumNikah>> listdata;
 
   @override
@@ -22,8 +21,8 @@ class _SuratBelumNikahState extends State<SuratBelumNikah> {
     super.initState();
     listdata = serviceApi.getbelumnikah();
   }
-  
-   @override
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: FutureBuilder<List<cBelumNikah>>(
@@ -103,4 +102,3 @@ class _SuratBelumNikahState extends State<SuratBelumNikah> {
     );
   }
 }
-

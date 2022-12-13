@@ -13,7 +13,7 @@ class SuratSKTM extends StatefulWidget {
 }
 
 class _SuratSKTMState extends State<SuratSKTM> {
-  ServiceApiNews serviceApi = ServiceApiNews();
+  ServiceApi serviceApi = ServiceApi();
   Future<List<cSktm>> listdata;
 
   @override

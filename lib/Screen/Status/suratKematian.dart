@@ -12,7 +12,7 @@ class SuratKematian extends StatefulWidget {
 }
 
 class _SuratKematianState extends State<SuratKematian> {
-  ServiceApiNews serviceApi = ServiceApiNews();
+  ServiceApi serviceApi = ServiceApi();
   Future<List<cKematian>> listdata;
 
   @override
@@ -21,8 +21,8 @@ class _SuratKematianState extends State<SuratKematian> {
     super.initState();
     listdata = serviceApi.getkematian();
   }
-  
-   @override
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: FutureBuilder<List<cKematian>>(
@@ -102,4 +102,3 @@ class _SuratKematianState extends State<SuratKematian> {
     );
   }
 }
-
