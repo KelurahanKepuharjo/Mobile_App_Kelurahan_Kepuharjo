@@ -86,6 +86,7 @@ class _SKTMState extends State<SKTM> {
     req.fields['pekerjaan'] = pekerjaan.text;
     req.fields['nik'] = nik.text;
     req.fields['alamat'] = alamat.text;
+    req.fields['status_surat'] = statusSurat;
     req.fields['tgl_pengajuan'] = DateTime.now().toString();
     req.fields['keperluan'] = keperluan.text;
     req.fields['RT'] = rT.text;
@@ -110,6 +111,7 @@ class _SKTMState extends State<SKTM> {
     });
   }
 
+  String statusSurat = "Diajukan";
   File image;
   String val_jk;
   String val_kebangsaan;
@@ -399,15 +401,12 @@ class _SKTMState extends State<SKTM> {
           alamat.clear();
           keperluan.clear();
           jk.clear();
+          rT.clear();
+          rW.clear();
         });
         snackBarSucces(context);
         Navigator.pop(context);
       },
-      btnCancelOnPress: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const SKTM()));
-      },
-      btnCancelIcon: Icons.close,
       btnOkIcon: Icons.done,
     ).show();
   }
