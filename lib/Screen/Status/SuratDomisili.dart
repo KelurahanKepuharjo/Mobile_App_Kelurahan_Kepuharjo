@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/data_surat_domisili.dart';
+import 'package:kepuharjo_app/Screen/Status/Detail/Detail_Domisili.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class SuratDomisili extends StatefulWidget {
@@ -13,24 +14,24 @@ class SuratDomisili extends StatefulWidget {
 
 class _SuratDomisiliState extends State<SuratDomisili> {
   ServiceApi serviceApi = ServiceApi();
-  Future<List<cDomisili>> listdataDomisili;
+  Future<List<cDomisili>> listdata;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    listdataDomisili = serviceApi.getDomisili();
+    listdata = serviceApi.getDomisili();
   }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: FutureBuilder<List<cDomisili>>(
-        future: listdataDomisili,
+        future: listdata,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            List<cDomisili> isiData = snapshot.data;
+            List<cDomisili> list = snapshot.data;
             return ListView.builder(
-              itemCount: isiData.length,
+              itemCount: list.length,
               itemBuilder: (context, index) {
                 return Container(
                   margin:
@@ -40,8 +41,16 @@ class _SuratDomisiliState extends State<SuratDomisili> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       ListTile(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => DetailDomisili(
+                              list: list,
+                              index: index,
+                            ),
+                          ));
+                        },
                         title: Text(
-                          isiData[index].nama,
+                          list[index].nama,
                           style: GoogleFonts.poppins(
                               fontSize: 16,
                               color: blackColor,
@@ -63,7 +72,7 @@ class _SuratDomisiliState extends State<SuratDomisili> {
                           ),
                           child: Center(
                             child: Text(
-                              isiData[index].statusSurat,
+                              list[index].statusSurat,
                               style: GoogleFonts.poppins(
                                 fontSize: 12,
                                 color: const Color(0xFF2A2A72),
