@@ -6,9 +6,6 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,8 +25,6 @@ class Domisili extends StatefulWidget {
   State<Domisili> createState() => _DomisiliState();
 }
 
-final id_surat = TextEditingController();
-final no_surat = TextEditingController();
 final nama = TextEditingController();
 final tempat_lahir = TextEditingController();
 final tanggal_lahir = TextEditingController();
@@ -39,17 +34,10 @@ final agama = TextEditingController();
 final status_perkawinan = TextEditingController();
 final pekerjaan = TextEditingController();
 final nik = TextEditingController();
-final RT = TextEditingController();
-final RW = TextEditingController();
+final rt = TextEditingController();
+final rw = TextEditingController();
 final alamat = TextEditingController();
-final tgl_surat_rt_rw = TextEditingController();
-final pengantar_rt_rw = TextEditingController();
-final no_pengantar_surat = TextEditingController();
-final tgl_surat_pengantar = TextEditingController();
-final alamat_domisili_di_kel_kepu = TextEditingController();
 final surat_digunakan_untuk = TextEditingController();
-final tgl_surat_dibuat = TextEditingController();
-final id_akun = TextEditingController();
 
 class _DomisiliState extends State<Domisili> {
   void verifyDomisili(BuildContext context) {
@@ -73,6 +61,10 @@ class _DomisiliState extends State<Domisili> {
       Fluttertoast.showToast(msg: "Nik harus diisi");
     } else if (alamat.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat harus diisi");
+    } else if (rt.text.isEmpty) {
+      Fluttertoast.showToast(msg: "RT harus diisi");
+    } else if (rw.text.isEmpty) {
+      Fluttertoast.showToast(msg: "RW harus diisi");
     } else if (surat_digunakan_untuk.text.isEmpty) {
       Fluttertoast.showToast(msg: "Surat Digunakan Untuk harus diisi");
     } else {
@@ -89,8 +81,8 @@ class _DomisiliState extends State<Domisili> {
     var req = http.MultipartRequest('POST', uri);
     req.fields['id_akun'] = _currentUser.user.idAkun;
     req.fields['nama'] = nama.text;
-    req.fields['tempat_lahir'] = tempatlahir.text;
-    req.fields['tanggal_lahir'] = tgllhir.text;
+    req.fields['tempat_lahir'] = tempat_lahir.text;
+    req.fields['tanggal_lahir'] = tanggal_lahir.text;
     req.fields['jenis_kelamin'] = val_jenis_kelamin;
     req.fields['kebangsaan'] = val_kebangsaan;
     req.fields['agama'] = agama.text;
@@ -98,12 +90,11 @@ class _DomisiliState extends State<Domisili> {
     req.fields['pekerjaan'] = pekerjaan.text;
     req.fields['nik'] = nik.text;
     req.fields['alamat'] = alamat.text;
-    req.fields['pengantar_rt_rw'] = pengantar_rt_rw.text;
-    req.fields['tgl_surat_rt_rw'] = tgl_surat_rt_rw.text;
-    req.fields['no_surat'] = no_surat.text;
-    req.fields['alamat_domisili_kel_kepu'] = alamat_domisili_di_kel_kepu.text;
-    req.fields['tgl_surat_dibuat'] = tgl_surat_dibuat.text;
+    req.fields['RT'] = rt.text;
+    req.fields['RW'] = rw.text;
     req.fields['surat_digunakan_untuk'] = surat_digunakan_untuk.text;
+    req.fields['status_surat'] = statusSurat;
+    req.fields['tgl_pengajuan'] = DateTime.now().toString();
     var pic = http.MultipartFile("image", stream, length,
         filename: basename(imageFile.path));
     req.files.add(pic);
@@ -125,6 +116,7 @@ class _DomisiliState extends State<Domisili> {
   }
 
   File image;
+  String statusSurat = "Diajukan";
   String val_jenis_kelamin;
   String val_kebangsaan;
   List jkl = ["Laki Laki", "Perempuan"];
@@ -197,7 +189,7 @@ class _DomisiliState extends State<Domisili> {
               ),
               const SizedBox(height: 5),
               getDateTime(
-                controller: tanggal,
+                controller: tanggal_lahir,
               ),
               const SizedBox(height: 5),
               Container(
@@ -386,7 +378,6 @@ class _DomisiliState extends State<Domisili> {
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
         setState(() {
-          id_akun.clear();
           nama.clear();
           tempat_lahir.clear();
           tanggal_lahir.clear();
@@ -397,8 +388,8 @@ class _DomisiliState extends State<Domisili> {
           pekerjaan.clear();
           nik.clear();
           alamat.clear();
-          RT.clear();
-          RW.clear();
+          rt.clear();
+          rw.clear();
           surat_digunakan_untuk.clear();
         });
         snackBarSucces(context);

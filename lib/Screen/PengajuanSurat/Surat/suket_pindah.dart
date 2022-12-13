@@ -30,8 +30,8 @@ class Pindah extends StatefulWidget {
   State<Pindah> createState() => _PindahState();
 }
 
-final id_surat = TextEditingController();
-final tgl_dibuat = TextEditingController();
+final rt = TextEditingController();
+final rw = TextEditingController();
 final no_surat = TextEditingController();
 final sifat = TextEditingController();
 final lampiran = TextEditingController();
@@ -50,7 +50,7 @@ final kabupaten = TextEditingController();
 final provinsi = TextEditingController();
 final alasan_pindah = TextEditingController();
 final pengikut = TextEditingController();
-final tgl_pengajuan= TextEditingController();
+final tgl_pengajuan = TextEditingController();
 final surat_digunakan_untuk = TextEditingController();
 final id_akun = TextEditingController();
 
@@ -86,38 +86,16 @@ class _PindahState extends State<Pindah> {
       Fluttertoast.showToast(msg: "Pengikut harus diisi");
     } else if (surat_digunakan_untuk.text.isEmpty) {
       Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
+    } else if (rt.text.isEmpty) {
+      Fluttertoast.showToast(msg: "RT harus diisi");
+    } else if (rw.text.isEmpty) {
+      Fluttertoast.showToast(msg: "RW harus diisi");
+    } else {
       addDataSurat(context, image);
     }
   }
-final CurrentUser _currentUser = Get.put(CurrentUser());
-  void addData(BuildContext context) async {
-    await http.post(Uri.parse(ApiConnect.pindah), body: {
-      "id_akun": _currentUser.user.idAkun,
-      "nama": nama.text,
-      "tempat_lahir": tempat_lahir.text,
-      "tanggal_lahir": tanggal_lahir.text,
-      "jenis_kelamin": jenis_kelamin.text,
-      "status": status.text,
-      "agama": agama.text,
-      "alamat_asal": alamat_asal.text,
-      "alamat_tujuan": alamat_tujuan.text,
-      "kelurahan": kelurahan.text,
-      "kecamatan": kecamatan.text,
-      "kabupaten": kabupaten.text,
-      "provinsi": provinsi.text,
-      "alasan_pindah": alasan_pindah.text,
-      "pengikut": pengikut.text,
-      "tgl_pengajuan": tgl_pengajuan.text,
-      "surat_digunakan_untuk": surat_digunakan_untuk.text,
-    });
-    // var res = await json.decode(response.body);
-    // if (res == "Success") {
-    //   showSuccessDialog();
-    // } else {
-    //   Fluttertoast.showToast(msg: "gagal");
-    // }
-    showSuccessDialog(context);
-  }
+
+  final CurrentUser _currentUser = Get.put(CurrentUser());
 
   Future addDataSurat(BuildContext context, File imageFile) async {
     var uri = Uri.parse(ApiConnect.pindah);
@@ -140,7 +118,9 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
     req.fields['alasan_pindah'] = alasan_pindah.text;
     req.fields['pengikut'] = pengikut.text;
     req.fields['tgl_pengajuan'] = DateTime.now().toString();
-    req.fields['surat_digunakan_untuk'] = surat_digunakan_untuk.text;
+    req.fields['status_surat'] = statusSurat;
+    req.fields['RT'] = rt.text;
+    req.fields['RW'] = rw.text;
     var pic = http.MultipartFile("image", stream, length,
         filename: basename(imageFile.path));
     req.files.add(pic);
@@ -152,7 +132,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
       print("Ga");
     }
   }
-    
+
   Future getImageGalerry() async {
     final picker = ImagePicker();
     final imageFile = await picker.pickImage(source: ImageSource.gallery);
@@ -160,7 +140,9 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
       image = File(imageFile.path);
     });
   }
+
   File image;
+  String statusSurat = "Diajukan";
   String val_jenis_kelamin;
   String val_kebangsaan;
   List jkl = ["Laki Laki", "Perempuan"];
@@ -222,13 +204,6 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 height: 20,
                 color: Colors.black,
               ),
-              // getTextForm(
-              //   isReadOnly: true,
-              //   controller: id_akun,
-              //   hintName: "Nik anda",
-              //   keyboardType: TextInputType.number,
-              //   inputFormatters: FilteringTextInputFormatter.digitsOnly,
-              // ),
               const SizedBox(height: 5),
               getTextForm(
                 controller: nama,
@@ -236,7 +211,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 60,
+                length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -245,7 +220,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 30,
+                length: 30,
               ),
               const SizedBox(height: 5),
               getDateTime(
@@ -288,7 +263,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 12,
+                length: 12,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -297,7 +272,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 10,
+                length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -306,7 +281,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 60,
+                length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -315,7 +290,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 60,
+                length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -324,7 +299,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 10,
+                length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -333,7 +308,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 10,
+                length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -342,7 +317,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 30,
+                length: 30,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -351,7 +326,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 30,
+                length: 30,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -360,7 +335,7 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 60,
+                length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -369,16 +344,22 @@ final CurrentUser _currentUser = Get.put(CurrentUser());
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 15,
+                length: 15,
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: surat_digunakan_untuk,
-                hintName: "Surat digunakan untuk",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                    length: 225,
+                controller: rt,
+                hintName: "RT",
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
+              ),
+              getTextForm(
+                controller: rw,
+                hintName: "RW",
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
               ),
               InkWell(
                 onTap: () {

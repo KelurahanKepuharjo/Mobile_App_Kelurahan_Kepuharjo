@@ -17,10 +17,6 @@ import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
-import 'package:kepuharjo_app/Model/RememberUser.dart';
-import 'package:kepuharjo_app/Model/User_Model.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class Kematian extends StatefulWidget {
@@ -30,24 +26,23 @@ class Kematian extends StatefulWidget {
   State<Kematian> createState() => _KematianState();
 }
 
-final id_surat = TextEditingController();
-final no_surat = TextEditingController();
+final rt = TextEditingController();
+final rw = TextEditingController();
 final nama_almarhum = TextEditingController();
 final saksi_kematian = TextEditingController();
 final hubungan = TextEditingController();
 final hari = TextEditingController();
 final tanggal = TextEditingController();
-final bulan= TextEditingController();
-final tahun= TextEditingController();
+final bulan = TextEditingController();
+final tahun = TextEditingController();
 final alamat = TextEditingController();
 final nik_almarhum = TextEditingController();
 final penyebab_kematian = TextEditingController();
 final surat_digunakan_untuk = TextEditingController();
 final tgl_dibuat = TextEditingController();
-final id_akun = TextEditingController();
 
 class _KematianState extends State<Kematian> {
-  void verifyKematian(BuildContext context){
+  void verifyKematian(BuildContext context) {
     if (nama_almarhum.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Almarhum harus diisi");
     } else if (saksi_kematian.text.isEmpty) {
@@ -58,7 +53,7 @@ class _KematianState extends State<Kematian> {
       Fluttertoast.showToast(msg: "Hari harus diisi");
     } else if (tanggal.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal harus diisi");
-     } else if (bulan.text.isEmpty) {
+    } else if (bulan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Bulan harus diisi");
     } else if (tahun.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tahun harus diisi");
@@ -70,31 +65,18 @@ class _KematianState extends State<Kematian> {
       Fluttertoast.showToast(msg: "Penyebab Kematian harus diisi");
     } else if (surat_digunakan_untuk.text.isEmpty) {
       Fluttertoast.showToast(msg: "Surat Digunakan harus diisi");
+    } else if (rt.text.isEmpty) {
+      Fluttertoast.showToast(msg: "RT harus diisi");
+    } else if (rw.text.isEmpty) {
+      Fluttertoast.showToast(msg: "RW harus diisi");
+    } else {
       addDataSurat(context, image);
     }
   }
-  
-final CurrentUser _currentUser = Get.put(CurrentUser());
-  void addData(BuildContext context)async {
-    await http.post(Uri.parse(ApiConnect.kematian), body: {
-      "id_akun": _currentUser.user.idAkun,
-      "nama_almarhum": nama_almarhum.text,
-      "saksi_kematian": saksi_kematian.text,
-      "hubungan": hubungan.text,
-      "hari": hari.text,
-      "tanggal": tanggal.text,
-      "bulan": bulan.text,
-      "tahun": tahun.text,
-      "alamat": alamat.text,
-      "nik_almarhum": nik_almarhum.text,
-      "tgl_dibuat": tgl_dibuat.text,
-      "penyebab_kematian": penyebab_kematian.text,
-      "surat_digunakan_untuk": surat_digunakan_untuk.text,
-    });
-    showSuccessDialog(context);
-  }
 
-Future addDataSurat(BuildContext context, File imageFile) async {
+  final CurrentUser _currentUser = Get.put(CurrentUser());
+
+  Future addDataSurat(BuildContext context, File imageFile) async {
     var uri = Uri.parse(ApiConnect.kematian);
     var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
@@ -105,13 +87,14 @@ Future addDataSurat(BuildContext context, File imageFile) async {
     req.fields['hubungan'] = hubungan.text;
     req.fields['hari'] = hari.text;
     req.fields['tanggal'] = tanggal.text;
-    req.fields['bulan'] = bulan.text;
-    req.fields['tahun'] = tahun.text;
     req.fields['alamat'] = alamat.text;
     req.fields['nik_almarhum'] = nik_almarhum.text;
     req.fields['penyebab_kematian'] = penyebab_kematian.text;
-    req.fields['tgl_dibuat'] = DateTime.now().toString();
-    req.fields['surat_digunakan_untuk'] = surat_digunakan_untuk.text;
+    req.fields['surat_digunakan'] = surat_digunakan_untuk.text;
+    req.fields['status_surat'] = statusSurat;
+    req.fields['tgl_pengajuan'] = DateTime.now().toString();
+    req.fields['RT'] = rt.text;
+    req.fields['RW'] = rw.text;
     var pic = http.MultipartFile("image", stream, length,
         filename: basename(imageFile.path));
     req.files.add(pic);
@@ -123,7 +106,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
       print("Ga");
     }
   }
-    
+
   Future getImageGalerry() async {
     final picker = ImagePicker();
     final imageFile = await picker.pickImage(source: ImageSource.gallery);
@@ -131,11 +114,9 @@ Future addDataSurat(BuildContext context, File imageFile) async {
       image = File(imageFile.path);
     });
   }
+
   File image;
-  // String val_jenis_kelamin;
-  // String val_kebangsaan;
-  // List jkl = ["Laki Laki", "Perempuan"];
-  // List kb = ["WNI", "WNA"];
+  String statusSurat = "Diajukan";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -171,16 +152,6 @@ Future addDataSurat(BuildContext context, File imageFile) async {
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: getTextForm(
-                  isReadOnly: true,
-                  controller: id_akun,
-                  hintName: "Nik anda",
-                  keyboardType: TextInputType.number,
-                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
-                ),
-              ),
               Row(
                 children: [
                   Text(
@@ -193,13 +164,6 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 height: 20,
                 color: Colors.black,
               ),
-              // getTextForm(
-              //   isReadOnly: true,
-              //   controller: id_akun,
-              //   hintName: "Nik anda",
-              //   keyboardType: TextInputType.number,
-              //   inputFormatters: FilteringTextInputFormatter.digitsOnly,
-              // ),
               const SizedBox(height: 5),
               getTextForm(
                 controller: nama_almarhum,
@@ -207,7 +171,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 50,
+                length: 50,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -216,7 +180,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 50,
+                length: 50,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -225,7 +189,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 20,
+                length: 20,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -234,7 +198,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 7,
+                length: 7,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -247,17 +211,16 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 30,
+                length: 30,
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: nik_almarhum,
-                hintName: "NIK Almarhum",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                    length :16
-              ),
+                  controller: nik_almarhum,
+                  hintName: "NIK Almarhum",
+                  keyboardType: TextInputType.name,
+                  inputFormatters:
+                      FilteringTextInputFormatter.singleLineFormatter,
+                  length: 16),
               const SizedBox(height: 5),
               getTextForm(
                 controller: penyebab_kematian,
@@ -265,7 +228,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 50,
+                length: 50,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -274,8 +237,21 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 50,
-
+                length: 50,
+              ),
+              getTextForm(
+                controller: rt,
+                hintName: "RT",
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
+              ),
+              getTextForm(
+                controller: rw,
+                hintName: "RW",
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
               ),
               InkWell(
                 onTap: () {
@@ -351,7 +327,6 @@ Future addDataSurat(BuildContext context, File imageFile) async {
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
         setState(() {
-          id_akun.clear();
           nama_almarhum.clear();
           saksi_kematian.clear();
           hubungan.clear();
@@ -361,6 +336,8 @@ Future addDataSurat(BuildContext context, File imageFile) async {
           nik_almarhum.clear();
           penyebab_kematian.clear();
           surat_digunakan_untuk.clear();
+          rt.clear();
+          rw.clear();
         });
         snackBarSucces(context);
         Navigator.pop(context);
@@ -374,7 +351,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
     ).show();
   }
 
-  snackBarSucces(BuildContext context){
+  snackBarSucces(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         elevation: 0,
         backgroundColor: Colors.transparent,

@@ -16,9 +16,6 @@ import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
-import 'package:kepuharjo_app/Model/RememberUser.dart';
-import 'package:kepuharjo_app/Model/User_Model.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class BelumNikah extends StatefulWidget {
@@ -28,8 +25,6 @@ class BelumNikah extends StatefulWidget {
   State<BelumNikah> createState() => _BelumNikahState();
 }
 
-final id_surat = TextEditingController();
-final no_surat = TextEditingController();
 final nama = TextEditingController();
 final tempat_lahir = TextEditingController();
 final tanggal_lahir = TextEditingController();
@@ -40,7 +35,9 @@ final status = TextEditingController();
 final pekerjaan = TextEditingController();
 final nik = TextEditingController();
 final alamat = TextEditingController();
-final id_akun = TextEditingController();
+final rt = TextEditingController();
+final rw = TextEditingController();
+final suratDigunakan = TextEditingController();
 
 class _BelumNikahState extends State<BelumNikah> {
   void verifyBelumNikah(BuildContext context) {
@@ -64,8 +61,11 @@ class _BelumNikahState extends State<BelumNikah> {
       Fluttertoast.showToast(msg: "Nik harus diisi");
     } else if (alamat.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat harus diisi");
-    } else if (surat_digunakan_untuk.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
+    } else if (rt.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Rt harus diisi");
+    } else if (rw.text.isEmpty) {
+      Fluttertoast.showToast(msg: "RW harus diisi");
+    } else {
       addDataSurat(context, image);
     }
   }
@@ -88,8 +88,11 @@ class _BelumNikahState extends State<BelumNikah> {
     req.fields['pekerjaan'] = pekerjaan.text;
     req.fields['nik'] = nik.text;
     req.fields['alamat'] = alamat.text;
-    req.fields['tgl_pengajuan'] = tgl_pengajuan.text;
-    req.fields['surat_digunakan_untuk'] = surat_digunakan_untuk.text;
+    req.fields['status_surat'] = statusSurat;
+    req.fields['tgl_pengajuan'] = DateTime.now().toString();
+    req.fields['RT'] = rt.text;
+    req.fields['RW'] = rw.text;
+    req.fields['surat_digunakan'] = suratDigunakan.text;
     var pic = http.MultipartFile("image", stream, length,
         filename: basename(imageFile.path));
     req.files.add(pic);
@@ -113,6 +116,7 @@ class _BelumNikahState extends State<BelumNikah> {
   File image;
   String val_jenis_kelamin;
   String val_kebangsaan;
+  String statusSurat = "Diajukan";
   List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
 
@@ -291,12 +295,27 @@ class _BelumNikahState extends State<BelumNikah> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: surat_digunakan_untuk,
+                controller: suratDigunakan,
                 hintName: "Surat digunakan untuk",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
                 length: 225,
+              ),
+              getTextForm(
+                controller: rt,
+                hintName: "RT",
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
+              ),
+              const SizedBox(height: 5),
+              getTextForm(
+                controller: rw,
+                hintName: "RW",
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
               ),
               const SizedBox(height: 5),
               InkWell(
@@ -372,7 +391,6 @@ class _BelumNikahState extends State<BelumNikah> {
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
         setState(() {
-          id_akun.clear();
           nama.clear();
           tempat_lahir.clear();
           tanggal_lahir.clear();
@@ -383,16 +401,13 @@ class _BelumNikahState extends State<BelumNikah> {
           pekerjaan.clear();
           nik.clear();
           alamat.clear();
-          surat_digunakan_untuk.clear();
+          rt.clear();
+          rw.clear();
+          suratDigunakan.clear();
         });
         snackBarSucces(context);
         Navigator.pop(context);
       },
-      btnCancelOnPress: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BelumNikah()));
-      },
-      btnCancelIcon: Icons.close,
       btnOkIcon: Icons.done,
     ).show();
   }
