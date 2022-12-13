@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/data_surat_usaha.dart';
+import 'package:kepuharjo_app/Screen/Status/Detail/Detail_Usaha.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class SuratUsaha extends StatefulWidget {
@@ -42,12 +43,12 @@ class _SuratUsahaState extends State<SuratUsaha> {
                     children: [
                       ListTile(
                         onTap: () {
-                          // Navigator.of(context).push(MaterialPageRoute(
-                          //   builder: (context) => DetailSKTM(
-                          //     list: list,
-                          //     index: index,
-                          //   ),
-                          // ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => DetailUsaha(
+                              list: list,
+                              index: index,
+                            ),
+                          ));
                         },
                         title: Text(
                           list[index].nama,
