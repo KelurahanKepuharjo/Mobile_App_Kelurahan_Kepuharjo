@@ -6,6 +6,8 @@ import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Model/News_Model.dart';
 import 'package:http/http.dart' as http;
 import 'package:kepuharjo_app/Model/data_surat_domisili.dart';
+import 'package:kepuharjo_app/Model/data_surat_kematian.dart';
+import 'package:kepuharjo_app/Model/data_surat_pindah.dart';
 import 'package:kepuharjo_app/Model/data_surat_tidak_mampu.dart';
 
 class ServiceApiNews {
@@ -40,6 +42,28 @@ class ServiceApiNews {
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
       return jsonResponse.map((e) => cDomisili.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load');
+    }
+  }
+  Future<List<cKematian>> getkematian() async {
+    final response = await http.post(Uri.parse(ApiConnect.readkematian), body: {
+      "id_akun": _currentUser.user.idAkun,
+    });
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((e) => cKematian.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load');
+    }
+  }
+  Future<List<cPindah>> getpindah() async {
+    final response = await http.post(Uri.parse(ApiConnect.readpindah), body: {
+      "id_akun": _currentUser.user.idAkun,
+    });
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((e) => cPindah.fromJson(e)).toList();
     } else {
       throw Exception('Failed to load');
     }
