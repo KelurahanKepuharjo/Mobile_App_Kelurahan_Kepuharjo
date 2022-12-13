@@ -21,6 +21,8 @@ class cPindah {
   String pengikut;
   String statusSurat;
   String tglPengajuan;
+  String rT;
+  String rW;
   String image;
   String idAkun;
 
@@ -47,6 +49,8 @@ class cPindah {
       this.pengikut,
       this.statusSurat,
       this.tglPengajuan,
+      this.rT,
+      this.rW,
       this.image,
       this.idAkun});
 
@@ -73,6 +77,8 @@ class cPindah {
     pengikut = json['pengikut'];
     statusSurat = json['status_surat'];
     tglPengajuan = json['tgl_pengajuan'];
+    rT = json['RT'];
+    rW = json['RW'];
     image = json['image'];
     idAkun = json['id_akun'];
   }
@@ -101,6 +107,8 @@ class cPindah {
     data['pengikut'] = this.pengikut;
     data['status_surat'] = this.statusSurat;
     data['tgl_pengajuan'] = this.tglPengajuan;
+    data['RT'] = this.rT;
+    data['RW'] = this.rW;
     data['image'] = this.image;
     data['id_akun'] = this.idAkun;
     return data;

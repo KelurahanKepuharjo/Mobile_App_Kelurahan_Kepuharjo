@@ -69,27 +69,10 @@ class _BelumNikahState extends State<BelumNikah> {
       addDataSurat(context, image);
     }
   }
-final CurrentUser _currentUser = Get.put(CurrentUser());
-  void addData(BuildContext context) async {
-    await http.post(Uri.parse(ApiConnect.belumNikah), body: {
-      "id_akun": _currentUser.user.idAkun,
-      "nama": nama.text,
-      "tempat_lahir": tempat_lahir.text,
-      "tanggal_lahir": tanggal_lahir.text,
-      "jenis_kelamin": jenis_kelamin.text,
-      "kebangsaan": kebangsaan.text,
-      "agama": agama.text,
-      "status": status.text,
-      "pekerjaan": pekerjaan.text,
-      "nik": nik.text,
-      "alamat": alamat.text,
-      "tgl_pengajuan": tgl_pengajuan.text,
-      "surat_digunakan_untuk": surat_digunakan_untuk.text,
-    });
-    showSuccessDialog(context);
-  }
 
-Future addDataSurat(BuildContext context, File imageFile) async {
+  final CurrentUser _currentUser = Get.put(CurrentUser());
+
+  Future addDataSurat(BuildContext context, File imageFile) async {
     var uri = Uri.parse(ApiConnect.belumNikah);
     var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
@@ -97,14 +80,14 @@ Future addDataSurat(BuildContext context, File imageFile) async {
     req.fields['id_akun'] = _currentUser.user.idAkun;
     req.fields['nama'] = nama.text;
     req.fields['tempat_lahir'] = tempat_lahir.text;
-   req.fields['tanggal_lahir'] = tanggal_lahir.text;
-   req.fields['jenis_kelamin'] = jenis_kelamin.text;
-   req.fields['kebangsaan'] = kebangsaan.text;
-   req.fields['agama'] = agama.text;
-   req.fields['status'] = status.text;
-   req.fields['pekerjaan'] = pekerjaan.text;
-   req.fields['nik'] = nik.text;
-   req.fields['alamat'] = alamat.text;
+    req.fields['tanggal_lahir'] = tanggal_lahir.text;
+    req.fields['jenis_kelamin'] = jenis_kelamin.text;
+    req.fields['kebangsaan'] = kebangsaan.text;
+    req.fields['agama'] = agama.text;
+    req.fields['status'] = status.text;
+    req.fields['pekerjaan'] = pekerjaan.text;
+    req.fields['nik'] = nik.text;
+    req.fields['alamat'] = alamat.text;
     req.fields['tgl_pengajuan'] = tgl_pengajuan.text;
     req.fields['surat_digunakan_untuk'] = surat_digunakan_untuk.text;
     var pic = http.MultipartFile("image", stream, length,
@@ -119,13 +102,14 @@ Future addDataSurat(BuildContext context, File imageFile) async {
     }
   }
 
-   Future getImageGalerry() async {
+  Future getImageGalerry() async {
     final picker = ImagePicker();
     final imageFile = await picker.pickImage(source: ImageSource.gallery);
     setState(() {
       image = File(imageFile.path);
     });
   }
+
   File image;
   String val_jenis_kelamin;
   String val_kebangsaan;
@@ -164,19 +148,9 @@ Future addDataSurat(BuildContext context, File imageFile) async {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: getTextForm(
-                  isReadOnly: true,
-                  controller: id_akun,
-                  hintName: "Nik anda",
-                  keyboardType: TextInputType.number,
-                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
-                ),
-              ),
               Row(
                 children: [
                   Text(
@@ -196,7 +170,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 60,
+                length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -205,7 +179,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 30,
+                length: 30,
               ),
               const SizedBox(height: 5),
               getDateTime(
@@ -278,7 +252,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 10,
+                length: 10,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -287,7 +261,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 12,
+                length: 12,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -296,7 +270,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 20,
+                length: 20,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -313,7 +287,7 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 60,
+                length: 60,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -322,9 +296,35 @@ Future addDataSurat(BuildContext context, File imageFile) async {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                    length: 225,
+                length: 225,
               ),
               const SizedBox(height: 5),
+              InkWell(
+                onTap: () {
+                  getImageGalerry();
+                },
+                child: Container(
+                  height: 150,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color.fromARGB(179, 234, 234, 234),
+                  ),
+                  child: image == null
+                      ? Center(
+                          child: Text(
+                          'Upload Foto KK',
+                          style: GoogleFonts.poppins(fontSize: 12),
+                        ))
+                      : Image.file(
+                          image,
+                          fit: BoxFit.contain,
+                        ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

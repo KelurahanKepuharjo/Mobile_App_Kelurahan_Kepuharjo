@@ -16,6 +16,8 @@ class cUsaha {
   String tglSuratDibuat;
   String image;
   String statusSurat;
+  String rT;
+  String rW;
   String tglPengajuan;
   String idAkun;
 
@@ -37,6 +39,8 @@ class cUsaha {
       this.tglSuratDibuat,
       this.image,
       this.statusSurat,
+      this.rT,
+      this.rW,
       this.tglPengajuan,
       this.idAkun});
 
@@ -58,6 +62,8 @@ class cUsaha {
     tglSuratDibuat = json['tgl_surat_dibuat'];
     image = json['image'];
     statusSurat = json['status_surat'];
+    rT = json['RT'];
+    rW = json['RW'];
     tglPengajuan = json['tgl_pengajuan'];
     idAkun = json['id_akun'];
   }
@@ -81,6 +87,8 @@ class cUsaha {
     data['tgl_surat_dibuat'] = this.tglSuratDibuat;
     data['image'] = this.image;
     data['status_surat'] = this.statusSurat;
+    data['RT'] = this.rT;
+    data['RW'] = this.rW;
     data['tgl_pengajuan'] = this.tglPengajuan;
     data['id_akun'] = this.idAkun;
     return data;

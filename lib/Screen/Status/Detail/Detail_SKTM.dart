@@ -77,7 +77,7 @@ class _DetailSKTMState extends State<DetailSKTM> {
           children: [
             getDetailSurat("Nama : ${widget.list[widget.index].nama}"),
             getDetailSurat(
-                "Tempat Lahir : ${widget.list[widget.index].tempatlahir}"),
+                "Tempat Lahir : ${widget.list[widget.index].tempatLahir}"),
             getDetailSurat(
                 "Tanggal Lahir : ${widget.list[widget.index].tanggalLahir}"),
             getDetailSurat(

@@ -22,6 +22,8 @@ class cAkta {
   String agamaIbu;
   String pekerjaanIbu;
   String alamatIbu;
+  String rT;
+  String rW;
   String statusSurat;
   String tglPengajuan;
   String image;
@@ -51,6 +53,8 @@ class cAkta {
       this.agamaIbu,
       this.pekerjaanIbu,
       this.alamatIbu,
+      this.rT,
+      this.rW,
       this.statusSurat,
       this.tglPengajuan,
       this.image,
@@ -80,6 +84,8 @@ class cAkta {
     agamaIbu = json['agama_ibu'];
     pekerjaanIbu = json['pekerjaan_ibu'];
     alamatIbu = json['alamat_ibu'];
+    rT = json['RT'];
+    rW = json['RW'];
     statusSurat = json['status_surat'];
     tglPengajuan = json['tgl_pengajuan'];
     image = json['image'];
@@ -111,6 +117,8 @@ class cAkta {
     data['agama_ibu'] = this.agamaIbu;
     data['pekerjaan_ibu'] = this.pekerjaanIbu;
     data['alamat_ibu'] = this.alamatIbu;
+    data['RT'] = this.rT;
+    data['RW'] = this.rW;
     data['status_surat'] = this.statusSurat;
     data['tgl_pengajuan'] = this.tglPengajuan;
     data['image'] = this.image;

@@ -81,28 +81,6 @@ class _DomisiliState extends State<Domisili> {
   }
 
   final CurrentUser _currentUser = Get.put(CurrentUser());
-  void addData(BuildContext context) async {
-    await http.post(Uri.parse(ApiConnect.domisili), body: {
-      "id_akun": _currentUser.user.idAkun,
-      "nama": nama.text,
-      "tempat_lahir": tempat_lahir.text,
-      "tanggal_lahir": tanggal_lahir.text,
-      "jenis_kelamin": val_jenis_kelamin,
-      "kebangsaan": val_kebangsaan,
-      "agama": agama.text,
-      "status_perkawinan": status_perkawinan.text,
-      "pekerjaan": pekerjaan.text,
-      "nik": nik.text,
-      "alamat": alamat.text,
-      "pengantar_rt_rw": pengantar_rt_rw.text,
-      "tgl_surat_rt_rw": tgl_surat_rt_rw.text,
-      "no_surat": no_surat.text,
-      "alamat_domisili_di_kel_kepu": alamat_domisili_di_kel_kepu.text,
-      "tgl_surat_dibuat": tgl_surat_dibuat.text,
-      "surat_digunakan_untuk": surat_digunakan_untuk.text,
-    });
-    showSuccessDialog(context);
-  }
 
   Future addDataSurat(BuildContext context, File imageFile) async {
     var uri = Uri.parse(ApiConnect.domisili);
@@ -138,13 +116,14 @@ class _DomisiliState extends State<Domisili> {
     }
   }
 
-   Future getImageGalerry() async {
+  Future getImageGalerry() async {
     final picker = ImagePicker();
     final imageFile = await picker.pickImage(source: ImageSource.gallery);
     setState(() {
       image = File(imageFile.path);
     });
   }
+
   File image;
   String val_jenis_kelamin;
   String val_kebangsaan;
@@ -186,16 +165,6 @@ class _DomisiliState extends State<Domisili> {
           margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: getTextForm(
-                  isReadOnly: true,
-                  controller: id_akun,
-                  hintName: "Nik anda",
-                  keyboardType: TextInputType.number,
-                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
-                ),
-              ),
               Row(
                 children: [
                   Text(
@@ -343,7 +312,7 @@ class _DomisiliState extends State<Domisili> {
                     FilteringTextInputFormatter.singleLineFormatter,
                 length: 150,
               ),
-              const SizedBox(height: 5), 
+              const SizedBox(height: 5),
               InkWell(
                 onTap: () {
                   getImageGalerry();

@@ -13,6 +13,8 @@ class cBelumNikah {
   String alamat;
   String statusSurat;
   String tglPengajuan;
+  String rT;
+  String rW;
   String image;
   String idAkun;
 
@@ -31,6 +33,8 @@ class cBelumNikah {
       this.alamat,
       this.statusSurat,
       this.tglPengajuan,
+      this.rT,
+      this.rW,
       this.image,
       this.idAkun});
 
@@ -49,6 +53,8 @@ class cBelumNikah {
     alamat = json['alamat'];
     statusSurat = json['status_surat'];
     tglPengajuan = json['tgl_pengajuan'];
+    rT = json['RT'];
+    rW = json['RW'];
     image = json['image'];
     idAkun = json['id_akun'];
   }
@@ -69,6 +75,8 @@ class cBelumNikah {
     data['alamat'] = this.alamat;
     data['status_surat'] = this.statusSurat;
     data['tgl_pengajuan'] = this.tglPengajuan;
+    data['RT'] = this.rT;
+    data['RW'] = this.rW;
     data['image'] = this.image;
     data['id_akun'] = this.idAkun;
     return data;

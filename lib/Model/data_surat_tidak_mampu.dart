@@ -2,7 +2,7 @@ class cSktm {
   String idSurat;
   String noSurat;
   String nama;
-  String tempatlahir;
+  String tempatLahir;
   String tanggalLahir;
   String jenisKelamin;
   String kebangsaan;
@@ -17,6 +17,8 @@ class cSktm {
   String keperluan;
   String tglDibuat;
   String statusSurat;
+  String rT;
+  String rW;
   String image;
   String idAkun;
 
@@ -24,7 +26,7 @@ class cSktm {
       {this.idSurat,
       this.noSurat,
       this.nama,
-      this.tempatlahir,
+      this.tempatLahir,
       this.tanggalLahir,
       this.jenisKelamin,
       this.kebangsaan,
@@ -39,6 +41,8 @@ class cSktm {
       this.keperluan,
       this.tglDibuat,
       this.statusSurat,
+      this.rT,
+      this.rW,
       this.image,
       this.idAkun});
 
@@ -46,7 +50,7 @@ class cSktm {
     idSurat = json['id_surat'];
     noSurat = json['no_surat'];
     nama = json['nama'];
-    tempatlahir = json['tempat_lahir'];
+    tempatLahir = json['tempat_lahir'];
     tanggalLahir = json['tanggal_lahir'];
     jenisKelamin = json['jenis_kelamin'];
     kebangsaan = json['kebangsaan'];
@@ -61,6 +65,8 @@ class cSktm {
     keperluan = json['keperluan'];
     tglDibuat = json['tgl_dibuat'];
     statusSurat = json['status_surat'];
+    rT = json['RT'];
+    rW = json['RW'];
     image = json['image'];
     idAkun = json['id_akun'];
   }
@@ -70,7 +76,7 @@ class cSktm {
     data['id_surat'] = this.idSurat;
     data['no_surat'] = this.noSurat;
     data['nama'] = this.nama;
-    data['tempat_lahir'] = this.tempatlahir;
+    data['tempat_lahir'] = this.tempatLahir;
     data['tanggal_lahir'] = this.tanggalLahir;
     data['jenis_kelamin'] = this.jenisKelamin;
     data['kebangsaan'] = this.kebangsaan;
@@ -85,6 +91,8 @@ class cSktm {
     data['keperluan'] = this.keperluan;
     data['tgl_dibuat'] = this.tglDibuat;
     data['status_surat'] = this.statusSurat;
+    data['RT'] = this.rT;
+    data['RW'] = this.rW;
     data['image'] = this.image;
     data['id_akun'] = this.idAkun;
     return data;
