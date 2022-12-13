@@ -48,7 +48,7 @@ final kelurahan = TextEditingController();
 final kecamatan = TextEditingController();
 final kabupaten = TextEditingController();
 final provinsi = TextEditingController();
-final alasan_pindah = TextEditingController();
+final alamat_pindah = TextEditingController();
 final pengikut = TextEditingController();
 final tgl_pengajuan = TextEditingController();
 final surat_digunakan_untuk = TextEditingController();
@@ -76,7 +76,7 @@ class _PindahState extends State<Pindah> {
       Fluttertoast.showToast(msg: "Kabupaten harus diisi");
     } else if (provinsi.text.isEmpty) {
       Fluttertoast.showToast(msg: "Profinsi harus diisi");
-    } else if (alasan_pindah.text.isEmpty) {
+    } else if (alamat_pindah.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alasan Pindah harus diisi");
     } else if (pengikut.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pengikut harus diisi");
@@ -109,7 +109,7 @@ class _PindahState extends State<Pindah> {
     req.fields['kecamatan'] = kecamatan.text;
     req.fields['kabupaten'] = kabupaten.text;
     req.fields['provinsi'] = provinsi.text;
-    req.fields['alasan_pindah'] = alasan_pindah.text;
+    req.fields['alamat_pindah'] = alamat_pindah.text;
     req.fields['pengikut'] = pengikut.text;
     req.fields['tgl_pengajuan'] = DateTime.now().toString();
     req.fields['status_surat'] = statusSurat;
@@ -314,8 +314,8 @@ class _PindahState extends State<Pindah> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: alasan_pindah,
-                hintName: "Alasan Pindah",
+                controller: alamat_pindah,
+                hintName: "Alamat Pindah",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
@@ -433,7 +433,7 @@ class _PindahState extends State<Pindah> {
           kecamatan.clear();
           kabupaten.clear();
           provinsi.clear();
-          alasan_pindah.clear();
+          alamat_pindah.clear();
           pengikut.clear();
         });
         snackBarSucces(context);

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Model/data_surat_kematian.dart';
+import 'package:kepuharjo_app/Model/data_surat_pindah.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
-class DetailKematian extends StatefulWidget {
-  List<cKematian> list;
+class DetailPindah extends StatefulWidget {
+  List<cPindah> list;
   int index;
-  DetailKematian({this.list, this.index});
+  DetailPindah({this.list, this.index});
 
   @override
-  State<DetailKematian> createState() => _DetailKematianState();
+  State<DetailPindah> createState() => _DetailPindahState();
 }
 
-class _DetailKematianState extends State<DetailKematian> {
+class _DetailPindahState extends State<DetailPindah> {
   Container getDetailSurat(String text) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -74,17 +75,22 @@ class _DetailKematianState extends State<DetailKematian> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            getDetailSurat("Nama Almarhum : ${widget.list[widget.index].namaAlmarhum}"),
-            getDetailSurat("Saksi Kematian : ${widget.list[widget.index].saksiKematian}"),
-            getDetailSurat("Hubungan : ${widget.list[widget.index].hubungan}"),
-            getDetailSurat("Hari : ${widget.list[widget.index].hari}"),
-            getDetailSurat("Tanggal : ${widget.list[widget.index].tanggal}"),
-            getDetailSurat("Alamat : ${widget.list[widget.index].alamat}"),
-            getDetailSurat("Nik Almarhum : ${widget.list[widget.index].nikAlmarhum}"),
-            getDetailSurat("Penyebab Kematian : ${widget.list[widget.index].penyebabKematian}"),
+            getDetailSurat("Nama : ${widget.list[widget.index].nama}"),
+            getDetailSurat("Tempat Lahir : ${widget.list[widget.index].tempatLahir}"),
+            getDetailSurat("Tanggal Lahir : ${widget.list[widget.index].tanggalLahir}"),
+            getDetailSurat("Jenis Kelamin : ${widget.list[widget.index].jenisKelamin}"),
+            getDetailSurat("Status : ${widget.list[widget.index].status}"),
+            getDetailSurat("Agama : ${widget.list[widget.index].agama}"),
+            getDetailSurat("Alamat Asal : ${widget.list[widget.index].alamatAsal}"),
+            getDetailSurat("Alamat Tujuan : ${widget.list[widget.index].alamatTujuan}"),
+            getDetailSurat("Kelurahan : ${widget.list[widget.index].kelurahan}"),
+            getDetailSurat("Kecamatan : ${widget.list[widget.index].kecamatan}"),
+            getDetailSurat("Kabupaten : ${widget.list[widget.index].kabupaten}"),
+            getDetailSurat("Profinsi : ${widget.list[widget.index].provinsi}"),
+            getDetailSurat("Alamat Pindah : ${widget.list[widget.index].alamatPindah}"),
+            getDetailSurat("Pengikut : ${widget.list[widget.index].pengikut}"),
             getDetailSurat("RT : ${widget.list[widget.index].rT}"),
             getDetailSurat("RW : ${widget.list[widget.index].rW}"),
-            getDetailSurat("surat digunakan : ${widget.list[widget.index].suratDigunakan}"),
           ],
         ),
       ),
