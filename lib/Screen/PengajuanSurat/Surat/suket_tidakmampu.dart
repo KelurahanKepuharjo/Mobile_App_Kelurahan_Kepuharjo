@@ -36,6 +36,8 @@ final pekerjaan = TextEditingController();
 final nik = TextEditingController();
 final alamat = TextEditingController();
 final keperluan = TextEditingController();
+final rT = TextEditingController();
+final rW = TextEditingController();
 
 class _SKTMState extends State<SKTM> {
   void verifySKTM(BuildContext context) {
@@ -57,30 +59,16 @@ class _SKTMState extends State<SKTM> {
       Fluttertoast.showToast(msg: "Alamat harus diisi");
     } else if (keperluan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Keperluan harus diisi");
+    } else if (rT.text.isEmpty) {
+      Fluttertoast.showToast(msg: "RT harus diisi");
+    } else if (rW.text.isEmpty) {
+      Fluttertoast.showToast(msg: "RW harus diisi");
     } else {
       addDataSurat(context, image);
     }
   }
 
   final CurrentUser _currentUser = Get.put(CurrentUser());
-  void addData(context) async {
-    await http.post(Uri.parse(ApiConnect.sktm), body: {
-      "id_akun": _currentUser.user.idAkun,
-      "nama": nama.text,
-      "tempat_lahir": tempatlahir.text,
-      "tanggal_lahir": tgllhir.text,
-      "jenis_kelamin": val_jk,
-      "kebangsaan": val_kebangsaan,
-      "agama": agama.text,
-      "status": status.text,
-      "pekerjaan": pekerjaan.text,
-      "nik": nik.text,
-      "alamat": alamat.text,
-      "tgl_pengajuan": DateTime.now().toString(),
-      "keperluan": keperluan.text,
-    });
-    showSuccessDialog(context);
-  }
 
   Future addDataSurat(BuildContext context, File imageFile) async {
     var uri = Uri.parse(ApiConnect.sktm);
@@ -100,6 +88,8 @@ class _SKTMState extends State<SKTM> {
     req.fields['alamat'] = alamat.text;
     req.fields['tgl_pengajuan'] = DateTime.now().toString();
     req.fields['keperluan'] = keperluan.text;
+    req.fields['RT'] = rT.text;
+    req.fields['RW'] = rW.text;
     var pic = http.MultipartFile("image", stream, length,
         filename: basename(imageFile.path));
     req.files.add(pic);
@@ -307,6 +297,22 @@ class _SKTMState extends State<SKTM> {
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
                 length: 150,
+              ),
+              const SizedBox(height: 5),
+              getTextForm(
+                controller: rT,
+                hintName: "RT",
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
+              ),
+              const SizedBox(height: 5),
+              getTextForm(
+                controller: rW,
+                hintName: "RW",
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
               ),
               const SizedBox(height: 5),
               InkWell(
