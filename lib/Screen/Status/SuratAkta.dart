@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/data_surat_akta_kelahiran.dart';
-import 'package:kepuharjo_app/Model/data_surat_belum_nikah.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class SuratAkta extends StatefulWidget {
