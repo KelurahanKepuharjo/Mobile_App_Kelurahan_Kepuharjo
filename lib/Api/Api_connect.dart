@@ -30,4 +30,6 @@ class ApiConnect {
   static const belumNikah = "$connectApi/surat_ket_belum_menikah.php";
   //read belum nikah
   static const readbelumNikah = "$connectApi/read_surat_belum_menikah.php";
+  //read usaha
+  static const readUsaha = "$connectApi/read_surat_usaha.php";
 }
