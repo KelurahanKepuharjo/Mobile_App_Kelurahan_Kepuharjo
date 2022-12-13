@@ -23,8 +23,8 @@ class _SuratUsahaState extends State<SuratUsaha> {
     super.initState();
     listdata = serviceApi.getusaha();
   }
-  
-   @override
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: FutureBuilder<List<cUsaha>>(
@@ -104,4 +104,3 @@ class _SuratUsahaState extends State<SuratUsaha> {
     );
   }
 }
-

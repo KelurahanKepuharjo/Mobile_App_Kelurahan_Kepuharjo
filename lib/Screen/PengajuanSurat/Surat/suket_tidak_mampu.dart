@@ -28,8 +28,8 @@ class SKTM extends StatefulWidget {
 final nama = TextEditingController();
 final tempatlahir = TextEditingController();
 final tgllhir = TextEditingController();
-final jk = TextEditingController();
-final kebangsaan = TextEditingController();
+// final jk = TextEditingController();
+// final kebangsaan = TextEditingController();
 final agama = TextEditingController();
 final status = TextEditingController();
 final pekerjaan = TextEditingController();
@@ -393,14 +393,12 @@ class _SKTMState extends State<SKTM> {
           nama.clear();
           tempatlahir.clear();
           tgllhir.clear();
-          kebangsaan.clear();
           agama.clear();
           status.clear();
           pekerjaan.clear();
           nik.clear();
           alamat.clear();
           keperluan.clear();
-          jk.clear();
           rT.clear();
           rW.clear();
         });
