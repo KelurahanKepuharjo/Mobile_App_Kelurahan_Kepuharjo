@@ -15,6 +15,7 @@ class cBelumNikah {
   String tglPengajuan;
   String rT;
   String rW;
+  String suratDigunakan;
   String image;
   String idAkun;
 
@@ -35,6 +36,7 @@ class cBelumNikah {
       this.tglPengajuan,
       this.rT,
       this.rW,
+      this.suratDigunakan,
       this.image,
       this.idAkun});
 
@@ -55,6 +57,7 @@ class cBelumNikah {
     tglPengajuan = json['tgl_pengajuan'];
     rT = json['RT'];
     rW = json['RW'];
+    suratDigunakan = json['surat_digunakan'];
     image = json['image'];
     idAkun = json['id_akun'];
   }
@@ -77,6 +80,7 @@ class cBelumNikah {
     data['tgl_pengajuan'] = this.tglPengajuan;
     data['RT'] = this.rT;
     data['RW'] = this.rW;
+    data['surat_digunakan'] = this.suratDigunakan;
     data['image'] = this.image;
     data['id_akun'] = this.idAkun;
     return data;
