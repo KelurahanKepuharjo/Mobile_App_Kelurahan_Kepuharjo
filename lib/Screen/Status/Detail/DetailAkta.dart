@@ -75,19 +75,13 @@ class _DetailAktaState extends State<DetailAkta> {
         child: Column(
           children: [
             getDetailSurat("Nama Anak : ${widget.list[widget.index].namaAnak}"),
-            getDetailSurat(
-                "Tempat Lahir : ${widget.list[widget.index].tempatLahir}"),
-            getDetailSurat(
-                "Tanggal Lahir : ${widget.list[widget.index].tanggalLahir}"),
-            getDetailSurat(
-                "Jenis Kelamin : ${widget.list[widget.index].jenisKelamin}"),
-            getDetailSurat(
-                "Agama : ${widget.list[widget.index].agama}"),
+            getDetailSurat("Tempat Lahir : ${widget.list[widget.index].tempatLahir}"),
+            getDetailSurat("Tanggal Lahir : ${widget.list[widget.index].tanggalLahir}"),
+            getDetailSurat("Jenis Kelamin : ${widget.list[widget.index].jenisKelamin}"),
+            getDetailSurat("Agama : ${widget.list[widget.index].agama}"),
             getDetailSurat("status : ${widget.list[widget.index].status}"),
-            getDetailSurat(
-                "Pekerjaan : ${widget.list[widget.index].pekerjaan}"),
-            getDetailSurat(
-                "Nik : ${widget.list[widget.index].nik}"),
+            getDetailSurat("Pekerjaan : ${widget.list[widget.index].pekerjaan}"),
+            getDetailSurat("Nik : ${widget.list[widget.index].nik}"),
             getDetailSurat("Alamat : ${widget.list[widget.index].alamat}"),
             getDetailSurat(
               "Nama Ayah : ${widget.list[widget.index].namaAyah}"),
@@ -103,8 +97,7 @@ class _DetailAktaState extends State<DetailAkta> {
             getDetailSurat("Agama Ibu : ${widget.list[widget.index].agamaIbu}"),
             getDetailSurat("Pekerjaan Ibu : ${widget.list[widget.index].pekerjaanIbu}"),
             getDetailSurat("Alamat Ibu : ${widget.list[widget.index].alamatIbu}"),
-            getDetailSurat(
-              "RT : ${widget.list[widget.index].rT}"),
+            getDetailSurat("RT : ${widget.list[widget.index].rT}"),
             getDetailSurat("RW : ${widget.list[widget.index].rW}"),
             getDetailSurat("Keperluan : ${widget.list[widget.index].keperluan}"),
           ],
