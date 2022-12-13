@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidak_mampu.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetSurat extends StatefulWidget {
@@ -21,17 +21,17 @@ GestureDetector getLetter(
             context, MaterialPageRoute(builder: (context) => SKTM()));
       }
       if (index == 1) {
-         Navigator.push(
+        Navigator.push(
             context, MaterialPageRoute(builder: (context) => Kematian()));
         //2.item
       }
       if (index == 2) {
-         Navigator.push(
+        Navigator.push(
             context, MaterialPageRoute(builder: (context) => Pindah()));
         //3.item
       }
       if (index == 3) {
-         Navigator.push(
+        Navigator.push(
             context, MaterialPageRoute(builder: (context) => Domisili()));
         //4.item
       }

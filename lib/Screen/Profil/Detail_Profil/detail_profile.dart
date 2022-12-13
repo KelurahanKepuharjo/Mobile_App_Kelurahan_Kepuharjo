@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidakmampu.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidak_mampu.dart';
 import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/widget_list_detail_profile.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:http/http.dart' as http;
