@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratBelumMenikah.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratDomisili.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratPindah.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSKTM.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratUsaha.dart';
+import 'package:kepuharjo_app/Screen/Status/suratKematian.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearanceStatus extends StatefulWidget {
@@ -87,7 +91,7 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
                       // height: 300,
                       child: Column(
                         children: const [
-                          Text("Surat Keterangan Belum Menikah"),
+                          SuratBelumNikah(),
                         ],
                       ),
                     ),
@@ -103,7 +107,7 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
                       // height: 300,
                       child: Column(
                         children: const [
-                          Text("Surat Keterangan Kematian"),
+                          SuratKematian(),
                         ],
                       ),
                     ),
@@ -119,14 +123,14 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
                       // height: 300,
                       child: Column(
                         children: const [
-                          Text("Surat Keterangan Pindah"),
+                          SuratPindah(),
                         ],
                       ),
                     ),
                     SizedBox(
                       child: Column(
                         children: const [
-                          Text("Surat Keterangan Usaha"),
+                          SuratUsaha(),
                         ],
                       ),
                     ),
