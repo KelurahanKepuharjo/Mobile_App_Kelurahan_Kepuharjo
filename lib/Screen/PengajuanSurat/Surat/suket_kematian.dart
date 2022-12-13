@@ -6,6 +6,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:kepuharjo_app/Comm/getTextFormDate.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -195,7 +196,7 @@ class _KematianState extends State<Kematian> {
                 length: 7,
               ),
               const SizedBox(height: 5),
-              getDateTime(
+              getDateForm(
                 controller: tanggal,
               ),
               const SizedBox(height: 5),

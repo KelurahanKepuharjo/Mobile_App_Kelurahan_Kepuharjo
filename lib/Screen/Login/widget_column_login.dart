@@ -189,7 +189,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
                 ),
                 InkWell(
                   child: Text(
-                    " Register",
+                    " Registrasi",
                     style: poppinsSmallBlack.copyWith(
                         color: Color(0xFF2A2A72), fontSize: 13),
                   ),
