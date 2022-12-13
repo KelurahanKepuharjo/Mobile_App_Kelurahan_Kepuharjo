@@ -33,8 +33,6 @@ final saksi_kematian = TextEditingController();
 final hubungan = TextEditingController();
 final hari = TextEditingController();
 final tanggal = TextEditingController();
-final bulan = TextEditingController();
-final tahun = TextEditingController();
 final alamat = TextEditingController();
 final nik_almarhum = TextEditingController();
 final penyebab_kematian = TextEditingController();
@@ -53,10 +51,6 @@ class _KematianState extends State<Kematian> {
       Fluttertoast.showToast(msg: "Hari harus diisi");
     } else if (tanggal.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal harus diisi");
-    } else if (bulan.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Bulan harus diisi");
-    } else if (tahun.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Tahun harus diisi");
     } else if (alamat.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat harus diisi");
     } else if (nik_almarhum.text.isEmpty) {
@@ -201,7 +195,7 @@ class _KematianState extends State<Kematian> {
                 length: 7,
               ),
               const SizedBox(height: 5),
-              getTextForm(
+              getDateTime(
                 controller: tanggal,
               ),
               const SizedBox(height: 5),
@@ -217,9 +211,8 @@ class _KematianState extends State<Kematian> {
               getTextForm(
                   controller: nik_almarhum,
                   hintName: "NIK Almarhum",
-                  keyboardType: TextInputType.name,
-                  inputFormatters:
-                      FilteringTextInputFormatter.singleLineFormatter,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
                   length: 16),
               const SizedBox(height: 5),
               getTextForm(
@@ -239,6 +232,7 @@ class _KematianState extends State<Kematian> {
                     FilteringTextInputFormatter.singleLineFormatter,
                 length: 50,
               ),
+              const SizedBox(height: 5),
               getTextForm(
                 controller: rt,
                 hintName: "RT",
@@ -246,6 +240,7 @@ class _KematianState extends State<Kematian> {
                 inputFormatters: FilteringTextInputFormatter.digitsOnly,
                 length: 5,
               ),
+              const SizedBox(height: 5),
               getTextForm(
                 controller: rw,
                 hintName: "RW",
@@ -253,6 +248,7 @@ class _KematianState extends State<Kematian> {
                 inputFormatters: FilteringTextInputFormatter.digitsOnly,
                 length: 5,
               ),
+              const SizedBox(height: 5),
               InkWell(
                 onTap: () {
                   getImageGalerry();
@@ -342,11 +338,6 @@ class _KematianState extends State<Kematian> {
         snackBarSucces(context);
         Navigator.pop(context);
       },
-      btnCancelOnPress: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Kematian()));
-      },
-      btnCancelIcon: Icons.close,
       btnOkIcon: Icons.done,
     ).show();
   }

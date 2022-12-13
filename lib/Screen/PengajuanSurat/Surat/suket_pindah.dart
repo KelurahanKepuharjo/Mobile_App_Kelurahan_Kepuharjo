@@ -60,10 +60,6 @@ class _PindahState extends State<Pindah> {
       Fluttertoast.showToast(msg: "Nama harus diisi");
     } else if (tempat_lahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
-    } else if (tanggal_lahir.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
-    } else if (jenis_kelamin.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
     } else if (status.text.isEmpty) {
       Fluttertoast.showToast(msg: "Status harus diisi");
     } else if (agama.text.isEmpty) {
@@ -84,8 +80,6 @@ class _PindahState extends State<Pindah> {
       Fluttertoast.showToast(msg: "Alasan Pindah harus diisi");
     } else if (pengikut.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pengikut harus diisi");
-    } else if (surat_digunakan_untuk.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
     } else if (rt.text.isEmpty) {
       Fluttertoast.showToast(msg: "RT harus diisi");
     } else if (rw.text.isEmpty) {
@@ -179,19 +173,9 @@ class _PindahState extends State<Pindah> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: getTextForm(
-                  isReadOnly: true,
-                  controller: id_akun,
-                  hintName: "Nik anda",
-                  keyboardType: TextInputType.number,
-                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
-                ),
-              ),
               Row(
                 children: [
                   Text(
@@ -354,6 +338,7 @@ class _PindahState extends State<Pindah> {
                 inputFormatters: FilteringTextInputFormatter.digitsOnly,
                 length: 5,
               ),
+              const SizedBox(height: 5),
               getTextForm(
                 controller: rw,
                 hintName: "RW",
@@ -361,6 +346,7 @@ class _PindahState extends State<Pindah> {
                 inputFormatters: FilteringTextInputFormatter.digitsOnly,
                 length: 5,
               ),
+              const SizedBox(height: 5),
               InkWell(
                 onTap: () {
                   getImageGalerry();
@@ -439,7 +425,6 @@ class _PindahState extends State<Pindah> {
           nama.clear();
           tempat_lahir.clear();
           tanggal_lahir.clear();
-          jenis_kelamin.clear();
           status.clear();
           agama.clear();
           alamat_asal.clear();
@@ -450,16 +435,10 @@ class _PindahState extends State<Pindah> {
           provinsi.clear();
           alasan_pindah.clear();
           pengikut.clear();
-          surat_digunakan_untuk.clear();
         });
         snackBarSucces(context);
         Navigator.pop(context);
       },
-      btnCancelOnPress: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Pindah()));
-      },
-      btnCancelIcon: Icons.close,
       btnOkIcon: Icons.done,
     ).show();
   }

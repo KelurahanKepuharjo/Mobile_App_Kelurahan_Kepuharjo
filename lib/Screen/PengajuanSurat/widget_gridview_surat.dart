@@ -6,6 +6,7 @@ import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidak_mampu.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_belum_menikah.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_usaha.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetGridViewSurat extends StatefulWidget {
@@ -50,6 +51,8 @@ GestureDetector getLetter(
       }
       if (index == 6) {
         //6.item
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Usaha()));
       }
     },
     child: Container(

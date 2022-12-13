@@ -3,6 +3,7 @@ import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidak_mampu.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_usaha.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetSurat extends StatefulWidget {
@@ -37,6 +38,8 @@ GestureDetector getLetter(
       }
       if (index == 4) {
         //5.item
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Usaha()));
       }
     },
     child: Container(

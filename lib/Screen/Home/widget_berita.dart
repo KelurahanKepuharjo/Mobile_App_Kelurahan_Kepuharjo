@@ -114,7 +114,9 @@ class _WidgetBeritaState extends State<WidgetBerita> {
             return Text("${snapshot.data}");
           }
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: Color(0xFF2A2A72),
+            ),
           );
         },
       ),

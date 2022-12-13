@@ -47,10 +47,6 @@ class _BelumNikahState extends State<BelumNikah> {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
     } else if (tanggal_lahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
-    } else if (jenis_kelamin.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
-    } else if (kebangsaan.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
     } else if (status.text.isEmpty) {
@@ -261,11 +257,11 @@ class _BelumNikahState extends State<BelumNikah> {
               const SizedBox(height: 5),
               getTextForm(
                 controller: status,
-                hintName: "Status",
+                hintName: "Status Perkawinan",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                length: 12,
+                length: 15,
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -302,6 +298,7 @@ class _BelumNikahState extends State<BelumNikah> {
                     FilteringTextInputFormatter.singleLineFormatter,
                 length: 225,
               ),
+              const SizedBox(height: 5),
               getTextForm(
                 controller: rt,
                 hintName: "RT",
