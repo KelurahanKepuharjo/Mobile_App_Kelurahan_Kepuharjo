@@ -29,6 +29,8 @@ class cAkta {
   String image;
   String idAkun;
 
+  var Keperluan;
+
   cAkta(
       {this.idSurat,
       this.nomorSurat,

@@ -490,7 +490,7 @@ class _AktaState extends State<Akta> {
               const SizedBox(height: 5),
               getTextForm(
                 controller: keperluan,
-                hintName: "surat digunakan untuk",
+                hintName: "keperluan",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,

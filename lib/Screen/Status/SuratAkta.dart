@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/data_surat_akta_kelahiran.dart';
+import 'package:kepuharjo_app/Screen/Status/Detail/DetailAkta.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class SuratAkta extends StatefulWidget {
@@ -42,12 +43,12 @@ class _SuratAktaState extends State<SuratAkta> {
                     children: [
                       ListTile(
                         onTap: () {
-                          // Navigator.of(context).push(MaterialPageRoute(
-                          //   builder: (context) => DetailSKTM(
-                          //     list: list,
-                          //     index: index,
-                          //   ),
-                          // ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => DetailAkta(
+                              list: list,
+                              index: index,
+                            ),
+                          ));
                         },
                         title: Text(
                           list[index].namaAnak,
