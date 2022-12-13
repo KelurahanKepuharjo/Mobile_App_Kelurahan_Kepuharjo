@@ -12,7 +12,7 @@ import 'package:kepuharjo_app/Model/data_surat_pindah.dart';
 import 'package:kepuharjo_app/Model/data_surat_tidak_mampu.dart';
 import 'package:kepuharjo_app/Model/data_surat_usaha.dart';
 
-class ServiceApiNews {
+class ServiceApi {
   //get data berita
   Future<List<cNews>> getNews() async {
     final response = await http.get(Uri.parse(ApiConnect.berita));
@@ -48,6 +48,7 @@ class ServiceApiNews {
       throw Exception('Failed to load');
     }
   }
+
   Future<List<cKematian>> getkematian() async {
     final response = await http.post(Uri.parse(ApiConnect.readkematian), body: {
       "id_akun": _currentUser.user.idAkun,
@@ -59,6 +60,7 @@ class ServiceApiNews {
       throw Exception('Failed to load');
     }
   }
+
   Future<List<cPindah>> getpindah() async {
     final response = await http.post(Uri.parse(ApiConnect.readpindah), body: {
       "id_akun": _currentUser.user.idAkun,
@@ -70,8 +72,10 @@ class ServiceApiNews {
       throw Exception('Failed to load');
     }
   }
+
   Future<List<cBelumNikah>> getbelumnikah() async {
-    final response = await http.post(Uri.parse(ApiConnect.readbelumNikah), body: {
+    final response =
+        await http.post(Uri.parse(ApiConnect.readbelumNikah), body: {
       "id_akun": _currentUser.user.idAkun,
     });
     if (response.statusCode == 200) {
@@ -81,6 +85,7 @@ class ServiceApiNews {
       throw Exception('Failed to load');
     }
   }
+
   Future<List<cUsaha>> getusaha() async {
     final response = await http.post(Uri.parse(ApiConnect.readUsaha), body: {
       "id_akun": _currentUser.user.idAkun,
