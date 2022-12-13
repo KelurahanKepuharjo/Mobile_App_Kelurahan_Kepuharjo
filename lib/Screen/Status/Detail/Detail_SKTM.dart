@@ -4,7 +4,6 @@ import 'package:kepuharjo_app/Model/data_surat_tidak_mampu.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class DetailSKTM extends StatefulWidget {
-  // const DetailSKTM({Key key}) : super(key: key);
   List<cSktm> list;
   int index;
   DetailSKTM({this.list, this.index});
@@ -93,6 +92,8 @@ class _DetailSKTMState extends State<DetailSKTM> {
             getDetailSurat("Alamat : ${widget.list[widget.index].alamat}"),
             getDetailSurat(
                 "Tanggal Pengajuan : ${widget.list[widget.index].tglPengajuan}"),
+            getDetailSurat("RT : ${widget.list[widget.index].rT}"),
+            getDetailSurat("RW : ${widget.list[widget.index].rW}"),
             getDetailSurat(
                 "Keperluan : ${widget.list[widget.index].keperluan}"),
           ],

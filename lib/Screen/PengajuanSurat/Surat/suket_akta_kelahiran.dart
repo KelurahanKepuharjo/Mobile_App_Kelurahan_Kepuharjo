@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -9,9 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidak_mampu.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,8 +16,6 @@ import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
-import 'package:kepuharjo_app/Model/RememberUser.dart';
-import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class Akta extends StatefulWidget {
@@ -30,46 +25,36 @@ class Akta extends StatefulWidget {
   State<Akta> createState() => _AktaState();
 }
 
-final id_surat = TextEditingController();
-final nomor_surat = TextEditingController();
-final nama_anak = TextEditingController();
-final tempat_lahir = TextEditingController();
-final tanggal_lahir = TextEditingController();
-final jenis_kelamin = TextEditingController();
-final kebangsaan = TextEditingController();
+final namaAnak = TextEditingController();
+final tempatLahir = TextEditingController();
+final tanggalLahir = TextEditingController();
 final agama = TextEditingController();
 final status = TextEditingController();
 final pekerjaan = TextEditingController();
 final nik = TextEditingController();
 final alamat = TextEditingController();
-final nama_ayah = TextEditingController();
-final umur_ayah = TextEditingController();
-final kebangsaan_ayah = TextEditingController();
-final agama_ayah = TextEditingController();
-final pekerjaan_ayah = TextEditingController();
-final alamat_ayah = TextEditingController();
-final nama_ibu = TextEditingController();
-final umur_ibu = TextEditingController();
-final kebangsaan_ibu = TextEditingController();
-final agama_ibu = TextEditingController();
-final pekerjaan_ibu = TextEditingController();
-final alamat_ibu = TextEditingController();
-final tgl_pengajuan = TextEditingController();
-final surat_digunakan_untuk = TextEditingController();
-final id_akun = TextEditingController();
+final namaAyah = TextEditingController();
+final umurAyah = TextEditingController();
+final agamaAyah = TextEditingController();
+final pekerjaanAyah = TextEditingController();
+final alamatAyah = TextEditingController();
+final namaIbu = TextEditingController();
+final umurIbu = TextEditingController();
+final agamaIbu = TextEditingController();
+final pekerjaanIbu = TextEditingController();
+final alamatIbu = TextEditingController();
+final keperluan = TextEditingController();
+final rt = TextEditingController();
+final rw = TextEditingController();
 
 class _AktaState extends State<Akta> {
   void verifyAkta(BuildContext context) {
-    if (nama_anak.text.isEmpty) {
+    if (namaAnak.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Anak harus diisi");
-    } else if (tempat_lahir.text.isEmpty) {
+    } else if (tempatLahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
-    } else if (tanggal_lahir.text.isEmpty) {
+    } else if (tanggalLahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
-    } else if (jenis_kelamin.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
-    } else if (kebangsaan.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
     } else if (status.text.isEmpty) {
@@ -80,31 +65,31 @@ class _AktaState extends State<Akta> {
       Fluttertoast.showToast(msg: "Nik harus diisi");
     } else if (alamat.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat harus diisi");
-    } else if (nama_ayah.text.isEmpty) {
+    } else if (namaAyah.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Ayah harus diisi");
-    } else if (umur_ayah.text.isEmpty) {
+    } else if (umurAyah.text.isEmpty) {
       Fluttertoast.showToast(msg: "Umur Ayah harus diisi");
-    } else if (kebangsaan_ayah.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Kebangsaan Ayah harus diisi");
-    } else if (agama_ayah.text.isEmpty) {
+    } else if (agamaAyah.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama Ayah harus diisi");
-    } else if (pekerjaan_ayah.text.isEmpty) {
+    } else if (pekerjaanAyah.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pekerjaan Ayah harus diisi");
-    } else if (alamat_ayah.text.isEmpty) {
+    } else if (alamatAyah.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat Ayah harus diisi");
-    } else if (nama_ibu.text.isEmpty) {
+    } else if (namaIbu.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Ibu harus diisi");
-    } else if (umur_ibu.text.isEmpty) {
+    } else if (umurIbu.text.isEmpty) {
       Fluttertoast.showToast(msg: "Umur Ibu harus diisi");
-    } else if (kebangsaan_ibu.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Kebangsaan Ibu harus diisi");
-    } else if (agama_ibu.text.isEmpty) {
+    } else if (agamaIbu.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama Ibu harus diisi");
-    } else if (pekerjaan_ibu.text.isEmpty) {
+    } else if (pekerjaanIbu.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pekerjaan Ibu harus diisi");
-    } else if (alamat_ibu.text.isEmpty) {
+    } else if (alamatIbu.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat Ibu harus diisi");
-    } else if (surat_digunakan_untuk.text.isEmpty) {
+    } else if (keperluan.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
+    } else if (rt.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
+    } else if (rw.text.isEmpty) {
       Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
     } else {
       addDataSurat(context, image);
@@ -112,36 +97,6 @@ class _AktaState extends State<Akta> {
   }
 
   final CurrentUser _currentUser = Get.put(CurrentUser());
-  void addData(BuildContext context) async {
-    await http.post(Uri.parse(ApiConnect.akta), body: {
-      "id_akun": _currentUser.user.idAkun,
-      "nama_anak": nama_anak.text,
-      "tempat_lahir": tempat_lahir.text,
-      "tanggal_lahir": tanggal_lahir.text,
-      "jenis_kelamin": val_jenis_kelamin,
-      "kebangsaan": val_kebangsaan,
-      "agama": agama.text,
-      "status": status.text,
-      "pekerjaan": pekerjaan.text,
-      "nik": nik.text,
-      "alamat": alamat.text,
-      "nama_ayah": nama_ayah.text,
-      "umur_ayah": umur_ayah.text,
-      "kebangsaan_ayah": kebangsaan_ayah.text,
-      "agama_ayah": agama_ayah.text,
-      "pekerjaan_ayah": pekerjaan_ayah.text,
-      "alamat_ayah": alamat_ayah.text,
-      "nama_ibu": nama_ibu.text,
-      "umur_ibu": umur_ibu.text,
-      "kebangsaan_ibu": kebangsaan_ibu.text,
-      "agama_ibu": agama_ibu.text,
-      "pekerjaan_ibu": pekerjaan_ibu.text,
-      "alamat_ibu": alamat_ibu.text,
-      "tgl_pengajuan": tgl_pengajuan.text,
-      "surat_digunakan_untuk": surat_digunakan_untuk.text,
-    });
-    showSuccessDialog(context);
-  }
 
   Future addDataSurat(BuildContext context, File imageFile) async {
     var uri = Uri.parse(ApiConnect.akta);
@@ -149,9 +104,9 @@ class _AktaState extends State<Akta> {
     var length = await imageFile.length();
     var req = http.MultipartRequest('POST', uri);
     req.fields['id_akun'] = _currentUser.user.idAkun;
-    req.fields['nama_lengkap'] = nama_anak.text;
-    req.fields['tempat_lahir'] = tempatlahir.text;
-    req.fields['tanggal_lahir'] = tanggal_lahir.text;
+    req.fields['nama_anak'] = namaAnak.text;
+    req.fields['tempat_lahir'] = tempatLahir.text;
+    req.fields['tanggal_lahir'] = tanggalLahir.text;
     req.fields['jenis_kelamin'] = val_jenis_kelamin;
     req.fields['kebangsaan'] = val_kebangsaan;
     req.fields['agama'] = agama.text;
@@ -159,20 +114,23 @@ class _AktaState extends State<Akta> {
     req.fields['pekerjaan'] = pekerjaan.text;
     req.fields['nik'] = nik.text;
     req.fields['alamat'] = alamat.text;
-    req.fields['nama_ayah'] = nama_ayah.text;
-    req.fields['umur_ayah'] = umur_ayah.text;
-    req.fields['kebangsaan_ayah'] = kebangsaan_ayah.text;
-    req.fields['agama_ayah'] = agama_ayah.text;
-    req.fields['pekerjaan_ayah'] = pekerjaan_ayah.text;
-    req.fields['alamat_ayah'] = alamat_ayah.text;
-    req.fields['nama_ibu'] = nama_ibu.text;
-    req.fields['umur_ibu'] = umur_ibu.text;
-    req.fields['kebangsaan_ibu'] = kebangsaan_ibu.text;
-    req.fields['agama_ibu'] = agama_ibu.text;
-    req.fields['pekerjaan_ibu'] = pekerjaan_ibu.text;
-    req.fields['alamat_ibu'] = alamat_ibu.text;
+    req.fields['nama_ayah'] = namaAyah.text;
+    req.fields['umur_ayah'] = umurAyah.text;
+    req.fields['kebangsaan_ayah'] = valKebangsaanAyah;
+    req.fields['agama_ayah'] = agamaAyah.text;
+    req.fields['pekerjaan_ayah'] = pekerjaanAyah.text;
+    req.fields['alamat_ayah'] = alamatAyah.text;
+    req.fields['nama_ibu'] = namaIbu.text;
+    req.fields['umur_ibu'] = umurIbu.text;
+    req.fields['kebangsaan_ibu'] = valKebangsaanIbu;
+    req.fields['agama_ibu'] = agamaIbu.text;
+    req.fields['pekerjaan_ibu'] = pekerjaanIbu.text;
+    req.fields['alamat_ibu'] = alamatIbu.text;
     req.fields['tgl_pengajuan'] = DateTime.now().toString();
-    req.fields['surat_digunakan_untuk'] = surat_digunakan_untuk.text;
+    req.fields['keperluan'] = keperluan.text;
+    req.fields['status_surat'] = statusSurat;
+    req.fields['RT'] = rt.text;
+    req.fields['RW'] = rw.text;
     var pic = http.MultipartFile("image", stream, length,
         filename: basename(imageFile.path));
     req.files.add(pic);
@@ -194,8 +152,11 @@ class _AktaState extends State<Akta> {
   }
 
   File image;
+  String statusSurat = "Diajukan";
   String val_jenis_kelamin;
   String val_kebangsaan;
+  String valKebangsaanAyah;
+  String valKebangsaanIbu;
   List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
 
@@ -234,16 +195,6 @@ class _AktaState extends State<Akta> {
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: getTextForm(
-                  isReadOnly: true,
-                  controller: id_akun,
-                  hintName: "Nik anda",
-                  keyboardType: TextInputType.number,
-                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
-                ),
-              ),
               Row(
                 children: [
                   Text(
@@ -258,8 +209,8 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: nama_anak,
-                hintName: "nama lengkap",
+                controller: namaAnak,
+                hintName: "Nama Anak",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
@@ -267,7 +218,7 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: tempat_lahir,
+                controller: tempatLahir,
                 hintName: "Tempat Lahir",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -276,7 +227,7 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getDateTime(
-                controller: tanggal_lahir,
+                controller: tanggalLahir,
               ),
               const SizedBox(height: 5),
               Container(
@@ -350,7 +301,7 @@ class _AktaState extends State<Akta> {
               const SizedBox(height: 5),
               getTextForm(
                 controller: status,
-                hintName: "status",
+                hintName: "Status Perkawinan",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
@@ -384,7 +335,7 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: nama_ayah,
+                controller: namaAyah,
                 hintName: "Nama Ayah",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -393,7 +344,7 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: umur_ayah,
+                controller: umurAyah,
                 hintName: "Umur Ayah",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -411,11 +362,11 @@ class _AktaState extends State<Akta> {
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
-                      val_kebangsaan = value;
+                      valKebangsaanAyah = value;
                     });
                   },
                   underline: SizedBox(),
-                  value: val_kebangsaan,
+                  value: valKebangsaanAyah,
                   style: poppinsMediumBlack,
                   iconSize: 25,
                   isExpanded: true,
@@ -434,7 +385,7 @@ class _AktaState extends State<Akta> {
                 height: 5,
               ),
               getTextForm(
-                controller: agama_ayah,
+                controller: agamaAyah,
                 hintName: "Agama Ayah",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -443,7 +394,7 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: pekerjaan_ayah,
+                controller: pekerjaanAyah,
                 hintName: "Pekerjaan Ayah",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -452,7 +403,7 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: alamat_ayah,
+                controller: alamatAyah,
                 hintName: "Alamat Ayah Sesuai Ktp",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -461,7 +412,7 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: nama_ibu,
+                controller: namaIbu,
                 hintName: "Nama Ibu",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -470,7 +421,7 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: umur_ibu,
+                controller: umurIbu,
                 hintName: "Umur Ibu",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -488,11 +439,11 @@ class _AktaState extends State<Akta> {
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
-                      val_kebangsaan = value;
+                      valKebangsaanIbu = value;
                     });
                   },
                   underline: SizedBox(),
-                  value: val_kebangsaan,
+                  value: valKebangsaanIbu,
                   style: poppinsMediumBlack,
                   iconSize: 25,
                   isExpanded: true,
@@ -511,7 +462,7 @@ class _AktaState extends State<Akta> {
                 height: 5,
               ),
               getTextForm(
-                controller: agama_ibu,
+                controller: agamaIbu,
                 hintName: "Agama ibu",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -520,7 +471,7 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: pekerjaan_ibu,
+                controller: pekerjaanIbu,
                 hintName: "Pekerjaan Ibu",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -529,7 +480,7 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: alamat_ibu,
+                controller: alamatIbu,
                 hintName: "Alamat Ibu Sesuai Ktp",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -538,13 +489,30 @@ class _AktaState extends State<Akta> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: surat_digunakan_untuk,
+                controller: keperluan,
                 hintName: "surat digunakan untuk",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
                 length: 225,
               ),
+              const SizedBox(height: 5),
+              getTextForm(
+                controller: rt,
+                hintName: "RT",
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
+              ),
+              const SizedBox(height: 5),
+              getTextForm(
+                controller: rw,
+                hintName: "RW",
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
+              ),
+              const SizedBox(height: 5),
               InkWell(
                 onTap: () {
                   getImageGalerry();
@@ -618,39 +586,29 @@ class _AktaState extends State<Akta> {
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
         setState(() {
-          id_akun.clear();
-          nama_anak.clear();
-          tempat_lahir.clear();
-          tanggal_lahir.clear();
-          jenis_kelamin.clear();
-          kebangsaan.clear();
+          namaAnak.clear();
+          tempatLahir.clear();
+          tanggalLahir.clear();
           agama.clear();
           status.clear();
           pekerjaan.clear();
           nik.clear();
           alamat.clear();
-          nama_ayah.clear();
-          umur_ayah.clear();
-          kebangsaan_ayah.clear();
-          agama_ayah.clear();
-          pekerjaan_ayah.clear();
-          alamat_ayah.clear();
-          nama_ibu.clear();
-          umur_ibu.clear();
-          kebangsaan_ibu.clear();
-          agama_ibu.clear();
-          pekerjaan_ibu.clear();
-          alamat_ibu.clear();
-          surat_digunakan_untuk.clear();
+          namaAyah.clear();
+          umurAyah.clear();
+          agamaAyah.clear();
+          pekerjaanAyah.clear();
+          alamatAyah.clear();
+          namaIbu.clear();
+          umurIbu.clear();
+          agamaIbu.clear();
+          pekerjaanIbu.clear();
+          alamatIbu.clear();
+          keperluan.clear();
         });
         snackBarSucces(context);
         Navigator.pop(context);
       },
-      btnCancelOnPress: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Akta()));
-      },
-      btnCancelIcon: Icons.close,
       btnOkIcon: Icons.done,
     ).show();
   }

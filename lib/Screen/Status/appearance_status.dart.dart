@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratAkta.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratBelumMenikah.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratDomisili.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratPindah.dart';
@@ -115,7 +116,7 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
                       // height: 300,
                       child: Column(
                         children: const [
-                          Text("Surat Keterangan Akta Kelahiran"),
+                          SuratAkta(),
                         ],
                       ),
                     ),

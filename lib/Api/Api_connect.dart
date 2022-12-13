@@ -18,6 +18,8 @@ class ApiConnect {
   static const readdomisili = "$connectApi/read_surat_domisili.php";
   //postsurat keterangan akta
   static const akta = "$connectApi/suket_akta_kelahiran.php";
+  //read akta
+  static const readakta = "$connectApi/read_surat_akta_kelahiran.php";
   //postsurat keterangan kematian
   static const kematian = "$connectApi/suket_kematian.php";
   //read kematian
