@@ -14,31 +14,23 @@ class AppeareaceLogin extends StatefulWidget {
 class _AppeareaceLoginState extends State<AppeareaceLogin> {
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0XFF00ECBC),
-            Color(0xFF007ADF),
-            Color(0xFF2A2A72),
-          ],
-        )),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: const [
-                  WidgetPicture(),
-                  WidgetLogin(),
-                ],
-              ),
+    return Scaffold(
+      backgroundColor: Color(0xFF2A2A72),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                WidgetPicture(),
+                WidgetLogin(),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

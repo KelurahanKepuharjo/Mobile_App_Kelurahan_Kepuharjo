@@ -46,6 +46,8 @@ class _WidgetRegisterState extends State<WidgetRegister> {
   final namaController = TextEditingController();
   final passwordController = TextEditingController();
   final tlpController = TextEditingController();
+  final rtController = TextEditingController();
+  final rwController = TextEditingController();
   bool _loading = false;
   bool showpass = false;
 
@@ -53,7 +55,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
-      height: 450,
+      height: 500,
       width: 300,
       decoration: BoxDecoration(
           color: Color.fromARGB(143, 255, 255, 255),
@@ -67,7 +69,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
           ),
           Text(
             'Registrasi',
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.inter(
                 fontSize: 20, fontWeight: FontWeight.w500, color: blackColor),
           ),
           const SizedBox(
@@ -81,7 +83,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
             length: 16,
           ),
           const SizedBox(
-            height: 8,
+            height: 5,
           ),
           getTextForm(
             controller: namaController,
@@ -91,7 +93,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
             length: 50,
           ),
           const SizedBox(
-            height: 8,
+            height: 5,
           ),
           SizedBox(
             height: 60,
@@ -138,7 +140,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
             ),
           ),
           const SizedBox(
-            height: 8,
+            height: 5,
           ),
           getTextForm(
             controller: tlpController,
@@ -146,6 +148,80 @@ class _WidgetRegisterState extends State<WidgetRegister> {
             keyboardType: TextInputType.number,
             inputFormatters: FilteringTextInputFormatter.digitsOnly,
             length: 13,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                height: 60,
+                width: 130,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      textInputAction: TextInputAction.done,
+                      controller: rtController,
+                      style: poppinsMediumBlack,
+                      keyboardType: TextInputType.number,
+                      onSaved: (newValue) => rtController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter Your Rt';
+                        }
+                        return null;
+                      },
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(5)
+                      ],
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide.none),
+                          filled: true,
+                          fillColor: Color.fromARGB(179, 234, 234, 234),
+                          hintText: "RW",
+                          hintStyle: GoogleFonts.poppins(fontSize: 12)),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 60,
+                width: 130,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      textInputAction: TextInputAction.done,
+                      controller: rwController,
+                      style: poppinsMediumBlack,
+                      keyboardType: TextInputType.number,
+                      onSaved: (newValue) => rwController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter Your Rt';
+                        }
+                        return null;
+                      },
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(5)
+                      ],
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide.none),
+                          filled: true,
+                          fillColor: Color.fromARGB(179, 234, 234, 234),
+                          hintText: "RW",
+                          hintStyle: GoogleFonts.poppins(fontSize: 12)),
+                    )
+                  ],
+                ),
+              ),
+            ],
           ),
           const SizedBox(
             height: 15,
@@ -227,18 +303,22 @@ class _WidgetRegisterState extends State<WidgetRegister> {
     }
   }
 
+  String hakAkses = "4";
   Future register() async {
     try {
       var response = await http.post(Uri.parse(ApiConnect.signup), body: {
         "id_akun": nikController.text,
         "nama_lengkap": namaController.text,
         "password": passwordController.text,
-        "no_hp": tlpController.text
+        "no_hp": tlpController.text,
+        "hak_akses": hakAkses,
+        "rt": rtController.text,
+        "rw": rwController.text,
       });
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        if (data == "Error") {
+        if (data['success'] == false) {
           setState(() {
             _loading = false;
           });
@@ -250,6 +330,8 @@ class _WidgetRegisterState extends State<WidgetRegister> {
             namaController.clear();
             passwordController.clear();
             tlpController.clear();
+            rtController.clear();
+            rwController.clear();
           });
           snackBarSucces();
           // ignore: use_build_context_synchronously

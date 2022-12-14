@@ -15,7 +15,7 @@ class SuratDomisili extends StatefulWidget {
 class _SuratDomisiliState extends State<SuratDomisili> {
   ServiceApi serviceApi = ServiceApi();
   Future<List<cDomisili>> listdata;
-  
+
   @override
   void initState() {
     // TODO: implement initState
@@ -94,7 +94,9 @@ class _SuratDomisiliState extends State<SuratDomisili> {
             return Text("${snapshot.data}");
           }
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: Color(0xFF2A2A72),
+            ),
           );
         },
       ),

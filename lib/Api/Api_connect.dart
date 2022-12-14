@@ -1,9 +1,10 @@
 class ApiConnect {
-  static const hostConnect = "http://192.168.0.130/Web_Kelurahan_Kepuharjo";
+  static const hostConnect = "http://192.168.0.117/Web_Kelurahan_Kepuharjo";
   static const connectApi = "$hostConnect/Api";
 
   //login
   static const signin = "$connectApi/signin.php";
+  static const image = "$connectApi/uploads";
   //register
   static const signup = "$connectApi/signup.php";
   //read data berita

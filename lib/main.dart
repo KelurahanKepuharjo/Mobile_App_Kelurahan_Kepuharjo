@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
               return const HomeScreen();
             }
           }),
+      routes: <String, WidgetBuilder>{'/user': (context) => const HomeScreen()},
     );
   }
 }

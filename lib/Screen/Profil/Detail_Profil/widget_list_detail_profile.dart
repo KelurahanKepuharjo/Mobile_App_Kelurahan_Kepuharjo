@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
+import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidak_mampu.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -98,7 +100,7 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                         borderRadius: BorderRadius.circular(100),
                         color: Color(0xFF2A2A72).withOpacity(0.1),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.camera_alt,
                         color: Color(0xFF2A2A72),
                       ),
@@ -134,7 +136,7 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
                         borderRadius: BorderRadius.circular(100),
                         color: Color(0xFF2A2A72).withOpacity(0.1),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.image,
                         color: Color(0xFF2A2A72),
                       ),
@@ -165,6 +167,36 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
           ),
         );
       },
+    );
+  }
+
+  Container getProfile(IconData icon, String title, String subtitle) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: const Color.fromARGB(179, 234, 234, 234),
+      ),
+      child: ListTile(
+        leading: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: const Color(0xFF2A2A72).withOpacity(0.1),
+          ),
+          child: Icon(
+            icon,
+            color: const Color(0xFF2A2A72),
+          ),
+        ),
+        title: Text(title,
+            style: poppinsMediumBlack.copyWith(
+                fontWeight: FontWeight.bold, fontSize: 15)),
+        subtitle: Text(
+          subtitle,
+          style: poppinsMediumBlack,
+        ),
+      ),
     );
   }
 
@@ -215,86 +247,20 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
             ],
           ),
           const SizedBox(height: 20),
-          Card(
-            elevation: 3,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            child: ListTile(
-              leading: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Color(0xFF2A2A72).withOpacity(0.1),
-                ),
-                child: const Icon(
-                  Icons.person_pin,
-                  color: Color(0xFF2A2A72),
-                ),
-              ),
-              title: Text("NIK",
-                  style: poppinsMediumBlack.copyWith(
-                      fontWeight: FontWeight.bold, fontSize: 15)),
-              subtitle: Text(
-                _currentUser.user.idAkun,
-                style: poppinsMediumBlack,
-              ),
-            ),
-          ),
+          getProfile(Icons.person_pin, "NIK", _currentUser.user.idAkun),
           const SizedBox(height: 5),
-          Card(
-            elevation: 3,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            child: ListTile(
-              leading: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Color(0xFF2A2A72).withOpacity(0.1),
-                ),
-                child: const Icon(
-                  Icons.person,
-                  color: Color(0xFF2A2A72),
-                ),
-              ),
-              title: Text("Nama Lengkap",
-                  style: poppinsMediumBlack.copyWith(
-                      fontWeight: FontWeight.bold, fontSize: 15)),
-              subtitle: Text(
-                _currentUser.user.namaLengkap,
-                style: poppinsMediumBlack,
-              ),
-            ),
-          ),
+          getProfile(
+              Icons.person, "Nama Lengkap", _currentUser.user.namaLengkap),
           const SizedBox(height: 5),
-          Card(
-            elevation: 3,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            child: ListTile(
-              leading: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Color(0xFF2A2A72).withOpacity(0.1),
-                ),
-                child: const Icon(
-                  Icons.call,
-                  color: Color(0xFF2A2A72),
-                ),
-              ),
-              title: Text("Nomer Telepon",
-                  style: poppinsMediumBlack.copyWith(
-                      fontWeight: FontWeight.bold, fontSize: 15)),
-              subtitle: Text(
-                _currentUser.user.noHp,
-                style: poppinsMediumBlack,
-              ),
-            ),
+          getProfile(Icons.call, "No.Telepon", _currentUser.user.noHp),
+          const SizedBox(
+            height: 5,
           ),
+          getProfile(Icons.house_rounded, "RT", _currentUser.user.rT),
+          const SizedBox(
+            height: 5,
+          ),
+          getProfile(Icons.house_rounded, "RW", _currentUser.user.rW),
           const SizedBox(
             height: 30,
           ),
@@ -326,6 +292,28 @@ class _WidgetDataDetailProfilState extends State<WidgetDataDetailProfil> {
               ),
             ],
           ),
+          const SizedBox(
+            height: 100,
+          ),
+          TextButton(
+              onPressed: () {
+                RememberUser.removeUserSessions().then((value) =>
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AppeareaceLogin())));
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    behavior: SnackBarBehavior.floating,
+                    content: AwesomeSnackbarContent(
+                        title: "Berhasil",
+                        message: "Anda berhasil Logout",
+                        contentType: ContentType.success)));
+              },
+              child: Text("Log Out",
+                  style: poppinsMediumBlack.copyWith(
+                      color: Color(0xFF2A2A72), fontWeight: FontWeight.bold)))
         ],
       ),
     );

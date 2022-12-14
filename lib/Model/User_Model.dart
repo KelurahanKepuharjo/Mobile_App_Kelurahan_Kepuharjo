@@ -5,12 +5,16 @@ class User {
   String namaLengkap;
   String password;
   String noHp;
+  String rT;
+  String rW;
 
   User(
-      {@required this.idAkun,
-      @required this.namaLengkap,
-      @required this.password,
-      @required this.noHp});
+      {this.idAkun,
+      this.namaLengkap,
+      this.password,
+      this.noHp,
+      this.rT,
+      this.rW});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -18,6 +22,8 @@ class User {
       namaLengkap: json['nama_lengkap'],
       password: json['password'],
       noHp: json['no_hp'],
+      rT: json['rt'],
+      rW: json['rw'],
     );
   }
 
@@ -27,6 +33,8 @@ class User {
     data['nama_lengkap'] = this.namaLengkap;
     data['password'] = this.password;
     data['no_hp'] = this.noHp;
+    data['rt'] = this.rT;
+    data['rw'] = this.rW;
     return data;
   }
 }

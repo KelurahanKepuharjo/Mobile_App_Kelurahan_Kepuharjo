@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Model/data_surat_tidak_mampu.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -96,6 +97,18 @@ class _DetailSKTMState extends State<DetailSKTM> {
             getDetailSurat("RW : ${widget.list[widget.index].rW}"),
             getDetailSurat(
                 "Keperluan : ${widget.list[widget.index].keperluan}"),
+            const SizedBox(
+              height: 20,
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                "Ajukan Pembatalan",
+                style: poppinsMediumBlack.copyWith(
+                  color: Color(0xFF2A2A72),
+                ),
+              ),
+            )
           ],
         ),
       ),

@@ -93,47 +93,6 @@ class _AppearanceTentangState extends State<AppearanceTentang> {
                     const SizedBox(
                       height: 30,
                     ),
-                    ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const AppearanceTentang()));
-                      },
-                      title: Text(
-                        "Tentang Kami",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                      trailing: Icon(
-                        Icons.keyboard_arrow_right,
-                        size: 15,
-                        color: blackColor,
-                      ),
-                    ),
-                    ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const InfoAplikasi()));
-                      },
-                      title: Text(
-                        "Info Aplikasi",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                      trailing: Icon(
-                        Icons.keyboard_arrow_right,
-                        color: blackColor,
-                        size: 15,
-                      ),
-                    )
                   ],
                 )
               ],

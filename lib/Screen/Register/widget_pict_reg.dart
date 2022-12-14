@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WidgetPictureReg extends StatefulWidget {
   const WidgetPictureReg({key});
@@ -10,21 +11,49 @@ class WidgetPictureReg extends StatefulWidget {
 class _WidgetPictureRegState extends State<WidgetPictureReg> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ClipRRect(
-            child: Image.asset(
-              'images/logo.png',
-              height: 170,
-              alignment: Alignment.center,
-            ),
-          )
-        ],
-      ),
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(30, 100, 20, 50),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Kelurahan Kepuharjo",
+                style: GoogleFonts.inter(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              Text(
+                "Kabupaten Lumajang",
+                style: GoogleFonts.inter(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 50, 10, 10),
+          child: Row(
+            children: [
+              const Spacer(),
+              Opacity(
+                opacity: 0.3,
+                child: Image.asset(
+                  "images/mylogo.png",
+                  alignment: Alignment.topLeft,
+                  height: 100,
+                  width: 100,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
