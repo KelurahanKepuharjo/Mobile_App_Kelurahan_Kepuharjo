@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-
 class User {
   String idAkun;
   String namaLengkap;
   String password;
   String noHp;
+  String hakAkses;
   String rT;
   String rW;
 
@@ -13,6 +12,7 @@ class User {
       this.namaLengkap,
       this.password,
       this.noHp,
+      this.hakAkses,
       this.rT,
       this.rW});
 
@@ -22,6 +22,7 @@ class User {
       namaLengkap: json['nama_lengkap'],
       password: json['password'],
       noHp: json['no_hp'],
+      hakAkses: json['hak_akses'],
       rT: json['rt'],
       rW: json['rw'],
     );
@@ -33,6 +34,7 @@ class User {
     data['nama_lengkap'] = this.namaLengkap;
     data['password'] = this.password;
     data['no_hp'] = this.noHp;
+    data['hak_akses'] = this.hakAkses;
     data['rt'] = this.rT;
     data['rw'] = this.rW;
     return data;

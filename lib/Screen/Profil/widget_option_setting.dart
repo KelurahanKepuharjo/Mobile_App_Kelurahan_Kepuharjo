@@ -3,7 +3,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Model/RememberUser.dart';
+import 'package:kepuharjo_app/Controller/RememberUser.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen/Profil/Info_Aplikasi/appearance_app.dart';
 import 'package:kepuharjo_app/Screen/Profil/Tentang/appearance_tentang.dart';
@@ -15,6 +15,8 @@ class WidgetOptionsSetting extends StatefulWidget {
   @override
   State<WidgetOptionsSetting> createState() => _WidgetOptionsSettingState();
 }
+
+final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
 class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
   ListTile profileMenuWidget(
@@ -83,21 +85,23 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
       desc: 'Apakah anda yakin, untuk logout?',
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
-        setState(() {
-          RememberUser.removeUserSessions().then((value) =>
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AppeareaceLogin())));
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              behavior: SnackBarBehavior.floating,
-              content: AwesomeSnackbarContent(
-                  title: "Berhasil",
-                  message: "Anda berhasil Logout",
-                  contentType: ContentType.success)));
-        });
+        if (_formkey.currentState.validate()) {
+          setState(() {
+            RememberUser.removeUserSessions().then((value) =>
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AppeareaceLogin())));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                behavior: SnackBarBehavior.floating,
+                content: AwesomeSnackbarContent(
+                    title: "Berhasil",
+                    message: "Anda berhasil Logout",
+                    contentType: ContentType.success)));
+          });
+        }
       },
       btnOkIcon: Icons.done,
     ).show();
@@ -107,15 +111,18 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 20),
-      child: Column(
-        children: [
-          const Lokasi(),
-          profileMenuWidget(
-              "Info Aplikasi", Icons.info, true, 1, const Color(0xFF454444)),
-          profileMenuWidget(
-              "Tentang", Icons.help, true, 2, const Color(0xFF454444)),
-          profileMenuWidget("Log Out", Icons.logout, false, 3, Colors.red)
-        ],
+      child: Form(
+        key: _formkey,
+        child: Column(
+          children: [
+            const Lokasi(),
+            profileMenuWidget(
+                "Info Aplikasi", Icons.info, true, 1, const Color(0xFF454444)),
+            profileMenuWidget(
+                "Tentang", Icons.help, true, 2, const Color(0xFF454444)),
+            profileMenuWidget("Log Out", Icons.logout, false, 3, Colors.red)
+          ],
+        ),
       ),
     );
   }
@@ -131,9 +138,7 @@ class Lokasi extends StatefulWidget {
 class _LokasiState extends State<Lokasi> {
   String lokasi = "Kelurahan Kepuharjo";
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context) {
     return ListTile(
       onTap: () async {
         final intent = AndroidIntent(

@@ -15,6 +15,7 @@ class AppearanceProfil extends StatefulWidget {
 }
 
 CurrentUser rememberCurrentUser = Get.put(CurrentUser());
+final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
 class _AppearanceProfilState extends State<AppearanceProfil> {
   @override
@@ -45,12 +46,15 @@ class _AppearanceProfilState extends State<AppearanceProfil> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              WidgetShowProfile(),
-              const WidgetOptionsSetting(),
-            ],
+          child: Form(
+            key: _formkey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: const [
+                WidgetShowProfile(),
+                WidgetOptionsSetting(),
+              ],
+            ),
           ),
         ),
       ),

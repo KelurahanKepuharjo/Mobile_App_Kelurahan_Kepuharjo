@@ -9,7 +9,7 @@ class AppeareaceLogin extends StatefulWidget {
   State<AppeareaceLogin> createState() => _AppeareaceLoginState();
 }
 
-// final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
 class _AppeareaceLoginState extends State<AppeareaceLogin> {
   @override
@@ -17,16 +17,19 @@ class _AppeareaceLoginState extends State<AppeareaceLogin> {
     return Scaffold(
       backgroundColor: Color(0xFF2A2A72),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                WidgetPicture(),
-                WidgetLogin(),
-              ],
+        child: Form(
+          key: _formkey,
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  WidgetPicture(),
+                  WidgetLogin(),
+                ],
+              ),
             ),
           ),
         ),

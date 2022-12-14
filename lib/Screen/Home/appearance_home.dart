@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Model/RememberUser.dart';
+import 'package:kepuharjo_app/Controller/RememberUser.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_berita.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_surat.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_text_berita.dart';
@@ -67,7 +67,7 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: 20),
+                  padding: const EdgeInsets.only(right: 20),
                   child: Image.asset(
                     "images/mylogo.png",
                     width: 100,

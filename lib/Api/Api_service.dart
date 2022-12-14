@@ -25,7 +25,10 @@ class ServiceApi {
     }
   }
 
+  //get data user login
   final CurrentUser _currentUser = Get.put(CurrentUser());
+
+  //get data surat sktm
   Future<List<cSktm>> getSktm() async {
     final response = await http.post(Uri.parse(ApiConnect.readsktm), body: {
       "id_akun": _currentUser.user.idAkun,
@@ -38,6 +41,7 @@ class ServiceApi {
     }
   }
 
+  //get data surat keterangan domisili
   Future<List<cDomisili>> getDomisili() async {
     final response = await http.post(Uri.parse(ApiConnect.readdomisili), body: {
       "id_akun": _currentUser.user.idAkun,
@@ -50,6 +54,7 @@ class ServiceApi {
     }
   }
 
+  //get data surat keterangan kematian
   Future<List<cKematian>> getkematian() async {
     final response = await http.post(Uri.parse(ApiConnect.readkematian), body: {
       "id_akun": _currentUser.user.idAkun,
@@ -62,6 +67,7 @@ class ServiceApi {
     }
   }
 
+  //get surat keterangan pindah
   Future<List<cPindah>> getpindah() async {
     final response = await http.post(Uri.parse(ApiConnect.readpindah), body: {
       "id_akun": _currentUser.user.idAkun,
@@ -74,6 +80,7 @@ class ServiceApi {
     }
   }
 
+  //get surat keterangan belum menikah
   Future<List<cBelumNikah>> getbelumnikah() async {
     final response =
         await http.post(Uri.parse(ApiConnect.readbelumNikah), body: {
@@ -87,6 +94,7 @@ class ServiceApi {
     }
   }
 
+  //get surat keterangan usaha
   Future<List<cUsaha>> getusaha() async {
     final response = await http.post(Uri.parse(ApiConnect.readUsaha), body: {
       "id_akun": _currentUser.user.idAkun,
@@ -99,6 +107,7 @@ class ServiceApi {
     }
   }
 
+  //get surat keterangan akta kelahiran
   Future<List<cAkta>> getAkta() async {
     final response = await http.post(Uri.parse(ApiConnect.readakta), body: {
       "id_akun": _currentUser.user.idAkun,
