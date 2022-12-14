@@ -7,7 +7,6 @@ import 'package:kepuharjo_app/Model/RememberUser.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen/Profil/Info_Aplikasi/appearance_app.dart';
 import 'package:kepuharjo_app/Screen/Profil/Tentang/appearance_tentang.dart';
-import 'package:kepuharjo_app/Screen/Profil/appearance_profil.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetOptionsSetting extends StatefulWidget {
@@ -78,7 +77,9 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
       dialogType: DialogType.WARNING,
       title: 'Warning!',
       titleTextStyle: poppinsLargeBlack.copyWith(
-          fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xFF2A2A72)),
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+          color: const Color(0xFF2A2A72)),
       desc: 'Apakah anda yakin, untuk logout?',
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
