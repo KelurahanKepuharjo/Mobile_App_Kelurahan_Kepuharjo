@@ -1,5 +1,5 @@
 class ApiConnect {
-  static const hostConnect = "http://192.168.0.117/Web_Kelurahan_Kepuharjo";
+  static const hostConnect = "http://10.10.175.224/Web_Kelurahan_Kepuharjo";
   static const connectApi = "$hostConnect/Api";
 
   //login

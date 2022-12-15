@@ -46,15 +46,12 @@ class _AppearanceProfilState extends State<AppearanceProfil> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: Form(
-            key: _formkey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
-                WidgetShowProfile(),
-                WidgetOptionsSetting(),
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: const [
+              WidgetShowProfile(),
+              WidgetOptionsSetting(),
+            ],
           ),
         ),
       ),

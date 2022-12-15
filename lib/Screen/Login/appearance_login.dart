@@ -17,19 +17,16 @@ class _AppeareaceLoginState extends State<AppeareaceLogin> {
     return Scaffold(
       backgroundColor: Color(0xFF2A2A72),
       body: SingleChildScrollView(
-        child: Form(
-          key: _formkey,
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  WidgetPicture(),
-                  WidgetLogin(),
-                ],
-              ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                WidgetPicture(),
+                WidgetLogin(),
+              ],
             ),
           ),
         ),
