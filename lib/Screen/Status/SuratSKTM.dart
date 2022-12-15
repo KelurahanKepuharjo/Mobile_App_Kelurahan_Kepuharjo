@@ -68,8 +68,8 @@ class _SuratSKTMState extends State<SuratSKTM> {
                               fontWeight: FontWeight.w300),
                         ),
                         trailing: Container(
-                          height: 20,
-                          width: 70,
+                          height: 30,
+                          width: 130,
                           decoration: BoxDecoration(
                             color: const Color(0xFF2A2A72).withOpacity(0.1),
                             borderRadius: BorderRadius.circular(5),
@@ -78,7 +78,7 @@ class _SuratSKTMState extends State<SuratSKTM> {
                             child: Text(
                               list[index].statusSurat,
                               style: GoogleFonts.poppins(
-                                fontSize: 12,
+                                fontSize: 11,
                                 color: const Color(0xFF2A2A72),
                               ),
                             ),

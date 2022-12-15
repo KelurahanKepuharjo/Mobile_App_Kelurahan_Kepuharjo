@@ -89,7 +89,7 @@ class _DetailSKTMState extends State<DetailSKTM> {
     }
   }
 
-  String pembatalan = "Dibatalkan";
+  String pembatalan = "Proses Pembatalan";
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +161,7 @@ class _DetailSKTMState extends State<DetailSKTM> {
               child: Text(
                 "Ajukan Pembatalan",
                 style: poppinsMediumBlack.copyWith(
-                  color: Color(0xFF2A2A72),
+                  color: const Color(0xFF2A2A72),
                 ),
               ),
             )
