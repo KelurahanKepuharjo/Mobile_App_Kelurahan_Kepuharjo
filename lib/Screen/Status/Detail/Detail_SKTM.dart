@@ -1,8 +1,14 @@
+import 'dart:convert';
+
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Model/data_surat_tidak_mampu.dart';
+import 'package:kepuharjo_app/Screen/NavButton/Home_Screen.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:http/http.dart' as http;
 
 class DetailSKTM extends StatefulWidget {
   List<cSktm> list;
@@ -36,6 +42,54 @@ class _DetailSKTMState extends State<DetailSKTM> {
       ),
     );
   }
+
+  showSuccessDialog() {
+    AwesomeDialog(
+      context: context,
+      animType: AnimType.SCALE,
+      dialogType: DialogType.WARNING,
+      title: 'Warning!',
+      titleTextStyle: poppinsLargeBlack.copyWith(
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+          color: const Color(0xFF2A2A72)),
+      desc: 'Apakah anda yakin, untuk membatalkan pengajuan surat anda ?',
+      descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
+      btnOkOnPress: () {
+        pembatalanSurat();
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ));
+      },
+      btnOkIcon: Icons.done,
+    ).show();
+  }
+
+  void pembatalanSurat() async {
+    try {
+      var url = Uri.parse(ApiConnect.pembatalanSktm);
+      var response = await http.post(url, body: {
+        "id_surat": widget.list[widget.index].idSurat,
+        "status_surat": pembatalan,
+      });
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        if (data['success'] == true) {
+          Fluttertoast.showToast(
+              backgroundColor: Colors.green,
+              msg: "Pengajuan Pembatalan Surat Berhasil");
+        } else {
+          Fluttertoast.showToast(
+              backgroundColor: Colors.red,
+              msg: "Pengajuan Pembatalan Surat Gagal");
+        }
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
+  }
+
+  String pembatalan = "Dibatalkan";
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +155,9 @@ class _DetailSKTMState extends State<DetailSKTM> {
               height: 20,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                showSuccessDialog();
+              },
               child: Text(
                 "Ajukan Pembatalan",
                 style: poppinsMediumBlack.copyWith(
