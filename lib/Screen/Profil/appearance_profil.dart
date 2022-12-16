@@ -44,6 +44,7 @@ class _AppearanceProfilState extends State<AppearanceProfil> {
         )),
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
