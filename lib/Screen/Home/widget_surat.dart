@@ -69,7 +69,7 @@ GestureDetector getLetter(
             Icon(
               icon,
               size: 30,
-              color: Color(0xFF2A2A72),
+              color: appColor,
             ),
             const SizedBox(
               height: 5,

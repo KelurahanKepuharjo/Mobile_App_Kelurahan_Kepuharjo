@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kepuharjo_app/Screen/Login/widget_column_login.dart';
 import 'package:kepuharjo_app/Screen/Login/widget_pict_logo.dart';
+import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppeareaceLogin extends StatefulWidget {
   const AppeareaceLogin({Key key}) : super(key: key);
@@ -15,7 +16,7 @@ class _AppeareaceLoginState extends State<AppeareaceLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF2A2A72),
+      backgroundColor: appColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),

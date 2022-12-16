@@ -68,7 +68,7 @@ class _SuratPindahState extends State<SuratPindah> {
                           height: 30,
                           width: 130,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF2A2A72).withOpacity(0.1),
+                            color: appColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Center(
@@ -76,7 +76,7 @@ class _SuratPindahState extends State<SuratPindah> {
                               list[index].statusSurat,
                               style: GoogleFonts.poppins(
                                 fontSize: 11,
-                                color: const Color(0xFF2A2A72),
+                                color: appColor,
                               ),
                             ),
                           ),
@@ -93,9 +93,9 @@ class _SuratPindahState extends State<SuratPindah> {
           } else if (snapshot.hasError) {
             return Text("${snapshot.data}");
           }
-          return const Center(
+          return Center(
             child: CircularProgressIndicator(
-              color: Color(0xFF2A2A72),
+              color: appColor,
             ),
           );
         },

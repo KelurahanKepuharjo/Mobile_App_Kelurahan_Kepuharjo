@@ -48,7 +48,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
                   "See All",
                   textAlign: TextAlign.center,
                   style: poppinsSmallBlack.copyWith(
-                    color: Color(0xFF2A2A72),
+                    color: appColor,
                   ),
                 ),
               ),

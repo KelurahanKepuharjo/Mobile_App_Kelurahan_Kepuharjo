@@ -151,9 +151,7 @@ class _DetailKematianState extends State<DetailKematian> {
               },
               child: Text(
                 "Ajukan Pembatalan",
-                style: poppinsMediumBlack.copyWith(
-                  color: const Color(0xFF2A2A72),
-                ),
+                style: poppinsMediumBlack.copyWith(color: appColor),
               ),
             )
           ],

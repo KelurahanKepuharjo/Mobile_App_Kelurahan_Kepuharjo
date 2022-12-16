@@ -68,7 +68,7 @@ class _SuratBelumNikahState extends State<SuratBelumNikah> {
                           height: 30,
                           width: 130,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF2A2A72).withOpacity(0.1),
+                            color: appColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Center(
@@ -76,7 +76,7 @@ class _SuratBelumNikahState extends State<SuratBelumNikah> {
                               list[index].statusSurat,
                               style: GoogleFonts.poppins(
                                 fontSize: 11,
-                                color: const Color(0xFF2A2A72),
+                                color: appColor,
                               ),
                             ),
                           ),
@@ -93,10 +93,8 @@ class _SuratBelumNikahState extends State<SuratBelumNikah> {
           } else if (snapshot.hasError) {
             return Text("${snapshot.data}");
           }
-          return const Center(
-            child: CircularProgressIndicator(
-              color: Color(0xFF2A2A72),
-            ),
+          return Center(
+            child: CircularProgressIndicator(color: appColor),
           );
         },
       ),

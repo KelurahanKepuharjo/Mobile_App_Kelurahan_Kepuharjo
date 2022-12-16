@@ -34,16 +34,15 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
                   fontSize: 18, fontWeight: FontWeight.bold),
             ),
             flexibleSpace: Container(
-                decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/newbgsa.png'),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
-              color: Color(0xFF2A2A72),
-            )),
+                decoration: BoxDecoration(
+                    image: const DecorationImage(
+                      image: AssetImage('images/newbgsa.png'),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20)),
+                    color: appColor)),
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -64,7 +63,7 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
                             fontSize: 14, fontWeight: FontWeight.w500),
                         isScrollable: true,
                         indicator: BoxDecoration(
-                          color: const Color(0xFF2A2A72),
+                          color: appColor,
                           borderRadius: BorderRadius.circular(7),
                         ),
                         tabs: const [

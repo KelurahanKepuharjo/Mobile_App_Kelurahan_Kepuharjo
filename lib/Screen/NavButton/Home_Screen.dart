@@ -80,8 +80,8 @@ class _HomeScreenState extends State<HomeScreen> {
               selectedFontSize: 12,
               type: BottomNavigationBarType.fixed,
               showUnselectedLabels: false,
-              selectedItemColor: Color(0xFF2A2A72),
-              unselectedItemColor: Color(0xFF2A2A72),
+              selectedItemColor: appColor,
+              unselectedItemColor: appColor,
               items: List.generate(4, (index) {
                 var navBtn = _navbutton[index];
                 return BottomNavigationBarItem(

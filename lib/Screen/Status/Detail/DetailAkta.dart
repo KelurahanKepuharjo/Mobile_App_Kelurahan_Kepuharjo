@@ -74,9 +74,7 @@ class _DetailAktaState extends State<DetailAkta> {
       dialogType: DialogType.WARNING,
       title: 'Warning!',
       titleTextStyle: poppinsLargeBlack.copyWith(
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-          color: const Color(0xFF2A2A72)),
+          fontSize: 25, fontWeight: FontWeight.bold, color: appColor),
       desc: 'Apakah anda yakin, untuk membatalkan pengajuan surat anda ?',
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
@@ -172,7 +170,7 @@ class _DetailAktaState extends State<DetailAkta> {
               child: Text(
                 "Ajukan Pembatalan",
                 style: poppinsMediumBlack.copyWith(
-                  color: const Color(0xFF2A2A72),
+                  color: appColor,
                 ),
               ),
             )

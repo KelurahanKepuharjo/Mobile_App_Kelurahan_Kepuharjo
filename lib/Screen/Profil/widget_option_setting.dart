@@ -41,11 +41,11 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: Color(0xFF2A2A72).withOpacity(0.1),
+          color: appColor.withOpacity(0.1),
         ),
         child: Icon(
           icon,
-          color: Color(0xFF2A2A72),
+          color: appColor,
         ),
       ),
       title: Text(title,
@@ -79,9 +79,7 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
       dialogType: DialogType.WARNING,
       title: 'Warning!',
       titleTextStyle: poppinsLargeBlack.copyWith(
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-          color: const Color(0xFF2A2A72)),
+          fontSize: 25, fontWeight: FontWeight.bold, color: appColor),
       desc: 'Apakah anda yakin, untuk logout?',
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
@@ -147,11 +145,11 @@ class _LokasiState extends State<Lokasi> {
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: Color(0xFF2A2A72).withOpacity(0.1),
+          color: appColor.withOpacity(0.1),
         ),
-        child: const Icon(
+        child: Icon(
           Icons.location_on,
-          color: Color(0xFF2A2A72),
+          color: appColor,
         ),
       ),
       title: Text("Lokasi Kelurahan",

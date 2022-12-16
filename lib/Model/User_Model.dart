@@ -7,14 +7,15 @@ class User {
   String rT;
   String rW;
 
-  User(
-      {this.idAkun,
-      this.namaLengkap,
-      this.password,
-      this.noHp,
-      this.hakAkses,
-      this.rT,
-      this.rW});
+  User({
+    this.idAkun,
+    this.namaLengkap,
+    this.password,
+    this.noHp,
+    this.hakAkses,
+    this.rT,
+    this.rW,
+  });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -37,6 +38,7 @@ class User {
     data['hak_akses'] = this.hakAkses;
     data['rt'] = this.rT;
     data['rw'] = this.rW;
+
     return data;
   }
 }

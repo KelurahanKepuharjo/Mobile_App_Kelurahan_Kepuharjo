@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WidgetPictureReg extends StatefulWidget {
-  const WidgetPictureReg({key});
+  const WidgetPictureReg({Key key}) : super(key: key);
 
   @override
   State<WidgetPictureReg> createState() => _WidgetPictureRegState();

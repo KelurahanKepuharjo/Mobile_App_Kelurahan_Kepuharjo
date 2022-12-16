@@ -237,7 +237,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
                   width: 120,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF2A2A72),
+                        backgroundColor: appColor,
                         shadowColor: Colors.transparent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
@@ -271,8 +271,7 @@ class _WidgetRegisterState extends State<WidgetRegister> {
                 InkWell(
                   child: Text(
                     " Login",
-                    style: GoogleFonts.poppins(
-                        color: Color(0xFF2A2A72), fontSize: 13),
+                    style: GoogleFonts.poppins(color: appColor, fontSize: 13),
                   ),
                   onTap: () {
                     Navigator.pushAndRemoveUntil(
@@ -298,6 +297,10 @@ class _WidgetRegisterState extends State<WidgetRegister> {
       Fluttertoast.showToast(msg: "Password harus diisi");
     } else if (tlpController.text.isEmpty) {
       Fluttertoast.showToast(msg: "No.Telepon harus diisi");
+    } else if (rtController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "RT harus diisi");
+    } else if (rwController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "RW harus diisi");
     } else {
       register();
     }

@@ -64,7 +64,7 @@ GestureDetector getLetter(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xFF2A2A72),
+            appColor,
             midGreen,
           ],
         ),

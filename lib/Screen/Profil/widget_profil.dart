@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/detail_profile.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:random_color/random_color.dart';
 
 class WidgetShowProfile extends StatefulWidget {
   const WidgetShowProfile({Key key}) : super(key: key);
@@ -22,19 +23,20 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Stack(
-            children: [
-              SizedBox(
-                width: 120,
-                height: 120,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: const Image(
-                    image: AssetImage("images/user.png"),
-                  ),
-                ),
+          CircleAvatar(
+            radius: 55,
+            backgroundColor: Colors.grey.shade300,
+            child: CircleAvatar(
+              radius: 50,
+              backgroundColor: appColor,
+              child: Text(
+                _currentUser.user.namaLengkap[0].toUpperCase(),
+                style: GoogleFonts.inter(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
               ),
-            ],
+            ),
           ),
           const SizedBox(
             height: 15,
@@ -62,7 +64,7 @@ class _WidgetShowProfileState extends State<WidgetShowProfile> {
             padding: const EdgeInsets.symmetric(horizontal: 50),
             height: 45,
             decoration: BoxDecoration(
-              color: Color(0xFF2A2A72),
+              color: appColor,
               borderRadius: BorderRadius.circular(25),
             ),
             child: ElevatedButton(

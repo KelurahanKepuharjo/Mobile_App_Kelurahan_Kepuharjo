@@ -7,7 +7,9 @@ import 'package:kepuharjo_app/Screen/PengajuanSurat/widget_text_surat.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearancePengajuan extends StatefulWidget {
-  const AppearancePengajuan({key});
+  const AppearancePengajuan({
+    Key key,
+  }) : super(key: key);
 
   @override
   State<AppearancePengajuan> createState() => _AppearancePengajuanState();
@@ -28,15 +30,15 @@ class _AppearancePengajuanState extends State<AppearancePengajuan> {
           style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
-            decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20)),
-          image: DecorationImage(
+          image: const DecorationImage(
             image: AssetImage('images/newbgsa.png'),
             fit: BoxFit.cover,
           ),
-          color: Color(0xFF2A2A72),
+          color: appColor,
         )),
       ),
       body: Container(

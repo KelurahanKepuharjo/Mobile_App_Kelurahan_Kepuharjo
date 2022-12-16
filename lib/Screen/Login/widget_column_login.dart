@@ -161,7 +161,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
                   width: 120,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF2A2A72),
+                          backgroundColor: appColor,
                           shadowColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
@@ -191,7 +191,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
                   child: Text(
                     " Registrasi",
                     style: poppinsSmallBlack.copyWith(
-                        color: Color(0xFF2A2A72), fontSize: 13),
+                        color: appColor, fontSize: 13),
                   ),
                   onTap: () {
                     Navigator.push(
@@ -220,7 +220,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
     }
   }
 
-  Future<List<User>> login() async {
+  Future login() async {
     try {
       var response = await http.post(Uri.parse(ApiConnect.signin), body: {
         "id_akun": nikController.text,

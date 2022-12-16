@@ -6,7 +6,9 @@ import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:readmore/readmore.dart';
 
 class WidgetBerita extends StatefulWidget {
-  const WidgetBerita({key});
+  const WidgetBerita({
+    Key key,
+  }) : super(key: key);
 
   @override
   State<WidgetBerita> createState() => _WidgetBeritaState();
@@ -89,12 +91,12 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                                       lessStyle: poppinsMediumBlack.copyWith(
                                         fontWeight: FontWeight.w500,
                                         fontStyle: FontStyle.italic,
-                                        color: Color(0xFF2A2A72),
+                                        color: appColor,
                                       ),
                                       moreStyle: poppinsMediumBlack.copyWith(
                                         fontWeight: FontWeight.w500,
                                         fontStyle: FontStyle.italic,
-                                        color: Color(0xFF2A2A72),
+                                        color: appColor,
                                       ),
                                       style: poppinsMediumBlack.copyWith(
                                         fontWeight: FontWeight.w500,
@@ -113,9 +115,9 @@ class _WidgetBeritaState extends State<WidgetBerita> {
           } else if (snapshot.hasError) {
             return Text("${snapshot.data}");
           }
-          return const Center(
+          return Center(
             child: CircularProgressIndicator(
-              color: Color(0xFF2A2A72),
+              color: appColor,
             ),
           );
         },

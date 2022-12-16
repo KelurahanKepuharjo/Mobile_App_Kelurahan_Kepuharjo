@@ -35,11 +35,11 @@ class _AppearanceTentangState extends State<AppearanceTentang> {
           style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
-            decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20)),
-          color: Color(0xFF2A2A72),
+          color: appColor,
         )),
       ),
       body: ListView(

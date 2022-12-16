@@ -2,14 +2,14 @@ part of 'shared.dart';
 
 Color blueColor = const Color(0xFF0FA8EA);
 Color whiteColor = Colors.white;
-Color blackColor = Colors.black;                          
-Color darkgreenColor = Colors.indigo.shade800;
+Color blackColor = Colors.black;
+Color appColor = const Color(0xFF2A2A72);
 Color greyColor = const Color.fromRGBO(224, 224, 224, 1);
 Color midGreen = const Color(0xFF007ADF);
 Color lightGreen = const Color(0xFF0acffe);
 
 TextStyle appTextStyle = GoogleFonts.inter(
-    fontSize: 36, color: darkgreenColor, fontWeight: FontWeight.w700);
+    fontSize: 36, color: appColor, fontWeight: FontWeight.w700);
 TextStyle whiteTextStyle = GoogleFonts.nunito(
     fontSize: 14, color: whiteColor, fontWeight: FontWeight.w500);
 TextStyle blackTextStyle = GoogleFonts.nunito(

@@ -139,9 +139,9 @@ class _BelumNikahState extends State<BelumNikah> {
               color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                color: Color(0xFF2A2A72),
-                borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+                color: appColor,
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(20),
                   bottomRight: Radius.circular(20),
                 ))),
@@ -348,7 +348,7 @@ class _BelumNikahState extends State<BelumNikah> {
                     height: 45,
                     width: 250,
                     decoration: BoxDecoration(
-                      color: Color(0xFF2A2A72),
+                      color: appColor,
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: ElevatedButton(
@@ -383,7 +383,7 @@ class _BelumNikahState extends State<BelumNikah> {
       dialogType: DialogType.WARNING,
       title: 'Warning!',
       titleTextStyle: poppinsLargeBlack.copyWith(
-          fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xFF2A2A72)),
+          fontSize: 25, fontWeight: FontWeight.bold, color: appColor),
       desc: 'Apakah anda yakin, Jika data yang anda masukan telah benar',
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {

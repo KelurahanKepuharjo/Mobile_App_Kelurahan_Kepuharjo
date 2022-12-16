@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           bottomSheetTheme:
               const BottomSheetThemeData(backgroundColor: Colors.transparent),
-          primaryColor: blueColor,
-          primarySwatch: Colors.blue,
+          primaryColor: const Color(0xFF2A2A72),
+          primarySwatch: Colors.indigo,
           canvasColor: const Color(0xFF000000)),
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
