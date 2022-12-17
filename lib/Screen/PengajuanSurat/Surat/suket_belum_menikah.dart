@@ -47,6 +47,10 @@ class _BelumNikahState extends State<BelumNikah> {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
     } else if (tanggal_lahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
+    } else if (val_jenis_kelamin == null) {
+      Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
+    } else if (val_kebangsaan == null) {
+      Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
     } else if (status.text.isEmpty) {
@@ -77,8 +81,8 @@ class _BelumNikahState extends State<BelumNikah> {
     req.fields['nama'] = nama.text;
     req.fields['tempat_lahir'] = tempat_lahir.text;
     req.fields['tanggal_lahir'] = tanggal_lahir.text;
-    req.fields['jenis_kelamin'] = jenis_kelamin.text;
-    req.fields['kebangsaan'] = kebangsaan.text;
+    req.fields['jenis_kelamin'] = val_jenis_kelamin;
+    req.fields['kebangsaan'] = val_kebangsaan;
     req.fields['agama'] = agama.text;
     req.fields['status'] = status.text;
     req.fields['pekerjaan'] = pekerjaan.text;
@@ -190,9 +194,8 @@ class _BelumNikahState extends State<BelumNikah> {
                 height: 58,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(179, 234, 234, 234),
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
@@ -201,15 +204,15 @@ class _BelumNikahState extends State<BelumNikah> {
                   },
                   underline: SizedBox(),
                   value: val_jenis_kelamin,
-                  style: poppinsMediumBlack,
+                  style: poppinsSmallBlack,
                   iconSize: 25,
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Jenis Kelamin",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: jkl.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -220,9 +223,10 @@ class _BelumNikahState extends State<BelumNikah> {
                 height: 58,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Color.fromARGB(179, 234, 234, 234),
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)
+                    // color: Color.fromARGB(179, 234, 234, 234),
+                    ),
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
@@ -231,15 +235,15 @@ class _BelumNikahState extends State<BelumNikah> {
                   },
                   underline: SizedBox(),
                   value: val_kebangsaan,
-                  style: poppinsMediumBlack,
+                  style: poppinsSmallBlack,
                   iconSize: 25,
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Kebangsaan",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: kb.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -323,9 +327,8 @@ class _BelumNikahState extends State<BelumNikah> {
                   height: 150,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromARGB(179, 234, 234, 234),
-                  ),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 1, color: appColor)),
                   child: image == null
                       ? Center(
                           child: Text(

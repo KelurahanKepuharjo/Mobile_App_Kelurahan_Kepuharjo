@@ -55,6 +55,10 @@ class _AktaState extends State<Akta> {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
     } else if (tanggalLahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
+    } else if (val_jenis_kelamin == null) {
+      Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
+    } else if (val_kebangsaan == null) {
+      Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
     } else if (status.text.isEmpty) {
@@ -69,6 +73,8 @@ class _AktaState extends State<Akta> {
       Fluttertoast.showToast(msg: "Nama Ayah harus diisi");
     } else if (umurAyah.text.isEmpty) {
       Fluttertoast.showToast(msg: "Umur Ayah harus diisi");
+    } else if (valKebangsaanAyah == null) {
+      Fluttertoast.showToast(msg: "Kebangsaan Ayah harus diisi");
     } else if (agamaAyah.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama Ayah harus diisi");
     } else if (pekerjaanAyah.text.isEmpty) {
@@ -79,6 +85,8 @@ class _AktaState extends State<Akta> {
       Fluttertoast.showToast(msg: "Nama Ibu harus diisi");
     } else if (umurIbu.text.isEmpty) {
       Fluttertoast.showToast(msg: "Umur Ibu harus diisi");
+    } else if (valKebangsaanIbu == null) {
+      Fluttertoast.showToast(msg: "Kebangsaan Ibu harus diisi");
     } else if (agamaIbu.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama Ibu harus diisi");
     } else if (pekerjaanIbu.text.isEmpty) {
@@ -234,9 +242,8 @@ class _AktaState extends State<Akta> {
                 height: 58,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(179, 234, 234, 234),
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
@@ -245,15 +252,15 @@ class _AktaState extends State<Akta> {
                   },
                   underline: SizedBox(),
                   value: val_jenis_kelamin,
-                  style: poppinsMediumBlack,
+                  style: poppinsSmallBlack,
                   iconSize: 25,
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Jenis Kelamin",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: jkl.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -264,9 +271,8 @@ class _AktaState extends State<Akta> {
                 height: 58,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Color.fromARGB(179, 234, 234, 234),
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
@@ -275,10 +281,10 @@ class _AktaState extends State<Akta> {
                   },
                   underline: SizedBox(),
                   value: val_kebangsaan,
-                  style: poppinsMediumBlack,
+                  style: poppinsSmallBlack,
                   iconSize: 25,
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Kebangsaan",
@@ -356,9 +362,8 @@ class _AktaState extends State<Akta> {
                 height: 58,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Color.fromARGB(179, 234, 234, 234),
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
@@ -367,15 +372,15 @@ class _AktaState extends State<Akta> {
                   },
                   underline: SizedBox(),
                   value: valKebangsaanAyah,
-                  style: poppinsMediumBlack,
+                  style: poppinsSmallBlack,
                   iconSize: 25,
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Kebangsaan Ayah",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: kb.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -433,9 +438,8 @@ class _AktaState extends State<Akta> {
                 height: 58,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Color.fromARGB(179, 234, 234, 234),
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
@@ -444,10 +448,10 @@ class _AktaState extends State<Akta> {
                   },
                   underline: SizedBox(),
                   value: valKebangsaanIbu,
-                  style: poppinsMediumBlack,
+                  style: poppinsSmallBlack,
                   iconSize: 25,
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Kebangsaan Ibu",
@@ -521,9 +525,9 @@ class _AktaState extends State<Akta> {
                   height: 150,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromARGB(179, 234, 234, 234),
-                  ),
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                      border: Border.all(width: 1, color: appColor)),
                   child: image == null
                       ? Center(
                           child: Text(

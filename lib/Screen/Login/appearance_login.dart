@@ -15,19 +15,32 @@ final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 class _AppeareaceLoginState extends State<AppeareaceLogin> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: appColor,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                WidgetPicture(),
-                WidgetLogin(),
-              ],
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color.fromARGB(255, 35, 35, 95),
+            appColor,
+            Color.fromARGB(255, 51, 51, 148),
+          ],
+          begin: FractionalOffset.bottomCenter,
+          end: FractionalOffset.topCenter,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  WidgetPicture(),
+                  WidgetLogin(),
+                ],
+              ),
             ),
           ),
         ),

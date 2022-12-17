@@ -38,7 +38,7 @@ final lampiran = TextEditingController();
 final perihal = TextEditingController();
 final nama = TextEditingController();
 final tempat_lahir = TextEditingController();
-final tanggal_lahir = TextEditingController();
+final tglLahir = TextEditingController();
 final jenis_kelamin = TextEditingController();
 final status = TextEditingController();
 final agama = TextEditingController();
@@ -62,6 +62,10 @@ class _PindahState extends State<Pindah> {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
     } else if (status.text.isEmpty) {
       Fluttertoast.showToast(msg: "Status harus diisi");
+    } else if (tglLahir.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
+    } else if (val_jenis_kelamin == null) {
+      Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
     } else if (alamat_asal.text.isEmpty) {
@@ -99,7 +103,7 @@ class _PindahState extends State<Pindah> {
     req.fields['id_akun'] = _currentUser.user.idAkun;
     req.fields['nama'] = nama.text;
     req.fields['tempat_lahir'] = tempat_lahir.text;
-    req.fields['tanggal_lahir'] = tanggal_lahir.text;
+    req.fields['tanggal_lahir'] = tglLahir.text;
     req.fields['jenis_kelamin'] = val_jenis_kelamin;
     req.fields['status'] = status.text;
     req.fields['agama'] = agama.text;
@@ -138,7 +142,6 @@ class _PindahState extends State<Pindah> {
   File image;
   String statusSurat = "Diajukan";
   String val_jenis_kelamin;
-  String val_kebangsaan;
   List jkl = ["Laki Laki", "Perempuan"];
 
   @override
@@ -208,16 +211,15 @@ class _PindahState extends State<Pindah> {
               ),
               const SizedBox(height: 5),
               getDateTime(
-                controller: tanggal,
+                controller: tglLahir,
               ),
               const SizedBox(height: 5),
               Container(
                 height: 58,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(179, 234, 234, 234),
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
@@ -226,15 +228,15 @@ class _PindahState extends State<Pindah> {
                   },
                   underline: SizedBox(),
                   value: val_jenis_kelamin,
-                  style: poppinsMediumBlack,
+                  style: poppinsSmallBlack,
                   iconSize: 25,
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Jenis Kelamin",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: jkl.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -355,8 +357,8 @@ class _PindahState extends State<Pindah> {
                   height: 150,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromARGB(179, 234, 234, 234),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor),
                   ),
                   child: image == null
                       ? Center(

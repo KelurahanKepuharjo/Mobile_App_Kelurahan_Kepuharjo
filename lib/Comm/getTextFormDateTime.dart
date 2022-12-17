@@ -28,7 +28,7 @@ class _getDateTimeState extends State<getDateTime> {
           TextFormField(
             controller: widget.controller,
             readOnly: widget.isreadOnly,
-            style: poppinsMediumBlack,
+            style: poppinsSmallBlack.copyWith(fontSize: 13),
             onSaved: (val) => TextEditingController,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -54,10 +54,14 @@ class _getDateTimeState extends State<getDateTime> {
             },
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.calendar_today),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide.none),
-              filled: true,
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(width: 1, color: appColor)),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 1, color: appColor),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              filled: false,
               fillColor: Color.fromARGB(179, 234, 234, 234),
               hintText: "Tanggal Lahir",
               hintStyle: GoogleFonts.poppins(fontSize: 12),

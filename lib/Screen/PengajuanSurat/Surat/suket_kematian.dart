@@ -258,9 +258,8 @@ class _KematianState extends State<Kematian> {
                   height: 150,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromARGB(179, 234, 234, 234),
-                  ),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(width: 1, color: appColor)),
                   child: image == null
                       ? Center(
                           child: Text(

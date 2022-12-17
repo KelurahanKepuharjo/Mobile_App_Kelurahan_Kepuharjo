@@ -47,6 +47,10 @@ class _DomisiliState extends State<Domisili> {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
     } else if (tanggal_lahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
+    } else if (val_jenis_kelamin == null) {
+      Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
+    } else if (val_kebangsaan == null) {
+      Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
     } else if (status_perkawinan.text.isEmpty) {
@@ -192,8 +196,8 @@ class _DomisiliState extends State<Domisili> {
                 height: 58,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(179, 234, 234, 234),
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(width: 1, color: appColor),
                 ),
                 child: DropdownButton(
                   onChanged: (value) {
@@ -203,15 +207,15 @@ class _DomisiliState extends State<Domisili> {
                   },
                   underline: SizedBox(),
                   value: val_jenis_kelamin,
-                  style: poppinsMediumBlack,
+                  style: poppinsSmallBlack,
                   iconSize: 25,
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Jenis Kelamin",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: jkl.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -222,9 +226,8 @@ class _DomisiliState extends State<Domisili> {
                 height: 58,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Color.fromARGB(179, 234, 234, 234),
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
@@ -233,15 +236,15 @@ class _DomisiliState extends State<Domisili> {
                   },
                   underline: SizedBox(),
                   value: val_kebangsaan,
-                  style: poppinsMediumBlack,
+                  style: poppinsSmallBlack,
                   iconSize: 25,
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Kebangsaan",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: kb.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -309,9 +312,9 @@ class _DomisiliState extends State<Domisili> {
                   height: 150,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromARGB(179, 234, 234, 234),
-                  ),
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                      border: Border.all(width: 1, color: appColor)),
                   child: image == null
                       ? Center(
                           child: Text(

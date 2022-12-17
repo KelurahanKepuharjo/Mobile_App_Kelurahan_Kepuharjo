@@ -12,6 +12,7 @@ import 'package:kepuharjo_app/Controller/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/LupaPassword/appearance_forgot_password.dart.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home_Screen.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Screen/Register/appearance_register.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
@@ -52,9 +53,9 @@ class _WidgetLoginState extends State<WidgetLogin> {
     return Container(
       height: 360,
       width: 300,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-          color: const Color.fromARGB(143, 255, 255, 255),
+          color: whiteColor.withOpacity(0.7),
           borderRadius: BorderRadius.circular(20)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,49 +81,51 @@ class _WidgetLoginState extends State<WidgetLogin> {
           const SizedBox(
             height: 15,
           ),
-          SizedBox(
-            height: 60,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              children: [
-                TextFormField(
-                  textInputAction: TextInputAction.done,
-                  obscureText: showpass,
-                  controller: passwordController,
-                  style: poppinsMediumBlack,
-                  keyboardType: TextInputType.name,
-                  enabled: true,
-                  onSaved: (val) => passwordController,
-                  validator: (String value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter Your Password';
-                    }
-                    return null;
-                  },
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.singleLineFormatter,
-                    LengthLimitingTextInputFormatter(20)
-                  ],
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide.none),
-                      filled: true,
-                      suffixIcon: InkWell(
-                        child: Icon(
-                            showpass ? Icons.visibility : Icons.visibility_off),
-                        onTap: () {
-                          setState(() {
-                            showpass = !showpass;
-                          });
-                        },
+          Column(
+            children: [
+              TextFormField(
+                textInputAction: TextInputAction.done,
+                obscureText: showpass,
+                controller: passwordController,
+                style: poppinsMediumBlack,
+                keyboardType: TextInputType.name,
+                enabled: true,
+                onSaved: (val) =>
+                    passwordController = val as TextEditingController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Your Password';
+                  }
+                  return null;
+                },
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.singleLineFormatter,
+                  LengthLimitingTextInputFormatter(20)
+                ],
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: appColor, width: 1)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: appColor, width: 1)),
+                    filled: false,
+                    suffixIcon: InkWell(
+                      child: Icon(
+                        showpass ? Icons.visibility : Icons.visibility_off,
+                        size: 20,
                       ),
-                      fillColor: Color.fromARGB(179, 234, 234, 234),
-                      hintText: "Password",
-                      hintStyle: GoogleFonts.poppins(fontSize: 12)),
-                ),
-              ],
-            ),
+                      onTap: () {
+                        setState(() {
+                          showpass = !showpass;
+                        });
+                      },
+                    ),
+                    fillColor: const Color.fromARGB(179, 234, 234, 234),
+                    labelText: "Password",
+                    labelStyle: GoogleFonts.poppins(fontSize: 12)),
+              ),
+            ],
           ),
           const SizedBox(
             height: 10,
@@ -184,14 +187,14 @@ class _WidgetLoginState extends State<WidgetLogin> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Belum memiliki akun ?",
-                  style: poppinsSmallBlack,
+                  "Belum memiliki akun ? ",
+                  style: poppinsSmallBlack.copyWith(fontSize: 11),
                 ),
                 InkWell(
                   child: Text(
-                    " Registrasi",
+                    "Registrasi",
                     style: poppinsSmallBlack.copyWith(
-                        color: appColor, fontSize: 13),
+                        color: appColor, fontSize: 12),
                   ),
                   onTap: () {
                     Navigator.push(
@@ -212,39 +215,47 @@ class _WidgetLoginState extends State<WidgetLogin> {
     if (nikController.text.isEmpty) {
       Fluttertoast.showToast(
           msg: "Nik Harus Diisi", backgroundColor: Colors.red);
+    } else if (nikController.text.length < 16) {
+      Fluttertoast.showToast(
+          msg: "Nik tidak boleh kurang dari 16 karakter",
+          backgroundColor: Colors.red);
     } else if (passwordController.text.isEmpty) {
       Fluttertoast.showToast(
           msg: "Password Harus Diisi", backgroundColor: Colors.red);
+    } else if (passwordController.text.length < 8) {
+      Fluttertoast.showToast(
+          msg: "Password tidak boleh kurang dari 8 karakter",
+          backgroundColor: Colors.red);
     } else {
       login();
     }
   }
 
-  Future login() async {
+  Future<List<User>> login() async {
     try {
       var response = await http.post(Uri.parse(ApiConnect.signin), body: {
         "id_akun": nikController.text,
         "password": passwordController.text
       });
       if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        if (data['success'] == true) {
+        final user = jsonDecode(response.body);
+        if (user['success'] == false) {
+          setState(() {
+            _loading = false;
+          });
+          snackBarFailed();
+        } else {
           setState(() {
             _loading = true;
           });
           snackBarSucces();
-          User userInfo = User.fromJson(data['user']);
+          User userInfo = User.fromJson(user['user']);
           await RememberUser().storeUser(json.encode(userInfo));
           // ignore: use_build_context_synchronously
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (_) => const HomeScreen()),
               (Route<dynamic> route) => false);
-        } else {
-          setState(() {
-            _loading = false;
-          });
-          snackBarFailed();
         }
       }
     } catch (e) {

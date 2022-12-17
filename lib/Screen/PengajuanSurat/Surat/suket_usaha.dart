@@ -63,6 +63,10 @@ class _UsahaState extends State<Usaha> {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
     } else if (tgllhir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
+    } else if (val_jk == null) {
+      Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
+    } else if (val_kebangsaan == null) {
+      Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
     } else if (status.text.isEmpty) {
@@ -196,9 +200,8 @@ class _UsahaState extends State<Usaha> {
                 height: 58,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(179, 234, 234, 234),
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
@@ -207,10 +210,10 @@ class _UsahaState extends State<Usaha> {
                   },
                   underline: SizedBox(),
                   value: val_jk,
-                  style: poppinsMediumBlack,
+                  style: poppinsSmallBlack,
                   iconSize: 25,
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Jenis Kelamin",
@@ -226,9 +229,8 @@ class _UsahaState extends State<Usaha> {
                 height: 58,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Color.fromARGB(179, 234, 234, 234),
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
                 child: DropdownButton(
                   onChanged: (value) {
                     setState(() {
@@ -237,10 +239,10 @@ class _UsahaState extends State<Usaha> {
                   },
                   underline: SizedBox(),
                   value: val_kebangsaan,
-                  style: poppinsMediumBlack,
+                  style: poppinsSmallBlack,
                   iconSize: 25,
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                   elevation: 0,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Kebangsaan",
@@ -338,9 +340,8 @@ class _UsahaState extends State<Usaha> {
                   height: 150,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromARGB(179, 234, 234, 234),
-                  ),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(width: 1, color: appColor)),
                   child: image == null
                       ? Center(
                           child: Text(

@@ -29,37 +29,39 @@ class getTextForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: 60,
-        width: MediaQuery.of(context).size.width,
-        child: Column(children: [
-          TextFormField(
-            textInputAction: textInputAction,
-            obscureText: isObscureText,
-            controller: controller,
-            style: poppinsMediumBlack,
-            keyboardType: keyboardType,
-            enabled: isEnable,
-            onSaved: (val) => controller = val as TextEditingController,
-            validator: (String value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter $hintName';
-              }
-              return null;
-            },
-            inputFormatters: [
-              inputFormatters,
-              LengthLimitingTextInputFormatter(length)
-            ],
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide.none),
-                filled: true,
-                fillColor: Color.fromARGB(179, 234, 234, 234),
-                hintText: hintName,
-                hintStyle: GoogleFonts.poppins(fontSize: 12)),
+    return Column(children: [
+      TextFormField(
+        textInputAction: textInputAction,
+        obscureText: isObscureText,
+        controller: controller,
+        style: poppinsSmallBlack.copyWith(fontSize: 13),
+        keyboardType: keyboardType,
+        enabled: isEnable,
+        onSaved: (val) => controller = val as TextEditingController,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter $hintName';
+          }
+          return null;
+        },
+        inputFormatters: [
+          inputFormatters,
+          LengthLimitingTextInputFormatter(length)
+        ],
+        decoration: InputDecoration(
+          labelText: hintName,
+          labelStyle: GoogleFonts.poppins(fontSize: 12),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide(width: 1, color: appColor)),
+          filled: false,
+          fillColor: const Color.fromARGB(179, 234, 234, 234),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 1, color: appColor),
+            borderRadius: BorderRadius.circular(15),
           ),
-        ]));
+        ),
+      ),
+    ]);
   }
 }

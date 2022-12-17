@@ -28,7 +28,7 @@ class _getDateFormState extends State<getDateForm> {
           TextFormField(
             controller: widget.controller,
             readOnly: widget.isreadOnly,
-            style: poppinsMediumBlack,
+            style: poppinsSmallBlack.copyWith(fontSize: 13),
             onSaved: (val) => TextEditingController,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -54,11 +54,15 @@ class _getDateFormState extends State<getDateForm> {
             },
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.calendar_today),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide.none),
-              filled: true,
-              fillColor: Color.fromARGB(179, 234, 234, 234),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(width: 1, color: appColor)),
+              filled: false,
+              fillColor: const Color.fromARGB(179, 234, 234, 234),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 1, color: appColor),
+                borderRadius: BorderRadius.circular(15),
+              ),
               hintText: "Tanggal Kematian",
               hintStyle: GoogleFonts.poppins(fontSize: 12),
             ),

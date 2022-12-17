@@ -42,7 +42,7 @@ class _WidgetPictureRegState extends State<WidgetPictureReg> {
             children: [
               const Spacer(),
               Opacity(
-                opacity: 0.3,
+                opacity: 0.5,
                 child: Image.asset(
                   "images/mylogo.png",
                   alignment: Alignment.topLeft,

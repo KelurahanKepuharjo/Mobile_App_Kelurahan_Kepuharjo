@@ -55,10 +55,10 @@ class _WidgetRegisterState extends State<WidgetRegister> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
-      height: 500,
+      height: 490,
       width: 300,
       decoration: BoxDecoration(
-          color: Color.fromARGB(143, 255, 255, 255),
+          color: whiteColor.withOpacity(0.7),
           borderRadius: BorderRadius.circular(20)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,49 +95,50 @@ class _WidgetRegisterState extends State<WidgetRegister> {
           const SizedBox(
             height: 5,
           ),
-          SizedBox(
-            height: 60,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              children: [
-                TextFormField(
-                  textInputAction: TextInputAction.done,
-                  obscureText: showpass,
-                  controller: passwordController,
-                  style: poppinsMediumBlack,
-                  keyboardType: TextInputType.name,
-                  enabled: true,
-                  onSaved: (val) => passwordController,
-                  validator: (String value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter Your Password';
-                    }
-                    return null;
-                  },
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.singleLineFormatter,
-                    LengthLimitingTextInputFormatter(20)
-                  ],
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide.none),
-                      filled: true,
-                      suffixIcon: InkWell(
-                        child: Icon(
-                            showpass ? Icons.visibility : Icons.visibility_off),
-                        onTap: () {
-                          setState(() {
-                            showpass = !showpass;
-                          });
-                        },
+          Column(
+            children: [
+              TextFormField(
+                textInputAction: TextInputAction.done,
+                obscureText: showpass,
+                controller: passwordController,
+                style: poppinsMediumBlack,
+                keyboardType: TextInputType.name,
+                enabled: true,
+                onSaved: (val) => passwordController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Your Password';
+                  }
+                  return null;
+                },
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.singleLineFormatter,
+                  LengthLimitingTextInputFormatter(20)
+                ],
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: appColor, width: 1)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: appColor, width: 1)),
+                    filled: false,
+                    suffixIcon: InkWell(
+                      child: Icon(
+                        showpass ? Icons.visibility : Icons.visibility_off,
+                        size: 20,
                       ),
-                      fillColor: Color.fromARGB(179, 234, 234, 234),
-                      hintText: "Password",
-                      hintStyle: GoogleFonts.poppins(fontSize: 12)),
-                ),
-              ],
-            ),
+                      onTap: () {
+                        setState(() {
+                          showpass = !showpass;
+                        });
+                      },
+                    ),
+                    fillColor: const Color.fromARGB(179, 234, 234, 234),
+                    labelText: "Password",
+                    labelStyle: GoogleFonts.poppins(fontSize: 12)),
+              ),
+            ],
           ),
           const SizedBox(
             height: 5,
@@ -156,14 +157,13 @@ class _WidgetRegisterState extends State<WidgetRegister> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                height: 60,
                 width: 130,
                 child: Column(
                   children: [
                     TextFormField(
                       textInputAction: TextInputAction.done,
                       controller: rtController,
-                      style: poppinsMediumBlack,
+                      style: poppinsSmallBlack.copyWith(fontSize: 13),
                       keyboardType: TextInputType.number,
                       onSaved: (newValue) => rtController,
                       validator: (value) {
@@ -177,31 +177,35 @@ class _WidgetRegisterState extends State<WidgetRegister> {
                         LengthLimitingTextInputFormatter(5)
                       ],
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: BorderSide.none),
-                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide:
+                                  BorderSide(width: 1, color: appColor)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide:
+                                  BorderSide(width: 1, color: appColor)),
+                          filled: false,
                           fillColor: Color.fromARGB(179, 234, 234, 234),
-                          hintText: "RW",
-                          hintStyle: GoogleFonts.poppins(fontSize: 12)),
+                          labelText: "RT",
+                          labelStyle: GoogleFonts.poppins(fontSize: 12)),
                     )
                   ],
                 ),
               ),
               SizedBox(
-                height: 60,
                 width: 130,
                 child: Column(
                   children: [
                     TextFormField(
                       textInputAction: TextInputAction.done,
                       controller: rwController,
-                      style: poppinsMediumBlack,
+                      style: poppinsSmallBlack.copyWith(fontSize: 13),
                       keyboardType: TextInputType.number,
                       onSaved: (newValue) => rwController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter Your Rt';
+                          return 'Please enter Your Rw';
                         }
                         return null;
                       },
@@ -210,13 +214,18 @@ class _WidgetRegisterState extends State<WidgetRegister> {
                         LengthLimitingTextInputFormatter(5)
                       ],
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: BorderSide.none),
-                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide:
+                                  BorderSide(width: 1, color: appColor)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide:
+                                  BorderSide(width: 1, color: appColor)),
+                          filled: false,
                           fillColor: Color.fromARGB(179, 234, 234, 234),
-                          hintText: "RW",
-                          hintStyle: GoogleFonts.poppins(fontSize: 12)),
+                          labelText: "RW",
+                          labelStyle: GoogleFonts.poppins(fontSize: 12)),
                     )
                   ],
                 ),
@@ -265,13 +274,13 @@ class _WidgetRegisterState extends State<WidgetRegister> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Sudah memiliki akun ?",
-                  style: GoogleFonts.poppins(color: blackColor, fontSize: 12),
+                  "Sudah memiliki akun ? ",
+                  style: GoogleFonts.poppins(color: blackColor, fontSize: 11),
                 ),
                 InkWell(
                   child: Text(
-                    " Login",
-                    style: GoogleFonts.poppins(color: appColor, fontSize: 13),
+                    "Login",
+                    style: GoogleFonts.poppins(color: appColor, fontSize: 12),
                   ),
                   onTap: () {
                     Navigator.pushAndRemoveUntil(
@@ -291,12 +300,20 @@ class _WidgetRegisterState extends State<WidgetRegister> {
   void verifyRegister() {
     if (nikController.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nik harus diisi");
+    } else if (nikController.text.length < 16) {
+      Fluttertoast.showToast(msg: "Nik tidak boleh kurang dari 16 karakter");
     } else if (namaController.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Lengkap harus diisi");
     } else if (passwordController.text.isEmpty) {
       Fluttertoast.showToast(msg: "Password harus diisi");
+    } else if (passwordController.text.length < 8) {
+      Fluttertoast.showToast(
+          msg: "Password tidak boleh kurang dari 8 karakter");
     } else if (tlpController.text.isEmpty) {
       Fluttertoast.showToast(msg: "No.Telepon harus diisi");
+    } else if (tlpController.text.length < 12) {
+      Fluttertoast.showToast(
+          msg: "No.Telepon tidak boleh kurang dari 12 angka");
     } else if (rtController.text.isEmpty) {
       Fluttertoast.showToast(msg: "RT harus diisi");
     } else if (rwController.text.isEmpty) {
