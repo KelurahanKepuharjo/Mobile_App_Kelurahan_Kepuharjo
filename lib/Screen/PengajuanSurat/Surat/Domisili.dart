@@ -47,10 +47,6 @@ class _DomisiliState extends State<Domisili> {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
     } else if (tanggal_lahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
-    } else if (jenis_kelamin.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
-    } else if (kebangsaan.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
     } else if (status_perkawinan.text.isEmpty) {
