@@ -53,7 +53,7 @@ class _DomisiliState extends State<Domisili> {
       Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
-    } else if (status_perkawinan.text.isEmpty) {
+    } else if (status_perkawinan == null) {
       Fluttertoast.showToast(msg: "Status harus diisi");
     } else if (pekerjaan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pekerjaan harus diisi");
@@ -86,7 +86,7 @@ class _DomisiliState extends State<Domisili> {
     req.fields['jenis_kelamin'] = val_jenis_kelamin;
     req.fields['kebangsaan'] = val_kebangsaan;
     req.fields['agama'] = agama.text;
-    req.fields['status_perkawinan'] = status_perkawinan.text;
+    req.fields['status_perkawinan'] = val_status_perkawinan;
     req.fields['pekerjaan'] = pekerjaan.text;
     req.fields['nik'] = nik.text;
     req.fields['alamat'] = alamat.text;
@@ -119,6 +119,8 @@ class _DomisiliState extends State<Domisili> {
   String statusSurat = "Diajukan";
   String val_jenis_kelamin;
   String val_kebangsaan;
+  String val_status_perkawinan;
+  List sp = ['Kawin, Belum Kawin'];
   List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
 
@@ -260,13 +262,34 @@ class _DomisiliState extends State<Domisili> {
                 length: 10,
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: status_perkawinan,
-                hintName: "Status Perkawinan",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 15,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(width: 1, color: appColor),
+                ),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_status_perkawinan = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_status_perkawinan,
+                  style: poppinsSmallBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(15),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Status",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.white,
+                  items: sp.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
               getTextForm(
