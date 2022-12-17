@@ -319,6 +319,24 @@ class _DomisiliState extends State<Domisili> {
               ),
               const SizedBox(height: 5),
               getTextForm(
+                controller: rt,
+                hintName: "RT",
+                keyboardType: TextInputType.name,
+                inputFormatters:
+                    FilteringTextInputFormatter.singleLineFormatter,
+                length: 50,
+              ),
+              const SizedBox(height: 5),
+              getTextForm(
+                controller: rw,
+                hintName: "RW",
+                keyboardType: TextInputType.name,
+                inputFormatters:
+                    FilteringTextInputFormatter.singleLineFormatter,
+                length: 50,
+              ),
+              const SizedBox(height: 5),
+              getTextForm(
                 controller: surat_digunakan_untuk,
                 hintName: "Surat Digunakan Untuk",
                 keyboardType: TextInputType.name,
