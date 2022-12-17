@@ -43,44 +43,60 @@ GestureDetector getLetter(
       }
     },
     child: Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
       margin: const EdgeInsets.all(5),
       height: 130,
-      width: 130,
+      width: 200,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.white,
-          // border: Border.all(),
-          boxShadow: [
-            BoxShadow(
-              offset: const Offset(0, 15),
-              blurRadius: 22,
-              color: Colors.black.withOpacity(0.10),
-            ),
-            BoxShadow(
-                offset: Offset(-15, -15),
-                blurRadius: 20,
-                color: Colors.white.withOpacity(0.10))
-          ]),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 30,
-              color: appColor,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: poppinsSmallBlack.copyWith(fontWeight: FontWeight.normal),
-            )
-          ],
-        ),
+        borderRadius: BorderRadius.circular(15),
+        color: Colors.white,
+        // border: Border.all(color: appColor),
+        image: const DecorationImage(
+            image: AssetImage("images/newbgsa.png"),
+            fit: BoxFit.cover,
+            alignment: Alignment.centerRight,
+            opacity: 0.3),
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 15),
+            blurRadius: 22,
+            color: Colors.black.withOpacity(0.10),
+          ),
+          BoxShadow(
+              offset: const Offset(-15, -15),
+              blurRadius: 20,
+              color: Colors.white.withOpacity(0.10))
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            children: [
+              Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: appColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Icon(
+                  icon,
+                  // size: 35,
+                  color: appColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            title,
+            textAlign: TextAlign.start,
+            style: poppinsMediumBlack.copyWith(fontWeight: FontWeight.bold),
+          )
+        ],
       ),
     ),
   );
@@ -90,6 +106,7 @@ class _WidgetSuratState extends State<WidgetSurat> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),

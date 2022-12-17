@@ -41,10 +41,40 @@ class ServiceApi {
     }
   }
 
+  //get data surat sktm selesai
+  Future<List<cSktm>> getSktmSelesai() async {
+    final response =
+        await http.post(Uri.parse(ApiConnect.readsktmSelesai), body: {
+      "id_akun": _currentUser.user.idAkun,
+      "status_surat": "Selesai",
+    });
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((e) => cSktm.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load');
+    }
+  }
+
   //get data surat keterangan domisili
   Future<List<cDomisili>> getDomisili() async {
     final response = await http.post(Uri.parse(ApiConnect.readdomisili), body: {
       "id_akun": _currentUser.user.idAkun,
+    });
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((e) => cDomisili.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load');
+    }
+  }
+
+  //get data surat keterangan domisili selesai
+  Future<List<cDomisili>> getDomisiliSelesai() async {
+    final response =
+        await http.post(Uri.parse(ApiConnect.readdomisiliSelesai), body: {
+      "id_akun": _currentUser.user.idAkun,
+      "status_surat": "Selesai",
     });
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
@@ -67,10 +97,40 @@ class ServiceApi {
     }
   }
 
+  //get data surat keterangan kematian selesai
+  Future<List<cKematian>> getkematianSelesai() async {
+    final response =
+        await http.post(Uri.parse(ApiConnect.readkematianSelesai), body: {
+      "id_akun": _currentUser.user.idAkun,
+      "status_surat": "Selesai",
+    });
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((e) => cKematian.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load');
+    }
+  }
+
   //get surat keterangan pindah
   Future<List<cPindah>> getpindah() async {
     final response = await http.post(Uri.parse(ApiConnect.readpindah), body: {
       "id_akun": _currentUser.user.idAkun,
+    });
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((e) => cPindah.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load');
+    }
+  }
+
+  //get surat keterangan pindah selesai
+  Future<List<cPindah>> getpindahSelesai() async {
+    final response =
+        await http.post(Uri.parse(ApiConnect.readpindahSelesai), body: {
+      "id_akun": _currentUser.user.idAkun,
+      "status_surat": "Selesai",
     });
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
@@ -94,6 +154,21 @@ class ServiceApi {
     }
   }
 
+  //get surat keterangan belum menikah selesai
+  Future<List<cBelumNikah>> getbelumnikahSelesai() async {
+    final response =
+        await http.post(Uri.parse(ApiConnect.readbelumNikahSelesai), body: {
+      "id_akun": _currentUser.user.idAkun,
+      "status_surat": "Selesai",
+    });
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((e) => cBelumNikah.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load');
+    }
+  }
+
   //get surat keterangan usaha
   Future<List<cUsaha>> getusaha() async {
     final response = await http.post(Uri.parse(ApiConnect.readUsaha), body: {
@@ -107,10 +182,40 @@ class ServiceApi {
     }
   }
 
+  //get surat keterangan usaha selesai
+  Future<List<cUsaha>> getusahaSelesai() async {
+    final response =
+        await http.post(Uri.parse(ApiConnect.readUsahaSelesai), body: {
+      "id_akun": _currentUser.user.idAkun,
+      "status_surat": "Selesai",
+    });
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((e) => cUsaha.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load');
+    }
+  }
+
   //get surat keterangan akta kelahiran
   Future<List<cAkta>> getAkta() async {
     final response = await http.post(Uri.parse(ApiConnect.readakta), body: {
       "id_akun": _currentUser.user.idAkun,
+    });
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((e) => cAkta.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load');
+    }
+  }
+
+  //get surat keterangan akta kelahiran selesai
+  Future<List<cAkta>> getAktaSelesai() async {
+    final response =
+        await http.post(Uri.parse(ApiConnect.readaktaSelesai), body: {
+      "id_akun": _currentUser.user.idAkun,
+      "status_surat": "Selesai",
     });
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kepuharjo_app/Controller/RememberUser.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_berita.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_surat.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_text_berita.dart';
@@ -8,9 +7,7 @@ import 'package:kepuharjo_app/Screen/Home/widget_text_surat.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearanceHome extends StatefulWidget {
-  const AppearanceHome({
-    Key key,
-  }) : super(key: key);
+  const AppearanceHome({Key key}) : super(key: key);
 
   @override
   State<AppearanceHome> createState() => _AppearanceHomeState();
@@ -20,7 +17,7 @@ class _AppearanceHomeState extends State<AppearanceHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white.withOpacity(0.98),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(200),
         child: Container(

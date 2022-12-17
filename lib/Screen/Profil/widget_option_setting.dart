@@ -21,9 +21,6 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
       String title, IconData icon, bool endIcon, int index, Color textColor) {
     return ListTile(
       onTap: () async {
-        if (index == 0) {
-          //nanti aja lagi mager
-        }
         if (index == 1) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const InfoAplikasi()));
@@ -110,8 +107,6 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
       child: Column(
         children: [
           const Lokasi(),
-          profileMenuWidget("Surat Selesai", Icons.mark_email_read_rounded,
-              true, 0, const Color(0xFF454444)),
           profileMenuWidget(
               "Info Aplikasi", Icons.info, true, 1, const Color(0xFF454444)),
           profileMenuWidget(

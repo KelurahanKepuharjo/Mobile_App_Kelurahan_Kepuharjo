@@ -58,7 +58,7 @@ class _DetailSKTMState extends State<DetailSKTM> {
       btnOkOnPress: () {
         pembatalanSurat();
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => const HomeScreen(),
         ));
       },
       btnOkIcon: Icons.done,
@@ -66,26 +66,27 @@ class _DetailSKTMState extends State<DetailSKTM> {
   }
 
   void pembatalanSurat() async {
-    try {
-      var url = Uri.parse(ApiConnect.pembatalanSktm);
-      var response = await http.post(url, body: {
-        "id_surat": widget.list[widget.index].idSurat,
-        "status_surat": pembatalan,
-      });
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        if (data['success'] == true) {
-          Fluttertoast.showToast(
-              backgroundColor: Colors.green,
-              msg: "Pengajuan Pembatalan Surat Berhasil");
-        } else {
-          Fluttertoast.showToast(
-              backgroundColor: Colors.red,
-              msg: "Pengajuan Pembatalan Surat Gagal");
+    if (widget.list[widget.index].statusSurat == "Diajukan") {
+      try {
+        var url = Uri.parse(ApiConnect.pembatalanSktm);
+        var response = await http.post(url, body: {
+          "id_surat": widget.list[widget.index].idSurat,
+          "status_surat": pembatalan,
+        });
+        if (response.statusCode == 200) {
+          final data = json.decode(response.body);
+          if (data['success'] == true) {
+            Fluttertoast.showToast(
+                backgroundColor: Colors.green,
+                msg: "Pengajuan Pembatalan Surat Berhasil");
+          }
         }
+      } catch (e) {
+        Fluttertoast.showToast(msg: e.toString());
       }
-    } catch (e) {
-      Fluttertoast.showToast(msg: e.toString());
+    } else {
+      Fluttertoast.showToast(
+          backgroundColor: Colors.red, msg: "Pengajuan Pembatalan Surat Gagal");
     }
   }
 

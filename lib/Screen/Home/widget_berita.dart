@@ -52,17 +52,17 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                                 color: Colors.black.withOpacity(0.10),
                               ),
                               BoxShadow(
-                                  offset: Offset(-15, -15),
+                                  offset: const Offset(-15, -15),
                                   blurRadius: 20,
                                   color: Colors.white.withOpacity(0.10))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Column(
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     isiData[index].judul,
@@ -81,6 +81,9 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                                       style: poppinsSmallBlack.copyWith(
                                         fontWeight: FontWeight.w300,
                                       ),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
                                     ),
                                     ReadMoreText(
                                       isiData[index].dekripsi,

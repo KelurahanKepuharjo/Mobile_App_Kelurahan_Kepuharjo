@@ -5,6 +5,13 @@ import 'package:kepuharjo_app/Screen/Status/SuratBelumMenikah.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratDomisili.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratPindah.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSKTM.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratAkta.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratBelumNikah.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratDomisili.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratKematian.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratPinda.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratSktm.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratUsaha.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratUsaha.dart';
 import 'package:kepuharjo_app/Screen/Status/suratKematian.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
@@ -80,57 +87,238 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
                 Expanded(
                   child: TabBarView(children: [
                     SizedBox(
-                      // height: 300,
                       child: Column(
-                        children: const [
-                          SuratSKTM(),
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SktmSelesai()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Lihat Surat Yang Selesai",
+                                    style: poppinsSmallBlack,
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 15,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SuratSKTM(),
                         ],
                       ),
                     ),
                     SizedBox(
                       // height: 300,
                       child: Column(
-                        children: const [
-                          SuratBelumNikah(),
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const BelumNikahSelesai()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Lihat Surat Yang Selesai",
+                                    style: poppinsSmallBlack,
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 15,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SuratBelumNikah(),
                         ],
                       ),
                     ),
                     SizedBox(
                       // height: 300,
                       child: Column(
-                        children: const [
-                          SuratDomisili(),
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DomisiliSelesai()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Lihat Surat Yang Selesai",
+                                    style: poppinsSmallBlack,
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 15,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SuratDomisili(),
                         ],
                       ),
                     ),
                     SizedBox(
                       // height: 300,
                       child: Column(
-                        children: const [
-                          SuratKematian(),
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const KematianSelesai()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Lihat Surat Yang Selesai",
+                                    style: poppinsSmallBlack,
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 15,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SuratKematian(),
                         ],
                       ),
                     ),
                     SizedBox(
                       // height: 300,
                       child: Column(
-                        children: const [
-                          SuratAkta(),
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AktaSelesai()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Lihat Surat Yang Selesai",
+                                    style: poppinsSmallBlack,
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 15,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SuratAkta(),
                         ],
                       ),
                     ),
                     SizedBox(
                       // height: 300,
                       child: Column(
-                        children: const [
-                          SuratPindah(),
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const PindahSelesai()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Lihat Surat Yang Selesai",
+                                    style: poppinsSmallBlack,
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 15,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SuratPindah(),
                         ],
                       ),
                     ),
                     SizedBox(
                       child: Column(
-                        children: const [
-                          SuratUsaha(),
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const UsahaSelesai()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Lihat Surat Yang Selesai",
+                                    style: poppinsSmallBlack,
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 15,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SuratUsaha(),
                         ],
                       ),
                     ),

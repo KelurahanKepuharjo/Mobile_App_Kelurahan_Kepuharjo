@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/detail_profile.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
-import 'package:random_color/random_color.dart';
 
 class WidgetShowProfile extends StatefulWidget {
   const WidgetShowProfile({Key key}) : super(key: key);
