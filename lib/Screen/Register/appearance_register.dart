@@ -17,7 +17,7 @@ class _AppearanceRegisterState extends State<AppearanceRegister> {
       backgroundColor: appColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

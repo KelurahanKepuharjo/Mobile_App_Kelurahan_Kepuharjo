@@ -19,7 +19,7 @@ class _AppeareaceLoginState extends State<AppeareaceLogin> {
       backgroundColor: appColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
