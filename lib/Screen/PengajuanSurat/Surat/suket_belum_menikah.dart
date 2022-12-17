@@ -53,7 +53,7 @@ class _BelumNikahState extends State<BelumNikah> {
       Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
-    } else if (status.text.isEmpty) {
+    } else if (val_status == null) {
       Fluttertoast.showToast(msg: "Status harus diisi");
     } else if (pekerjaan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pekerjaan harus diisi");
@@ -84,7 +84,7 @@ class _BelumNikahState extends State<BelumNikah> {
     req.fields['jenis_kelamin'] = val_jenis_kelamin;
     req.fields['kebangsaan'] = val_kebangsaan;
     req.fields['agama'] = agama.text;
-    req.fields['status'] = status.text;
+    req.fields['status'] = val_status;
     req.fields['pekerjaan'] = pekerjaan.text;
     req.fields['nik'] = nik.text;
     req.fields['alamat'] = alamat.text;
@@ -114,11 +114,13 @@ class _BelumNikahState extends State<BelumNikah> {
   }
 
   File image;
+  String statusSurat = "Diajukan";
   String val_jenis_kelamin;
   String val_kebangsaan;
-  String statusSurat = "Diajukan";
+  String val_status;
   List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
+  List st = ["Kawin", "Belum Kawin"];
 
   @override
   Widget build(BuildContext context) {
@@ -259,13 +261,33 @@ class _BelumNikahState extends State<BelumNikah> {
                 length: 10,
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: status,
-                hintName: "Status Perkawinan",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 15,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_status = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_status,
+                  style: poppinsSmallBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(15),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Status",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.white,
+                  items: st.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
               getTextForm(

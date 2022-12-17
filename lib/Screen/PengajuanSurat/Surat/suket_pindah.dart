@@ -60,7 +60,7 @@ class _PindahState extends State<Pindah> {
       Fluttertoast.showToast(msg: "Nama harus diisi");
     } else if (tempat_lahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
-    } else if (status.text.isEmpty) {
+    } else if (val_status == null) {
       Fluttertoast.showToast(msg: "Status harus diisi");
     } else if (tglLahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
@@ -105,7 +105,7 @@ class _PindahState extends State<Pindah> {
     req.fields['tempat_lahir'] = tempat_lahir.text;
     req.fields['tanggal_lahir'] = tglLahir.text;
     req.fields['jenis_kelamin'] = val_jenis_kelamin;
-    req.fields['status'] = status.text;
+    req.fields['status'] = val_status;
     req.fields['agama'] = agama.text;
     req.fields['alamat_asal'] = alamat_asal.text;
     req.fields['alamat_tujuan'] = alamat_tujuan.text;
@@ -142,6 +142,8 @@ class _PindahState extends State<Pindah> {
   File image;
   String statusSurat = "Diajukan";
   String val_jenis_kelamin;
+  String val_status;
+  List st = ["Kawin", "Belum Kawin"];
   List jkl = ["Laki Laki", "Perempuan"];
 
   @override
@@ -243,13 +245,33 @@ class _PindahState extends State<Pindah> {
                 ),
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: status,
-                hintName: "Status",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 12,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_status = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_status,
+                  style: poppinsSmallBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(15),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Status",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.white,
+                  items: st.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -437,6 +459,8 @@ class _PindahState extends State<Pindah> {
           provinsi.clear();
           alamat_pindah.clear();
           pengikut.clear();
+          rt.clear();
+          rw.clear();
         });
         snackBarSucces(context);
         Navigator.pop(context);
