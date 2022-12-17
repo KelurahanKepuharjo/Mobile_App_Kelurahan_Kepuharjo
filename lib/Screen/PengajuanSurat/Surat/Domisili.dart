@@ -120,7 +120,7 @@ class _DomisiliState extends State<Domisili> {
   String val_jenis_kelamin;
   String val_kebangsaan;
   String val_status_perkawinan;
-  List sp = ["Kawin","Belum Kawin"];
+  List sp = ["Kawin", "Belum Kawin"];
   List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
 
