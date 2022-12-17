@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
@@ -61,7 +62,7 @@ class _AktaState extends State<Akta> {
       Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
-    } else if (status.text.isEmpty) {
+    } else if (val_status == null) {
       Fluttertoast.showToast(msg: "Status harus diisi");
     } else if (pekerjaan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pekerjaan harus diisi");
@@ -96,9 +97,9 @@ class _AktaState extends State<Akta> {
     } else if (keperluan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
     } else if (rt.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
+      Fluttertoast.showToast(msg: "RT harus diisi");
     } else if (rw.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Surat digunakan untuk harus diisi");
+      Fluttertoast.showToast(msg: "RW harus diisi");
     } else {
       addDataSurat(context, image);
     }
@@ -118,7 +119,7 @@ class _AktaState extends State<Akta> {
     req.fields['jenis_kelamin'] = val_jenis_kelamin;
     req.fields['kebangsaan'] = val_kebangsaan;
     req.fields['agama'] = agama.text;
-    req.fields['status'] = status.text;
+    req.fields['status'] = val_status;
     req.fields['pekerjaan'] = pekerjaan.text;
     req.fields['nik'] = nik.text;
     req.fields['alamat'] = alamat.text;
@@ -165,7 +166,9 @@ class _AktaState extends State<Akta> {
   String val_kebangsaan;
   String valKebangsaanAyah;
   String valKebangsaanIbu;
-  List jkl = ["Laki Laki", "Perempuan"];
+  String val_status;
+  List St = ["Kawin", "Belum Kawin"];
+  List jkl = ["Laki-Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
 
   @override
@@ -305,13 +308,33 @@ class _AktaState extends State<Akta> {
                 length: 12,
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: status,
-                hintName: "Status Perkawinan",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 12,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_status = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_status,
+                  style: poppinsSmallBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(15),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Status",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.white,
+                  items: St.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -593,6 +616,7 @@ class _AktaState extends State<Akta> {
           namaAnak.clear();
           tempatLahir.clear();
           tanggalLahir.clear();
+          kebangsaan.clear();
           agama.clear();
           status.clear();
           pekerjaan.clear();
@@ -609,6 +633,8 @@ class _AktaState extends State<Akta> {
           pekerjaanIbu.clear();
           alamatIbu.clear();
           keperluan.clear();
+          rt.clear();
+          rw.clear();
         });
         snackBarSucces(context);
         Navigator.pop(context);

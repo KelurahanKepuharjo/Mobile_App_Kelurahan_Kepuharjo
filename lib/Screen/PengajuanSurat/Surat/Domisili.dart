@@ -53,7 +53,7 @@ class _DomisiliState extends State<Domisili> {
       Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
-    } else if (status_perkawinan == null) {
+    } else if (val_status_perkawinan == null) {
       Fluttertoast.showToast(msg: "Status harus diisi");
     } else if (pekerjaan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pekerjaan harus diisi");
@@ -121,7 +121,7 @@ class _DomisiliState extends State<Domisili> {
   String val_kebangsaan;
   String val_status_perkawinan;
   List sp = ["Kawin", "Belum Kawin"];
-  List jkl = ["Laki Laki", "Perempuan"];
+  List jkl = ["Laki-Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
 
   @override
