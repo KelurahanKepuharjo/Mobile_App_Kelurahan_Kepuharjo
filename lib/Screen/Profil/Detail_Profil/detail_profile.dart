@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
@@ -202,6 +204,13 @@ class _DetailProfilState extends State<DetailProfil> {
     );
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    logOut();
+  }
+
   Container getProfile(IconData icon, String title, String subtitle) {
     return Container(
       decoration: BoxDecoration(
@@ -232,6 +241,20 @@ class _DetailProfilState extends State<DetailProfil> {
     );
   }
 
+  void logOut() {
+    RememberUser.removeUserSessions();
+  }
+
+  FutureOr onGoback(dynamic value) {
+    logOut();
+  }
+
+  void logOutremove() {
+    Route route = MaterialPageRoute(builder: (_) => const AppeareaceLogin());
+    Navigator.pushAndRemoveUntil(
+        context, route, (Route<dynamic> route) => false).then(onGoback);
+  }
+
   showLogoutDialog() {
     AwesomeDialog(
       context: context,
@@ -244,11 +267,11 @@ class _DetailProfilState extends State<DetailProfil> {
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
         setState(() {
-          RememberUser.removeUserSessions().then((value) =>
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AppeareaceLogin())));
+          logOutremove();
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const AppeareaceLogin()),
+              (Route<dynamic> route) => false);
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               elevation: 0,
               backgroundColor: Colors.transparent,

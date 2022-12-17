@@ -34,7 +34,10 @@ class MyApp extends StatelessWidget {
               return const HomeScreen();
             }
           }),
-      routes: <String, WidgetBuilder>{'/user': (context) => const HomeScreen()},
+      routes: <String, WidgetBuilder>{
+        '/user': (context) => const HomeScreen(),
+        '/login': (context) => const AppeareaceLogin(),
+      },
     );
   }
 }

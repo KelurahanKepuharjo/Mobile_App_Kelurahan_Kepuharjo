@@ -82,10 +82,10 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
       btnOkOnPress: () {
         setState(() {
           RememberUser.removeUserSessions().then((value) =>
-              Navigator.pushReplacement(
+              Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const AppeareaceLogin())));
+                  MaterialPageRoute(builder: (_) => const AppeareaceLogin()),
+                  (Route<dynamic> route) => false));
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               elevation: 0,
               backgroundColor: Colors.transparent,

@@ -12,7 +12,6 @@ import 'package:kepuharjo_app/Controller/RememberUser.dart';
 import 'package:kepuharjo_app/Model/User_Model.dart';
 import 'package:kepuharjo_app/Screen/LupaPassword/appearance_forgot_password.dart.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home_Screen.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Screen/Register/appearance_register.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
@@ -31,8 +30,8 @@ class _WidgetLoginState extends State<WidgetLogin> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    nikController = TextEditingController();
-    passwordController = TextEditingController();
+    nikController;
+    passwordController;
   }
 
   @override
