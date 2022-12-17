@@ -45,6 +45,8 @@ class _UsahaState extends State<Usaha> {
   File image;
   String val_jk;
   String val_kebangsaan;
+  String val_status;
+  List st = ["Kawin", "Belum Kawin"];
   List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
 
@@ -69,7 +71,7 @@ class _UsahaState extends State<Usaha> {
       Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
-    } else if (status.text.isEmpty) {
+    } else if (val_status == null) {
       Fluttertoast.showToast(msg: "Status harus diisi");
     } else if (pekerjaan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pekerjaan harus diisi");
@@ -104,7 +106,7 @@ class _UsahaState extends State<Usaha> {
     req.fields['jenis_kelamin'] = val_jk;
     req.fields['kebangsaan'] = val_kebangsaan;
     req.fields['agama'] = agama.text;
-    req.fields['status'] = status.text;
+    req.fields['status'] = val_status;
     req.fields['pekerjaan'] = pekerjaan.text;
     req.fields['nik'] = nik.text;
     req.fields['alamat'] = alamat.text;
@@ -263,13 +265,33 @@ class _UsahaState extends State<Usaha> {
                 length: 10,
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: status,
-                hintName: "Status Perkawinan",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 12,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_status = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_status,
+                  style: poppinsSmallBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(15),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Status",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.grey.shade300,
+                  items: st.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -308,15 +330,6 @@ class _UsahaState extends State<Usaha> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: keperluan,
-                hintName: "Keperluan",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 50,
-              ),
-              const SizedBox(height: 5),
-              getTextForm(
                 controller: rT,
                 hintName: "RT",
                 keyboardType: TextInputType.number,
@@ -330,6 +343,15 @@ class _UsahaState extends State<Usaha> {
                 keyboardType: TextInputType.number,
                 inputFormatters: FilteringTextInputFormatter.digitsOnly,
                 length: 5,
+              ),
+              const SizedBox(height: 5),
+              getTextForm(
+                controller: keperluan,
+                hintName: "Keperluan",
+                keyboardType: TextInputType.name,
+                inputFormatters:
+                    FilteringTextInputFormatter.singleLineFormatter,
+                length: 50,
               ),
               const SizedBox(height: 5),
               InkWell(

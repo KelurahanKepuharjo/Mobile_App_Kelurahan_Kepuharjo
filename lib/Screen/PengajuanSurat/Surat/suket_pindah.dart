@@ -144,7 +144,7 @@ class _PindahState extends State<Pindah> {
   String val_jenis_kelamin;
   String val_status;
   List st = ["Kawin", "Belum Kawin"];
-  List jkl = ["Laki Laki", "Perempuan"];
+  List jkl = ["Laki-Laki", "Perempuan"];
 
   @override
   Widget build(BuildContext context) {

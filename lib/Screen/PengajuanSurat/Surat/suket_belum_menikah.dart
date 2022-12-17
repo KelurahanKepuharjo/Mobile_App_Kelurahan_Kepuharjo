@@ -118,7 +118,7 @@ class _BelumNikahState extends State<BelumNikah> {
   String val_jenis_kelamin;
   String val_kebangsaan;
   String val_status;
-  List jkl = ["Laki Laki", "Perempuan"];
+  List jkl = ["Laki-Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
   List st = ["Kawin", "Belum Kawin"];
 
