@@ -22,8 +22,8 @@ class RememberUser {
 
   static Future<void> removeUserSessions() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.remove('user');
-    await preferences.clear();
-    await preferences.commit();
+    preferences.remove('user');
+    preferences.clear();
+    preferences.commit();
   }
 }
