@@ -28,10 +28,7 @@ class SKTM extends StatefulWidget {
 final nama = TextEditingController();
 final tempatlahir = TextEditingController();
 final tgllhir = TextEditingController();
-// final jk = TextEditingController();
-// final kebangsaan = TextEditingController();
 final agama = TextEditingController();
-//final status = TextEditingController();
 final pekerjaan = TextEditingController();
 final nik = TextEditingController();
 final alamat = TextEditingController();
@@ -121,7 +118,7 @@ class _SKTMState extends State<SKTM> {
   String val_kebangsaan;
   String val_status;
   List st = ["Kawin", "Belum Kawin"];
-  List jkl = ["Laki-Laki", "Perempuan"];
+  List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
   // final picker = ImagePicker()
   @override

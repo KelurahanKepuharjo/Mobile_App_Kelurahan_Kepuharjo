@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:async';
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -26,12 +26,9 @@ class BelumNikah extends StatefulWidget {
 }
 
 final nama = TextEditingController();
-final tempat_lahir = TextEditingController();
-final tanggal_lahir = TextEditingController();
-final jenis_kelamin = TextEditingController();
-final kebangsaan = TextEditingController();
+final tempatLahir = TextEditingController();
+final tanggalLahir = TextEditingController();
 final agama = TextEditingController();
-final status = TextEditingController();
 final pekerjaan = TextEditingController();
 final nik = TextEditingController();
 final alamat = TextEditingController();
@@ -43,9 +40,9 @@ class _BelumNikahState extends State<BelumNikah> {
   void verifyBelumNikah(BuildContext context) {
     if (nama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama harus diisi");
-    } else if (tempat_lahir.text.isEmpty) {
+    } else if (tempatLahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
-    } else if (tanggal_lahir.text.isEmpty) {
+    } else if (tanggalLahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
     } else if (val_jenis_kelamin == null) {
       Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
@@ -79,8 +76,8 @@ class _BelumNikahState extends State<BelumNikah> {
     var req = http.MultipartRequest('POST', uri);
     req.fields['id_akun'] = _currentUser.user.idAkun;
     req.fields['nama'] = nama.text;
-    req.fields['tempat_lahir'] = tempat_lahir.text;
-    req.fields['tanggal_lahir'] = tanggal_lahir.text;
+    req.fields['tempat_lahir'] = tempatLahir.text;
+    req.fields['tanggal_lahir'] = tanggalLahir.text;
     req.fields['jenis_kelamin'] = val_jenis_kelamin;
     req.fields['kebangsaan'] = val_kebangsaan;
     req.fields['agama'] = agama.text;
@@ -118,7 +115,7 @@ class _BelumNikahState extends State<BelumNikah> {
   String val_jenis_kelamin;
   String val_kebangsaan;
   String val_status;
-  List jkl = ["Laki-Laki", "Perempuan"];
+  List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
   List st = ["Kawin", "Belum Kawin"];
 
@@ -180,7 +177,7 @@ class _BelumNikahState extends State<BelumNikah> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: tempat_lahir,
+                controller: tempatLahir,
                 hintName: "Tempat Lahir",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -189,7 +186,7 @@ class _BelumNikahState extends State<BelumNikah> {
               ),
               const SizedBox(height: 5),
               getDateTime(
-                controller: tanggal_lahir,
+                controller: tanggalLahir,
               ),
               const SizedBox(height: 5),
               Container(
@@ -414,12 +411,9 @@ class _BelumNikahState extends State<BelumNikah> {
       btnOkOnPress: () {
         setState(() {
           nama.clear();
-          tempat_lahir.clear();
-          tanggal_lahir.clear();
-          jenis_kelamin.clear();
-          kebangsaan.clear();
+          tempatLahir.clear();
+          tanggalLahir.clear();
           agama.clear();
-          status.clear();
           pekerjaan.clear();
           nik.clear();
           alamat.clear();

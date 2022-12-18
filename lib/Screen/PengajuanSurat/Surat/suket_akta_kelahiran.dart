@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
@@ -168,7 +169,7 @@ class _AktaState extends State<Akta> {
   String valKebangsaanIbu;
   String val_status;
   List St = ["Kawin", "Belum Kawin"];
-  List jkl = ["Laki-Laki", "Perempuan"];
+  List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
 
   @override
@@ -203,7 +204,7 @@ class _AktaState extends State<Akta> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             children: [
               Row(
@@ -253,7 +254,7 @@ class _AktaState extends State<Akta> {
                       val_jenis_kelamin = value;
                     });
                   },
-                  underline: SizedBox(),
+                  underline: const SizedBox(),
                   value: val_jenis_kelamin,
                   style: poppinsSmallBlack,
                   iconSize: 25,
@@ -282,7 +283,7 @@ class _AktaState extends State<Akta> {
                       val_kebangsaan = value;
                     });
                   },
-                  underline: SizedBox(),
+                  underline: const SizedBox(),
                   value: val_kebangsaan,
                   style: poppinsSmallBlack,
                   iconSize: 25,
@@ -393,7 +394,7 @@ class _AktaState extends State<Akta> {
                       valKebangsaanAyah = value;
                     });
                   },
-                  underline: SizedBox(),
+                  underline: const SizedBox(),
                   value: valKebangsaanAyah,
                   style: poppinsSmallBlack,
                   iconSize: 25,
@@ -469,7 +470,7 @@ class _AktaState extends State<Akta> {
                       valKebangsaanIbu = value;
                     });
                   },
-                  underline: SizedBox(),
+                  underline: const SizedBox(),
                   value: valKebangsaanIbu,
                   style: poppinsSmallBlack,
                   iconSize: 25,
@@ -616,7 +617,6 @@ class _AktaState extends State<Akta> {
           namaAnak.clear();
           tempatLahir.clear();
           tanggalLahir.clear();
-          kebangsaan.clear();
           agama.clear();
           status.clear();
           pekerjaan.clear();

@@ -28,10 +28,7 @@ class Usaha extends StatefulWidget {
 final nama = TextEditingController();
 final tempatlahir = TextEditingController();
 final tgllhir = TextEditingController();
-final jk = TextEditingController();
-final kebangsaan = TextEditingController();
 final agama = TextEditingController();
-final status = TextEditingController();
 final pekerjaan = TextEditingController();
 final nik = TextEditingController();
 final alamat = TextEditingController();
@@ -430,7 +427,6 @@ class _UsahaState extends State<Usaha> {
           tempatlahir.clear();
           tgllhir.clear();
           agama.clear();
-          status.clear();
           pekerjaan.clear();
           nik.clear();
           alamat.clear();

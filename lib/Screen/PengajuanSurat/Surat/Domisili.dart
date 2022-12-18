@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:async';
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -26,26 +26,24 @@ class Domisili extends StatefulWidget {
 }
 
 final nama = TextEditingController();
-final tempat_lahir = TextEditingController();
-final tanggal_lahir = TextEditingController();
-final jenis_kelamin = TextEditingController();
-final kebangsaan = TextEditingController();
+final tempatLahir = TextEditingController();
+final tglLahir = TextEditingController();
 final agama = TextEditingController();
-final status_perkawinan = TextEditingController();
+final statusPerkawinan = TextEditingController();
 final pekerjaan = TextEditingController();
 final nik = TextEditingController();
 final rt = TextEditingController();
 final rw = TextEditingController();
 final alamat = TextEditingController();
-final surat_digunakan_untuk = TextEditingController();
+final suratDigunakan = TextEditingController();
 
 class _DomisiliState extends State<Domisili> {
   void verifyDomisili(BuildContext context) {
     if (nama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Lengkap harus diisi");
-    } else if (tempat_lahir.text.isEmpty) {
+    } else if (tempatLahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
-    } else if (tanggal_lahir.text.isEmpty) {
+    } else if (tglLahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
     } else if (val_jenis_kelamin == null) {
       Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
@@ -65,7 +63,7 @@ class _DomisiliState extends State<Domisili> {
       Fluttertoast.showToast(msg: "RT harus diisi");
     } else if (rw.text.isEmpty) {
       Fluttertoast.showToast(msg: "RW harus diisi");
-    } else if (surat_digunakan_untuk.text.isEmpty) {
+    } else if (suratDigunakan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Surat Digunakan Untuk harus diisi");
     } else {
       addDataSurat(context, image);
@@ -81,8 +79,8 @@ class _DomisiliState extends State<Domisili> {
     var req = http.MultipartRequest('POST', uri);
     req.fields['id_akun'] = _currentUser.user.idAkun;
     req.fields['nama'] = nama.text;
-    req.fields['tempat_lahir'] = tempat_lahir.text;
-    req.fields['tanggal_lahir'] = tanggal_lahir.text;
+    req.fields['tempat_lahir'] = tempatLahir.text;
+    req.fields['tanggal_lahir'] = tglLahir.text;
     req.fields['jenis_kelamin'] = val_jenis_kelamin;
     req.fields['kebangsaan'] = val_kebangsaan;
     req.fields['agama'] = agama.text;
@@ -92,7 +90,7 @@ class _DomisiliState extends State<Domisili> {
     req.fields['alamat'] = alamat.text;
     req.fields['RT'] = rt.text;
     req.fields['RW'] = rw.text;
-    req.fields['surat_digunakan_untuk'] = surat_digunakan_untuk.text;
+    req.fields['surat_digunakan_untuk'] = suratDigunakan.text;
     req.fields['status_surat'] = statusSurat;
     req.fields['tgl_pengajuan'] = DateTime.now().toString();
     var pic = http.MultipartFile("image", stream, length,
@@ -121,7 +119,7 @@ class _DomisiliState extends State<Domisili> {
   String val_kebangsaan;
   String val_status_perkawinan;
   List sp = ["Kawin", "Belum Kawin"];
-  List jkl = ["Laki-Laki", "Perempuan"];
+  List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
 
   @override
@@ -182,7 +180,7 @@ class _DomisiliState extends State<Domisili> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: tempat_lahir,
+                controller: tempatLahir,
                 hintName: "Tempat Lahir",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -191,7 +189,7 @@ class _DomisiliState extends State<Domisili> {
               ),
               const SizedBox(height: 5),
               getDateTime(
-                controller: tanggal_lahir,
+                controller: tglLahir,
               ),
               const SizedBox(height: 5),
               Container(
@@ -335,7 +333,7 @@ class _DomisiliState extends State<Domisili> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: surat_digunakan_untuk,
+                controller: suratDigunakan,
                 hintName: "Surat Digunakan Untuk",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -417,18 +415,15 @@ class _DomisiliState extends State<Domisili> {
       btnOkOnPress: () {
         setState(() {
           nama.clear();
-          tempat_lahir.clear();
-          tanggal_lahir.clear();
-          jenis_kelamin.clear();
-          kebangsaan.clear();
+          tempatLahir.clear();
+          tglLahir.clear();
           agama.clear();
-          status_perkawinan.clear();
           pekerjaan.clear();
           nik.clear();
           alamat.clear();
           rt.clear();
           rw.clear();
-          surat_digunakan_untuk.clear();
+          suratDigunakan.clear();
         });
         snackBarSucces(context);
         Navigator.pop(context);

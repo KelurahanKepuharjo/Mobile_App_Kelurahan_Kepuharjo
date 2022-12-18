@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:async';
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -14,13 +14,8 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
-import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
-import 'package:kepuharjo_app/Controller/RememberUser.dart';
-import 'package:kepuharjo_app/Model/User_Model.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class Pindah extends StatefulWidget {
@@ -32,33 +27,24 @@ class Pindah extends StatefulWidget {
 
 final rt = TextEditingController();
 final rw = TextEditingController();
-final no_surat = TextEditingController();
-final sifat = TextEditingController();
-final lampiran = TextEditingController();
-final perihal = TextEditingController();
 final nama = TextEditingController();
-final tempat_lahir = TextEditingController();
+final tempatLahir = TextEditingController();
 final tglLahir = TextEditingController();
-final jenis_kelamin = TextEditingController();
-final status = TextEditingController();
 final agama = TextEditingController();
-final alamat_asal = TextEditingController();
-final alamat_tujuan = TextEditingController();
+final alamatAsal = TextEditingController();
+final alamatTujuan = TextEditingController();
 final kelurahan = TextEditingController();
 final kecamatan = TextEditingController();
 final kabupaten = TextEditingController();
 final provinsi = TextEditingController();
-final alamat_pindah = TextEditingController();
+final alasan = TextEditingController();
 final pengikut = TextEditingController();
-final tgl_pengajuan = TextEditingController();
-final surat_digunakan_untuk = TextEditingController();
-final id_akun = TextEditingController();
 
 class _PindahState extends State<Pindah> {
   void verifyPindah(BuildContext context) {
     if (nama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama harus diisi");
-    } else if (tempat_lahir.text.isEmpty) {
+    } else if (tempatLahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
     } else if (val_status == null) {
       Fluttertoast.showToast(msg: "Status harus diisi");
@@ -68,9 +54,9 @@ class _PindahState extends State<Pindah> {
       Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
     } else if (agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
-    } else if (alamat_asal.text.isEmpty) {
+    } else if (alamatAsal.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat Asal harus diisi");
-    } else if (alamat_tujuan.text.isEmpty) {
+    } else if (alamatTujuan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alamat Tujuan harus diisi");
     } else if (kelurahan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Kelurahan harus diisi");
@@ -80,7 +66,7 @@ class _PindahState extends State<Pindah> {
       Fluttertoast.showToast(msg: "Kabupaten harus diisi");
     } else if (provinsi.text.isEmpty) {
       Fluttertoast.showToast(msg: "Profinsi harus diisi");
-    } else if (alamat_pindah.text.isEmpty) {
+    } else if (alasan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Alasan Pindah harus diisi");
     } else if (pengikut.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pengikut harus diisi");
@@ -102,18 +88,18 @@ class _PindahState extends State<Pindah> {
     var req = http.MultipartRequest('POST', uri);
     req.fields['id_akun'] = _currentUser.user.idAkun;
     req.fields['nama'] = nama.text;
-    req.fields['tempat_lahir'] = tempat_lahir.text;
+    req.fields['tempat_lahir'] = tempatLahir.text;
     req.fields['tanggal_lahir'] = tglLahir.text;
     req.fields['jenis_kelamin'] = val_jenis_kelamin;
     req.fields['status'] = val_status;
     req.fields['agama'] = agama.text;
-    req.fields['alamat_asal'] = alamat_asal.text;
-    req.fields['alamat_tujuan'] = alamat_tujuan.text;
+    req.fields['alamat_asal'] = alamatAsal.text;
+    req.fields['alamat_tujuan'] = alamatTujuan.text;
     req.fields['kelurahan'] = kelurahan.text;
     req.fields['kecamatan'] = kecamatan.text;
     req.fields['kabupaten'] = kabupaten.text;
     req.fields['provinsi'] = provinsi.text;
-    req.fields['alamat_pindah'] = alamat_pindah.text;
+    req.fields['alasan_pindah'] = alasan.text;
     req.fields['pengikut'] = pengikut.text;
     req.fields['tgl_pengajuan'] = DateTime.now().toString();
     req.fields['status_surat'] = statusSurat;
@@ -144,7 +130,7 @@ class _PindahState extends State<Pindah> {
   String val_jenis_kelamin;
   String val_status;
   List st = ["Kawin", "Belum Kawin"];
-  List jkl = ["Laki-Laki", "Perempuan"];
+  List jkl = ["Laki Laki", "Perempuan"];
 
   @override
   Widget build(BuildContext context) {
@@ -204,7 +190,7 @@ class _PindahState extends State<Pindah> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: tempat_lahir,
+                controller: tempatLahir,
                 hintName: "Tempat Lahir",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -284,8 +270,8 @@ class _PindahState extends State<Pindah> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: alamat_asal,
-                hintName: "Alamat Sesuai Ktp",
+                controller: alamatAsal,
+                hintName: "Alamat Asal",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
@@ -293,7 +279,7 @@ class _PindahState extends State<Pindah> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: alamat_tujuan,
+                controller: alamatTujuan,
                 hintName: "Alamat Tujuan",
                 keyboardType: TextInputType.name,
                 inputFormatters:
@@ -338,8 +324,8 @@ class _PindahState extends State<Pindah> {
               ),
               const SizedBox(height: 5),
               getTextForm(
-                controller: alamat_pindah,
-                hintName: "Alamat Pindah",
+                controller: alasan,
+                hintName: "Alasan Pindah",
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
@@ -445,19 +431,17 @@ class _PindahState extends State<Pindah> {
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
         setState(() {
-          id_akun.clear();
           nama.clear();
-          tempat_lahir.clear();
-          tanggal_lahir.clear();
-          status.clear();
+          tempatLahir.clear();
+          tglLahir.clear();
           agama.clear();
-          alamat_asal.clear();
-          alamat_tujuan.clear();
+          alamatAsal.clear();
+          alamatTujuan.clear();
           kelurahan.clear();
           kecamatan.clear();
           kabupaten.clear();
           provinsi.clear();
-          alamat_pindah.clear();
+          alasan.clear();
           pengikut.clear();
           rt.clear();
           rw.clear();
