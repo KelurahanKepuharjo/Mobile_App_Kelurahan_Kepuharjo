@@ -50,7 +50,7 @@ class ApiConnect {
   //pembatalan pindah
   static const pembatalanPindah = "$connectApi/pembatalanPindah.php";
   //postsurat keterangan belum nikah
-  static const belumNikah = "$connectApi/surat_ket_belum_menikah.php";
+  static const belumNikah = "$connectApi/belumNikah.php";
   //read belum nikah
   static const readbelumNikah = "$connectApi/read_surat_belum_menikah.php";
   //read belum nikah

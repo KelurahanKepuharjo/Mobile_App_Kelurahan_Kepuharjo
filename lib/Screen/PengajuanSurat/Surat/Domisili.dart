@@ -428,11 +428,6 @@ class _DomisiliState extends State<Domisili> {
         snackBarSucces(context);
         Navigator.pop(context);
       },
-      btnCancelOnPress: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Domisili()));
-      },
-      btnCancelIcon: Icons.close,
       btnOkIcon: Icons.done,
     ).show();
   }

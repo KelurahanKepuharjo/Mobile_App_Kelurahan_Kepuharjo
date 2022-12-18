@@ -46,7 +46,7 @@ class _DetailAktaState extends State<DetailAkta> {
   void pembatalanSurat() async {
     if (widget.list[widget.index].statusSurat == "Diajukan") {
       try {
-        var url = Uri.parse(ApiConnect.pembatalanBelumNikah);
+        var url = Uri.parse(ApiConnect.pembatalanAkta);
         var response = await http.post(url, body: {
           "id_surat": widget.list[widget.index].idSurat,
           "status_surat": pembatalan,

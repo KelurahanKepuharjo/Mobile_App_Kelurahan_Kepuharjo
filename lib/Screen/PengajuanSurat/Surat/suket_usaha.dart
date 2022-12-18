@@ -217,7 +217,7 @@ class _UsahaState extends State<Usaha> {
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Jenis Kelamin",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: jkl.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -246,7 +246,7 @@ class _UsahaState extends State<Usaha> {
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Kebangsaan",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: kb.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -284,7 +284,7 @@ class _UsahaState extends State<Usaha> {
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Status",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: st.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),

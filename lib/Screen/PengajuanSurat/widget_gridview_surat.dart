@@ -22,37 +22,37 @@ GestureDetector getLetter(
     onTap: () {
       if (index == 0) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SKTM()));
+            context, MaterialPageRoute(builder: (context) => const SKTM()));
       }
       if (index == 1) {
         //2.item
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => BelumNikah()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const BelumNikah()));
       }
       if (index == 2) {
         //3.item
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Domisili()));
+            context, MaterialPageRoute(builder: (context) => const Domisili()));
       }
       if (index == 3) {
         //4.item
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Kematian()));
+            context, MaterialPageRoute(builder: (context) => const Kematian()));
       }
       if (index == 4) {
         //5.item
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Akta()));
+            context, MaterialPageRoute(builder: (context) => const Akta()));
       }
       if (index == 5) {
         //6.item
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Pindah()));
+            context, MaterialPageRoute(builder: (context) => const Pindah()));
       }
       if (index == 6) {
         //6.item
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Usaha()));
+            context, MaterialPageRoute(builder: (context) => const Usaha()));
       }
     },
     child: Container(

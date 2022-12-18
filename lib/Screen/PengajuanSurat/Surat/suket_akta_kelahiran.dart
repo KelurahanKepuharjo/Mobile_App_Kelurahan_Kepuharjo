@@ -9,8 +9,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:image_picker/image_picker.dart';
@@ -293,7 +291,7 @@ class _AktaState extends State<Akta> {
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Pilih Kebangsaan",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: kb.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),
@@ -376,9 +374,8 @@ class _AktaState extends State<Akta> {
               getTextForm(
                 controller: umurAyah,
                 hintName: "Umur Ayah",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
                 length: 3,
               ),
               const SizedBox(height: 5),
@@ -480,7 +477,7 @@ class _AktaState extends State<Akta> {
                   icon: const Icon(Icons.keyboard_arrow_down),
                   hint: Text("Kebangsaan Ibu",
                       style: GoogleFonts.poppins(fontSize: 12)),
-                  dropdownColor: Colors.grey.shade300,
+                  dropdownColor: Colors.white,
                   items: kb.map((e) {
                     return DropdownMenuItem(value: e, child: Text(e));
                   }).toList(),

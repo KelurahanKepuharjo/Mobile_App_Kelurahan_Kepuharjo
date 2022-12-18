@@ -120,7 +120,7 @@ class _SKTMState extends State<SKTM> {
   List st = ["Kawin", "Belum Kawin"];
   List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
-  // final picker = ImagePicker()
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
