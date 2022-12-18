@@ -321,19 +321,17 @@ class _DomisiliState extends State<Domisili> {
               getTextForm(
                 controller: rt,
                 hintName: "RT",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 50,
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
               ),
               const SizedBox(height: 5),
               getTextForm(
                 controller: rw,
                 hintName: "RW",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 50,
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                length: 5,
               ),
               const SizedBox(height: 5),
               getTextForm(

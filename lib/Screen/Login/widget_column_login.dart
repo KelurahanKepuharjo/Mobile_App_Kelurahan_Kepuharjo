@@ -230,7 +230,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
     }
   }
 
-  Future<List<User>> login() async {
+  Future login() async {
     try {
       var response = await http.post(Uri.parse(ApiConnect.signin), body: {
         "id_akun": nikController.text,
