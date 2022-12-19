@@ -84,6 +84,8 @@ class _UsahaState extends State<Usaha> {
       Fluttertoast.showToast(msg: "RT harus diisi");
     } else if (rW.text.isEmpty) {
       Fluttertoast.showToast(msg: "RW harus diisi");
+    } else if (image == null) {
+      Fluttertoast.showToast(msg: "Silahkan upload foto kk anda");
     } else {
       addDataSurat(context, image);
     }
