@@ -139,9 +139,9 @@ class _BelumNikahState extends State<BelumNikah> {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         title: Text(
-          'Detail Surat',
+          'Surat Keterangan Belum Menikah',
           style: GoogleFonts.poppins(
-              color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
+              color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
             decoration: BoxDecoration(

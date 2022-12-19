@@ -141,9 +141,9 @@ class _SKTMState extends State<SKTM> {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         title: Text(
-          'Detail Surat',
+          'Surat Keterangan Tidak Mampu',
           style: GoogleFonts.poppins(
-              color: whiteColor, fontSize: 18, fontWeight: FontWeight.bold),
+              color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
         ),
         flexibleSpace: Container(
             decoration: BoxDecoration(
