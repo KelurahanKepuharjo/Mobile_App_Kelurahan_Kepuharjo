@@ -204,13 +204,6 @@ class _DetailProfilState extends State<DetailProfil> {
     );
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    logOut();
-  }
-
   Container getProfile(IconData icon, String title, String subtitle) {
     return Container(
       decoration: BoxDecoration(
@@ -245,16 +238,6 @@ class _DetailProfilState extends State<DetailProfil> {
     RememberUser.removeUserSessions();
   }
 
-  FutureOr onGoback(dynamic value) {
-    logOut();
-  }
-
-  void logOutremove() {
-    Route route = MaterialPageRoute(builder: (_) => const AppeareaceLogin());
-    Navigator.pushAndRemoveUntil(
-        context, route, (Route<dynamic> route) => false).then(onGoback);
-  }
-
   showLogoutDialog() {
     AwesomeDialog(
       context: context,
@@ -267,7 +250,7 @@ class _DetailProfilState extends State<DetailProfil> {
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
         setState(() {
-          logOutremove();
+          logOut();
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (_) => const AppeareaceLogin()),

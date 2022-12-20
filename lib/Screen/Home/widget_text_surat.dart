@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -39,16 +38,18 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
                 },
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(Colors.indigo.shade100),
+                        MaterialStateProperty.all(appColor.withOpacity(0.2)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(5),
                     ))),
-                child: Text(
-                  "See All",
-                  textAlign: TextAlign.center,
-                  style: poppinsSmallBlack.copyWith(
-                    color: appColor,
+                child: Center(
+                  child: Text(
+                    "See All",
+                    textAlign: TextAlign.center,
+                    style: poppinsSmallBlack.copyWith(
+                      color: appColor,
+                    ),
                   ),
                 ),
               ),

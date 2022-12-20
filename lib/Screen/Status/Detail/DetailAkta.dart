@@ -168,10 +168,18 @@ class _DetailAktaState extends State<DetailAkta> {
               onPressed: () {
                 showSuccessDialog();
               },
-              child: Text(
-                "Ajukan Pembatalan",
-                style: poppinsMediumBlack.copyWith(
-                  color: appColor,
+              child: Container(
+                height: 40,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: appColor),
+                    color: appColor.withOpacity(0.1)),
+                child: Center(
+                  child: Text(
+                    "Ajukan Pembatalan",
+                    textAlign: TextAlign.center,
+                    style: poppinsMediumBlack.copyWith(color: appColor),
+                  ),
                 ),
               ),
             )

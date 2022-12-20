@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/data_surat_kematian.dart';
-import 'package:kepuharjo_app/Screen/Status/Detail/Detail_Kematian.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class KematianSelesai extends StatefulWidget {
@@ -29,6 +28,18 @@ class _KematianSelesaiState extends State<KematianSelesai> {
       appBar: AppBar(
         backgroundColor: appColor,
         shadowColor: Colors.transparent,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(Icons.keyboard_arrow_left),
+        ),
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Surat Keterangan Kematian',
+          style: GoogleFonts.poppins(
+              color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Container(
         color: whiteColor,

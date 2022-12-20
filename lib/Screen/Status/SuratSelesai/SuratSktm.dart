@@ -30,6 +30,18 @@ class _SktmSelesaiState extends State<SktmSelesai> {
       appBar: AppBar(
         backgroundColor: appColor,
         shadowColor: Colors.transparent,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(Icons.keyboard_arrow_left),
+        ),
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Surat Keterangan Tidak Mampu',
+          style: GoogleFonts.poppins(
+              color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Container(
         color: Colors.white,
@@ -50,6 +62,18 @@ class _SktmSelesaiState extends State<SktmSelesai> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           ListTile(
+                            leading: Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  color: appColor.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                                child: Icon(
+                                  Icons.picture_as_pdf_rounded,
+                                  color: appColor,
+                                  size: 20,
+                                )),
                             title: Text(
                               list[index].nama,
                               style: GoogleFonts.poppins(
@@ -60,13 +84,13 @@ class _SktmSelesaiState extends State<SktmSelesai> {
                             subtitle: Text(
                               "Surat Keterangan Tidak Mampu",
                               style: GoogleFonts.poppins(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   color: blackColor,
                                   fontWeight: FontWeight.w300),
                             ),
                             trailing: Container(
-                                height: 50,
-                                width: 50,
+                                height: 40,
+                                width: 40,
                                 decoration: BoxDecoration(
                                   color: appColor.withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(100),
@@ -74,6 +98,7 @@ class _SktmSelesaiState extends State<SktmSelesai> {
                                 child: Icon(
                                   Icons.download,
                                   color: appColor,
+                                  size: 20,
                                 )),
                           ),
                           const Divider(

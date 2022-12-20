@@ -28,7 +28,19 @@ class _AktaSelesaiState extends State<AktaSelesai> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: appColor,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(Icons.keyboard_arrow_left),
+        ),
+        title: Text(
+          'Surat Keterangan Akta Kelahiran',
+          style: GoogleFonts.poppins(
+              color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
+        ),
         shadowColor: Colors.transparent,
       ),
       body: Container(
@@ -50,6 +62,7 @@ class _AktaSelesaiState extends State<AktaSelesai> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           ListTile(
+                            leading: Icon(Icons.picture_as_pdf_rounded),
                             title: Text(
                               list[index].namaAnak,
                               style: GoogleFonts.poppins(

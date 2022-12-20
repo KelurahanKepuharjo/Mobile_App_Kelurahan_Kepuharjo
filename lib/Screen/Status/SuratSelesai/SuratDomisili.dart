@@ -29,6 +29,18 @@ class _DomisiliSelesaiState extends State<DomisiliSelesai> {
       appBar: AppBar(
         backgroundColor: appColor,
         shadowColor: Colors.transparent,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(Icons.keyboard_arrow_left),
+        ),
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Surat Keterangan Domisili',
+          style: GoogleFonts.poppins(
+              color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Container(
         color: whiteColor,
