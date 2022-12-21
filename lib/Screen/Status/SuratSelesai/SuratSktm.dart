@@ -1,12 +1,19 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/data_surat_tidak_mampu.dart';
 import 'package:kepuharjo_app/Screen/Status/Pdf/Pdf_Sktm.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:http/http.dart' as http;
 
 class SktmSelesai extends StatefulWidget {
   const SktmSelesai({Key key}) : super(key: key);
@@ -25,6 +32,33 @@ class _SktmSelesaiState extends State<SktmSelesai> {
     super.initState();
     listdata = serviceApi.getSktmSelesai();
   }
+
+  Future<File> _storeFile(String url, List<int> bytes) async {
+    final filename = basename(url);
+    final dir = await getApplicationDocumentsDirectory();
+    final file = File('${dir.path}/$filename');
+    await file.writeAsBytes(bytes, flush: true);
+    if (kDebugMode) {
+      print('$file');
+    }
+    return file;
+  }
+
+  Future<File> loadPdfFromNetwork(String url) async {
+    final response = await http.get(Uri.parse(url));
+    final bytes = response.bodyBytes;
+    return _storeFile(url, bytes);
+  }
+
+  void openPdf(BuildContext context, File file, String url) =>
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => PdfSktm(
+            file: file,
+            url: url,
+          ),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -64,16 +98,12 @@ class _SktmSelesaiState extends State<SktmSelesai> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           ListTile(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => PdfSktm(
-                                        url:
-                                            // ignore: prefer_interpolation_to_compose_strings
-                                            "http://192.168.0.117/Web_Kelurahan_Kepuharjo/pdf/" +
-                                                list[index].pdffile),
-                                  ));
+                            onTap: () async {
+                              final file = await loadPdfFromNetwork(
+                                  ApiConnect.viewpdfSktm + list[index].pdffile);
+                              // ignore: use_build_context_synchronously
+                              openPdf(context, file,
+                                  ApiConnect.viewpdfSktm + list[index].pdffile);
                             },
                             leading: Container(
                                 height: 40,

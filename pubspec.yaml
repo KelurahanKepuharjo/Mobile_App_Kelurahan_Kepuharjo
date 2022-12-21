@@ -49,6 +49,16 @@ dependencies:
   snippet_coder_utils: ^1.0.12
   flutter_spinkit: ^5.1.0
   advance_pdf_viewer: 
+  file_picker: 
+  dio:  
+  flutter_pdfview: 
+  path_provider: 
+  permission_handler: 
+  # downloads_path_provider_28:  
+  # open_file:  
+  # dio: 
+  # flutter_local_notifications:  
+  # path_provider: 
 
   
 
