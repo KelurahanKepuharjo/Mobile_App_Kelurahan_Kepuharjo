@@ -25,16 +25,21 @@ class _AppearanceHomeState extends State<AppearanceHome> {
               borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(20),
                   bottomRight: Radius.circular(20)),
+              image: const DecorationImage(
+                  image: AssetImage("images/newbgsa.png"),
+                  fit: BoxFit.cover,
+                  alignment: Alignment.centerRight),
               color: appColor,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 80, 0, 20),
+                  padding: const EdgeInsets.fromLTRB(20, 80, 0, 0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
                         "S-Kepuharjo",
@@ -63,15 +68,15 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                     ],
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: Image.asset(
-                    "images/mylogo.png",
-                    width: 100,
-                    fit: BoxFit.cover,
-                    alignment: Alignment.centerRight,
-                  ),
-                ),
+                // Container(
+                //   padding: const EdgeInsets.only(right: 20),
+                //   child: Image.asset(
+                //     "images/mylogo.png",
+                //     width: 100,
+                //     fit: BoxFit.cover,
+                //     alignment: Alignment.centerRight,
+                //   ),
+                // ),
               ],
             )),
       ),

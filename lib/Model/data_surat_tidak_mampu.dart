@@ -20,6 +20,7 @@ class cSktm {
   String rT;
   String rW;
   String image;
+  String pdffile;
   String idAkun;
 
   cSktm(
@@ -44,6 +45,7 @@ class cSktm {
       this.rT,
       this.rW,
       this.image,
+      this.pdffile,
       this.idAkun});
 
   cSktm.fromJson(Map<String, dynamic> json) {
@@ -68,6 +70,7 @@ class cSktm {
     rT = json['RT'];
     rW = json['RW'];
     image = json['image'];
+    pdffile = json['pdffile'];
     idAkun = json['id_akun'];
   }
 
@@ -94,6 +97,7 @@ class cSktm {
     data['RT'] = this.rT;
     data['RW'] = this.rW;
     data['image'] = this.image;
+    data['pdffile'] = this.pdffile;
     data['id_akun'] = this.idAkun;
     return data;
   }

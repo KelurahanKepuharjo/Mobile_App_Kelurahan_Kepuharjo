@@ -2,6 +2,8 @@ class ApiConnect {
   static const hostConnect = "http://192.168.43.199/Web_Kelurahan_Kepuharjo";
   static const connectApi = "$hostConnect/Api";
 
+  static const viewpdfSktm = "$hostConnect/pdf/";
+
   //login
   static const signin = "$connectApi/signin.php";
   //register
@@ -57,7 +59,7 @@ class ApiConnect {
   static const readbelumNikahSelesai =
       "$connectApi/read_belumnikah_selesai.php";
   //pembatalan belum nikah
-  static const pembatalanBelumNikah = "$connectApi/pembatalanBelumNikah.php";
+  static const pembatalanBelumNikah = "$connectApi/pembatalanBelumMenikah.php";
   //post surat keterangan usaha
   static const usaha = "$connectApi/usaha.php";
   //read usaha

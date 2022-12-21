@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/data_surat_tidak_mampu.dart';
+import 'package:kepuharjo_app/Screen/Status/Pdf/Pdf_Sktm.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class SktmSelesai extends StatefulWidget {
@@ -62,6 +64,17 @@ class _SktmSelesaiState extends State<SktmSelesai> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           ListTile(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => PdfSktm(
+                                        url:
+                                            // ignore: prefer_interpolation_to_compose_strings
+                                            "http://192.168.0.117/Web_Kelurahan_Kepuharjo/pdf/" +
+                                                list[index].pdffile),
+                                  ));
+                            },
                             leading: Container(
                                 height: 40,
                                 width: 40,
