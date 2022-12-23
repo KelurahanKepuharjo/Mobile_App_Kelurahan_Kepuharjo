@@ -34,7 +34,7 @@ class _SktmSelesaiState extends State<SktmSelesai> {
     listdata = serviceApi.getSktmSelesai();
   }
 
-  Future<File> _storeFile(String url, List<int> bytes) async {
+  Future<File> _getFile(String url, List<int> bytes) async {
     final filename = basename(url);
     final dir = await getApplicationDocumentsDirectory();
     final file = File('${dir.path}/$filename');
@@ -45,10 +45,10 @@ class _SktmSelesaiState extends State<SktmSelesai> {
     return file;
   }
 
-  Future<File> loadPdfFromNetwork(String url) async {
+  Future<File> loadPdf(String url) async {
     final response = await http.get(Uri.parse(url));
     final bytes = response.bodyBytes;
-    return _storeFile(url, bytes);
+    return _getFile(url, bytes);
   }
 
   void openPdf(BuildContext context, File file, String url) =>
@@ -117,7 +117,7 @@ class _SktmSelesaiState extends State<SktmSelesai> {
                         children: [
                           ListTile(
                             onTap: () async {
-                              final file = await loadPdfFromNetwork(
+                              final file = await loadPdf(
                                   ApiConnect.viewpdf + list[index].pdffile);
                               // ignore: use_build_context_synchronously
                               openPdf(context, file,
