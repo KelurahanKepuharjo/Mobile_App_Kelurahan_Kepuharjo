@@ -77,7 +77,7 @@ class _SktmSelesaiState extends State<SktmSelesai> {
     }
   }
 
-  double progress = 0;
+  // double progress = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
