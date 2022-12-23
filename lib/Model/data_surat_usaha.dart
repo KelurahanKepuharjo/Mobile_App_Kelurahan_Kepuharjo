@@ -19,6 +19,7 @@ class cUsaha {
   String rT;
   String rW;
   String tglPengajuan;
+  String pdffile;
   String idAkun;
 
   cUsaha(
@@ -42,6 +43,7 @@ class cUsaha {
       this.rT,
       this.rW,
       this.tglPengajuan,
+      this.pdffile,
       this.idAkun});
 
   cUsaha.fromJson(Map<String, dynamic> json) {
@@ -65,6 +67,7 @@ class cUsaha {
     rT = json['RT'];
     rW = json['RW'];
     tglPengajuan = json['tgl_pengajuan'];
+    pdffile = json['pdffile'];
     idAkun = json['id_akun'];
   }
 
@@ -90,6 +93,7 @@ class cUsaha {
     data['RT'] = this.rT;
     data['RW'] = this.rW;
     data['tgl_pengajuan'] = this.tglPengajuan;
+    data['pdfdile'] = this.pdffile;
     data['id_akun'] = this.idAkun;
     return data;
   }

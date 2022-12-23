@@ -29,6 +29,7 @@ class cAkta {
   String tglPengajuan;
   String keperluan;
   String image;
+  String pdffile;
   String idAkun;
 
   cAkta(
@@ -62,6 +63,7 @@ class cAkta {
       this.tglPengajuan,
       this.keperluan,
       this.image,
+      this.pdffile,
       this.idAkun});
 
   cAkta.fromJson(Map<String, dynamic> json) {
@@ -95,6 +97,7 @@ class cAkta {
     tglPengajuan = json['tgl_pengajuan'];
     keperluan = json['keperluan'];
     image = json['image'];
+    pdffile = json['pdffile'];
     idAkun = json['id_akun'];
   }
 
@@ -130,6 +133,7 @@ class cAkta {
     data['tgl_pengajuan'] = this.tglPengajuan;
     data['keperluan'] = this.keperluan;
     data['image'] = this.image;
+    data['pdffile'] = this.pdffile;
     data['id_akun'] = this.idAkun;
     return data;
   }

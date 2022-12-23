@@ -118,10 +118,10 @@ class _SktmSelesaiState extends State<SktmSelesai> {
                           ListTile(
                             onTap: () async {
                               final file = await loadPdfFromNetwork(
-                                  ApiConnect.viewpdfSktm + list[index].pdffile);
+                                  ApiConnect.viewpdf + list[index].pdffile);
                               // ignore: use_build_context_synchronously
                               openPdf(context, file,
-                                  ApiConnect.viewpdfSktm + list[index].pdffile);
+                                  ApiConnect.viewpdf + list[index].pdffile);
                             },
                             leading: Container(
                                 height: 40,
@@ -160,8 +160,7 @@ class _SktmSelesaiState extends State<SktmSelesai> {
                                           "Mohon tunggu sampai proses download selesai",
                                       backgroundColor: Colors.green);
                                   await downloadPdf(
-                                      ApiConnect.viewpdfSktm +
-                                          list[index].pdffile,
+                                      ApiConnect.viewpdf + list[index].pdffile,
                                       list[index].pdffile);
                                 }
                               },

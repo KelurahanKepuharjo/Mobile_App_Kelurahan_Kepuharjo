@@ -17,6 +17,7 @@ class cBelumNikah {
   String rW;
   String suratDigunakan;
   String image;
+  String pdffile;
   String idAkun;
 
   cBelumNikah(
@@ -38,6 +39,7 @@ class cBelumNikah {
       this.rW,
       this.suratDigunakan,
       this.image,
+      this.pdffile,
       this.idAkun});
 
   cBelumNikah.fromJson(Map<String, dynamic> json) {
@@ -59,6 +61,7 @@ class cBelumNikah {
     rW = json['RW'];
     suratDigunakan = json['surat_digunakan'];
     image = json['image'];
+    pdffile = json['pdffile'];
     idAkun = json['id_akun'];
   }
 
@@ -82,6 +85,7 @@ class cBelumNikah {
     data['RW'] = this.rW;
     data['surat_digunakan'] = this.suratDigunakan;
     data['image'] = this.image;
+    data['pdffile'] = this.pdffile;
     data['id_akun'] = this.idAkun;
     return data;
   }

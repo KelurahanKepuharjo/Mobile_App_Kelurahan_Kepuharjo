@@ -20,6 +20,7 @@ class cDomisili {
   String tglSuratDibuat;
   String statusSurat;
   String images;
+  String pdffile;
   String idAkun;
 
   cDomisili(
@@ -44,6 +45,7 @@ class cDomisili {
       this.tglSuratDibuat,
       this.statusSurat,
       this.images,
+      this.pdffile,
       this.idAkun});
 
   cDomisili.fromJson(Map<String, dynamic> json) {
@@ -68,6 +70,7 @@ class cDomisili {
     tglSuratDibuat = json['tgl_surat_dibuat'];
     statusSurat = json['status_surat'];
     images = json['images'];
+    pdffile = json['pdffile'];
     idAkun = json['id_akun'];
   }
 
@@ -94,6 +97,7 @@ class cDomisili {
     data['tgl_surat_dibuat'] = this.tglSuratDibuat;
     data['status_surat'] = this.statusSurat;
     data['images'] = this.images;
+    data['pdffile'] = this.pdffile;
     data['id_akun'] = this.idAkun;
     return data;
   }
