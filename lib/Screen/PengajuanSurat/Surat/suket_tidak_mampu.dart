@@ -94,6 +94,7 @@ class _SKTMState extends State<SKTM> {
     req.fields['keperluan'] = keperluan.text;
     req.fields['RT'] = rT.text;
     req.fields['RW'] = rW.text;
+
     var pic = http.MultipartFile("image", stream, length,
         filename: basename(imageFile.path));
     req.files.add(pic);
@@ -119,6 +120,7 @@ class _SKTMState extends State<SKTM> {
   String val_jk;
   String val_kebangsaan;
   String val_status;
+  bool isOrder = false;
   List st = ["Kawin", "Belum Kawin"];
   List jkl = ["Laki Laki", "Perempuan"];
   List kb = ["WNI", "WNA"];
