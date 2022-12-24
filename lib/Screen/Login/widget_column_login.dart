@@ -50,7 +50,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 360,
+      height: 340,
       width: 300,
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
@@ -126,29 +126,29 @@ class _WidgetLoginState extends State<WidgetLogin> {
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: Row(
-              children: [
-                const Spacer(),
-                InkWell(
-                  child: Text(
-                    "Lupa password ?",
-                    style: poppinsSmallBlack,
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AppearanceForgotPassword()));
-                  },
-                ),
-              ],
-            ),
-          ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.only(right: 10),
+          //   child: Row(
+          //     children: [
+          //       const Spacer(),
+          //       InkWell(
+          //         child: Text(
+          //           "Lupa password ?",
+          //           style: poppinsSmallBlack,
+          //         ),
+          //         onTap: () {
+          //           Navigator.push(
+          //               context,
+          //               MaterialPageRoute(
+          //                   builder: (context) => AppearanceForgotPassword()));
+          //         },
+          //       ),
+          //     ],
+          //   ),
+          // ),
           const SizedBox(
             height: 20,
           ),

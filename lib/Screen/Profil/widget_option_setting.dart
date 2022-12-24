@@ -81,11 +81,11 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
       descTextStyle: nunitoMediumBlack.copyWith(color: Colors.grey),
       btnOkOnPress: () {
         setState(() {
-          RememberUser.removeUserSessions().then((value) =>
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => const AppeareaceLogin()),
-                  (Route<dynamic> route) => false));
+          RememberUser.removeUserSessions()
+              .then((value) => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (_) => const AppeareaceLogin()),
+                  ));
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               elevation: 0,
               backgroundColor: Colors.transparent,

@@ -251,10 +251,10 @@ class _DetailProfilState extends State<DetailProfil> {
       btnOkOnPress: () {
         setState(() {
           logOut();
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (_) => const AppeareaceLogin()),
-              (Route<dynamic> route) => false);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const AppeareaceLogin()),
+          );
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               elevation: 0,
               backgroundColor: Colors.transparent,

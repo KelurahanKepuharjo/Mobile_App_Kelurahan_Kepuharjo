@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/data_surat_tidak_mampu.dart';
-import 'package:kepuharjo_app/Screen/NavButton/Home_Screen.dart';
 import 'package:kepuharjo_app/Screen/Status/Detail/Detail_SKTM.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -19,11 +18,28 @@ class _SuratSKTMState extends State<SuratSKTM> {
   ServiceApi serviceApi = ServiceApi();
   Future<List<cSktm>> listdata;
 
+  void dataSktm() {
+    listdata = serviceApi.getSktm();
+  }
+
+  FutureOr onGoing(dynamic value) {
+    dataSktm();
+  }
+
+  void navigatorSktm(List list, int index) {
+    Route route = MaterialPageRoute(
+        builder: (context) => DetailSKTM(
+              list: list,
+              index: index,
+            ));
+    Navigator.push(context, route).then(onGoing);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    listdata = serviceApi.getSktm();
+    dataSktm();
   }
 
   @override
@@ -46,12 +62,7 @@ class _SuratSKTMState extends State<SuratSKTM> {
                     children: [
                       ListTile(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => DetailSKTM(
-                              list: list,
-                              index: index,
-                            ),
-                          ));
+                          navigatorSktm(list, index);
                         },
                         title: Text(
                           list[index].nama,
