@@ -51,7 +51,7 @@ class _KematianSelesaiState extends State<KematianSelesai> {
     return _getFile(url, bytes);
   }
 
-   void openPdf(BuildContext context, File file, String url) =>
+  void openPdf(BuildContext context, File file, String url) =>
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => PdfKematian(
@@ -119,8 +119,8 @@ class _KematianSelesaiState extends State<KematianSelesai> {
                               final file = await loadPdf(
                                   ApiConnect.viewpdf + list[index].pdffile);
                               // ignore: use_build_context_synchronously
-                                openPdf(context, file,
-                                ApiConnect.viewpdf + list[index].pdffile);
+                              openPdf(context, file,
+                                  ApiConnect.viewpdf + list[index].pdffile);
                             },
                             leading: Container(
                               height: 40,
@@ -133,7 +133,8 @@ class _KematianSelesaiState extends State<KematianSelesai> {
                                 Icons.picture_as_pdf_rounded,
                                 color: appColor,
                                 size: 20,
-                              ),),
+                              ),
+                            ),
                             title: Text(
                               list[index].namaAlmarhum,
                               style: GoogleFonts.poppins(
@@ -155,12 +156,12 @@ class _KematianSelesaiState extends State<KematianSelesai> {
                                     .isGranted;
                                 if (permissionStatus) {
                                   Fluttertoast.showToast(
-                                      msg: 
+                                      msg:
                                           "Mohon tunggu sampai proses download selesai",
                                       backgroundColor: Colors.green);
-                                await downloadPdf(
-                                    ApiConnect.viewpdf + list[index].pdffile,
-                                    list[index].pdffile);
+                                  await downloadPdf(
+                                      ApiConnect.viewpdf + list[index].pdffile,
+                                      list[index].pdffile);
                                 }
                               },
                               child: Container(

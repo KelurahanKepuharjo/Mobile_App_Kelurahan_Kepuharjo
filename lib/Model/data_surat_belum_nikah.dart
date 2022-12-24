@@ -61,7 +61,7 @@ class cBelumNikah {
     rW = json['RW'];
     suratDigunakan = json['surat_digunakan'];
     image = json['image'];
-    pdffile = json['pdffile'];
+    pdffile = json['file_pdf'];
     idAkun = json['id_akun'];
   }
 
@@ -85,7 +85,7 @@ class cBelumNikah {
     data['RW'] = this.rW;
     data['surat_digunakan'] = this.suratDigunakan;
     data['image'] = this.image;
-    data['pdffile'] = this.pdffile;
+    data['file_pdf'] = this.pdffile;
     data['id_akun'] = this.idAkun;
     return data;
   }

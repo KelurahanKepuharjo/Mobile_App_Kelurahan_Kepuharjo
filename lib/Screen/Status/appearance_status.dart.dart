@@ -9,7 +9,7 @@ import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratAkta.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratBelumNikah.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratDomisili.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratKematian.dart';
-import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratPinda.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratPindah.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratSktm.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratUsaha.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratUsaha.dart';

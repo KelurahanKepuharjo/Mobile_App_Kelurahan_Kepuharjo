@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
@@ -77,6 +78,7 @@ class _UsahaSelesaiState extends State<UsahaSelesai> {
     }
   }
 
+  bool downloading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,103 +100,139 @@ class _UsahaSelesaiState extends State<UsahaSelesai> {
       ),
       body: Container(
         color: whiteColor,
-        child: Expanded(
-          child: FutureBuilder<List<cUsaha>>(
-            future: listdata,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                List<cUsaha> list = snapshot.data;
-                return ListView.builder(
-                  itemCount: list.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 5, horizontal: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          ListTile(
-                            onTap: () async {
-                              final file = await loadPdf(
-                                  ApiConnect.viewpdf + list[index].pdffile);
-                              // ignore: use_build_context_synchronously
-                              openPdf(context, file,
-                                  ApiConnect.viewpdf + list[index].pdffile);
-                            },
-                            leading: Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                  color: appColor.withOpacity(0.1),
-                                  borderRadius: BorderRadius.circular(100),
-                                ),
-                                child: Icon(
-                                  Icons.picture_as_pdf_rounded,
-                                  color: appColor,
-                                  size: 20,
-                                )),
-                            title: Text(
-                              list[index].nama,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 16,
-                                  color: blackColor,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: Text(
-                              "Surat Keterangan Usaha",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 14,
-                                  color: blackColor,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                            trailing: InkWell(
-                              onTap: () async {
-                                var permissionStatus = await Permission.storage
-                                    .request()
-                                    .isGranted;
-                                if (permissionStatus) {
-                                  Fluttertoast.showToast(
-                                      msg:
-                                          "Mohon tunggu sampai proses download selesai",
-                                      backgroundColor: Colors.green);
-                                  await downloadPdf(
-                                      ApiConnect.viewpdf + list[index].pdffile,
-                                      list[index].pdffile);
-                                }
-                              },
-                              child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    color: appColor.withOpacity(0.1),
-                                    borderRadius: BorderRadius.circular(100),
+        child: downloading
+            ? Center(
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: appColor.withOpacity(0.9)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        "Download",
+                        textAlign: TextAlign.center,
+                        style: poppinsMediumBlack.copyWith(color: whiteColor),
+                      ),
+                      SpinKitCircle(
+                        color: whiteColor,
+                        size: 30,
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            : Expanded(
+                child: FutureBuilder<List<cUsaha>>(
+                  future: listdata,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<cUsaha> list = snapshot.data;
+                      return ListView.builder(
+                        itemCount: list.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                ListTile(
+                                  onTap: () async {
+                                    final file = await loadPdf(
+                                        ApiConnect.viewpdf +
+                                            list[index].pdffile);
+                                    // ignore: use_build_context_synchronously
+                                    openPdf(
+                                        context,
+                                        file,
+                                        ApiConnect.viewpdf +
+                                            list[index].pdffile);
+                                  },
+                                  leading: Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: appColor.withOpacity(0.1),
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                      ),
+                                      child: Icon(
+                                        Icons.picture_as_pdf_rounded,
+                                        color: appColor,
+                                        size: 20,
+                                      )),
+                                  title: Text(
+                                    list[index].nama,
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 16,
+                                        color: blackColor,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  child: Icon(
-                                    Icons.download,
-                                    color: appColor,
-                                  )),
+                                  subtitle: Text(
+                                    "Surat Keterangan Usaha",
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 14,
+                                        color: blackColor,
+                                        fontWeight: FontWeight.w300),
+                                  ),
+                                  trailing: InkWell(
+                                    onTap: () async {
+                                      var permissionStatus = await Permission
+                                          .storage
+                                          .request()
+                                          .isGranted;
+                                      if (permissionStatus) {
+                                        setState(() {
+                                          downloading = true;
+                                        });
+                                        await downloadPdf(
+                                            ApiConnect.viewpdf +
+                                                list[index].pdffile,
+                                            list[index].pdffile);
+                                        setState(() {
+                                          downloading = false;
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                        height: 50,
+                                        width: 50,
+                                        decoration: BoxDecoration(
+                                          color: appColor.withOpacity(0.1),
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                        ),
+                                        child: Icon(
+                                          Icons.download,
+                                          color: appColor,
+                                        )),
+                                  ),
+                                ),
+                                const Divider(
+                                  height: 10,
+                                ),
+                              ],
                             ),
-                          ),
-                          const Divider(
-                            height: 10,
-                          ),
-                        ],
+                          );
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text("${snapshot.data}");
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: appColor,
                       ),
                     );
                   },
-                );
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.data}");
-              }
-              return Center(
-                child: CircularProgressIndicator(
-                  color: appColor,
                 ),
-              );
-            },
-          ),
-        ),
+              ),
       ),
     );
   }

@@ -67,7 +67,7 @@ class cUsaha {
     rT = json['RT'];
     rW = json['RW'];
     tglPengajuan = json['tgl_pengajuan'];
-    pdffile = json['pdffile'];
+    pdffile = json['file_pdf'];
     idAkun = json['id_akun'];
   }
 
@@ -93,7 +93,7 @@ class cUsaha {
     data['RT'] = this.rT;
     data['RW'] = this.rW;
     data['tgl_pengajuan'] = this.tglPengajuan;
-    data['pdfdile'] = this.pdffile;
+    data['file_pdf'] = this.pdffile;
     data['id_akun'] = this.idAkun;
     return data;
   }

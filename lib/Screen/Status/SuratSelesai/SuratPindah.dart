@@ -7,32 +7,32 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
-import 'package:kepuharjo_app/Api/Api_service.dart';
-import 'package:path/path.dart';
-import 'package:kepuharjo_app/Model/data_surat_akta_kelahiran.dart';
-import 'package:kepuharjo_app/Screen/Status/Pdf/Pdf_Akta.dart';
-import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:open_file/open_file.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:kepuharjo_app/Api/Api_service.dart';
+import 'package:kepuharjo_app/Model/data_surat_pindah.dart';
+import 'package:kepuharjo_app/Screen/Status/Pdf/Pdf_Pindah.dart';
+import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
 
-class AktaSelesai extends StatefulWidget {
-  const AktaSelesai({Key key}) : super(key: key);
+class PindahSelesai extends StatefulWidget {
+  const PindahSelesai({Key key}) : super(key: key);
 
   @override
-  State<AktaSelesai> createState() => _AktaSelesaiState();
+  State<PindahSelesai> createState() => _PindahSelesaiState();
 }
 
-class _AktaSelesaiState extends State<AktaSelesai> {
+class _PindahSelesaiState extends State<PindahSelesai> {
   ServiceApi serviceApi = ServiceApi();
-  Future<List<cAkta>> listdata;
+  Future<List<cPindah>> listdata;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    listdata = serviceApi.getAktaSelesai();
+    listdata = serviceApi.getpindahSelesai();
   }
 
   Future<File> _getFile(String url, List<int> bytes) async {
@@ -55,7 +55,7 @@ class _AktaSelesaiState extends State<AktaSelesai> {
   void openPdf(BuildContext context, File file, String url) =>
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => PdfAkta(
+          builder: (context) => PdfPindah(
             file: file,
             url: url,
           ),
@@ -83,23 +83,23 @@ class _AktaSelesaiState extends State<AktaSelesai> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         backgroundColor: appColor,
+        shadowColor: Colors.transparent,
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
           },
           child: const Icon(Icons.keyboard_arrow_left),
         ),
+        automaticallyImplyLeading: false,
         title: Text(
           'Unduh Surat',
           style: GoogleFonts.poppins(
               color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
         ),
-        shadowColor: Colors.transparent,
       ),
       body: Container(
-        color: Colors.white,
+        color: whiteColor,
         child: downloading
             ? Center(
                 child: Container(
@@ -127,11 +127,11 @@ class _AktaSelesaiState extends State<AktaSelesai> {
                 ),
               )
             : Expanded(
-                child: FutureBuilder<List<cAkta>>(
+                child: FutureBuilder<List<cPindah>>(
                   future: listdata,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      List<cAkta> list = snapshot.data;
+                      List<cPindah> list = snapshot.data;
                       return ListView.builder(
                         itemCount: list.length,
                         itemBuilder: (context, index) {
@@ -168,14 +168,14 @@ class _AktaSelesaiState extends State<AktaSelesai> {
                                         size: 20,
                                       )),
                                   title: Text(
-                                    list[index].namaAnak,
+                                    list[index].nama,
                                     style: GoogleFonts.poppins(
                                         fontSize: 16,
                                         color: blackColor,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   subtitle: Text(
-                                    "Surat Keterangan Akta Kelahiran",
+                                    "Surat Keterangan Pindah",
                                     style: GoogleFonts.poppins(
                                         fontSize: 14,
                                         color: blackColor,
@@ -226,7 +226,9 @@ class _AktaSelesaiState extends State<AktaSelesai> {
                       return Text("${snapshot.data}");
                     }
                     return Center(
-                      child: CircularProgressIndicator(color: appColor),
+                      child: CircularProgressIndicator(
+                        color: appColor,
+                      ),
                     );
                   },
                 ),

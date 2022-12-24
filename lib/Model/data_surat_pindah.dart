@@ -82,7 +82,7 @@ class cPindah {
     rT = json['RT'];
     rW = json['RW'];
     image = json['image'];
-    pdffile = json['pdffile'];
+    pdffile = json['file_pdf'];
     idAkun = json['id_akun'];
   }
 
@@ -113,7 +113,7 @@ class cPindah {
     data['RT'] = this.rT;
     data['RW'] = this.rW;
     data['image'] = this.image;
-    data['pdffile'] = this.pdffile;
+    data['file_pdf'] = this.pdffile;
     data['id_akun'] = this.idAkun;
     return data;
   }

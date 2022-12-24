@@ -97,7 +97,7 @@ class cAkta {
     tglPengajuan = json['tgl_pengajuan'];
     keperluan = json['keperluan'];
     image = json['image'];
-    pdffile = json['pdffile'];
+    pdffile = json['file_pdf'];
     idAkun = json['id_akun'];
   }
 
@@ -133,7 +133,7 @@ class cAkta {
     data['tgl_pengajuan'] = this.tglPengajuan;
     data['keperluan'] = this.keperluan;
     data['image'] = this.image;
-    data['pdffile'] = this.pdffile;
+    data['file_pdf'] = this.pdffile;
     data['id_akun'] = this.idAkun;
     return data;
   }

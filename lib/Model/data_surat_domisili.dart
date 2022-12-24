@@ -70,7 +70,7 @@ class cDomisili {
     tglSuratDibuat = json['tgl_surat_dibuat'];
     statusSurat = json['status_surat'];
     images = json['images'];
-    pdffile = json['pdffile'];
+    pdffile = json['file_pdf'];
     idAkun = json['id_akun'];
   }
 
@@ -97,7 +97,7 @@ class cDomisili {
     data['tgl_surat_dibuat'] = this.tglSuratDibuat;
     data['status_surat'] = this.statusSurat;
     data['images'] = this.images;
-    data['pdffile'] = this.pdffile;
+    data['file_pdf'] = this.pdffile;
     data['id_akun'] = this.idAkun;
     return data;
   }
