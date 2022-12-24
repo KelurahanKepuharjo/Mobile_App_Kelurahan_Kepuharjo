@@ -95,7 +95,7 @@ class _SktmSelesaiState extends State<SktmSelesai> {
         title: Text(
           'Unduh Surat',
           style: GoogleFonts.poppins(
-              color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
+              color: whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(

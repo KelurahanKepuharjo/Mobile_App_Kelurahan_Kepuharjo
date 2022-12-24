@@ -95,7 +95,7 @@ class _BelumNikahSelesaiState extends State<BelumNikahSelesai> {
         title: Text(
           'Unduh Surat',
           style: GoogleFonts.poppins(
-              color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
+              color: whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(
@@ -201,8 +201,8 @@ class _BelumNikahSelesaiState extends State<BelumNikahSelesai> {
                                       }
                                     },
                                     child: Container(
-                                        height: 50,
-                                        width: 50,
+                                        height: 40,
+                                        width: 40,
                                         decoration: BoxDecoration(
                                           color: appColor.withOpacity(0.1),
                                           borderRadius:
@@ -211,6 +211,7 @@ class _BelumNikahSelesaiState extends State<BelumNikahSelesai> {
                                         child: Icon(
                                           Icons.download,
                                           color: appColor,
+                                          size: 20,
                                         )),
                                   ),
                                 ),

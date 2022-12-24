@@ -36,9 +36,23 @@ class _AppeareaceLoginState extends State<AppeareaceLogin> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  WidgetPicture(),
-                  WidgetLogin(),
+                children: [
+                  const WidgetPicture(),
+                  const WidgetLogin(),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "@S-Kepuharjo",
+                        style: poppinsSmallBlack.copyWith(
+                            color: whiteColor.withOpacity(0.5)),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
