@@ -92,7 +92,7 @@ class _SktmSelesaiState extends State<SktmSelesai> {
         ),
         automaticallyImplyLeading: false,
         title: Text(
-          'Surat Keterangan Tidak Mampu',
+          'Unduh Surat',
           style: GoogleFonts.poppins(
               color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
         ),

@@ -91,7 +91,7 @@ class _UsahaSelesaiState extends State<UsahaSelesai> {
         ),
         automaticallyImplyLeading: false,
         title: Text(
-          'Surat Keterangan Usaha',
+          'Unduh Surat',
           style: GoogleFonts.poppins(
               color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
         ),

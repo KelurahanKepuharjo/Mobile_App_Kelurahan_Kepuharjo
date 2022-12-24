@@ -37,7 +37,7 @@ class _DomisiliSelesaiState extends State<DomisiliSelesai> {
         ),
         automaticallyImplyLeading: false,
         title: Text(
-          'Surat Keterangan Domisili',
+          'Unduh Surat',
           style: GoogleFonts.poppins(
               color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
         ),

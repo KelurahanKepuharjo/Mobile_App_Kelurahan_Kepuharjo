@@ -36,7 +36,7 @@ class _BelumNikahSelesaiState extends State<BelumNikahSelesai> {
         ),
         automaticallyImplyLeading: false,
         title: Text(
-          'Surat Keterangan Belum Menikah',
+          'Unduh Surat',
           style: GoogleFonts.poppins(
               color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
         ),

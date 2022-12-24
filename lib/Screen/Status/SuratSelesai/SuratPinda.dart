@@ -36,7 +36,7 @@ class _PindahSelesaiState extends State<PindahSelesai> {
         ),
         automaticallyImplyLeading: false,
         title: Text(
-          'Surat Keterangan Pindah',
+          'Unduh Surat',
           style: GoogleFonts.poppins(
               color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
         ),

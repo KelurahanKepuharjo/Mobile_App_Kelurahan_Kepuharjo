@@ -37,7 +37,7 @@ class _AktaSelesaiState extends State<AktaSelesai> {
           child: const Icon(Icons.keyboard_arrow_left),
         ),
         title: Text(
-          'Surat Keterangan Akta Kelahiran',
+          'Unduh Surat',
           style: GoogleFonts.poppins(
               color: whiteColor, fontSize: 14, fontWeight: FontWeight.bold),
         ),
