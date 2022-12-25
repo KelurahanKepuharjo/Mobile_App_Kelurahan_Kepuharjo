@@ -7,6 +7,7 @@ import 'package:kepuharjo_app/Model/News_Model.dart';
 import 'package:http/http.dart' as http;
 import 'package:kepuharjo_app/Model/data_surat_akta_kelahiran.dart';
 import 'package:kepuharjo_app/Model/data_surat_belum_nikah.dart';
+import 'package:kepuharjo_app/Model/data_surat_berkelakuanbaik.dart';
 import 'package:kepuharjo_app/Model/data_surat_domisili.dart';
 import 'package:kepuharjo_app/Model/data_surat_kematian.dart';
 import 'package:kepuharjo_app/Model/data_surat_pindah.dart';
@@ -220,6 +221,33 @@ class ServiceApi {
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
       return jsonResponse.map((e) => cAkta.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load');
+    }
+  }
+
+  Future<List<cBerkelakuanBaik>> getBerkelakuanBaik() async {
+    final response = await http.post(Uri.parse(ApiConnect.readberkelakuanBaik), body: {
+      "id_akun": _currentUser.user.idAkun,
+    });
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((e) => cBerkelakuanBaik.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load');
+    }
+  }
+
+  //get surat keterangan Berkelakuan Baik selesai
+  Future<List<cBerkelakuanBaik>> getBerkelakuanBaikSelesai() async {
+    final response =
+        await http.post(Uri.parse(ApiConnect.readberkelakuanBaikSelesai), body: {
+      "id_akun": _currentUser.user.idAkun,
+      "status_surat": "Selesai",
+    });
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((e) => cBerkelakuanBaik.fromJson(e)).toList();
     } else {
       throw Exception('Failed to load');
     }

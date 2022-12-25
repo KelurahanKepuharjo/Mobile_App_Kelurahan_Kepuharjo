@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_akta_kelahiran.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_berkelakuan_baik.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidak_mampu.dart';
@@ -53,6 +54,10 @@ GestureDetector getLetter(
         //6.item
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const Usaha()));
+      }
+      if (index == 7) {
+        Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const BerkelakuanBaik()));
       }
     },
     child: Container(
@@ -141,6 +146,11 @@ class _WidgetGridViewSuratState extends State<WidgetGridViewSurat> {
             "Surat Keterangan Usaha",
             6,
             Icons.home_work,
+          ),
+          getLetter(context,
+          "Surat Keterangan Berkelakuan Baik",
+          7,
+          Icons.home_work
           ),
         ],
       ),
