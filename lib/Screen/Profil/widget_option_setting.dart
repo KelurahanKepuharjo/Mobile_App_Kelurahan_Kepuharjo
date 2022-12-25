@@ -26,8 +26,10 @@ class _WidgetOptionsSettingState extends State<WidgetOptionsSetting> {
               MaterialPageRoute(builder: (context) => const InfoAplikasi()));
         }
         if (index == 2) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AppearanceTentang()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const AppearanceTentang()));
         }
         if (index == 3) {
           showSuccessDialog();

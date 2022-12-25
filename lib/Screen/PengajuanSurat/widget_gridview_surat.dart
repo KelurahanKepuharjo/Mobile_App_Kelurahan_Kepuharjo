@@ -4,7 +4,6 @@ import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_akta_kelahiran.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_berkelakuan_baik.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidak_mampu.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_belum_menikah.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_usaha.dart';
@@ -47,8 +46,8 @@ GestureDetector getLetter(
       }
       if (index == 5) {
         //6.item
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Pindah()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const BerkelakuanBaik()));
       }
       if (index == 6) {
         //6.item
@@ -56,8 +55,8 @@ GestureDetector getLetter(
             context, MaterialPageRoute(builder: (context) => const Usaha()));
       }
       if (index == 7) {
-        Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const BerkelakuanBaik()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const BerkelakuanBaik()));
       }
     },
     child: Container(
@@ -137,9 +136,9 @@ class _WidgetGridViewSuratState extends State<WidgetGridViewSurat> {
           ),
           getLetter(
             context,
-            "Surat Keterangan Pindah",
+            "Surat Keterangan Berkelakuan Baik",
             5,
-            Icons.house_rounded,
+            Icons.people_alt,
           ),
           getLetter(
             context,
@@ -147,11 +146,8 @@ class _WidgetGridViewSuratState extends State<WidgetGridViewSurat> {
             6,
             Icons.home_work,
           ),
-          getLetter(context,
-          "Surat Keterangan Berkelakuan Baik",
-          7,
-          Icons.home_work
-          ),
+          getLetter(
+              context, "Surat Keterangan Berkelakuan Baik", 7, Icons.home_work),
         ],
       ),
     );

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratAkta.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratBelumMenikah.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratBerkelakuanBaik.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratDomisili.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratPindah.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSKTM.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratAkta.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratBelumNikah.dart';
+import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratBerkelakuanBaik.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratDomisili.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratKematian.dart';
 import 'package:kepuharjo_app/Screen/Status/SuratSelesai/SuratPindah.dart';
@@ -265,7 +267,7 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const PindahSelesai()));
+                                          const BerkelakuanBaikSelesai()));
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -285,7 +287,7 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
                               ),
                             ),
                           ),
-                          // const SuratPindah(),
+                          const SuratBerkelakuanBaik(),
                         ],
                       ),
                     ),

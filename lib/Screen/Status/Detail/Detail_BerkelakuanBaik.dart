@@ -131,18 +131,24 @@ class _DetailBerkelakuanBaikState extends State<DetailBerkelakuanBaik> {
         child: Column(
           children: [
             getDetailSurat("Nama : ${widget.list[widget.index].nama}"),
-            getDetailSurat("Tempat Lahir : ${widget.list[widget.index].tempatLahir}"),
-            getDetailSurat("Tanggal Lahir : ${widget.list[widget.index].tanggalLahir}"),
-            getDetailSurat("Jenis Kelamin : ${widget.list[widget.index].jenisKelamin}"),
-            getDetailSurat("Kebangsaan : ${widget.list[widget.index].kebangsaan}"),
+            getDetailSurat(
+                "Tempat Lahir : ${widget.list[widget.index].tempatLahir}"),
+            getDetailSurat(
+                "Tanggal Lahir : ${widget.list[widget.index].tanggalLahir}"),
+            getDetailSurat(
+                "Jenis Kelamin : ${widget.list[widget.index].jenisKelamin}"),
+            getDetailSurat(
+                "Kebangsaan : ${widget.list[widget.index].kebangsaan}"),
             getDetailSurat("Agama : ${widget.list[widget.index].agama}"),
             getDetailSurat("Status : ${widget.list[widget.index].status}"),
-            getDetailSurat("Pekerjaan : ${widget.list[widget.index].pekerjaan}"),
+            getDetailSurat(
+                "Pekerjaan : ${widget.list[widget.index].pekerjaan}"),
             getDetailSurat("NIK : ${widget.list[widget.index].nik}"),
             getDetailSurat("Alamat : ${widget.list[widget.index].alamat}"),
             getDetailSurat("RT : ${widget.list[widget.index].rT}"),
             getDetailSurat("RW : ${widget.list[widget.index].rW}"),
-            getDetailSurat("surat digunakan untuk : ${widget.list[widget.index].suratDigunakanUntuk}"),
+            getDetailSurat(
+                "Surat digunakan untuk : ${widget.list[widget.index].suratDigunakan}"),
             TextButton(
               onPressed: () {
                 showSuccessDialog();

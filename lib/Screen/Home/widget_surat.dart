@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_belum_menikah.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_pindah.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidak_mampu.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_usaha.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
@@ -19,27 +19,27 @@ GestureDetector getLetter(
     onTap: () {
       if (index == 0) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SKTM()));
+            context, MaterialPageRoute(builder: (context) => const SKTM()));
       }
       if (index == 1) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Kematian()));
+            context, MaterialPageRoute(builder: (context) => const Kematian()));
         //2.item
       }
       if (index == 2) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Pindah()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const BelumNikah()));
         //3.item
       }
       if (index == 3) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Domisili()));
+            context, MaterialPageRoute(builder: (context) => const Domisili()));
         //4.item
       }
       if (index == 4) {
         //5.item
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Usaha()));
+            context, MaterialPageRoute(builder: (context) => const Usaha()));
       }
     },
     child: Container(
@@ -126,9 +126,9 @@ class _WidgetSuratState extends State<WidgetSurat> {
             ),
             getLetter(
               context,
-              "Surat Keterangan Pindah",
+              "Surat Keterangan Belum Menikah",
               2,
-              Icons.house_rounded,
+              Icons.diamond,
             ),
             getLetter(
               context,
