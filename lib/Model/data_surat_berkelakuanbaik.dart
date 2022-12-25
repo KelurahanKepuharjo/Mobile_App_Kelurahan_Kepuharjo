@@ -15,34 +15,32 @@ class cBerkelakuanBaik {
   String tglPengajuan;
   String rT;
   String rW;
-  String suratDigunakanUntuk;
-  String tglSuratDibuat;
-  String images;
+  String suratDigunakan;
+  String image;
   String pdffile;
   String idAkun;
 
   cBerkelakuanBaik(
-    {this.idSurat,
-    this.noSurat,
-    this.nama,
-    this.tempatLahir,
-    this.tanggalLahir,
-    this.jenisKelamin,
-    this.kebangsaan,
-    this.agama,
-    this.status,
-    this.pekerjaan,
-    this.nik,
-    this.alamat,
-    this.statusSurat,
-    this.tglPengajuan,
-    this.rT,
-    this.rW,
-    this.suratDigunakanUntuk,
-    this.tglSuratDibuat,
-    this.images,
-    this.pdffile,
-    this.idAkun});
+      {this.idSurat,
+      this.noSurat,
+      this.nama,
+      this.tempatLahir,
+      this.tanggalLahir,
+      this.jenisKelamin,
+      this.kebangsaan,
+      this.agama,
+      this.status,
+      this.pekerjaan,
+      this.nik,
+      this.alamat,
+      this.statusSurat,
+      this.tglPengajuan,
+      this.rT,
+      this.rW,
+      this.suratDigunakan,
+      this.image,
+      this.pdffile,
+      this.idAkun});
 
   cBerkelakuanBaik.fromJson(Map<String, dynamic> json) {
     idSurat = json['id_surat'];
@@ -61,9 +59,8 @@ class cBerkelakuanBaik {
     tglPengajuan = json['tgl_pengajuan'];
     rT = json['RT'];
     rW = json['RW'];
-    suratDigunakanUntuk = json['surat_digunakan_untuk'];
-    tglSuratDibuat = json['tgl_surat_dibuat'];
-    images = json['images'];
+    suratDigunakan = json['surat_digunakan'];
+    image = json['image'];
     pdffile = json['file_pdf'];
     idAkun = json['id_akun'];
   }
@@ -86,9 +83,8 @@ class cBerkelakuanBaik {
     data['tgl_pengajuan'] = this.tglPengajuan;
     data['RT'] = this.rT;
     data['RW'] = this.rW;
-    data['surat_digunakan_untuk'] = this.suratDigunakanUntuk;
-    data['tgl_surat_dibuat'] = this.tglSuratDibuat;
-    data['images'] = this.images;
+    data['surat_digunakan'] = this.suratDigunakan;
+    data['image'] = this.image;
     data['file_pdf'] = this.pdffile;
     data['id_akun'] = this.idAkun;
     return data;
