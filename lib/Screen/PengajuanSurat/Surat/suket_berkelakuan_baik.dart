@@ -50,13 +50,13 @@ class _BerkelakuanBaikState extends State<BerkelakuanBaik> {
       Fluttertoast.showToast(msg: "Tempat Lahir harus diisi");
     } else if (tanggal_lahir.text.isEmpty) {
       Fluttertoast.showToast(msg: "Tanggal Lahir harus diisi");
-    } else if (jenis_kelamin.text.isEmpty) {
+    } else if (val_jenis_kelamin == null) {
       Fluttertoast.showToast(msg: "Jenis Kelamin harus diisi");
-    } else if (kebangsaan.text.isEmpty) {
+    } else if (val_kebangsaan == null) {
       Fluttertoast.showToast(msg: "Kebangsaan harus diisi");
     } else if (Agama.text.isEmpty) {
       Fluttertoast.showToast(msg: "Agama harus diisi");
-    } else if (status.text.isEmpty) {
+    } else if (val_status == null) {
       Fluttertoast.showToast(msg: "Status harus diisi");
     } else if (pekerjaan.text.isEmpty) {
       Fluttertoast.showToast(msg: "Pekerjaan harus diisi");
@@ -88,10 +88,10 @@ class _BerkelakuanBaikState extends State<BerkelakuanBaik> {
     req.fields['nama'] = nama.text;
     req.fields['tempat_lahir'] = tempat_lahir.text;
     req.fields['tanggal_lahir'] = tanggal_lahir.text;
-    req.fields['jenis_kelamin'] = jenis_kelamin.text;
-    req.fields['kebangsaan'] = kebangsaan.text;
+    req.fields['jenis_kelamin'] = val_jenis_kelamin;
+    req.fields['kebangsaan'] = val_kebangsaan;
     req.fields['agama'] = Agama.text;
-    req.fields['status'] = status.text;
+    req.fields['status'] = val_status;
     req.fields['pekerjaan'] = pekerjaan.text;
     req.fields['nik'] = nik.text;
     req.fields['alamat'] = alamat.text;
@@ -122,6 +122,13 @@ class _BerkelakuanBaikState extends State<BerkelakuanBaik> {
 
   File image;
   String statusSurat = "Diajukan";
+  String val_jenis_kelamin;
+  String val_status;
+  String val_kebangsaan;
+  List kebangsaan = ["WNI", "WNA"];
+  List jkl = ["Laki-Laki", "Perempuan"];
+  List st = ["Kawin", "Belum Kawin"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,22 +199,63 @@ class _BerkelakuanBaikState extends State<BerkelakuanBaik> {
                 controller: tanggal_lahir,
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: jenis_kelamin,
-                hintName: "Jenis Kelamin",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 20,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(width: 1, color: appColor),
+                ),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_jenis_kelamin = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_jenis_kelamin,
+                  style: poppinsSmallBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(15),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Jenis Kelamin",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.white,
+                  items: jkl.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                controller: kebangsaan,
-                hintName: "Kebangsaan",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
-                length: 7,
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(width: 1, color: appColor)),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_kebangsaan = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_kebangsaan,
+                  style: poppinsSmallBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(15),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Kebangsaan",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.white,
+                  items: kebangsaan.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 5),
               getTextForm(
@@ -219,12 +267,35 @@ class _BerkelakuanBaikState extends State<BerkelakuanBaik> {
                 length: 30,
               ),
               const SizedBox(height: 5),
-              getTextForm(
-                  controller: status,
-                  hintName: "Status",
-                  keyboardType: TextInputType.number,
-                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
-                  length: 16),
+              Container(
+                height: 58,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(width: 1, color: appColor),
+                ),
+                child: DropdownButton(
+                  onChanged: (value) {
+                    setState(() {
+                      val_status = value;
+                    });
+                  },
+                  underline: SizedBox(),
+                  value: val_status,
+                  style: poppinsSmallBlack,
+                  iconSize: 25,
+                  isExpanded: true,
+                  borderRadius: BorderRadius.circular(15),
+                  elevation: 0,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  hint: Text("Pilih Status",
+                      style: GoogleFonts.poppins(fontSize: 12)),
+                  dropdownColor: Colors.white,
+                  items: st.map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e));
+                  }).toList(),
+                ),
+              ),
               const SizedBox(height: 5),
               getTextForm(
                 controller: pekerjaan,
@@ -275,7 +346,7 @@ class _BerkelakuanBaikState extends State<BerkelakuanBaik> {
                 keyboardType: TextInputType.name,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter,
-                length: 50,
+                length: 150,
               ),
               const SizedBox(height: 5),
               InkWell(
