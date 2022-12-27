@@ -63,7 +63,7 @@ class _DetailProfilState extends State<DetailProfil> {
                       ),
                       InkWell(
                         onTap: () {
-                          showLogoutDialog();
+                          showModalBottom();
                         },
                         child: Icon(
                           Icons.menu_rounded,
@@ -162,7 +162,7 @@ class _DetailProfilState extends State<DetailProfil> {
                     height: 30,
                   ),
                   Container(
-                    height: height * 0.60,
+                    height: height * 0.67,
                     width: width,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
@@ -191,6 +191,29 @@ class _DetailProfilState extends State<DetailProfil> {
                           ),
                           getProfile(Icons.house_rounded, "RW",
                               "00${_currentUser.user.rW}"),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              showLogoutDialog();
+                            },
+                            child: Container(
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(color: appColor),
+                                  color: appColor.withOpacity(0.1)),
+                              child: Center(
+                                child: Text(
+                                  "LogOut",
+                                  textAlign: TextAlign.center,
+                                  style: poppinsMediumBlack.copyWith(
+                                      color: appColor),
+                                ),
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -231,6 +254,15 @@ class _DetailProfilState extends State<DetailProfil> {
           style: poppinsMediumBlack,
         ),
       ),
+    );
+  }
+
+  void showModalBottom() {
+    showBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container();
+      },
     );
   }
 

@@ -66,7 +66,7 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                   radius: 20,
                   backgroundColor: Colors.white,
                   child: Icon(
-                    Icons.person,
+                    Icons.person_rounded,
                     color: appColor,
                   ),
                 ),

@@ -13,7 +13,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+      padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
