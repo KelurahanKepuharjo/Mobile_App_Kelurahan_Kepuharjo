@@ -106,7 +106,7 @@ class _AktaState extends State<Akta> {
     }
   }
 
-  final CurrentUser _currentUser = Get.put(CurrentUser());
+  final CurrentUser _currentUser = CurrentUser();
 
   Future addDataSurat(BuildContext context, File imageFile) async {
     var uri = Uri.parse(ApiConnect.akta);

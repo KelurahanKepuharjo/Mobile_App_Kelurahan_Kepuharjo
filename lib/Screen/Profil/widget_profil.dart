@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/detail_profile.dart';
@@ -12,7 +12,7 @@ class WidgetShowProfile extends StatefulWidget {
   State<WidgetShowProfile> createState() => _WidgetShowProfileState();
 }
 
-final CurrentUser _currentUser = Get.put(CurrentUser());
+final CurrentUser _currentUser = CurrentUser();
 
 class _WidgetShowProfileState extends State<WidgetShowProfile> {
   @override

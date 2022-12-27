@@ -13,7 +13,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+      padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -21,7 +21,7 @@ class _WidgetTextSuratState extends State<WidgetTextSurat> {
             padding: EdgeInsets.zero,
             child: Text(
               "Layanan Pengajuan Surat Keterangan",
-              style: poppinsMediumBlack.copyWith(fontWeight: FontWeight.bold),
+              style: poppinsMediumBlack.copyWith(fontWeight: FontWeight.w600),
             ),
           ),
           // Padding(

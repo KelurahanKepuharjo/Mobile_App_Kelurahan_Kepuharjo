@@ -87,7 +87,7 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                                     ),
                                     ReadMoreText(
                                       isiData[index].dekripsi,
-                                      trimLines: 2,
+                                      trimLines: 4,
                                       trimMode: TrimMode.Line,
                                       trimCollapsedText: "Baca Selengkapnya",
                                       trimExpandedText: "  Lebih Sedikit",

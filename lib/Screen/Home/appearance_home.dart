@@ -8,6 +8,7 @@ import 'package:kepuharjo_app/Screen/Home/widget_profile.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_surat.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_text_berita.dart';
 import 'package:kepuharjo_app/Screen/Home/widget_text_surat.dart';
+import 'package:kepuharjo_app/Screen/Profil/Detail_Profil/detail_profile.dart';
 import 'package:kepuharjo_app/Screen/Profil/appearance_profil.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -19,7 +20,7 @@ class AppearanceHome extends StatefulWidget {
 }
 
 class _AppearanceHomeState extends State<AppearanceHome> {
-  final CurrentUser _currentUser = Get.put(CurrentUser());
+  final CurrentUser _currentUser = CurrentUser();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,18 +31,22 @@ class _AppearanceHomeState extends State<AppearanceHome> {
         backgroundColor: Color(0xff102286),
         title: Row(
           children: [
-            Text(
-              "S-Kepuharjo",
-              style: GoogleFonts.poppins(
-                  color: whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.only(
+                right: 8,
+              ),
+              child: Text(
+                "S-Kepuharjo",
+                style: GoogleFonts.inter(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: whiteColor),
+              ),
             ),
-            const SizedBox(
-              width: 5,
-            ),
-            Image.asset(
-              "images/mylogo.png",
-              height: 35,
-            )
+            // Image.asset(
+            //   "images/mylogo.png",
+            //   height: 40,
+            // )
           ],
         ),
         actions: [
@@ -54,7 +59,7 @@ class _AppearanceHomeState extends State<AppearanceHome> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AppearanceProfil(),
+                        builder: (context) => DetailProfil(),
                       ));
                 },
                 child: CircleAvatar(
@@ -133,10 +138,7 @@ class _AppearanceHomeState extends State<AppearanceHome> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: const [
-          Padding(
-            padding: EdgeInsets.fromLTRB(15, 10, 15, 0),
-            child: WidgetProfile(),
-          ),
+          WidgetProfile(),
           WidgetTextSurat(),
           // WidgetSurat(),
           WidgetPelayananSurat(),

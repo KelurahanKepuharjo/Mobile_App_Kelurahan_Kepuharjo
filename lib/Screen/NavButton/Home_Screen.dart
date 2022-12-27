@@ -23,7 +23,7 @@ List<Widget> screen = <Widget>[
   // const AppearanceProfil(),
 ];
 
-RxInt _index = 0.obs;
+int _index = 0;
 
 List _navbutton = [
   {
@@ -51,48 +51,41 @@ List _navbutton = [
 class _HomeScreenState extends State<HomeScreen> {
   void onTap(value) {
     setState(() {
-      _index.value = value;
-      currentScreen = const AppearanceHome();
+      _index = value;
     });
   }
 
-  Widget currentScreen = const AppearanceHome();
+  @override
+  void initState() {
+    super.initState();
+    _rememberCurrentUser.getUserInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
-      init: CurrentUser(),
-      initState: (CurrentUser) {
-        _rememberCurrentUser.getUserInfo();
-      },
-      builder: (controller) {
-        return Scaffold(
-          body: Obx(
-            () => screen[_index.value],
-          ),
-          bottomNavigationBar: Obx(() => BottomNavigationBar(
-              currentIndex: _index.value,
-              onTap: onTap,
-              backgroundColor: Colors.white,
-              showSelectedLabels: true,
-              unselectedLabelStyle:
-                  poppinsSmallBlack.copyWith(fontWeight: FontWeight.w300),
-              selectedLabelStyle:
-                  poppinsSmallBlack.copyWith(fontWeight: FontWeight.w300),
-              selectedFontSize: 12,
-              type: BottomNavigationBarType.fixed,
-              showUnselectedLabels: true,
-              selectedItemColor: appColor,
-              unselectedItemColor: appColor,
-              items: List.generate(3, (index) {
-                var navBtn = _navbutton[index];
-                return BottomNavigationBarItem(
-                    icon: Icon(navBtn["non_active_icon"]),
-                    activeIcon: Icon(navBtn["active_icon"]),
-                    label: navBtn["label"]);
-              }))),
-        );
-      },
+    return Scaffold(
+      body: screen[_index],
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _index,
+          onTap: onTap,
+          backgroundColor: Colors.white,
+          showSelectedLabels: true,
+          unselectedLabelStyle:
+              poppinsSmallBlack.copyWith(fontWeight: FontWeight.w300),
+          selectedLabelStyle:
+              poppinsSmallBlack.copyWith(fontWeight: FontWeight.w300),
+          selectedFontSize: 12,
+          type: BottomNavigationBarType.fixed,
+          showUnselectedLabels: true,
+          selectedItemColor: appColor,
+          unselectedItemColor: appColor,
+          items: List.generate(3, (index) {
+            var navBtn = _navbutton[index];
+            return BottomNavigationBarItem(
+                icon: Icon(navBtn["non_active_icon"]),
+                activeIcon: Icon(navBtn["active_icon"]),
+                label: navBtn["label"]);
+          })),
     );
   }
 }

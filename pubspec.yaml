@@ -52,6 +52,9 @@ dependencies:
   path_provider: 
   permission_handler: 
   open_file: ^3.0.4
+  flutter_swiper: ^1.1.6
+  carousel_slider: ^4.2.1
+
   
   # downloads_path_provider_28:  
   # open_file:  
@@ -100,6 +103,8 @@ flutter:
     - images/user.png
     - images/mylogo.png
     - images/newbgsa.png
+    - images/office.png 
+    - images/location.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

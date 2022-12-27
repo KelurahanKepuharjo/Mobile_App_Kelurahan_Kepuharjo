@@ -14,7 +14,6 @@ class AppearanceProfil extends StatefulWidget {
   State<AppearanceProfil> createState() => _AppearanceProfilState();
 }
 
-CurrentUser rememberCurrentUser = Get.put(CurrentUser());
 final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
 class _AppearanceProfilState extends State<AppearanceProfil> {

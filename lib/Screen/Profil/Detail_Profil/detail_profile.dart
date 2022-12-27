@@ -19,7 +19,7 @@ class DetailProfil extends StatefulWidget {
 }
 
 class _DetailProfilState extends State<DetailProfil> {
-  final CurrentUser _currentUser = Get.put(CurrentUser());
+  final CurrentUser _currentUser = CurrentUser();
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -66,7 +66,7 @@ class _DetailProfilState extends State<DetailProfil> {
                           showLogoutDialog();
                         },
                         child: Icon(
-                          Icons.logout_outlined,
+                          Icons.menu_rounded,
                           color: whiteColor,
                         ),
                       )
