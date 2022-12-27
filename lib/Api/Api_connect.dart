@@ -1,5 +1,5 @@
 class ApiConnect {
-  static const hostConnect = "http://192.168.0.130/Web_Kelurahan_Kepuharjo";
+  static const hostConnect = "http://192.168.1.5/Web_Kelurahan_Kepuharjo";
   static const connectApi = "$hostConnect/Api";
   //view pdf surat
   static const viewpdf = "$connectApi/pdf/";
@@ -45,7 +45,8 @@ class ApiConnect {
   //read kematian
   static const readkematianSelesai = "$connectApi/read_kematian_selesai.php";
   //pembatalan kematian
-  static const pembatalanSuratKematian = "$connectApi/pembatalanSuratKematian.php";
+  static const pembatalanSuratKematian =
+      "$connectApi/pembatalanSuratKematian.php";
 
   //postsurat keterangan pindah
   static const pindah = "$connectApi/suket_pindah.php";
@@ -61,7 +62,8 @@ class ApiConnect {
   //read belum nikah
   static const readbelumNikah = "$connectApi/read_surat_belum_menikah.php";
   //read belum nikah
-  static const readbelumNikahSelesai = "$connectApi/read_belumnikah_selesai.php";
+  static const readbelumNikahSelesai =
+      "$connectApi/read_belumnikah_selesai.php";
   //pembatalan belum nikah
   static const pembatalanBelumNikah = "$connectApi/pembatalanBelumMenikah.php";
 
@@ -79,7 +81,9 @@ class ApiConnect {
   //read berkelakuanBaik
   static const readberkelakuanBaik = "$connectApi/read_berkelakuan_baik.php";
   //read berkelakuanBaik
-  static const readberkelakuanBaikSelesai = "$connectApi/read_berkelakuanbaik_selesai.php";
+  static const readberkelakuanBaikSelesai =
+      "$connectApi/read_berkelakuanbaik_selesai.php";
   //pembatalan berkelakuanBaik
-  static const pembatalanBerkelakuanBaik = "$connectApi/pembatalanBerkelakuanBaik.php";
+  static const pembatalanBerkelakuanBaik =
+      "$connectApi/pembatalanBerkelakuanBaik.php";
 }

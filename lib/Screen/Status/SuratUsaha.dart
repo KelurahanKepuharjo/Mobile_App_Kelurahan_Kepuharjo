@@ -58,7 +58,7 @@ class _SuratUsahaState extends State<SuratUsaha> {
                               fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
-                          "Surat Keterangan Usaha",
+                          list[index].nik,
                           style: GoogleFonts.poppins(
                               fontSize: 14,
                               color: blackColor,

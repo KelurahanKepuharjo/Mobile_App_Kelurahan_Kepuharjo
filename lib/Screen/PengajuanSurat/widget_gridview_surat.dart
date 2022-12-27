@@ -54,10 +54,6 @@ GestureDetector getLetter(
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const Usaha()));
       }
-      if (index == 7) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BerkelakuanBaik()));
-      }
     },
     child: Container(
       padding: const EdgeInsets.all(10),
@@ -130,7 +126,7 @@ class _WidgetGridViewSuratState extends State<WidgetGridViewSurat> {
           ),
           getLetter(
             context,
-            "Surat Keterangan Akta Kelahiran",
+            "Surat Keterangan Kenal Lahir",
             4,
             Icons.child_friendly,
           ),
@@ -146,8 +142,6 @@ class _WidgetGridViewSuratState extends State<WidgetGridViewSurat> {
             6,
             Icons.home_work,
           ),
-          getLetter(
-              context, "Surat Keterangan Berkelakuan Baik", 7, Icons.home_work),
         ],
       ),
     );

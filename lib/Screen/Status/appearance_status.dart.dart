@@ -80,7 +80,7 @@ class _AppearanceStatusStatus extends State<AppearanceStatus> {
                           Tab(text: "Surat Keterangan Belum Menikah"),
                           Tab(text: "Surat Keterangan Domisili"),
                           Tab(text: "Surat Keterangan Kematian"),
-                          Tab(text: "Surat Keterangan Akta Kelahiran"),
+                          Tab(text: "Surat Keterangan Kenal Lahir"),
                           Tab(text: "Surat Keterangan Berkelakuan Baik"),
                           Tab(text: "Surat Keterangan Usaha"),
                         ]),

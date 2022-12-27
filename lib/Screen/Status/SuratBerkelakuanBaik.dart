@@ -58,7 +58,7 @@ class _SuratBerkelakuanBaikState extends State<SuratBerkelakuanBaik> {
                               fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
-                          "Surat BerkelakuanBaik",
+                          list[index].nik,
                           style: GoogleFonts.poppins(
                               fontSize: 14,
                               color: blackColor,

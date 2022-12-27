@@ -58,7 +58,7 @@ class _SuratAktaState extends State<SuratAkta> {
                               fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
-                          "Surat Keterangan Akta Kelahiran",
+                          list[index].nik,
                           style: GoogleFonts.poppins(
                               fontSize: 14,
                               color: blackColor,

@@ -20,7 +20,7 @@ List<Widget> screen = <Widget>[
   const AppearanceHome(),
   const AppearancePengajuan(),
   const AppearanceStatus(),
-  const AppearanceProfil(),
+  // const AppearanceProfil(),
 ];
 
 RxInt _index = 0.obs;
@@ -32,8 +32,8 @@ List _navbutton = [
     "label": "Home"
   },
   {
-    "active_icon": Icons.mail,
-    "non_active_icon": Icons.mail_outlined,
+    "active_icon": Icons.space_dashboard_rounded,
+    "non_active_icon": Icons.space_dashboard_outlined,
     "label": "Pengajuan"
   },
   {
@@ -41,11 +41,11 @@ List _navbutton = [
     "non_active_icon": Icons.assignment_outlined,
     "label": "Status"
   },
-  {
-    "active_icon": Icons.person,
-    "non_active_icon": Icons.person_outlined,
-    "label": "Profil"
-  }
+  // {
+  //   "active_icon": Icons.person,
+  //   "non_active_icon": Icons.person_outlined,
+  //   "label": "Profil"
+  // }
 ];
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -75,14 +75,16 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: onTap,
               backgroundColor: Colors.white,
               showSelectedLabels: true,
+              unselectedLabelStyle:
+                  poppinsSmallBlack.copyWith(fontWeight: FontWeight.w300),
               selectedLabelStyle:
                   poppinsSmallBlack.copyWith(fontWeight: FontWeight.w300),
               selectedFontSize: 12,
               type: BottomNavigationBarType.fixed,
-              showUnselectedLabels: false,
+              showUnselectedLabels: true,
               selectedItemColor: appColor,
               unselectedItemColor: appColor,
-              items: List.generate(4, (index) {
+              items: List.generate(3, (index) {
                 var navBtn = _navbutton[index];
                 return BottomNavigationBarItem(
                     icon: Icon(navBtn["non_active_icon"]),

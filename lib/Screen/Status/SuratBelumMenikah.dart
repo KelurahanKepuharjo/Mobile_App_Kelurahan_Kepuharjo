@@ -58,7 +58,7 @@ class _SuratBelumNikahState extends State<SuratBelumNikah> {
                               fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
-                          "Surat Keterangan Belum Nikah",
+                          list[index].nik,
                           style: GoogleFonts.poppins(
                               fontSize: 14,
                               color: blackColor,

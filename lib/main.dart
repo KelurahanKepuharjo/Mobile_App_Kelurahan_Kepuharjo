@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kepuharjo_app/Controller/RememberUser.dart';
+import 'package:kepuharjo_app/Screen/Home/homePage.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home_Screen.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
@@ -34,10 +35,6 @@ class MyApp extends StatelessWidget {
               return const HomeScreen();
             }
           }),
-      routes: <String, WidgetBuilder>{
-        '/user': (context) => const HomeScreen(),
-        '/login': (context) => const AppeareaceLogin(),
-      },
     );
   }
 }

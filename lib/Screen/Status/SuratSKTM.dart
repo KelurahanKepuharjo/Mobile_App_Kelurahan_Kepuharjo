@@ -72,7 +72,7 @@ class _SuratSKTMState extends State<SuratSKTM> {
                               fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
-                          "Surat Keterangan Tidak Mampu",
+                          list[index].nik,
                           style: GoogleFonts.poppins(
                               fontSize: 14,
                               color: blackColor,

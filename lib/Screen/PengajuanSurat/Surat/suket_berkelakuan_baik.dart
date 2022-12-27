@@ -29,13 +29,13 @@ final nama = TextEditingController();
 final tempat_lahir = TextEditingController();
 final tanggal_lahir = TextEditingController();
 final jenis_kelamin = TextEditingController();
-final kebangsaan= TextEditingController();
+final kebangsaan = TextEditingController();
 final Agama = TextEditingController();
 final status = TextEditingController();
 final pekerjaan = TextEditingController();
 final nik = TextEditingController();
-final alamat= TextEditingController();
-final status_surat= TextEditingController();
+final alamat = TextEditingController();
+final status_surat = TextEditingController();
 final tgl_dibuat = TextEditingController();
 final tgl_pengajuan = TextEditingController();
 final RT = TextEditingController();
@@ -309,9 +309,8 @@ class _BerkelakuanBaikState extends State<BerkelakuanBaik> {
               getTextForm(
                 controller: nik,
                 hintName: "NIK",
-                keyboardType: TextInputType.name,
-                inputFormatters:
-                    FilteringTextInputFormatter.singleLineFormatter,
+                keyboardType: TextInputType.number,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
                 length: 50,
               ),
               const SizedBox(height: 5),

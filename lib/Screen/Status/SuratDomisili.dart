@@ -58,7 +58,7 @@ class _SuratDomisiliState extends State<SuratDomisili> {
                               fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
-                          "Surat Keterangan Domisili",
+                          list[index].nik,
                           style: GoogleFonts.poppins(
                               fontSize: 14,
                               color: blackColor,

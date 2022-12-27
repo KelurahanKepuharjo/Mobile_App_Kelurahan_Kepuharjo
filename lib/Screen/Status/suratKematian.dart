@@ -58,7 +58,7 @@ class _SuratKematianState extends State<SuratKematian> {
                               fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
-                          "Surat Keterangan Kematian",
+                          list[index].nikAlmarhum,
                           style: GoogleFonts.poppins(
                               fontSize: 14,
                               color: blackColor,
