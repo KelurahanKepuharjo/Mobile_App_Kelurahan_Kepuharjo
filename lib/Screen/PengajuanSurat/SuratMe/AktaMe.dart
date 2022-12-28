@@ -18,11 +18,11 @@ import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
-class Akta extends StatefulWidget {
-  const Akta({Key key}) : super(key: key);
+class AktaMe extends StatefulWidget {
+  const AktaMe({Key key}) : super(key: key);
 
   @override
-  State<Akta> createState() => _AktaState();
+  State<AktaMe> createState() => _AktaMeState();
 }
 
 final namaAnak = TextEditingController();
@@ -47,8 +47,17 @@ final keperluan = TextEditingController();
 final rt = TextEditingController();
 final rw = TextEditingController();
 
-class _AktaState extends State<Akta> {
-  void verifyAkta(BuildContext context) {
+class _AktaMeState extends State<AktaMe> {
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    namaAnak.text = _currentUser.user.namaLengkap;
+    nik.text = _currentUser.user.idAkun;
+    rt.text = "00${_currentUser.user.rT}";
+    rw.text = "00${_currentUser.user.rW}";
+  }
+
+  void verifyAktaMe(BuildContext context) {
     if (namaAnak.text.isEmpty) {
       Fluttertoast.showToast(msg: "Nama Anak harus diisi");
     } else if (tempatLahir.text.isEmpty) {
@@ -584,7 +593,7 @@ class _AktaState extends State<Akta> {
                               borderRadius: BorderRadius.circular(25),
                             )),
                         onPressed: () {
-                          verifyAkta(context);
+                          verifyAktaMe(context);
                         },
                         child: Text(
                           'Kirim',

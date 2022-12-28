@@ -7,6 +7,12 @@ import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidak_mampu.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_belum_menikah.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_usaha.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sAkta.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sBelumNikah.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sBerkelakuanBaik.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sDomisili.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sSktm.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sUsaha.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class WidgetGridViewSurat extends StatefulWidget {
@@ -21,18 +27,20 @@ GestureDetector getLetter(
   return GestureDetector(
     onTap: () {
       if (index == 0) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const SKTM()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const PengajuanSktm()));
       }
       if (index == 1) {
         //2.item
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BelumNikah()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const PengajuanBelumNikah()));
       }
       if (index == 2) {
         //3.item
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Domisili()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const PengajuanDomisili()));
       }
       if (index == 3) {
         //4.item
@@ -41,18 +49,20 @@ GestureDetector getLetter(
       }
       if (index == 4) {
         //5.item
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Akta()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const PengajuanAkta()));
       }
       if (index == 5) {
         //6.item
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BerkelakuanBaik()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const PengajuanBerkelakuanBaik()));
       }
       if (index == 6) {
         //6.item
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Usaha()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const PengajuanUsaha()));
       }
     },
     child: Container(

@@ -4,8 +4,13 @@ import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_akta_kelahiran.d
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_belum_menikah.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_berkelakuan_baik.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_kematian.dart';
-import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_tidak_mampu.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_usaha.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sAkta.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sBelumNikah.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sBerkelakuanBaik.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sDomisili.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sSktm.dart';
+import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sUsaha.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
@@ -44,32 +49,38 @@ class _WidgetPelayananSuratState extends State<WidgetPelayananSurat> {
     return GestureDetector(
       onTap: () {
         if (i == 0) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const SKTM()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const PengajuanSktm()));
         }
         if (i == 1) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Usaha()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const PengajuanUsaha()));
         }
         if (i == 2) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const Kematian()));
         }
         if (i == 3) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Domisili()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const PengajuanDomisili()));
         }
         if (i == 4) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const BelumNikah()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const PengajuanBelumNikah()));
         }
         if (i == 5) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Akta()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const PengajuanAkta()));
         }
         if (i == 6) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const BerkelakuanBaik()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const PengajuanBerkelakuanBaik()));
         }
         if (i == 7) {
           Navigator.push(
