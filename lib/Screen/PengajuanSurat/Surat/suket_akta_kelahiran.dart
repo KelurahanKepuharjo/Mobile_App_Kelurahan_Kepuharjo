@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
+import 'package:kepuharjo_app/OrderStatus.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,6 +18,7 @@ import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:provider/provider.dart';
 
 class Akta extends StatefulWidget {
   const Akta({Key key}) : super(key: key);
@@ -148,6 +150,8 @@ class _AktaState extends State<Akta> {
     if (response.statusCode == 200) {
       print("ok");
       showSuccessDialog(context);
+      Provider.of<OrderStatus>(context, listen: false)
+          .setInProgress(true, 'Akta');
     } else {
       print("Ga");
     }

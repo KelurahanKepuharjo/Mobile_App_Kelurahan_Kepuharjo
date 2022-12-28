@@ -1,4 +1,6 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:kepuharjo_app/OrderStatus.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/Domisili.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_akta_kelahiran.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/Surat/suket_belum_menikah.dart';
@@ -13,6 +15,7 @@ import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sSktm.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/SuratPengajuan/sUsaha.dart';
 import 'package:kepuharjo_app/Screen/PengajuanSurat/appearance_pengajuan.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:provider/provider.dart';
 
 class WidgetPelayananSurat extends StatefulWidget {
   const WidgetPelayananSurat({Key key}) : super(key: key);
@@ -45,84 +48,187 @@ class _WidgetPelayananSuratState extends State<WidgetPelayananSurat> {
     );
   }
 
-  GestureDetector getMenu(String text, IconData icon, int i) {
-    return GestureDetector(
-      onTap: () {
-        if (i == 0) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const PengajuanSktm()));
-        }
-        if (i == 1) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const PengajuanUsaha()));
-        }
-        if (i == 2) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Kematian()));
-        }
-        if (i == 3) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const PengajuanDomisili()));
-        }
-        if (i == 4) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const PengajuanBelumNikah()));
-        }
-        if (i == 5) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const PengajuanAkta()));
-        }
-        if (i == 6) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const PengajuanBerkelakuanBaik()));
-        }
-        if (i == 7) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const AppearancePengajuan()));
-        }
-      },
-      child: Column(
-        children: [
-          Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: greyColor.withOpacity(0.5)),
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    icon,
-                    color: Color(0xff102286),
+  Consumer getMenu(String text, IconData icon, int i) {
+    return Consumer<OrderStatus>(
+      builder: (context, orderStatus, child) {
+        return GestureDetector(
+          onTap: () {
+            if (i == 0) {
+              if (orderStatus.currentApplicationType == 'SKTM' &&
+                  orderStatus.isOrderInProgress == true) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    behavior: SnackBarBehavior.floating,
+                    content: AwesomeSnackbarContent(
+                        title: "Gagal",
+                        message:
+                            'Anda tidak dapat melakukan pengajuan surat,Jika pengajuan sebelumnya masih belum selesai',
+                        contentType: ContentType.failure)));
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PengajuanSktm()));
+              }
+            }
+            if (i == 1) {
+              if (orderStatus.currentApplicationType == 'Usaha' &&
+                  orderStatus.isOrderInProgress == true) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    behavior: SnackBarBehavior.floating,
+                    content: AwesomeSnackbarContent(
+                        title: "Gagal",
+                        message:
+                            'Anda tidak dapat melakukan pengajuan surat,Jika pengajuan sebelumnya masih belum selesai',
+                        contentType: ContentType.failure)));
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PengajuanUsaha()));
+              }
+            }
+            if (i == 2) {
+              if (orderStatus.currentApplicationType == 'Kematian' &&
+                  orderStatus.isOrderInProgress == true) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    behavior: SnackBarBehavior.floating,
+                    content: AwesomeSnackbarContent(
+                        title: "Gagal",
+                        message:
+                            'Anda tidak dapat melakukan pengajuan surat,Jika pengajuan sebelumnya masih belum selesai',
+                        contentType: ContentType.failure)));
+              } else {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Kematian()));
+              }
+            }
+            if (i == 3) {
+              if (orderStatus.currentApplicationType == 'Domisili' &&
+                  orderStatus.isOrderInProgress == true) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    behavior: SnackBarBehavior.floating,
+                    content: AwesomeSnackbarContent(
+                        title: "Gagal",
+                        message:
+                            'Anda tidak dapat melakukan pengajuan surat,Jika pengajuan sebelumnya masih belum selesai',
+                        contentType: ContentType.failure)));
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PengajuanDomisili()));
+              }
+            }
+            if (i == 4) {
+              if (orderStatus.currentApplicationType == 'BelumNikah' &&
+                  orderStatus.isOrderInProgress == true) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    behavior: SnackBarBehavior.floating,
+                    content: AwesomeSnackbarContent(
+                        title: "Gagal",
+                        message:
+                            'Anda tidak dapat melakukan pengajuan surat,Jika pengajuan sebelumnya masih belum selesai',
+                        contentType: ContentType.failure)));
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PengajuanBelumNikah()));
+              }
+            }
+            if (i == 5) {
+              if (orderStatus.currentApplicationType == 'Akta' &&
+                  orderStatus.isOrderInProgress == true) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    behavior: SnackBarBehavior.floating,
+                    content: AwesomeSnackbarContent(
+                        title: "Gagal",
+                        message:
+                            'Anda tidak dapat melakukan pengajuan surat,Jika pengajuan sebelumnya masih belum selesai',
+                        contentType: ContentType.failure)));
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PengajuanAkta()));
+              }
+            }
+            if (i == 6) {
+              if (orderStatus.currentApplicationType == 'Baik' &&
+                  orderStatus.isOrderInProgress == true) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    behavior: SnackBarBehavior.floating,
+                    content: AwesomeSnackbarContent(
+                        title: "Gagal",
+                        message:
+                            'Anda tidak dapat melakukan pengajuan surat,Jika pengajuan sebelumnya masih belum selesai',
+                        contentType: ContentType.failure)));
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const PengajuanBerkelakuanBaik()));
+              }
+            }
+            if (i == 7) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AppearancePengajuan()));
+            }
+          },
+          child: Column(
+            children: [
+              Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: greyColor.withOpacity(0.5)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        icon,
+                        color: Color(0xff102286),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+              const SizedBox(
+                height: 5,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style:
+                      poppinsSmallBlack.copyWith(fontWeight: FontWeight.w300),
+                ),
+              )
+            ],
           ),
-          const SizedBox(
-            height: 5,
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              text,
-              textAlign: TextAlign.center,
-              style: poppinsSmallBlack.copyWith(fontWeight: FontWeight.w300),
-            ),
-          )
-        ],
-      ),
+        );
+      },
     );
   }
 }

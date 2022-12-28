@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
+import 'package:kepuharjo_app/OrderStatus.dart';
 import 'package:path/path.dart';
 import 'package:kepuharjo_app/Model/data_surat_akta_kelahiran.dart';
 import 'package:kepuharjo_app/Screen/Status/Pdf/Pdf_Akta.dart';
@@ -16,6 +17,7 @@ import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 
 class AktaSelesai extends StatefulWidget {
   const AktaSelesai({Key key}) : super(key: key);
@@ -144,6 +146,9 @@ class _AktaSelesaiState extends State<AktaSelesai> {
                               children: [
                                 ListTile(
                                   onTap: () async {
+                                    Provider.of<OrderStatus>(context,
+                                            listen: false)
+                                        .setInProgress(false, 'Akta');
                                     final file = await loadPdf(
                                         ApiConnect.viewpdf +
                                             list[index].pdffile);
@@ -183,6 +188,9 @@ class _AktaSelesaiState extends State<AktaSelesai> {
                                   ),
                                   trailing: InkWell(
                                     onTap: () async {
+                                      Provider.of<OrderStatus>(context,
+                                              listen: false)
+                                          .setInProgress(false, 'Akta');
                                       var permissionStatus = await Permission
                                           .storage
                                           .request()

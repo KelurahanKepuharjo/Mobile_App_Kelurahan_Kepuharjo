@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Model/data_surat_berkelakuanbaik.dart';
+import 'package:kepuharjo_app/OrderStatus.dart';
 import 'package:kepuharjo_app/Screen/Status/Pdf/Pdf_BerkelakuanBaik.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
@@ -18,6 +19,7 @@ import 'package:kepuharjo_app/Screen/Status/Pdf/Pdf_BerkelakuanBaik.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 
 class BerkelakuanBaikSelesai extends StatefulWidget {
   const BerkelakuanBaikSelesai({Key key}) : super(key: key);
@@ -146,6 +148,9 @@ class _BerkelakuanBaikSelesaiState extends State<BerkelakuanBaikSelesai> {
                               children: [
                                 ListTile(
                                   onTap: () async {
+                                    Provider.of<OrderStatus>(context,
+                                            listen: false)
+                                        .setInProgress(false, 'Baik');
                                     final file = await loadPdf(
                                         ApiConnect.viewpdf +
                                             list[index].pdffile);
@@ -185,6 +190,9 @@ class _BerkelakuanBaikSelesaiState extends State<BerkelakuanBaikSelesai> {
                                   ),
                                   trailing: InkWell(
                                     onTap: () async {
+                                      Provider.of<OrderStatus>(context,
+                                              listen: false)
+                                          .setInProgress(false, 'Baik');
                                       var permissionStatus = await Permission
                                           .storage
                                           .request()

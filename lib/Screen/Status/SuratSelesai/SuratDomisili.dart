@@ -7,6 +7,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
+import 'package:kepuharjo_app/OrderStatus.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -16,6 +17,7 @@ import 'package:http/http.dart' as http;
 import 'package:kepuharjo_app/Model/data_surat_domisili.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 
 class DomisiliSelesai extends StatefulWidget {
   const DomisiliSelesai({Key key}) : super(key: key);
@@ -144,6 +146,9 @@ class _DomisiliSelesaiState extends State<DomisiliSelesai> {
                               children: [
                                 ListTile(
                                   onTap: () async {
+                                    Provider.of<OrderStatus>(context,
+                                            listen: false)
+                                        .setInProgress(false, 'Domisili');
                                     final file = await loadPdf(
                                         ApiConnect.viewpdf +
                                             list[index].pdffile);
@@ -183,6 +188,9 @@ class _DomisiliSelesaiState extends State<DomisiliSelesai> {
                                   ),
                                   trailing: InkWell(
                                     onTap: () async {
+                                      Provider.of<OrderStatus>(context,
+                                              listen: false)
+                                          .setInProgress(false, 'Domisili');
                                       var permissionStatus = await Permission
                                           .storage
                                           .request()

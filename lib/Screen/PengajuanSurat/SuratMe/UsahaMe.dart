@@ -6,6 +6,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:kepuharjo_app/OrderStatus.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +18,7 @@ import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDateTime.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:provider/provider.dart';
 
 class UsahaMe extends StatefulWidget {
   const UsahaMe({Key key}) : super(key: key);
@@ -131,6 +133,8 @@ class _UsahaMeState extends State<UsahaMe> {
     if (response.statusCode == 200) {
       print("ok");
       showSuccessDialog(context);
+      Provider.of<OrderStatus>(context, listen: false)
+          .setInProgress(true, 'Usaha');
     } else {
       print("Ga");
     }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:kepuharjo_app/Comm/getTextFormDate.dart';
+import 'package:kepuharjo_app/OrderStatus.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +18,7 @@ import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Comm/getTextForm.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
+import 'package:provider/provider.dart';
 
 class Kematian extends StatefulWidget {
   const Kematian({Key key}) : super(key: key);
@@ -97,6 +99,8 @@ class _KematianState extends State<Kematian> {
     if (response.statusCode == 200) {
       print("ok");
       showSuccessDialog(context);
+      Provider.of<OrderStatus>(context, listen: false)
+          .setInProgress(true, 'Kematian');
     } else {
       print("Ga");
     }

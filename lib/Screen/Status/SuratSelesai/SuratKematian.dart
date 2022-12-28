@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Api/Api_connect.dart';
 import 'package:kepuharjo_app/Api/Api_service.dart';
 import 'package:kepuharjo_app/Model/data_surat_kematian.dart';
+import 'package:kepuharjo_app/OrderStatus.dart';
 import 'package:kepuharjo_app/Screen/Status/Pdf/Pdf_Kematian.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 import 'package:path/path.dart';
@@ -15,6 +16,7 @@ import 'package:open_file/open_file.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 
 class KematianSelesai extends StatefulWidget {
   const KematianSelesai({Key key}) : super(key: key);
@@ -116,6 +118,8 @@ class _KematianSelesaiState extends State<KematianSelesai> {
                         children: [
                           ListTile(
                             onTap: () async {
+                              Provider.of<OrderStatus>(context, listen: false)
+                                  .setInProgress(false, 'Kematian');
                               final file = await loadPdf(
                                   ApiConnect.viewpdf + list[index].pdffile);
                               // ignore: use_build_context_synchronously
@@ -151,6 +155,8 @@ class _KematianSelesaiState extends State<KematianSelesai> {
                             ),
                             trailing: InkWell(
                               onTap: () async {
+                                Provider.of<OrderStatus>(context, listen: false)
+                                    .setInProgress(false, 'Kematian');
                                 var permissionStatus = await Permission.storage
                                     .request()
                                     .isGranted;
