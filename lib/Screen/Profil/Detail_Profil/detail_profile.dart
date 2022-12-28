@@ -9,6 +9,8 @@ import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Controller/RememberUser.dart';
 import 'package:kepuharjo_app/Screen/Login/appearance_login.dart';
 import 'package:kepuharjo_app/Screen/NavButton/Home_Screen.dart';
+import 'package:kepuharjo_app/Screen/Profil/Info_Aplikasi/appearance_app.dart';
+import 'package:kepuharjo_app/Screen/Profil/Tentang/appearance_tentang.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class DetailProfil extends StatefulWidget {
@@ -20,6 +22,24 @@ class DetailProfil extends StatefulWidget {
 
 class _DetailProfilState extends State<DetailProfil> {
   final CurrentUser _currentUser = CurrentUser();
+
+  void SelectedItem(BuildContext context, item) {
+    switch (item) {
+      case 0:
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => InfoAplikasi()));
+        break;
+      // case 1:
+      //   print("Privacy Clicked");
+      //   break;
+      case 1:
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => AppearanceTentang()),
+            (route) => false);
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -59,21 +79,57 @@ class _DetailProfilState extends State<DetailProfil> {
                         child: Icon(
                           Icons.keyboard_arrow_left,
                           color: whiteColor,
+                          size: 30,
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          showModalBottom();
-                        },
-                        child: Icon(
-                          Icons.menu_rounded,
-                          color: whiteColor,
+                      Theme(
+                        data: Theme.of(context).copyWith(
+                            textTheme:
+                                TextTheme().apply(bodyColor: Colors.black),
+                            dividerColor: Colors.white,
+                            iconTheme: IconThemeData(color: Colors.white)),
+                        child: PopupMenuButton<int>(
+                          color: Colors.white,
+                          itemBuilder: (context) => [
+                            PopupMenuItem<int>(
+                                value: 0,
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.info,
+                                      color: appColor,
+                                    ),
+                                    const SizedBox(
+                                      width: 7,
+                                    ),
+                                    Text(
+                                      "Info Aplikasi",
+                                      style: poppinsMediumBlack,
+                                    )
+                                  ],
+                                )),
+                            PopupMenuItem<int>(
+                                value: 1,
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.help,
+                                      color: appColor,
+                                    ),
+                                    const SizedBox(
+                                      width: 7,
+                                    ),
+                                    Text(
+                                      "Tentang",
+                                      style: poppinsMediumBlack,
+                                    )
+                                  ],
+                                )),
+                          ],
+                          onSelected: (item) => SelectedItem(context, item),
                         ),
-                      )
+                      ),
                     ],
-                  ),
-                  const SizedBox(
-                    height: 20,
                   ),
                   Text(
                     'Detail Profil',
@@ -82,9 +138,6 @@ class _DetailProfilState extends State<DetailProfil> {
                         fontSize: 18,
                         fontWeight: FontWeight.bold),
                   ),
-                  // const SizedBox(
-                  //   height: 1,
-                  // ),
                   SizedBox(
                     height: height * 0.30,
                     child: LayoutBuilder(
@@ -227,6 +280,14 @@ class _DetailProfilState extends State<DetailProfil> {
     );
   }
 
+  Choice _selectedChoice = choices[0];
+
+  void _select(Choice choice) {
+    setState(() {
+      _selectedChoice = choice;
+    });
+  }
+
   Container getProfile(IconData icon, String title, String subtitle) {
     return Container(
       decoration: BoxDecoration(
@@ -309,3 +370,15 @@ class _DetailProfilState extends State<DetailProfil> {
     ).show();
   }
 }
+
+class Choice {
+  const Choice({this.title, this.icon});
+
+  final String title;
+  final IconData icon;
+}
+
+const List<Choice> choices = <Choice>[
+  Choice(title: 'Info Aplikasi', icon: Icons.info_outline_rounded),
+  Choice(title: 'Tentang', icon: Icons.help),
+];

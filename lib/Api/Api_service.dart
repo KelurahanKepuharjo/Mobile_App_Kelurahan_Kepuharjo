@@ -27,7 +27,7 @@ class ServiceApi {
   }
 
   //get data user login
-  final CurrentUser _currentUser = Get.put(CurrentUser());
+  final CurrentUser _currentUser = CurrentUser();
 
   //get data surat sktm
   Future<List<cSktm>> getSktm() async {
@@ -227,7 +227,8 @@ class ServiceApi {
   }
 
   Future<List<cBerkelakuanBaik>> getBerkelakuanBaik() async {
-    final response = await http.post(Uri.parse(ApiConnect.readberkelakuanBaik), body: {
+    final response =
+        await http.post(Uri.parse(ApiConnect.readberkelakuanBaik), body: {
       "id_akun": _currentUser.user.idAkun,
     });
     if (response.statusCode == 200) {
@@ -240,8 +241,8 @@ class ServiceApi {
 
   //get surat keterangan Berkelakuan Baik selesai
   Future<List<cBerkelakuanBaik>> getBerkelakuanBaikSelesai() async {
-    final response =
-        await http.post(Uri.parse(ApiConnect.readberkelakuanBaikSelesai), body: {
+    final response = await http
+        .post(Uri.parse(ApiConnect.readberkelakuanBaikSelesai), body: {
       "id_akun": _currentUser.user.idAkun,
       "status_surat": "Selesai",
     });
