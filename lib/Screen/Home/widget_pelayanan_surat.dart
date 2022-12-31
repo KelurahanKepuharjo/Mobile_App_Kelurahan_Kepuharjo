@@ -221,8 +221,8 @@ class _WidgetPelayananSuratState extends State<WidgetPelayananSurat> {
                 child: Text(
                   text,
                   textAlign: TextAlign.center,
-                  style:
-                      poppinsSmallBlack.copyWith(fontWeight: FontWeight.w300),
+                  style: poppinsSmallBlack.copyWith(
+                      fontSize: 11, fontWeight: FontWeight.w300),
                 ),
               )
             ],

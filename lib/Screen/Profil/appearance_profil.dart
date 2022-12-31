@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kepuharjo_app/Controller/Current_UserLogin.dart';
 import 'package:kepuharjo_app/Screen/Profil/widget_option_setting.dart';
-import 'package:kepuharjo_app/Screen/Profil/widget_profil.dart';
 import 'package:kepuharjo_app/Shared/shared.dart';
 
 class AppearanceProfil extends StatefulWidget {
@@ -49,7 +48,6 @@ class _AppearanceProfilState extends State<AppearanceProfil> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: const [
-              WidgetShowProfile(),
               WidgetOptionsSetting(),
             ],
           ),

@@ -151,25 +151,27 @@ class _DetailUsahaState extends State<DetailUsaha> {
             getDetailSurat("RW : ${widget.list[widget.index].rW}"),
             getDetailSurat(
                 "Keperluan : ${widget.list[widget.index].keperluan}"),
-            TextButton(
-              onPressed: () {
-                showSuccessDialog();
-              },
-              child: Container(
-                height: 40,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: appColor),
-                    color: appColor.withOpacity(0.1)),
-                child: Center(
-                  child: Text(
-                    "Ajukan Pembatalan",
-                    textAlign: TextAlign.center,
-                    style: poppinsMediumBlack.copyWith(color: appColor),
+            Visibility(
+                visible: widget.list[widget.index].statusSurat != "Selesai",
+                child: TextButton(
+                  onPressed: () {
+                    showSuccessDialog();
+                  },
+                  child: Container(
+                    height: 40,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: appColor),
+                        color: appColor.withOpacity(0.1)),
+                    child: Center(
+                      child: Text(
+                        "Ajukan Pembatalan",
+                        textAlign: TextAlign.center,
+                        style: poppinsMediumBlack.copyWith(color: appColor),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            )
+                ))
           ],
         ),
       ),

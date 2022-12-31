@@ -61,7 +61,7 @@ class _WidgetBeritaState extends State<WidgetBerita> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Row(
+                              Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
