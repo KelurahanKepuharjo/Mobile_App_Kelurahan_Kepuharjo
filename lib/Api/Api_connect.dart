@@ -1,6 +1,5 @@
 class ApiConnect {
-  // static const hostConnect = "http://suket-kel.wstif3a.id/";
-  static const hostConnect = "http://192.168.0.117/Web_Kelurahan_Kepuharjo/";
+  static const hostConnect = "http://suket-kel.wstif3a.id/";
   static const connectApi = "$hostConnect/Api";
   //view pdf surat
   static const viewpdf = "$connectApi/pdf/";
