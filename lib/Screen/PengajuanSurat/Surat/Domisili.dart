@@ -5,6 +5,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:kepuharjo_app/OrderStatus.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
@@ -76,7 +77,7 @@ class _DomisiliState extends State<Domisili> {
   final CurrentUser _currentUser = CurrentUser();
 
   Future addDataSurat(BuildContext context, File imageFile) async {
-    var uri = Uri.parse(ApiConnect.sDomisili);
+    var uri = Uri.parse(ApiConnect.domisili);
     var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
     var req = http.MultipartRequest('POST', uri);
@@ -96,7 +97,7 @@ class _DomisiliState extends State<Domisili> {
     req.fields['surat_digunakan_untuk'] = suratDigunakan.text;
     req.fields['status_surat'] = statusSurat;
     req.fields['tgl_pengajuan'] = DateTime.now().toString();
-    var pic = http.MultipartFile("image", stream, length,
+    var pic = http.MultipartFile("images", stream, length,
         filename: basename(imageFile.path));
     req.files.add(pic);
     var response = await req.send();
