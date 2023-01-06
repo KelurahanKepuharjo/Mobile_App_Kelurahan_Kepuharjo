@@ -26,23 +26,3 @@ class CurrentUser {
     _currentUser.value = getUserLocalStorage;
   }
 }
-
-
-// class CurrentUser extends GetxController {
-//   final Rx<User> _currentUser = User(
-//           idAkun: '',
-//           namaLengkap: '',
-//           password: '',
-//           hakAkses: '',
-//           noHp: '',
-//           rT: '',
-//           rW: '')
-//       .obs;
-
-//   User get user => _currentUser.value;
-
-//   getUserInfo() async {
-//     User getUserLocalStorage = await RememberUser.readUser();
-//     _currentUser.value = getUserLocalStorage;
-//   }
-// }

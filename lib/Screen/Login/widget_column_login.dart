@@ -238,12 +238,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
       });
       if (response.statusCode == 200) {
         final user = jsonDecode(response.body);
-        if (user['success'] == false) {
-          setState(() {
-            _loading = false;
-          });
-          snackBarFailed();
-        } else {
+        if (user['success'] == true) {
           setState(() {
             _loading = true;
           });
@@ -255,6 +250,16 @@ class _WidgetLoginState extends State<WidgetLogin> {
               context,
               MaterialPageRoute(builder: (_) => const HomeScreen()),
               (Route<dynamic> route) => false);
+        } else if (user['message'] == 'Password Salah') {
+          setState(() {
+            _loading = false;
+          });
+          snackBarFailedpw();
+        } else {
+          setState(() {
+            _loading = false;
+          });
+          snackBarFailed();
         }
       }
     } catch (e) {
@@ -271,6 +276,17 @@ class _WidgetLoginState extends State<WidgetLogin> {
         content: AwesomeSnackbarContent(
             title: "Gagal",
             message: "Nik dan Password Salah",
+            contentType: ContentType.failure)));
+  }
+
+  snackBarFailedpw() {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        behavior: SnackBarBehavior.floating,
+        content: AwesomeSnackbarContent(
+            title: "Gagal",
+            message: "Password Salah",
             contentType: ContentType.failure)));
   }
 

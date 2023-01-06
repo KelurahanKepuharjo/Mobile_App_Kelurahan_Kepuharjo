@@ -16,13 +16,13 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-CurrentUser _rememberCurrentUser = Get.put(CurrentUser());
+final orderStatus = OrderStatus();
+final userlogin = CurrentUser();
 
 List<Widget> screen = <Widget>[
   const AppearanceHome(),
   const AppearancePengajuan(),
   const AppearanceStatus(),
-  // const AppearanceProfil(),
 ];
 
 int _index = 0;
@@ -43,11 +43,6 @@ List _navbutton = [
     "non_active_icon": Icons.assignment_outlined,
     "label": "Status"
   },
-  // {
-  //   "active_icon": Icons.person,
-  //   "non_active_icon": Icons.person_outlined,
-  //   "label": "Profil"
-  // }
 ];
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -60,7 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _rememberCurrentUser.getUserInfo();
+    userlogin.getUserInfo();
+    orderStatus.setUserId(userlogin.user.idAkun);
+    orderStatus.loadData();
   }
 
   @override
